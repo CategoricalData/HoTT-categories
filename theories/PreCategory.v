@@ -1,5 +1,5 @@
 Require Import HoTT.HoTT.
-Require Import HoTT.Categories.Notations.
+Require Import Notations.
 
 Set Universe Polymorphism.
 Set Implicit Arguments.
@@ -24,7 +24,7 @@ Record PreCategory :=
     LeftIdentity : forall a b (f : Morphism a b), (Identity b) o f = f;
     RightIdentity : forall a b (f : Morphism a b), f o (Identity a) = f;
 
-    MorphismHSet : forall s d, IsHSet (Morphism s d)
+    MorphismIsHSet : forall s d, IsHSet (Morphism s d)
   }.
 
 Bind Scope category_scope with PreCategory.
@@ -39,7 +39,10 @@ Arguments Compose [!C%category s%object d%object d'%object] m1%morphism m2%morph
 Infix "'o'" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
 
-Existing Instance MorphismHSet.
+Existing Instance MorphismIsHSet.
+Instance MorphismIsHSet' C s d (m1 m2 : Morphism C s d) (pf1 pf2 : m1 = m2)
+: Contr (pf1 = pf2)
+  := @MorphismIsHSet C s d m1 m2 pf1 pf2.
 
 (* create a hint db for all category theory things *)
 Create HintDb category discriminated.

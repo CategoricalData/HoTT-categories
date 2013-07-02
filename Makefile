@@ -1,6 +1,9 @@
 MODULES    := theories/Notations \
 	theories/NotationsUtf8 \
+	theories/Common \
+	\
 	theories/PreCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)
@@ -40,7 +43,7 @@ pretty-timed:
 	python ./make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
 
 Makefile.coq: Makefile $(VS) HoTT
-	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R theories HoTT.Categories -R HoTT/theories HoTT
+	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
 	sed s':\$$(COQBIN)coqc:'"$$(readlink -f ./HoTT/hoqc)"':g' -i Makefile.coq
 
 HoTT:

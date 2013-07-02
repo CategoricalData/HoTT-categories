@@ -1,10 +1,6 @@
-(*Reserved Notation "x == y" (at level 70, no associativity).
-Reserved Notation "x == y == z" (at level 70, no associativity, y at next level). *)
+Require Export Notations.
 
-Reserved Notation "x ~= y" (at level 70, no associativity).
-Reserved Notation "x ~= y ~= z" (at level 70, no associativity, y at next level).
-
-Reserved Notation "i ⁻¹" (at level 10).
+Reserved Notation "i ⁻¹" (at level 3).
 Reserved Notation "C ᵒᵖ" (at level 10).
 
 Reserved Notation "C ★^ M D" (at level 70, no associativity).
@@ -27,11 +23,6 @@ Reserved Infix "∘₁" (at level 40, left associativity).
 Reserved Infix "∘'" (at level 40, left associativity).
 Reserved Infix "∘₀'" (at level 40, left associativity).
 Reserved Infix "∘₁'" (at level 40, left associativity).
-Reserved Infix "'o'" (at level 40, left associativity).
-Reserved Infix "'o0'" (at level 40, left associativity).
-Reserved Infix "'o1'" (at level 40, left associativity).
-
-Reserved Notation "x ~> y" (at level 99, right associativity, y at level 200).
 
 Reserved Notation "x ∏ y" (at level 40, left associativity).
 Reserved Notation "x ∐ y" (at level 50, left associativity).
@@ -53,21 +44,4 @@ Reserved Notation "F ₁" (at level 10, no associativity).
 Reserved Notation "F ₀ x" (at level 10, no associativity).
 Reserved Notation "F ₁ m" (at level 10, no associativity).
 
-(* Forced by the notation in Program *)
-Reserved Notation "[ x ]" (at level 0, x at level 200).
-
 Reserved Notation "∫ F" (at level 0).
-
-Reserved Infix "\" (at level 40, left associativity).
-
-Delimit Scope object_scope with object.
-Delimit Scope morphism_scope with morphism.
-Delimit Scope category_scope with category.
-Delimit Scope functor_scope with functor.
-Delimit Scope natural_transformation_scope with natural_transformation.
-
-Delimit Scope graph_scope with graph.
-Delimit Scope group_elements_scope with group.
-Delimit Scope groups_scope with groups.
-Delimit Scope vertex_scope with vertex.
-Delimit Scope edge_scope with edge.
