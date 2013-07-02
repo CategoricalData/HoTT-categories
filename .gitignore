@@ -1,4 +1,13 @@
-*.vo
-*.glob
-*.v.d
 
+*~
+*.cmi
+*.cmx
+*.cmxs
+*.depend
+*.glob
+*.native
+*.o
+*.v.d
+*.vo
+Makefile.coq
+Makefile-timed.coq
