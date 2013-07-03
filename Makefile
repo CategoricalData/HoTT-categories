@@ -3,6 +3,7 @@ MODULES    := theories/Notations \
 	theories/Common \
 	\
 	theories/PreCategory \
+	theories/Functor \
 	\
 	theories/Utf8
 
