@@ -4,6 +4,7 @@ MODULES    := theories/Notations \
 	\
 	theories/PreCategory \
 	theories/Functor \
+	theories/NaturalTransformation \
 	\
 	theories/Utf8
 
