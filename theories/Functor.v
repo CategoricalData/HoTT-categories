@@ -1,1 +1,1 @@
-Require Export Functor.Core Functor.Composition.
+Require Export Functor.Core Functor.Composition Functor.Identity Functor.CompositionLaws.

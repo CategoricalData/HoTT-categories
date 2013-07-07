@@ -53,13 +53,3 @@ Notation "F ₁ m" := (MorphismOf F m) : morphism_scope.
 Hint Resolve @FCompositionOf @FIdentityOf : category functor.
 Hint Rewrite @FIdentityOf : category.
 Hint Rewrite @FIdentityOf : functor.
-
-Section IdentityFunctor.
-  (** There is an identity functor.  It does the obvious thing. *)
-  Definition IdentityFunctor C : Functor C C
-    := Build_Functor C C
-                     (fun x => x)
-                     (fun _ _ x => x)
-                     (fun _ _ _ _ _ => idpath)
-                     (fun _ => idpath).
-End IdentityFunctor.
