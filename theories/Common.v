@@ -1240,6 +1240,18 @@ Global Instance IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A
 
 (*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
 
+Ltac clear_contr_eq_in_match :=
+  repeat match goal with
+           | [ |- appcontext[match ?E with _ => _ end] ]
+             => let H := fresh in
+                let T := type of E in
+                progress (
+                    pose proof (path_contr (A := T) idpath E) as H;
+                    destruct H;
+                    simpl
+                  )
+         end.
+
 Tactic Notation "etransitivity" open_constr(y) :=
   let R := match goal with |- ?R ?x ?z => constr:(R) end in
   let x := match goal with |- ?R ?x ?z => constr:(x) end in

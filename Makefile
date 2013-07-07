@@ -4,6 +4,7 @@ MODULES    := theories/Notations \
 	\
 	theories/PreCategory \
 	theories/Functor/Core \
+	theories/Functor/Equality \
 	theories/Functor/Identity \
 	theories/Functor/Composition \
 	theories/Functor/CompositionLaws \
