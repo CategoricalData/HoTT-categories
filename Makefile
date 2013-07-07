@@ -15,6 +15,9 @@ MODULES    := theories/Notations \
 	theories/NaturalTransformation/CompositionLaws \
 	theories/NaturalTransformation \
 	\
+	theories/ProductPreCategory \
+	theories/SumPreCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)
