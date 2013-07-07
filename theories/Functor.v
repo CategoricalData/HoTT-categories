@@ -85,6 +85,8 @@ Section FunctorComposition.
     := Eval cbv beta iota zeta delta [ComposeFunctors_FIdentityOf' internal_paths_rew] in
         @ComposeFunctors_FIdentityOf' x.
 
+  Global Arguments ComposeFunctors_FCompositionOf / .
+  Global Arguments ComposeFunctors_FIdentityOf / .
   Global Opaque ComposeFunctors_FCompositionOf ComposeFunctors_FIdentityOf.
 
   Definition ComposeFunctors : Functor C E
@@ -126,8 +128,6 @@ Section IdentityFunctorLemmas.
 
   Local Transparent ComposeFunctors_FIdentityOf.
   Local Transparent ComposeFunctors_FCompositionOf.
-  Local Arguments ComposeFunctors_FCompositionOf / .
-  Local Arguments ComposeFunctors_FIdentityOf / .
 
   Lemma LeftIdentityFunctor (F : Functor D C) : IdentityFunctor _ ∘ F = F.
     functor_t.
@@ -154,8 +154,6 @@ Section FunctorCompositionLemmas.
 
   Local Transparent ComposeFunctors_FCompositionOf.
   Local Transparent ComposeFunctors_FIdentityOf.
-  Local Arguments ComposeFunctors_FCompositionOf / .
-  Local Arguments ComposeFunctors_FIdentityOf / .
 
   Lemma ComposeFunctorsAssociativity (F : Functor B C) (G : Functor C D) (H : Functor D E)
   : (H ∘ G) ∘ F = H ∘ (G ∘ F).

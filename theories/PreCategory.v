@@ -61,10 +61,9 @@ Section IdentityUnique.
         (id0_right : forall s d (m : Morphism C s d), m ∘ id0 _ = m)
   : id0 == id1.
     intro.
-    eapply transitivity.
-    - apply symmetry.
-      apply id1_left.
-    - apply id0_right.
+    etransitivity;
+      [ symmetry; apply id1_left
+      | apply id0_right ].
   Qed.
 End IdentityUnique.
 (** * Version of [Associativity] that avoids going off into the weeds in the presence of unification variables *)
@@ -81,10 +80,15 @@ Proof.
   intros; apply Associativity.
 Qed.
 
+Ltac noEvar_tauto :=
+  (eassumption
+     || (left; noEvar_tauto)
+     || (right; noEvar_tauto)).
+
 Ltac noEvar := match goal with
                  | [ |- context[NoEvar ?X] ]
                    => (has_evar X; fail 1)
-                        || cut (NoEvar X); [ intro; tauto | constructor ]
+                        || cut (NoEvar X); [ intro; noEvar_tauto | constructor ]
                end.
 
 Hint Rewrite @AssociativityNoEvar using noEvar : category.

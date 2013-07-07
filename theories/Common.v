@@ -570,7 +570,7 @@ Lemma f_equal_helper A0 (A B : A0 -> Type) (f : forall a0, A a0 -> B a0) (x y : 
   intros H a0; specialize (H a0); rewrite H; reflexivity.
 Qed.
 
-Notation f_equal := ap.
+Local Notation f_equal := ap.
 
 Ltac f_equal_in_r H k := let H' := uncurry H in let H'T := type of H' in
   let k' := (fun v => let v' := curry v in let H := fresh in assert (H := v'); simpl in H) in
@@ -1238,4 +1238,14 @@ Global Instance IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A
 : IsTrunc n (x = y)
   := H x y.
 
-Hint Extern 1 => cbv beta : typeclass_instances.
+(*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
+
+Tactic Notation "etransitivity" open_constr(y) :=
+  let R := match goal with |- ?R ?x ?z => constr:(R) end in
+  let x := match goal with |- ?R ?x ?z => constr:(x) end in
+  let z := match goal with |- ?R ?x ?z => constr:(z) end in
+  eapply (transitivity (R := R) x y z).
+
+Tactic Notation "etransitivity" := etransitivity _.
+
+Tactic Notation "symmetry" := apply symmetry.
