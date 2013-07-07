@@ -3,6 +3,8 @@ MODULES    := theories/Notations \
 	theories/Common \
 	\
 	theories/PreCategory \
+	theories/Functor/Core \
+	theories/Functor/Composition \
 	theories/Functor \
 	theories/NaturalTransformation \
 	\
