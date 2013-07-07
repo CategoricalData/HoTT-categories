@@ -2,25 +2,21 @@
 from __future__ import with_statement
 import os, sys, re
 
+STRIP_PREFIX='theories/'
+
 def get_times(file_name):
     with open(file_name, 'r') as f:
-        lines = f.readlines()
-    lines = [i for i in
-             [re.sub('"?coqc"?.*?\\s([^\\s]+)$', r'coqc \1', i.replace('\n', '').strip())
-              for i in lines]
-             if i[:4] in ('coqc', 'real')]
+        lines = f.read()
+    reg = re.compile(r'^([^ ]*) \(user: ([0-9\.]+) mem: [0-9]+ [a-zA-Z]+\)$', re.MULTILINE)
+    times = reg.findall(lines)
     times_dict = {}
-    for i in range(len(lines) - 1):
-        if lines[i][:4] == 'coqc':
-            if lines[i + 1][:4] == 'real':
-                name = lines[i][4:].strip()
-                time = lines[i + 1][4:].strip()
-                minutes, seconds = time.split('m')
-                if seconds[0].isdigit() and seconds[1] == '.':
-                    # we want,e.g., 0m05.111s, not 0m5.111s
-                    seconds = '0' + seconds
-                time = '%sm%s' % (minutes, seconds)
-                times_dict[name] = time
+    if all(name[:len(STRIP_PREFIX)] == STRIP_PREFIX for name, time in times):
+        times = tuple((name[len(STRIP_PREFIX):], time) for name, time in times)
+    for name, time in times:
+        seconds, milliseconds = time.split('.')
+        seconds = int(seconds)
+        minutes, seconds = int(seconds / 60), seconds % 60
+        times_dict[name] = '%dm%02d.%ss' % (minutes, seconds, milliseconds)
     return times_dict
 
 def get_sorted_file_list_from_times_dict(times_dict, descending=True):
@@ -37,5 +33,5 @@ def sum_times(times):
     minutes = int(seconds) / 60
     seconds -= minutes * 60
     full_seconds = int(seconds)
-    partial_seconds = int(1000 * (seconds - full_seconds))
-    return '%dm%02d.%03ds' % (minutes, full_seconds, partial_seconds)
+    partial_seconds = int(100 * (seconds - full_seconds))
+    return '%dm%02d.%02ds' % (minutes, full_seconds, partial_seconds)

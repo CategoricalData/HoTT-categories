@@ -26,13 +26,8 @@ coq: Makefile.coq
 html: Makefile.coq
 	$(MAKE) -f Makefile.coq html
 
-# TODO(jgross): Look into combining this with the time-make.sh script
-timed: Makefile.coq
-	chmod +x ./report_time.sh
-	./report_time.sh -c $(MAKE) -f Makefile.coq SHELL=./report_time.sh
-
 pretty-timed-diff:
-	sh ./make-each-time-file.sh "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
+	sh ./make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
 	$(MAKE) combine-pretty-timed
 
 combine-pretty-timed:
@@ -40,8 +35,9 @@ combine-pretty-timed:
 	cat "$(BOTH_TIME_FILE)"
 
 pretty-timed:
-	sh ./make-each-time-file.sh "$(NEW_TIME_FILE)"
+	sh ./make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)"
 	python ./make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
+	cat "$(NEW_PRETTY_TIME_FILE)"
 
 Makefile.coq: Makefile $(VS) HoTT
 	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
