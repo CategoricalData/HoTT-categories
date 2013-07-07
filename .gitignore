@@ -4,6 +4,7 @@
 *.cmxs
 *.depend
 *.glob
+*.log
 *.native
 *.o
 *.pyc
