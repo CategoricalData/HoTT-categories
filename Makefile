@@ -34,13 +34,13 @@ pretty-timed-diff:
 combine-pretty-timed:
 	python ./make-both-time-files.py "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)" "$(BOTH_TIME_FILE)"
 	cat "$(BOTH_TIME_FILE)"
-	echo
+	@echo
 
 pretty-timed:
 	sh ./make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)"
 	python ./make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
 	cat "$(NEW_PRETTY_TIME_FILE)"
-	echo
+	@echo
 
 Makefile.coq: Makefile $(VS) HoTT
 	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
