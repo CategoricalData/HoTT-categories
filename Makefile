@@ -5,12 +5,15 @@ MODULES    := theories/Notations \
 	theories/PreCategory/Core \
 	theories/PreCategory/Equality \
 	theories/PreCategory \
+	theories/StrictCategory \
+	\
 	theories/Functor/Core \
 	theories/Functor/Equality \
 	theories/Functor/Identity \
 	theories/Functor/Composition \
 	theories/Functor/CompositionLaws \
 	theories/Functor \
+	\
 	theories/NaturalTransformation/Core \
 	theories/NaturalTransformation/Equality \
 	theories/NaturalTransformation/Identity \
