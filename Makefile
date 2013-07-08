@@ -21,6 +21,8 @@ MODULES    := theories/Notations \
 	theories/ProductPreCategory \
 	theories/SumPreCategory \
 	\
+	theories/FunctorPreCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)

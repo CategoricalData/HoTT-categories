@@ -1243,8 +1243,8 @@ Global Instance IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A
 Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{IsTrunc n (f = g)}
 : IsTrunc n (f == g)
   := @trunc_equiv' _ _ (symmetry _ _ (equiv_path_forall _ _)) _ _.
-Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
-  := H.
+(*Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
+  := H.*)
 
 Ltac clear_contr_eq_in_match :=
   repeat match goal with

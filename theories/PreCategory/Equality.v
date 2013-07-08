@@ -78,6 +78,9 @@ Section PreCategories_Equal.
   Definition PreCategory_eq'_sig_inv (C D : PreCategory) : C = D -> PreCategory_eq'_sig_T C D
     := fun H0 => match H0 with idpath => (idpath; (idpath; idpath)) end.
 
+  Local Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
+    := H.
+
   Local Ltac t :=
     repeat match goal with
              | _ => reflexivity

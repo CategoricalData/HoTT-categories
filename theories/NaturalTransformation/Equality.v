@@ -81,6 +81,6 @@ End NaturalTransformations_Equal.
 
 Ltac nt_eq :=
   repeat match goal with
-           | [ |- _ == _ ] => intro; simpl
+           | [ |- _ ] => simpl; intro
            | [ |- _ = _ :> NaturalTransformation _ _ ] => apply NaturalTransformation_eq
          end.
