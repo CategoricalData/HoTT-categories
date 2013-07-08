@@ -44,11 +44,11 @@ Section Functors_Equal.
     repeat (apply path_forall; intro); apply_hyp.
   Qed.
 
-  Notation Functor_eq'_T F G := { HO : ObjectOf F = ObjectOf G
-                                | transport (fun GO => forall s d, Morphism C s d -> Morphism D (GO s) (GO d))
-                                            HO
-                                            (MorphismOf F)
-                                  = MorphismOf G }.
+  Local Notation Functor_eq'_T F G := { HO : ObjectOf F = ObjectOf G
+                                      | transport (fun GO => forall s d, Morphism C s d -> Morphism D (GO s) (GO d))
+                                                  HO
+                                                  (MorphismOf F)
+                                        = MorphismOf G }.
 
   Definition Functor_eq'_sig (F G : Functor C D) : Functor_eq'_T F G -> F = G.
     intros [? ?].

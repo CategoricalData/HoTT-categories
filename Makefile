@@ -2,6 +2,8 @@ MODULES    := theories/Notations \
 	theories/NotationsUtf8 \
 	theories/Common \
 	\
+	theories/PreCategory/Core \
+	theories/PreCategory/Equality \
 	theories/PreCategory \
 	theories/Functor/Core \
 	theories/Functor/Equality \

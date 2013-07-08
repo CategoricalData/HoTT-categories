@@ -1240,6 +1240,12 @@ Global Instance IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A
 
 (*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
 
+Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{IsTrunc n (f = g)}
+: IsTrunc n (f == g)
+  := @trunc_equiv' _ _ (symmetry _ _ (equiv_path_forall _ _)) _ _.
+Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
+  := H.
+
 Ltac clear_contr_eq_in_match :=
   repeat match goal with
            | [ |- appcontext[match ?E with _ => _ end] ]
@@ -1249,6 +1255,24 @@ Ltac clear_contr_eq_in_match :=
                     pose proof (path_contr (A := T) idpath E) as H;
                     destruct H;
                     simpl
+                  )
+         end.
+
+Ltac replace_contr_idpath :=
+  repeat match goal with
+           | [ H : _ |- _ ]
+             => let H' := fresh in
+                progress (
+                    assert (H' : idpath = H)
+                    by (
+                        let a := match goal with |- @paths (?x = ?y) ?a ?b => constr:(a) end in
+                        let b := match goal with |- @paths (?x = ?y) ?a ?b => constr:(b) end in
+                        let x := match goal with |- @paths (?x = ?y) ?a ?b => constr:(x) end in
+                        let y := match goal with |- @paths (?x = ?y) ?a ?b => constr:(y) end in
+                        apply (@equiv_inv _ _ _ (@equiv_ap _ _ _ (@isequiv_apD10 _ _ _ x y) a b));
+                        refine (center _)
+                      );
+                    destruct H'
                   )
          end.
 
