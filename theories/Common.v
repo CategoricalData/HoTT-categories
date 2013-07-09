@@ -1231,12 +1231,22 @@ Ltac f_ap :=
 (** Fixes for HoTT library **)
 Global Existing Instance trunc_forall.
 
-Global Instance IsTrunc_path (A : Type) n `{H : IsTrunc (S n) A} (x y : A)
+Definition IsTrunc_path (A : Type) n `{H : IsTrunc (S n) A} (x y : A)
 : IsTrunc n (x = y)
   := H x y.
-Global Instance IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A)
+Definition IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A)
 : IsTrunc n (x = y)
   := H x y.
+
+Ltac do_unless_goal_has_evar tac :=
+  match goal with
+    | [ |- ?G ] => has_evar G; fail 1 "Goal has evars"
+    | _ => idtac
+  end;
+  tac.
+
+Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path) : typeclass_instances.
+Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path') : typeclass_instances.
 
 (*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
 

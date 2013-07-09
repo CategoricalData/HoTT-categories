@@ -26,6 +26,8 @@ MODULES    := theories/Notations \
 	\
 	theories/FunctorPreCategory \
 	\
+	theories/DiscretePreCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)
