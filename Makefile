@@ -1,4 +1,6 @@
-MODULES    := theories/Notations \
+MODULES    := theories/Peano \
+	\
+	theories/Notations \
 	theories/NotationsUtf8 \
 	theories/Common \
 	\

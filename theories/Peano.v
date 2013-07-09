@@ -23,17 +23,19 @@
    Case analysis on [nat] and induction on [nat * nat] are provided too
  *)
 
-Require Import Notations.
-Require Import Datatypes.
-Require Import Logic.
+Require Import HoTT.Overture HoTT.types.Empty HoTT.types.Unit.
 
 Open Scope nat_scope.
 
-Definition eq_S := f_equal S.
-Definition f_equal_nat := f_equal (A:=nat).
+Local Notation "a <> b" := (~a = b).
 
-Hint Resolve eq_S: v62.
-Hint Resolve f_equal_nat: core.
+Definition paths_S := @ap _ _ S.
+Definition ap_nat := @ap nat.
+Arguments paths_S : default implicits.
+Arguments ap_nat : default implicits.
+
+Hint Resolve paths_S: v62.
+Hint Resolve ap_nat: core.
 
 (** The predecessor function *)
 
@@ -41,8 +43,9 @@ Definition pred (n:nat) : nat := match n with
                                  | O => n
                                  | S u => u
                                  end.
-Definition f_equal_pred := f_equal pred.
-Hint Resolve f_equal_pred: v62.
+Definition ap_pred := @ap _ _ pred.
+Arguments ap_pred : default implicits.
+Hint Resolve ap_pred: v62.
 
 Theorem pred_Sn : forall n:nat, n = pred (S n).
 Proof.
@@ -51,14 +54,14 @@ Qed.
 
 (** Injectivity of successor *)
 
-Definition eq_add_S n m (H: S n = S m): n = m := f_equal pred H.
-Hint Immediate eq_add_S: core.
+Definition paths_add_S n m (H: S n = S m): n = m := ap pred H.
+Hint Immediate paths_add_S: core.
 
-Theorem not_eq_S : forall n m:nat, n <> m -> S n <> S m.
+Theorem not_paths_S : forall n m:nat, n <> m -> S n <> S m.
 Proof.
   red; auto.
 Qed.
-Hint Resolve not_eq_S: core.
+Hint Resolve not_paths_S: core.
 
 Definition IsSucc (n:nat) : Prop :=
   match n with
@@ -70,7 +73,15 @@ Definition IsSucc (n:nat) : Prop :=
 
 Theorem O_S : forall n:nat, 0 <> S n.
 Proof.
-  discriminate.
+  exact (fun n H =>
+           match H in (_ = y)
+                        return match y with
+                                 | 0 => Unit
+                                 | _ => Empty
+                               end
+           with
+             | idpath => tt
+           end).
 Qed.
 Hint Resolve O_S: core.
 
@@ -90,10 +101,10 @@ Fixpoint plus (n m:nat) : nat :=
 
 where "n + m" := (plus n m) : nat_scope.
 
-Definition f_equal2_plus := f_equal2 plus.
+(*Definition f_equal2_plus := f_equal2 plus.
 Hint Resolve f_equal2_plus: v62.
-Definition f_equal2_nat := f_equal2 (A1:=nat) (A2:=nat). 
-Hint Resolve f_equal2_nat: core.
+Definition f_equal2_nat := f_equal2 (A1:=nat) (A2:=nat).
+Hint Resolve f_equal2_nat: core.*)
 
 Lemma plus_n_O : forall n:nat, n = n + 0.
 Proof.
@@ -131,8 +142,8 @@ Fixpoint mult (n m:nat) : nat :=
   end
 
 where "n * m" := (mult n m) : nat_scope.
-Definition f_equal2_mult := f_equal2 mult.
-Hint Resolve f_equal2_mult: core.
+(*Definition f_equal2_mult := f_equal2 mult.
+Hint Resolve f_equal2_mult: core.*)
 
 Lemma mult_n_O : forall n:nat, 0 = n * 0.
 Proof.
@@ -143,7 +154,7 @@ Hint Resolve mult_n_O: core.
 Lemma mult_n_Sm : forall n m:nat, n * m + n = n * S m.
 Proof.
   intros; induction n as [| p H]; simpl; auto.
-  destruct H; rewrite <- plus_n_Sm; apply eq_S.
+  destruct H; rewrite <- plus_n_Sm; apply paths_S.
   pattern m at 1 3; elim m; simpl; auto.
 Qed.
 Hint Resolve mult_n_Sm: core.
@@ -242,7 +253,7 @@ Fixpoint min n m : nat :=
     | S n', S m' => S (min n' m')
   end.
 
-Theorem max_l : forall n m : nat, m <= n -> max n m = n.
+(*Theorem max_l : forall n m : nat, m <= n -> max n m = n.
 Proof.
 induction n; destruct m; simpl; auto. inversion 1.
 intros. apply f_equal. apply IHn. apply le_S_n. trivial.
@@ -264,7 +275,7 @@ Theorem min_r : forall n m : nat, m <= n -> min n m = m.
 Proof.
 induction n; destruct m; simpl; auto. inversion 1.
 intros. apply f_equal. apply IHn. apply le_S_n. trivial.
-Qed.
+Qed.*)
 
 Lemma nat_rect_succ_r {A} (f: A -> A) (x:A) n :
   nat_rect (fun _ => A) x (fun _ => f) (S n) = nat_rect (fun _ => A) (f x) (fun _ => f) n.
