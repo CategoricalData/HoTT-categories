@@ -1286,6 +1286,17 @@ Ltac replace_contr_idpath :=
                   )
          end.
 
+Definition false_ne_true : ~false = true
+  := fun H => match H in (_ = y) return (if y then Empty else Unit) with
+                | 1%path => tt
+              end.
+
+Definition true_ne_false : ~true = false
+  := fun H => false_ne_true (symmetry _ _ H).
+
+Hint Extern 0 => apply false_ne_true; solve [ trivial ].
+Hint Extern 0 => apply true_ne_false; solve [ trivial ].
+
 Tactic Notation "etransitivity" open_constr(y) :=
   let R := match goal with |- ?R ?x ?z => constr:(R) end in
   let x := match goal with |- ?R ?x ?z => constr:(x) end in

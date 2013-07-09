@@ -38,3 +38,6 @@ Arguments DiscretePreCategory _ {_}.
 
 Instance DiscretePreCategoryIsStrict X `{IsHSet X}
 : IsStrictCategory (DiscretePreCategory X).
+Proof.
+  typeclasses eauto.
+Defined.
