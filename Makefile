@@ -27,6 +27,7 @@ MODULES    := theories/Notations \
 	theories/FunctorPreCategory \
 	\
 	theories/DiscretePreCategory \
+	theories/BoolCategory \
 	\
 	theories/Utf8
 
