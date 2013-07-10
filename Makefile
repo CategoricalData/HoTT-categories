@@ -7,6 +7,7 @@ MODULES    := theories/Peano \
 	theories/PreCategory/Core \
 	theories/PreCategory/Equality \
 	theories/PreCategory \
+	theories/PreCategoryMorphisms \
 	theories/StrictCategory \
 	\
 	theories/Functor/Core \
