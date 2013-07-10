@@ -36,7 +36,7 @@ Arguments Morphism !C%category s d : rename.
 Arguments Identity [!C%category] x%object : rename.
 Arguments Compose [!C%category s%object d%object d'%object] m1%morphism m2%morphism : rename.
 
-Infix "'o'" := Compose : morphism_scope.
+Infix "o" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
 
 Existing Instance MorphismIsHSet.

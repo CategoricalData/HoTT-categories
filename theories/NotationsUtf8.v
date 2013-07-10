@@ -24,6 +24,9 @@ Reserved Infix "∘'" (at level 40, left associativity).
 Reserved Infix "∘₀'" (at level 40, left associativity).
 Reserved Infix "∘₁'" (at level 40, left associativity).
 
+Reserved Notation "x ↪ y" (at level 99, right associativity, y at level 200).
+Reserved Notation "x ↠ y" (at level 99, right associativity, y at level 200).
+
 Reserved Notation "x ∏ y" (at level 40, left associativity).
 Reserved Notation "x ∐ y" (at level 50, left associativity).
 Reserved Infix "Π" (at level 40, left associativity).

@@ -1266,6 +1266,14 @@ Ltac clear_contr_eq_in_match :=
                     destruct H;
                     simpl
                   )
+           | [ |- appcontext[match ?E with _ => _ end] ]
+             => let H := fresh in
+                let T := type of E in
+                progress (
+                    assert (H : idpath = E) by exact (center _);
+                    destruct H;
+                    simpl
+                  )
          end.
 
 Ltac replace_contr_idpath :=

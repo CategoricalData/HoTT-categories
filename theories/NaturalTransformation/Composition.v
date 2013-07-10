@@ -153,7 +153,7 @@ End NaturalTransformationComposition.
     [∘₀] to denote composition along 0-cells (functors), and [∘₁] to
     denote composition along 1-cells (natural transformations). *)
 
-Infix "'o0'" := NTComposeF : natural_transformation_scope.
-Infix "'o1'" := NTComposeT : natural_transformation_scope.
+Infix "o0" := NTComposeF : natural_transformation_scope.
+Infix "o1" := NTComposeT : natural_transformation_scope.
 Infix "∘₀" := NTComposeF : natural_transformation_scope.
 Infix "∘₁" := NTComposeT : natural_transformation_scope.

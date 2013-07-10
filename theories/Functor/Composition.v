@@ -51,7 +51,7 @@ Section FunctorComposition.
                      ComposeFunctors_FIdentityOf.
 End FunctorComposition.
 
-Infix "'o'" := ComposeFunctors : functor_scope.
+Infix "o" := ComposeFunctors : functor_scope.
 Infix "∘" := ComposeFunctors : functor_scope.
 
 Global Arguments ComposeFunctors_FCompositionOf / .
