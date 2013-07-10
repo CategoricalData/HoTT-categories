@@ -141,6 +141,11 @@ Section iso_equiv_relation.
           )
       ].
   Defined.
+
+  Definition idtoiso (x y : C) (H : x = y) : Isomorphic x y
+    := match H in (_ = y0) return (x ≅ y0) with
+         | 1%path => reflexivity x
+       end.
 End iso_equiv_relation.
 
 Ltac find_composition_to_identity :=
