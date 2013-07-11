@@ -1,4 +1,4 @@
-Require Export PreCategory Functor NaturalTransformation.
+Require Export Category Functor NaturalTransformation.
 Require Import Common.
 
 Set Implicit Arguments.

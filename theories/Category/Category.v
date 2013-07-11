@@ -1,4 +1,4 @@
-Require Export PreCategory.Core PreCategoryMorphisms.
+Require Export Category.Core Category.Morphisms.
 Require Import Common Notations.
 
 Set Universe Polymorphism.

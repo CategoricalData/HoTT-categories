@@ -1,4 +1,4 @@
-Require Export PreCategory Functor.
+Require Export Category Functor.
 Require Import Common.
 
 Set Implicit Arguments.

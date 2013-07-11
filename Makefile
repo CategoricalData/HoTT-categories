@@ -4,12 +4,11 @@ MODULES    := theories/Peano \
 	theories/NotationsUtf8 \
 	theories/Common \
 	\
-	theories/PreCategory/Core \
-	theories/PreCategory/Equality \
-	theories/PreCategory \
-	theories/PreCategoryMorphisms \
-	theories/StrictCategory \
-	theories/Category \
+	theories/Category/Core \
+	theories/Category/Equality \
+	theories/Category/Morphisms \
+	theories/Category/Category \
+	theories/Category/StrictCategory \
 	\
 	theories/Functor/Core \
 	theories/Functor/Equality \

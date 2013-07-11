@@ -1,4 +1,4 @@
-Require Export PreCategory Functor.Core.
+Require Export Category Functor.Core.
 Require Import Common.
 
 Set Implicit Arguments.

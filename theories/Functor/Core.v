@@ -1,4 +1,4 @@
-Require Export PreCategory.
+Require Export Category.
 Require Import Common.
 
 Set Implicit Arguments.

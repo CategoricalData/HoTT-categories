@@ -1,4 +1,4 @@
 Require Export Notations NotationsUtf8.
-Require Import PreCategory.
+Require Import Category.
 
 Infix "∘" := Compose : morphism_scope.
