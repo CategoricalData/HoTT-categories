@@ -16,16 +16,16 @@ Class IsIsomorphism {C : PreCategory} {s d} (m : Morphism C s d) :=
     RightInverse : m ∘ Inverse = Identity _
   }.
 
-Notation "m ^-1" := (Inverse m) : morphism_scope.
-Notation "m ⁻¹" := (Inverse m) : morphism_scope.
+Notation "m ^-1" := (Inverse (m := m)) : morphism_scope.
+Notation "m ⁻¹" := (Inverse (m := m)) : morphism_scope.
 
-Class > Isomorphic {C : PreCategory} s d :=
+Class Isomorphic {C : PreCategory} s d :=
   {
     IsomorphicMorphism :> Morphism C s d;
     Isomorphic_IsIsomorphism :> IsIsomorphism IsomorphicMorphism
   }.
 
-Coercion Build_Isomorphic : IsIsomorphism >-> Isomorphic.
+(*Coercion Build_Isomorphic : IsIsomorphism >-> Isomorphic.*)
 Coercion IsomorphicMorphism : Isomorphic >-> Morphism.
 Coercion Isomorphic_IsIsomorphism : Isomorphic >-> IsIsomorphism.
 
@@ -108,17 +108,23 @@ Section iso_equiv_relation.
 
   Global Instance isomorphic_refl : Reflexive (@Isomorphic C)
     := fun x : C =>
-         {|
-           Inverse := Identity x;
-           LeftInverse := LeftIdentity C x x (Identity x);
-           RightInverse := RightIdentity C x x (Identity x) |}.
+         {| IsomorphicMorphism := Identity x;
+            Isomorphic_IsIsomorphism :=
+              {|
+                Inverse := Identity x;
+                LeftInverse := LeftIdentity C x x (Identity x);
+                RightInverse := RightIdentity C x x (Identity x) |}
+         |}.
 
   Global Instance isomorphic_sym : Symmetric (@Isomorphic C)
     := fun x y X =>
-         {|
-           Inverse := X;
-           LeftInverse := RightInverse;
-           RightInverse := LeftInverse |}.
+         {| IsomorphicMorphism := Inverse;
+            Isomorphic_IsIsomorphism :=
+              {|
+                Inverse := X;
+                LeftInverse := RightInverse;
+                RightInverse := LeftInverse |}
+         |}.
 
   Global Instance isomorphic_trans : Transitive (@Isomorphic C).
   Proof.
