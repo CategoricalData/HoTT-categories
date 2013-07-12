@@ -13,6 +13,7 @@ Local Open Scope morphism_scope.
 Section ProductCategory.
   Variable C : PreCategory.
   Variable D : PreCategory.
+
   Definition ProductPreCategory : PreCategory.
     refine (@Build_PreCategory (C * D)%type
                                (fun s d => (C.(Morphism) (fst s) (fst d) * D.(Morphism) (snd s) (snd d))%type)
@@ -105,74 +106,75 @@ Proof.
     assumption.
 Defined.
 
-Instance ProductCategory_IsCategory `{IsCategory A, IsCategory B} : IsCategory (A * B).
+Instance ProductCategory_IsCategory `{Funext} `{IsCategory A, IsCategory B} : IsCategory (A * B).
 Proof.
-  intros s d.
-  pose (_ : IsEquiv (@ProductPreCategory_isomorphism_f_inv _ _ s d)).
-  pose (_ : IsEquiv ((functor_prod (@idtoiso A (fst s) (fst d))
-                                                     (@idtoiso B (snd s) (snd d)))
-                                       ((path_prod_uncurried s d) ^-1)%equiv))))
-  pose (_ : IsEquiv ((compose (functor_prod (@idtoiso A (fst s) (fst d))
-                                                     (@idtoiso B (snd s) (snd d)))
-                                       ((path_prod_uncurried s d) ^-1)%equiv))).
-  Print Implicit isequiv_compose.
+  (* We should be able to just compose some equivalences to make this
+     work, but I can't quite figure it out.
 
-  SearchAbout IsEquiv.
-  pose (_ : IsEquiv (compose (@ProductPreCategory_isomorphism_f_inv _ _ s d)
-                             ((compose (functor_prod (@idtoiso A (fst s) (fst d))
-                                                     (@idtoiso B (snd s) (snd d)))
-                                       ((path_prod_uncurried s d) ^-1)%equiv)))).
+  intros s d.
+  hnf in *.
+  pose proof (_ : IsEquiv (compose (@ProductPreCategory_isomorphism_f_inv _ _ s d)
+                                   ((compose (functor_prod (@idtoiso A (fst s) (fst d))
+                                                           (@idtoiso B (snd s) (snd d)))
+                                             ((path_prod_uncurried s d) ^-1)%equiv)))).
+  let f0 := match type of X with IsEquiv ?f0 => constr:(f0) end in
+  let f := match goal with |- IsEquiv ?f => constr:(f) end in
+  assert (f0 = f).
+  expand.
+  clear X.
+  clear H1.
+  clear H0.
+  unfold ProductPreCategory_isomorphism_f_inv.
+  unfold functor_prod, idtoiso, compose; simpl.
+  apply path_forall; intro; simpl.
+  destruct x.
+  expand.
+  repeat (f_ap; expand);
+  refine (center _).*)
+  repeat intro.
+  apply (isequiv_adjointify (idtoiso (A * B) (x := _) (y := _))
+                            (ProductPreCategory_isotoid (x := _) (y := _)));
+    repeat intro.
+  destruct s as [sa sb], d as [da db].
+  repeat unfold ProductPreCategory_isotoid, path_prod, idtoiso, category_is_category, ProductPreCategory_isomorphism_equiv, equiv_inv, path_prod_uncurried;
+    simpl.
+  repeat match goal with
+           | [ H : IsCategory _ |- _ ]
+             => repeat match goal with
+                         | _ => clear H
+                         | [ |- appcontext[H ?a ?b] ] => generalize (H a b); intro
+                       end
+         end.
+  destruct x as [[? ?] [[? ?] ? ?]].
+  simpl in *.
+  destruct
+  destruct i, i0; simpl in *.
+    clear H0.
+  simpl ProductPreCategory_isotoid.
+
+  generalize (ProductPreCategory_isotoid x).
+  intro.
+  path_induction.
+  simpl.
+  assert (@IsomorphicMorphism _ _ _ (idtoiso (A * B) (ProductPreCategory_isotoid x)) = @IsomorphicMorphism _ _ _ x).
+  expand; destruct x; simpl.
+  unfold ProductPreCategory_isotoid; simpl.
+
+  expand.
+  destruct x; simpl.
+
+  unfold ProductPreCategory_isotoid; simpl.
+
+  destruct s, d.
+  unfold ProductPreCategory_isotoid.
+
+  unfold path_prod, ProductPreCategory_isomorphism_equiv, idtoiso.
+  simpl.
+  unfold equiv_inv.
   pose proof (fun s d => isotoid A s d).
   pose proof (fun s d => isotoid B s d).
   repeat intro.
   hnf in H, H0.
-  Check (idtoiso (A * B) (x:=s) (y:=d)).
-  Check (functor_prod (@idtoiso A (fst s) (fst d))
-                      (@idtoiso B (snd s) (snd d))).
-  Check ((path_prod_uncurried s d) ^-1)%equiv.
-  Check (compose (ProductPreCategory_isomorphism_f_inv s d)
-                 ((compose (functor_prod (@idtoiso A (fst s) (fst d))
-                                         (@idtoiso B (snd s) (snd d)))
-                           (compose ((path_prod_uncurried s d) ^-1)%equiv
-                                    (fun x => x))))).
-
-  pose (_ : IsEquiv (compose (functor_prod (@idtoiso A (fst s) (fst d))
-                                           (@idtoiso B (snd s) (snd d)))
-                             ((path_prod_uncurried s d) ^-1)%equiv)).
-
-  SearchAbout path_prod_uncurried.
-  SearchAbout (prod _ _ -> _ = _).
-  Print Implicit isequiv_functor_prod.
-  Check @functor_prod.
-  Check @isequiv_functor_prod.
-  SearchAbout Equiv.
-  SearchAbout prod.
-  Check prod_eta.
-  Check sum_eta.
-  pose proof (isequiv_functor_prod (f := @idtoiso A (fst s) (fst d))
-                                   (g := @idtoiso B (snd s) (snd d))) as i.
-
-  unfold functor_prod in i.
-  pattern @fst in i.
-  pattern @snd in i.
-  pattern
-  simpl in i.
-  pose proof (equiv_path_prod s d).
-
-  Print idtoiso.
-  pattern ((fst s = fst d) * (snd s = snd d))%type in i.
-  SearchAbout Equiv.
-
-  SearchAbout (_ * _ <~> _).
-  unfold idtoiso in i |- *.
-  simpl in *.
-  unfold equiv_inv in *.
-  unfold
-  Check @isequiv_functor_prod.
-  pose (equiv_functor_prod').
-
-  apply (isequiv_adjointify (idtoiso (A * B) (x := _) (y := _))
-                            (ProductPreCategory_isotoid (x := _) (y := _))).
   hnf; intros; expand.
   destruct x.
   unfold ProductPreCategory_isotoid.
