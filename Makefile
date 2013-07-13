@@ -31,6 +31,7 @@ MODULES    := theories/Peano \
 	\
 	theories/FunctorPreCategory \
 	\
+	theories/Groupoid \
 	theories/DiscreteCategory \
 	theories/BoolCategory \
 	\
