@@ -14,3 +14,11 @@ Class IsStrictCategory (C : PreCategory) :=
 (*Existing Instance Strict_category_is_strict.*)
 
 Hint Unfold IsStrictCategory : typeclass_instances.
+
+Record StrictCategory :=
+  {
+    StrictPreCategory :> PreCategory;
+    StrictCategory_IsStrict :> IsStrictCategory StrictPreCategory
+  }.
+
+Existing Instance StrictCategory_IsStrict.

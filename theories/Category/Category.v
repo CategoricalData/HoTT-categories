@@ -25,3 +25,11 @@ Proof.
   | ].
   typeclasses eauto.
 Qed.
+
+Record Category :=
+  {
+    CategoryPreCategory :> PreCategory;
+    CategoryPreCategory_IsCategory :> IsCategory CategoryPreCategory
+  }.
+
+Existing Instance CategoryPreCategory_IsCategory.
