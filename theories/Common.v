@@ -1220,17 +1220,55 @@ Hint Extern 0 (@JMeq _ _ Empty_set _) => apply Empty_set_JMeqr.
 (* Hint Extern 0 (@paths _ _ _) => try solve [ refine (center _) ]. *)
 
 
-(** New to HoTT common file **)
-
-(* similar to [f_equal], which used to exist in the standard library *)
-Ltac f_ap :=
-  apply ap11;
-  [ done || f_ap
-  | trivial ].
-
 (** Fixes for HoTT library **)
 Existing Instances trunc_arrow trunc_forall.
 
+Definition sigT_of_sum A B (x : A + B) : { b : Bool & if b then A else B }
+  := (_;
+      match
+        x as s
+        return
+        (if match s with
+              | inl _ => true
+              | inr _ => false
+            end then A else B)
+      with
+        | inl a => a
+        | inr b => b
+      end).
+
+Definition sum_of_sigT A B (x : { b : Bool & if b then A else B }) : A + B
+  := match x with
+       | (true; a) => inl a
+       | (false; b) => inr b
+     end.
+
+Instance isequiv_sigT_of_sum A B : IsEquiv (@sigT_of_sum A B).
+Proof.
+  apply (isequiv_adjointify (@sigT_of_sum A B)
+                            (@sum_of_sigT A B));
+  repeat intro; expand;
+  destruct_head sigT;
+  destruct_head sum;
+  destruct_head Bool;
+  simpl;
+  reflexivity.
+Defined.
+
+Instance isequiv_sum_of_sigT A B : IsEquiv (sum_of_sigT A B)
+  := isequiv_inverse.
+
+Instance trunc_if n A B `{IsTrunc n A, IsTrunc n B} (b : Bool)
+: IsTrunc n (if b then A else B)
+  := if b as b return (IsTrunc n (if b then A else B)) then _ else _.
+
+Instance trunc_sum n A B `{IsTrunc n Bool, IsTrunc n A, IsTrunc n B} : IsTrunc n (A + B).
+Proof.
+  eapply trunc_equiv'; [ esplit;
+                         exact (@isequiv_sum_of_sigT _ _)
+                       | ].
+  typeclasses eauto.
+Defined.
 
 Tactic Notation "etransitivity" open_constr(y) :=
   let R := match goal with |- ?R ?x ?z => constr:(R) end in
@@ -1266,6 +1304,8 @@ Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{
   := @trunc_equiv' _ _ (symmetry _ _ (equiv_path_forall _ _)) _ _.
 (*Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
   := H.*)
+
+(** New to HoTT common file **)
 
 Ltac clear_contr_eq_in_match :=
   repeat match goal with
@@ -1342,14 +1382,6 @@ Ltac super_path_induction :=
            | _ => progress clear_contr_eq_in_match
            | _ => progress replace_contr_idpath
          end.
-
-Definition false_ne_true : ~false = true
-  := fun H => match H in (_ = y) return (if y then Empty else Unit) with
-                | 1%path => tt
-              end.
-
-Definition true_ne_false : ~true = false
-  := fun H => false_ne_true (symmetry _ _ H).
 
 Hint Extern 0 => apply false_ne_true; solve [ trivial ].
 Hint Extern 0 => apply true_ne_false; solve [ trivial ].

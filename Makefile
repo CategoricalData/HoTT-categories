@@ -34,6 +34,7 @@ MODULES    := theories/Peano \
 	theories/Groupoid \
 	theories/DiscreteCategory \
 	theories/BoolCategory \
+	theories/NatCategory \
 	\
 	theories/Utf8
 
