@@ -1229,7 +1229,18 @@ Ltac f_ap :=
   | trivial ].
 
 (** Fixes for HoTT library **)
-Global Existing Instance trunc_forall.
+Existing Instances trunc_arrow trunc_forall.
+
+
+Tactic Notation "etransitivity" open_constr(y) :=
+  let R := match goal with |- ?R ?x ?z => constr:(R) end in
+  let x := match goal with |- ?R ?x ?z => constr:(x) end in
+  let z := match goal with |- ?R ?x ?z => constr:(z) end in
+  eapply (transitivity (R := R) x y z).
+
+Tactic Notation "etransitivity" := etransitivity _.
+
+Tactic Notation "symmetry" := apply symmetry.
 
 Definition IsTrunc_path (A : Type) n `{H : IsTrunc (S n) A} (x y : A)
 : IsTrunc n (x = y)
@@ -1294,6 +1305,44 @@ Ltac replace_contr_idpath :=
                   )
          end.
 
+Definition match_eta T (x y : T) (H0 : x = y)
+: (H0 = match H0 in (_ = y) return (x = y) with
+          | idpath => idpath
+        end)
+  := match H0 with idpath => idpath end.
+
+Definition match_eta1 T (x : T) (E : x = x)
+: (match E in (_ = y) return (x = y) with
+     | idpath => idpath
+   end = idpath)
+  -> idpath = E
+  := fun H => ((H # match_eta E) ^)%path.
+
+Definition match_eta2 T (x : T) (E : x = x)
+: (idpath
+   = match E in (_ = y) return (x = y) with
+       | idpath => idpath
+     end)
+  -> idpath = E
+  := fun H => match_eta1 E (H ^)%path.
+
+Ltac super_path_induction :=
+  repeat match goal with
+           | _ => reflexivity
+           | [ H : _ = _ |- _ ] => (destruct H || induction H || (case H; clear H))
+           | [ H : _ = _ |- _ ]
+             => let H' := fresh in
+                assert (H' : idpath = H)
+                  by exact (center _);
+                  destruct H'
+           | [ H : _ |- _ ]
+             => let H' := fresh in assert (H' := match_eta1 _ H); destruct H'
+           | [ H : _ |- _ ]
+             => let H' := fresh in assert (H' := match_eta2 _ H); destruct H'
+           | _ => progress clear_contr_eq_in_match
+           | _ => progress replace_contr_idpath
+         end.
+
 Definition false_ne_true : ~false = true
   := fun H => match H in (_ = y) return (if y then Empty else Unit) with
                 | 1%path => tt
@@ -1305,12 +1354,11 @@ Definition true_ne_false : ~true = false
 Hint Extern 0 => apply false_ne_true; solve [ trivial ].
 Hint Extern 0 => apply true_ne_false; solve [ trivial ].
 
-Tactic Notation "etransitivity" open_constr(y) :=
-  let R := match goal with |- ?R ?x ?z => constr:(R) end in
-  let x := match goal with |- ?R ?x ?z => constr:(x) end in
-  let z := match goal with |- ?R ?x ?z => constr:(z) end in
-  eapply (transitivity (R := R) x y z).
+Definition HProp := { T : Type | IsHProp T }.
+Definition HSet := { T : Type | IsHSet T }.
 
-Tactic Notation "etransitivity" := etransitivity _.
+Coercion HProp_set := @projT1 _ _ : HProp -> Type.
+Coercion HSet_set := @projT1 _ _ : HSet -> Type.
 
-Tactic Notation "symmetry" := apply symmetry.
+Instance trunc_HProp_set (T : HProp) : IsHProp (HProp_set T) := @projT2 _ _ _.
+Instance trunc_HSet_set (T : HSet) : IsHSet (HSet_set T) := @projT2 _ _ _.

@@ -24,14 +24,14 @@ MODULES    := theories/Peano \
 	theories/NaturalTransformation/CompositionLaws \
 	theories/NaturalTransformation \
 	\
-	theories/SetCategory \
-	\
 	theories/ProductPreCategory \
 	theories/SumPreCategory \
 	\
+	theories/SetCategory \
+	\
 	theories/FunctorPreCategory \
 	\
-	theories/DiscretePreCategory \
+	theories/DiscreteCategory \
 	theories/BoolCategory \
 	\
 	theories/Utf8

@@ -6,8 +6,6 @@ Generalizable All Variables.
 Set Asymmetric Patterns.
 Set Universe Polymorphism.
 
-Existing Instances trunc_arrow trunc_forall.
-
 Notation CatOf obj :=
   (@Build_PreCategory obj
                       (fun x y => x -> y)

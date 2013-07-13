@@ -15,7 +15,7 @@ Notation isotoid C s d := (@equiv_inv _ _ _ (@category_is_category C _ s d)).
 
 Hint Unfold IsCategory : typeclass_instances.
 
-Instance trunc_category `{IsCategory C} : IsTrunc 1 C.
+Instance trunc_category `{IsCategory C} : IsTrunc 1 C | 10000.
 Proof.
   intros ? ?.
   eapply trunc_equiv';
