@@ -1,4 +1,4 @@
-Require Export Category.Core Category.Morphisms.
+Require Export Category.Core Category.Morphisms Category.StrictCategory.
 Require Import Common Notations.
 
 Set Universe Polymorphism.

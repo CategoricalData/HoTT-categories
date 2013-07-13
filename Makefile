@@ -24,6 +24,8 @@ MODULES    := theories/Peano \
 	theories/NaturalTransformation/CompositionLaws \
 	theories/NaturalTransformation \
 	\
+	theories/SetCategory \
+	\
 	theories/ProductPreCategory \
 	theories/SumPreCategory \
 	\

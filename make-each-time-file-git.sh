@@ -7,7 +7,7 @@ OLD_FILE="$3"
 if [ ! -z "$OLD_FILE" ]; then
     # make the old version
     CHANGE="$(git stash)"
-    trap "git stash pop" SIGINT SIGTERM
+    trap "git stash pop && exit 1" SIGINT SIGTERM
     
     make clean
     $MAKE TIMED=1 -k 2>&1 | tee "$OLD_FILE"
@@ -19,7 +19,7 @@ if [ ! -z "$OLD_FILE" ]; then
 	cp "$OLD_FILE" "$NEW_FILE"
     else
 	git stash pop
-	trap "" SIGINT SIGTERM
+	trap "exit 1" SIGINT SIGTERM
 	make clean
 	$MAKE TIMED=1 -k 2>&1 | tee "$NEW_FILE"
     fi
