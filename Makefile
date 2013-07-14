@@ -38,6 +38,8 @@ MODULES    := theories/Peano \
 	\
 	theories/InitialTerminalCategory \
 	\
+	theories/CommaCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)

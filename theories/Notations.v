@@ -15,6 +15,7 @@ Reserved Notation "C ★^ M D" (at level 70, no associativity).
 Reserved Notation "C ★^{ M } D" (at level 70, no associativity).
 
 Reserved Notation "S ↓ T" (at level 70, no associativity).
+Reserved Notation "S |v| T" (at level 70, no associativity).
 
 Reserved Notation "S ⇑ T" (at level 70, no associativity).
 Reserved Notation "S ⇓ T" (at level 70, no associativity).
