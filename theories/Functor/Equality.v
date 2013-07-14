@@ -71,28 +71,12 @@ Section Functors_Equal.
              | _ => progress clear_contr_eq_in_match
            end.
 
-  Lemma Functor_eq'_sig_equiv_eisretr (F G : Functor C D)
-  : Sect (Functor_eq'_sig F G) (@Functor_eq'_sig_inv F G).
-  Proof.
-    t.
-  Defined.
-
-  Lemma Functor_eq'_sig_equiv_eissect (F G : Functor C D)
-  : Sect (@Functor_eq'_sig_inv F G) (Functor_eq'_sig F G).
-  Proof.
-    t.
-  Defined.
-
-  Lemma Functor_eq'_sig_equiv_eisadj (F G : Functor C D)
-  : forall x, @Functor_eq'_sig_equiv_eisretr F G (@Functor_eq'_sig_inv F G x)
-              = ap (@Functor_eq'_sig_inv F G) (Functor_eq'_sig_equiv_eissect x).
-  Proof.
-    t.
-  Defined.
-
   Lemma Functor_eq'_sig_equiv (F G : Functor C D)
-  : F = G <~> Functor_eq'_T F G.
-    econstructor; econstructor; exact (@Functor_eq'_sig_equiv_eisadj F G).
+  : Functor_eq'_T F G <~> F = G.
+  Proof.
+    apply (equiv_adjointify (@Functor_eq'_sig F G)
+                            (@Functor_eq'_sig_inv F G));
+    t.
   Defined.
 
   (*Lemma Functor_sig
@@ -124,8 +108,7 @@ Section Functors_Equal.
       simpl; intros;
       refine (center _)
     | eapply trunc_equiv';
-      [ apply symmetry;
-        exact (Functor_eq'_sig_equiv _ _)
+      [ exact (Functor_eq'_sig_equiv _ _)
       | typeclasses eauto ]
     ].
   Defined.
@@ -133,6 +116,7 @@ End Functors_Equal.
 
 Ltac functor_eq :=
   repeat match goal with
-           | [ |- _ == _ ] => intro; simpl
-           | [ |- _ = _ :> Functor _ _ ] => eapply Functor_eq
+           | _ => intro
+           | _ => apply Functor_eq'_sig; simpl
+           | _ => (exists idpath)
          end.

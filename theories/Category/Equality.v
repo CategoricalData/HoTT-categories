@@ -78,6 +78,7 @@ Section PreCategories_Equal.
   Definition PreCategory_eq'_sig_inv (C D : PreCategory) : C = D -> PreCategory_eq'_sig_T C D
     := fun H0 => match H0 with idpath => (idpath; (idpath; idpath)) end.
 
+  (** TODO: Figure out how to get rid of this *)
   Local Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
     := H.
 
@@ -99,13 +100,6 @@ Section PreCategories_Equal.
                     try destruct H
              | _ => progress replace_contr_idpath
            end.
-
-  (*Lemma PreCategory_eq'_sig_equiv_eisadj (C D : PreCategory)
-  : forall x, @PreCategory_eq'_sig_equiv_eisretr C D (@PreCategory_eq'_sig_inv C D x)
-              = ap (@PreCategory_eq'_sig_inv C D) (PreCategory_eq'_sig_equiv_eissect x).
-  Proof.
-    Time t. (* 61.882 secs *)
-  Defined.*)
 
   Lemma PreCategory_eq'_sig_equiv (C D : PreCategory)
   : PreCategory_eq'_sig_T C D <~> C = D.
@@ -156,6 +150,7 @@ End PreCategories_Equal.
 
 Ltac category_eq :=
   repeat match goal with
-           | [ |- _ == _ ] => intro; simpl
-           | [ |- _ = _ :> PreCategory _ _ ] => eapply PreCategory_eq
+           | _ => intro
+           | _ => apply PreCategory_eq'_sig; simpl
+           | _ => (exists idpath)
          end.
