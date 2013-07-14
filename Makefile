@@ -29,6 +29,8 @@ MODULES    := theories/Peano \
 	\
 	theories/SetCategory \
 	\
+	theories/ComputableCat \
+	\
 	theories/FunctorPreCategory \
 	\
 	theories/Groupoid \
@@ -39,6 +41,9 @@ MODULES    := theories/Peano \
 	theories/InitialTerminalCategory \
 	\
 	theories/CommaCategory \
+	\
+	theories/Grothendieck/ToSet \
+	theories/Grothendieck \
 	\
 	theories/Utf8
 
