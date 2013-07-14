@@ -1298,6 +1298,11 @@ Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path) : typeclass_i
 Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path') : typeclass_instances.
 
 (*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
+Hint Extern 0 => assumption : typeclass_instances.
+Hint Extern 3 => progress cbv beta : typeclass_instances.
+(*Hint Extern 0 => match goal with
+                   | [ |- appcontext[(fun _ => _) _] ] => cbv beta
+                 end : typeclass_instances.*)
 
 Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{IsTrunc n (f = g)}
 : IsTrunc n (f == g)

@@ -187,7 +187,6 @@ Section CommaCategory.
     Global Instance CommaCategory_IsStrict `{IsStrictCategory A, IsStrictCategory B}
     : IsStrictCategory CommaCategory.
     Proof.
-      unfold IsStrictCategory in *.
       typeclasses eauto.
     Qed.
   End strict.
