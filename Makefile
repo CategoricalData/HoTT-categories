@@ -36,6 +36,8 @@ MODULES    := theories/Peano \
 	theories/BoolCategory \
 	theories/NatCategory \
 	\
+	theories/InitialTerminalCategory \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)
