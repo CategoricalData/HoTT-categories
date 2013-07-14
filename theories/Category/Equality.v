@@ -100,28 +100,19 @@ Section PreCategories_Equal.
              | _ => progress replace_contr_idpath
            end.
 
-  Lemma PreCategory_eq'_sig_equiv_eisretr (C D : PreCategory)
-  : Sect (PreCategory_eq'_sig C D) (@PreCategory_eq'_sig_inv C D).
-  Proof.
-    t.
-  Defined.
-
-  Lemma PreCategory_eq'_sig_equiv_eissect (C D : PreCategory)
-  : Sect (@PreCategory_eq'_sig_inv C D) (PreCategory_eq'_sig C D).
-  Proof.
-    t.
-  Defined.
-
-  Lemma PreCategory_eq'_sig_equiv_eisadj (C D : PreCategory)
+  (*Lemma PreCategory_eq'_sig_equiv_eisadj (C D : PreCategory)
   : forall x, @PreCategory_eq'_sig_equiv_eisretr C D (@PreCategory_eq'_sig_inv C D x)
               = ap (@PreCategory_eq'_sig_inv C D) (PreCategory_eq'_sig_equiv_eissect x).
   Proof.
     Time t. (* 61.882 secs *)
-  Defined.
+  Defined.*)
 
   Lemma PreCategory_eq'_sig_equiv (C D : PreCategory)
-  : C = D <~> PreCategory_eq'_sig_T C D.
-    econstructor; econstructor; exact (@PreCategory_eq'_sig_equiv_eisadj C D).
+  : PreCategory_eq'_sig_T C D <~> C = D.
+  Proof.
+    apply (equiv_adjointify (@PreCategory_eq'_sig C D)
+                            (@PreCategory_eq'_sig_inv C D));
+    t.
   Defined.
 
   (*Lemma PreCategory_sig
