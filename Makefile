@@ -40,7 +40,7 @@ MODULES    := theories/Peano \
 	\
 	theories/InitialTerminalCategory \
 	\
-	theories/CommaCategory \
+	theories/Comma/CommaCategory \
 	\
 	theories/Grothendieck/ToSet \
 	theories/Grothendieck \
