@@ -10,11 +10,6 @@ Local Open Scope morphism_scope.
 Local Open Scope natural_transformation_scope.
 
 Section NaturalTransformationComposition.
-  Variable C : PreCategory.
-  Variable D : PreCategory.
-  Variable E : PreCategory.
-  Variables F F' F'' : Functor C D.
-  Variables G G' : Functor D E.
 
   (*
      We have the diagram
@@ -56,6 +51,10 @@ Section NaturalTransformationComposition.
   *)
 
   Section NTComposeT.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variables F F' F'' : Functor C D.
+
     Variable T' : NaturalTransformation F' F''.
     Variable T : NaturalTransformation F F'.
 
@@ -94,66 +93,126 @@ Section NaturalTransformationComposition.
                                      NTComposeT_Commutes.
   End NTComposeT.
 
-  (*
-     We have the diagram
+  Local Ltac whisker_t :=
+    simpl;
+    repeat first [ apply Commutes
+                 | apply ap
+                 | progress (etransitivity; try apply FCompositionOf); []
+                 | progress (etransitivity; try (symmetry; apply FCompositionOf)); [] ].
 
-<<
-          F          G
-     C -------> D -------> E
-          |          |
-          |          |
-          | T        | U
-          |          |
-          V          V
-     C -------> D -------> E
-          F'         G'
->>
+  Section NTWhisker.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable E : PreCategory.
 
-     And we want the commutative diagram
+    Section L.
+      Variable F : Functor D E.
+      Variables G G' : Functor C D.
+      Variable T : NaturalTransformation G G'.
 
-<<
-             G (F m)
-     G (F A) -------> G (F B)
-        |                |
-        |                |
-        | U (T A)        | U (T B)
-        |                |
-        V     G' (F' m)  V
-     G' (F' A) -----> G' (F' B)
->>
-  *)
+      Local Notation CO c := (MorphismOf F (T c)).
 
-  Section NTComposeF.
-    Variable U : NaturalTransformation G G'.
-    Variable T : NaturalTransformation F F'.
+      Definition NTWhiskerL_Commutes s d (m : Morphism C s d)
+      : F ₁ (T d) ∘ (F ∘ G) ₁ m = (F ∘ G') ₁ m ∘ F ₁ (T s).
+      Proof.
+        whisker_t.
+      Defined.
 
-    Notation CO := (fun c => G'.(MorphismOf) (T c) ∘ U (F c)).
+      Global Arguments NTWhiskerL_Commutes / .
+      Global Opaque NTWhiskerL_Commutes.
 
-    Definition NTComposeF_Commutes s d (m : Morphism C s d)
-    : CO d ∘ (MorphismOf G (MorphismOf F m))
-      = MorphismOf G' (MorphismOf F' m) ∘ CO s.
-    Proof.
-      simpl.
-      repeat try_associativity ltac:(rewrite <- ?Commutes; rewrite <- ?FCompositionOf).
-      reflexivity.
-    Defined.
+      Definition NTWhiskerL
+        := Build_NaturalTransformation (F ∘ G) (F ∘ G')
+                                       (fun c => CO c)
+                                       NTWhiskerL_Commutes.
+    End L.
 
-    Global Arguments NTComposeF_Commutes / .
-    Global Opaque NTComposeF_Commutes.
+    Section R.
+      Variables F F' : Functor D E.
+      Variable T : NaturalTransformation F F'.
+      Variable G : Functor C D.
 
-    Definition NTComposeF
-    : NaturalTransformation (G ∘ F) (G' ∘ F')
-      := Build_NaturalTransformation (G ∘ F) (G' ∘ F')
-                                     CO
-                                     NTComposeF_Commutes.
-  End NTComposeF.
+      Local Notation CO c := (T (G c)).
+
+      Definition NTWhiskerR_Commutes s d (m : Morphism C s d)
+      : T (G d) ∘ (F ∘ G) ₁ m = (F' ∘ G) ₁ m ∘ T (G s).
+      Proof.
+        whisker_t.
+      Defined.
+
+      Global Arguments NTWhiskerR_Commutes / .
+      Global Opaque NTWhiskerR_Commutes.
+
+      Definition NTWhiskerR
+        := Build_NaturalTransformation (F ∘ G) (F' ∘ G)
+                                       (fun c => CO c)
+                                       NTWhiskerR_Commutes.
+    End R.
+  End NTWhisker.
 End NaturalTransformationComposition.
 
-(** As per Wikipedia (http://en.wikipedia.org/wiki/2-category), we use
-    [∘₀] to denote composition along 0-cells (functors), and [∘₁] to
-    denote composition along 1-cells (natural transformations). *)
+Section notations.
+  (** We do some black magic with typeclasses to make notations play
+      well.  The cost is extra verbosity, but it will all disappear
+      with [simpl]. *)
 
-Infix "o0" := NTComposeF : natural_transformation_scope.
-Infix "o1" := NTComposeT : natural_transformation_scope.
-Infix "∘₀" := NTComposeF : natural_transformation_scope.
-Infix "∘₁" := NTComposeT : natural_transformation_scope.
+  Global Class NTC_Composable A B (a : A) (b : B) (T : Type) (term : T) := {}.
+
+  Definition NTC_Composable_term `{@NTC_Composable A B a b T term} := term.
+  Global Arguments NTC_Composable_term / .
+
+  Global Instance NTC_FunctorComposition C D E (F : Functor D E) (G : Functor C D)
+  : NTC_Composable F G (ComposeFunctors F G) | 1000.
+
+  Global Instance NTC_NTComposition C D (F F' F'' : Functor C D)
+         (T' : NaturalTransformation F' F'') (T : NaturalTransformation F F')
+  : NTC_Composable T' T (NTComposeT T' T) | 10.
+
+  Global Instance NTC_NTWhiskerL C D E (F : Functor D E) (G G' : Functor C D)
+         (T : NaturalTransformation G G')
+  : NTC_Composable F T (NTWhiskerL F T) | 100.
+
+  Global Instance NTC_NTWhiskerR C D E (F F' : Functor D E)
+         (T : NaturalTransformation F F')
+         (G : Functor C D)
+  : NTC_Composable T G (NTWhiskerR T G) | 100.
+End notations.
+
+Hint Unfold NTC_Composable_term : typeclass_instances.
+
+(* ASCII notations *)
+(* Set some notations for printing *)
+Infix "o" := NTComposeT : natural_transformation_scope.
+Infix "o" := NTWhiskerL : natural_transformation_scope.
+Infix "o" := NTWhiskerR : natural_transformation_scope.
+Infix "o" := ComposeFunctors : natural_transformation_scope.
+(* Notation for parsing *)
+Notation "T 'o' U"
+  := (@NTC_Composable_term _ _ T%natural_transformation U%natural_transformation _ _ _)
+     : natural_transformation_scope.
+
+
+(* Unicode Notations *)
+(* Set some notations for printing *)
+Infix "∘" := NTComposeT : natural_transformation_scope.
+Infix "∘" := NTWhiskerL : natural_transformation_scope.
+Infix "∘" := NTWhiskerR : natural_transformation_scope.
+Infix "∘" := ComposeFunctors : natural_transformation_scope.
+(* Notation for parsing *)
+Notation "T ∘ U"
+  := (@NTC_Composable_term _ _ T%natural_transformation U%natural_transformation _ _ _)
+     : natural_transformation_scope.
+
+(*
+Unset Printing Notations.
+Eval simpl in (_ ∘ _)%natural_transformation. (* should be NTComposeT *)
+Eval simpl in (_ ∘ (_ : Functor _ _))%natural_transformation. (* should be NTWhiskerR *)
+Eval simpl in ((_ : Functor _ _) ∘ _)%natural_transformation. (* should be NTWhiskerL *)
+Eval simpl in ((_ : Functor _ _) ∘ (_ : Functor _ _))%natural_transformation. (* should be ComposeFunctors *)
+Check (fun C D E (F : Functor D E) (G : Functor C D) => (F ∘ G)%natural_transformation).
+Eval simpl in (fun C D E (F : Functor D E) (G : Functor C D) => (F ∘ G)%natural_transformation).
+Check (fun B C D E (F : Functor D E) (G : Functor C D) (H : Functor B C) => (F ∘ G ∘ H)%natural_transformation).
+Eval simpl in (fun B C D E (F : Functor D E) (G : Functor C D) (H : Functor B C) => (F ∘ G ∘ H)%natural_transformation).
+Check (fun C D E (F : Functor D E) (G G' : Functor C D) (T : NaturalTransformation G G') => (F ∘ T)%natural_transformation).
+Eval simpl in (fun C D E (F : Functor D E) (G G' : Functor C D) (T : NaturalTransformation G G') => (F ∘ T)%natural_transformation).
+*)

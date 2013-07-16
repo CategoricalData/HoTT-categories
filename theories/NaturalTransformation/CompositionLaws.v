@@ -16,43 +16,52 @@ Section IdentityNaturalTransformation.
   Variable D : PreCategory.
 
   Lemma LeftIdentityNaturalTransformation (F F' : Functor C D) (T : NaturalTransformation F' F)
-  : IdentityNaturalTransformation F ∘₁ T = T.
+  : IdentityNaturalTransformation F ∘ T = T.
   Proof.
     nt_eq; auto with morphism.
   Qed.
 
   Lemma RightIdentityNaturalTransformation (F F' : Functor C D) (T : NaturalTransformation F F')
-  : T ∘₁ IdentityNaturalTransformation F = T.
+  : T ∘ IdentityNaturalTransformation F = T.
   Proof.
     nt_eq; auto with morphism.
+  Qed.
+
+  Local Transparent NTWhiskerR_Commutes NTWhiskerL_Commutes.
+
+  Definition LeftIdentityNaturalTransformationWhisker E (G : Functor D E) (F : Functor C D)
+  : IdentityNaturalTransformation G ∘ F = IdentityNaturalTransformation _
+    := idpath.
+
+  Definition RightIdentityNaturalTransformationWhisker E (G : Functor D E) (F : Functor C D)
+  : G ∘ IdentityNaturalTransformation F = IdentityNaturalTransformation _.
+  Proof.
+    nt_eq; auto with functor.
   Qed.
 End IdentityNaturalTransformation.
 
 Hint Rewrite @LeftIdentityNaturalTransformation @RightIdentityNaturalTransformation : category.
 Hint Rewrite @LeftIdentityNaturalTransformation @RightIdentityNaturalTransformation : natural_transformation.
 
-Section IdentityNaturalTransformationF.
+Section NTComposeF.
   Context `{Funext}.
 
   Variable C : PreCategory.
   Variable D : PreCategory.
   Variable E : PreCategory.
-  Variable G : Functor D E.
-  Variable F : Functor C D.
+  Variables G G' : Functor D E.
+  Variables F F' : Functor C D.
+  Variable T' : NaturalTransformation G G'.
+  Variable T : NaturalTransformation F F'.
 
-  Lemma NTComposeFIdentityNaturalTransformation :
-    IdentityNaturalTransformation G ∘₀ IdentityNaturalTransformation F = IdentityNaturalTransformation (G ∘ F).
+  Lemma NTWhiskerExchange
+  : (G' ∘ T) ∘ (T' ∘ F) = (T' ∘ F') ∘ (G ∘ T).
   Proof.
-    nt_eq.
-    rewrite !FIdentityOf.
-    auto with morphism.
+    nt_eq; simpl.
+    symmetry.
+    apply Commutes.
   Qed.
-End IdentityNaturalTransformationF.
-
-Hint Rewrite @NTComposeFIdentityNaturalTransformation : category.
-Hint Rewrite @NTComposeFIdentityNaturalTransformation : natural_transformation.
-
-(*Local Arguments GeneralizedIdentityNaturalTransformation / .*)
+End NTComposeF.
 
 Section Associativity.
   Context `{fs : Funext}.
@@ -92,8 +101,8 @@ Section IdentityFunctor.
       := Eval simpl in GeneralizedIdentityNaturalTransformation F (IdentityFunctor _ ∘ F) idpath idpath.
 
     Theorem LeftIdentityFunctorNT_Isomorphism
-    : LeftIdentityFunctorNaturalTransformation1 ∘₁ LeftIdentityFunctorNaturalTransformation2 = IdentityNaturalTransformation _
-      /\ LeftIdentityFunctorNaturalTransformation2 ∘₁ LeftIdentityFunctorNaturalTransformation1 = IdentityNaturalTransformation _.
+    : LeftIdentityFunctorNaturalTransformation1 ∘ LeftIdentityFunctorNaturalTransformation2 = IdentityNaturalTransformation _
+      /\ LeftIdentityFunctorNaturalTransformation2 ∘ LeftIdentityFunctorNaturalTransformation1 = IdentityNaturalTransformation _.
     Proof.
       nt_id_t.
     Qed.
@@ -108,70 +117,28 @@ Section IdentityFunctor.
       := Eval simpl in GeneralizedIdentityNaturalTransformation F (F ∘ IdentityFunctor _) idpath idpath.
 
     Theorem RightIdentityFunctorNT_Isomorphism
-    : RightIdentityFunctorNaturalTransformation1 ∘₁ RightIdentityFunctorNaturalTransformation2 = IdentityNaturalTransformation _
-      /\ RightIdentityFunctorNaturalTransformation2 ∘₁ RightIdentityFunctorNaturalTransformation1 = IdentityNaturalTransformation _.
+    : RightIdentityFunctorNaturalTransformation1 ∘ RightIdentityFunctorNaturalTransformation2 = IdentityNaturalTransformation _
+      /\ RightIdentityFunctorNaturalTransformation2 ∘ RightIdentityFunctorNaturalTransformation1 = IdentityNaturalTransformation _.
     Proof.
       nt_id_t.
     Qed.
   End right.
 End IdentityFunctor.
 
-Section NaturalTransformationExchangeLaw.
-  Context `{fs : Funext}.
-
-  Variable C : PreCategory.
-  Variable D : PreCategory.
-  Variable E : PreCategory.
-
-  Variables F G H : Functor C D.
-  Variables F' G' H' : Functor D E.
-
-  Variable T : NaturalTransformation F G.
-  Variable U : NaturalTransformation G H.
-
-  Variable T' : NaturalTransformation F' G'.
-  Variable U' : NaturalTransformation G' H'.
-
-  Local Ltac t_progress := progress repeat
-    match goal with
-      | _ => progress f_ap
-      | _ => apply Commutes
-      | _ => apply symmetry; apply Commutes
-    end.
-
-  Local Ltac t_exch := repeat
-    match goal with
-      | _ => rewrite ?FCompositionOf, ?Associativity;
-        t_progress
-      | _ => rewrite <- ?FCompositionOf, <- ?Associativity;
-        t_progress
-    end.
-
-  Theorem NaturalTransformationExchangeLaw
-  : (U' ∘₁ T') ∘₀ (U ∘₁ T)
-    = (U' ∘₀ U) ∘₁ (T' ∘₀ T).
-  Proof.
-    abstract (nt_eq; t_exch).
-  Qed.
-End NaturalTransformationExchangeLaw.
-
-Hint Resolve @NaturalTransformationExchangeLaw : category.
-Hint Resolve @NaturalTransformationExchangeLaw : natural_transformation.
-
 Ltac nt_solve_associator' :=
   repeat match goal with
            | _ => exact (ComposeFunctorsAssociator1 _ _ _)
            | _ => exact (ComposeFunctorsAssociator2 _ _ _)
            | [ |- NaturalTransformation (?F ∘ _) (?F ∘ _) ] =>
-             refine (IdentityNaturalTransformation F ∘₀ _)%natural_transformation
+             refine (F ∘ _)
            | [ |- NaturalTransformation (_ ∘ ?F) (_ ∘ ?F) ] =>
-             refine (_ ∘₀ IdentityNaturalTransformation F)
+             refine (_ ∘ F)
          end.
 Ltac nt_solve_associator :=
   repeat match goal with
-           | _ => refine (ComposeFunctorsAssociator1 _ _ _ ∘₁ _); progress nt_solve_associator'
-           | _ => refine (_ ∘₁ ComposeFunctorsAssociator1 _ _ _); progress nt_solve_associator'
-           | _ => refine (ComposeFunctorsAssociator2 _ _ _ ∘₁ _); progress nt_solve_associator'
-           | _ => refine (_ ∘₁ ComposeFunctorsAssociator2 _ _ _); progress nt_solve_associator'
+           | _ => refine (ComposeFunctorsAssociator1 _ _ _ ∘ _); progress nt_solve_associator'
+           | _ => refine (_ ∘ ComposeFunctorsAssociator1 _ _ _); progress nt_solve_associator'
+           | _ => refine (ComposeFunctorsAssociator2 _ _ _ ∘ _); progress nt_solve_associator'
+           | _ => refine (_ ∘ ComposeFunctorsAssociator2 _ _ _); progress nt_solve_associator'
            | _ => progress nt_solve_associator'
          end.
