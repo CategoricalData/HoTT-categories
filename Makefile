@@ -34,6 +34,7 @@ MODULES    := theories/Peano \
 	theories/FunctorPreCategory \
 	\
 	theories/Groupoid \
+	theories/Groupoid/Functors \
 	theories/DiscreteCategory \
 	theories/BoolCategory \
 	theories/NatCategory \
