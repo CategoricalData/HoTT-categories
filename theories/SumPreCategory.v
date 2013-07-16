@@ -37,16 +37,21 @@ Section SumPreCategory.
   Global Arguments SumPreCategory_Compose [_ _ _] _ _ / .
 
   Definition SumPreCategory : PreCategory.
-    exists _
-           SumPreCategory_Morphism
-           SumPreCategory_Identity
-           SumPreCategory_Compose;
+    refine (@Build_PreCategory
+              (C + D)%type
+              SumPreCategory_Morphism
+              SumPreCategory_Identity
+              SumPreCategory_Compose
+              _
+              _
+              _
+              _);
     abstract (
         repeat match goal with
                  | [ H : Empty |- _ ] => case H
                  | _ => let H := fresh in intro H; try (case H; clear H); simpl in *
                end;
-        auto with morphism;
+        eauto with morphism;
         typeclasses eauto
       ).
   Defined.

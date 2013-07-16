@@ -9,20 +9,27 @@ Set Asymmetric Patterns.
 Local Open Scope morphism_scope.
 
 Record PreCategory :=
-  {
+  Build_PreCategory' {
     Object :> Type;
     Morphism : Object -> Object -> Type;
 
     Identity : forall x, Morphism x x;
-    Compose : forall s d d', Morphism d d' -> Morphism s d -> Morphism s d' where "f 'o' g" := (Compose f g);
+    Compose : forall s d d', Morphism d d' -> Morphism s d -> Morphism s d' where "f ∘ g" := (Compose f g);
 
     Associativity : forall x1 x2 x3 x4
                            (m1 : Morphism x1 x2)
                            (m2 : Morphism x2 x3)
                            (m3 : Morphism x3 x4),
-                      (m3 o m2) o m1 = m3 o (m2 o m1);
-    LeftIdentity : forall a b (f : Morphism a b), (Identity b) o f = f;
-    RightIdentity : forall a b (f : Morphism a b), f o (Identity a) = f;
+                      (m3 ∘ m2) ∘ m1 = m3 ∘ (m2 ∘ m1);
+    (* Ask for the symmetrized version of [Associativity], so that [(C ᵒᵖ) ᵒᵖ] and [C] are equal without [Funext] *)
+    Associativity_sym : forall x1 x2 x3 x4
+                               (m1 : Morphism x1 x2)
+                               (m2 : Morphism x2 x3)
+                               (m3 : Morphism x3 x4),
+                          m3 ∘ (m2 ∘ m1) = (m3 ∘ m2) ∘ m1;
+
+    LeftIdentity : forall a b (f : Morphism a b), (Identity b) ∘ f = f;
+    RightIdentity : forall a b (f : Morphism a b), f ∘ (Identity a) = f;
 
     MorphismIsHSet : forall s d, IsHSet (Morphism s d)
   }.
@@ -38,6 +45,17 @@ Arguments Compose [!C%category s%object d%object d'%object] m1%morphism m2%morph
 
 Infix "o" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
+Print Build_PreCategory'.
+Definition Build_PreCategory
+           Object Morphism Compose Identity Associativity LeftIdentity RightIdentity
+  := @Build_PreCategory' Object
+                         Morphism
+                         Compose
+                         Identity
+                         Associativity
+                         (fun _ _ _ _ _ _ _ => symmetry _ _ (Associativity _ _ _ _ _ _ _))
+                         LeftIdentity
+                         RightIdentity.
 
 Existing Instance MorphismIsHSet.
 Instance MorphismIsHSet' C s d (m1 m2 : Morphism C s d) (pf1 pf2 : m1 = m2)

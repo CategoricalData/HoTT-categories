@@ -9,6 +9,8 @@ MODULES    := theories/Peano \
 	theories/Category/Morphisms \
 	theories/Category/Category \
 	theories/Category/StrictCategory \
+	theories/Category/Objects \
+	theories/Category/Duals \
 	\
 	theories/Functor/Core \
 	theories/Functor/Equality \
