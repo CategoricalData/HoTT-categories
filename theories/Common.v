@@ -1391,8 +1391,8 @@ Ltac super_path_induction :=
 Hint Extern 0 => apply false_ne_true; solve [ trivial ].
 Hint Extern 0 => apply true_ne_false; solve [ trivial ].
 
-Definition HProp := { T : Type | IsHProp T }.
-Definition HSet := { T : Type | IsHSet T }.
+Definition HProp := sigT (IsTrunc minus_one).
+Definition HSet := sigT (IsTrunc 0).
 
 Coercion HProp_set := @projT1 _ _ : HProp -> Type.
 Coercion HSet_set := @projT1 _ _ : HSet -> Type.
