@@ -1270,16 +1270,6 @@ Proof.
   typeclasses eauto.
 Defined.
 
-Tactic Notation "etransitivity" open_constr(y) :=
-  let R := match goal with |- ?R ?x ?z => constr:(R) end in
-  let x := match goal with |- ?R ?x ?z => constr:(x) end in
-  let z := match goal with |- ?R ?x ?z => constr:(z) end in
-  eapply (transitivity (R := R) x y z).
-
-Tactic Notation "etransitivity" := etransitivity _.
-
-Tactic Notation "symmetry" := apply symmetry.
-
 Definition IsTrunc_path (A : Type) n `{H : IsTrunc (S n) A} (x y : A)
 : IsTrunc n (x = y)
   := H x y.
