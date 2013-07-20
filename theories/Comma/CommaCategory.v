@@ -116,9 +116,10 @@ Section CommaCategory.
   Defined.
 
   Global Instance trunc_CommaCategory_Morphism abf a'b'f'
-         `{forall s d, IsTrunc n (Morphism A s d)}
-         `{forall s d, IsTrunc n (Morphism B s d)}
-         `{forall s d, IsTrunc (trunc_S n) (Morphism C s d)}
+         `{IsTrunc n (Morphism A (CCO_a abf) (CCO_a a'b'f'))}
+         `{IsTrunc n (Morphism B (CCO_b abf) (CCO_b a'b'f'))}
+         `{forall m1 m2,
+             IsTrunc n (T ₁ m2 ∘ CCO_f abf = CCO_f a'b'f' ∘ S ₁ m1)}
   : IsTrunc n (CommaCategory_Morphism abf a'b'f').
   Proof.
     eapply trunc_equiv';
