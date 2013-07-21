@@ -46,6 +46,7 @@ MODULES    := theories/Peano \
 	theories/InitialTerminalCategory \
 	\
 	theories/Comma/CommaCategory \
+	theories/Comma/Duals \
 	\
 	theories/Grothendieck/ToSet \
 	theories/Grothendieck \
