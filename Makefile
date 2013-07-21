@@ -17,6 +17,7 @@ MODULES    := theories/Peano \
 	theories/Functor/Identity \
 	theories/Functor/Composition \
 	theories/Functor/CompositionLaws \
+	theories/Functor/Duals \
 	theories/Functor \
 	\
 	theories/NaturalTransformation/Core \
@@ -24,6 +25,7 @@ MODULES    := theories/Peano \
 	theories/NaturalTransformation/Identity \
 	theories/NaturalTransformation/Composition \
 	theories/NaturalTransformation/CompositionLaws \
+	theories/NaturalTransformation/Duals \
 	theories/NaturalTransformation \
 	\
 	theories/ProductPreCategory \

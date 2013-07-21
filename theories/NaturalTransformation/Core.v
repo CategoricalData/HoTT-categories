@@ -37,11 +37,19 @@ Section NaturalTransformation.
      **)
 
   Record NaturalTransformation :=
-    {
-      ComponentsOf :> forall c, D.(Morphism) (F c) (G c);
-      Commutes : forall s d (m : C.(Morphism) s d),
-                   ComponentsOf d ∘ F.(MorphismOf) m = G.(MorphismOf) m ∘ ComponentsOf s
-    }.
+    Build_NaturalTransformation' {
+        ComponentsOf :> forall c, D.(Morphism) (F c) (G c);
+        Commutes : forall s d (m : C.(Morphism) s d),
+                     ComponentsOf d ∘ F.(MorphismOf) m = G.(MorphismOf) m ∘ ComponentsOf s;
+        (* We require the following symmetrized version so we don't
+           need functional extensionality to prove [(T ^op) ^op =
+           T]. *)
+        Commutes_sym : forall s d (m : C.(Morphism) s d),
+                         G.(MorphismOf) m ∘ ComponentsOf s = ComponentsOf d ∘ F.(MorphismOf) m
+      }.
+
+  Definition Build_NaturalTransformation CO COM
+    := Build_NaturalTransformation' CO COM (fun _ _ _ => symmetry _ _ (COM _ _ _)).
 End NaturalTransformation.
 
 Bind Scope natural_transformation_scope with NaturalTransformation.

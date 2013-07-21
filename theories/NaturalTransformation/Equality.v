@@ -19,11 +19,21 @@ Section NaturalTransformations_Equal.
   Local Open Scope equiv_scope.
 
   Lemma NaturalTransformation_sig
-  : { CO : forall x, Morphism D (F x) (G x) & forall s d (m : Morphism C s d),
-                                                CO d ∘ F ₁ m = G ₁ m ∘ CO s }
+  : { CO : forall x, Morphism D (F x) (G x)
+    | forall s d (m : Morphism C s d),
+        CO d ∘ F ₁ m = G ₁ m ∘ CO s }
       <~> NaturalTransformation F G.
   Proof.
-    issig (@Build_NaturalTransformation _ _ F G) (@ComponentsOf _ _ F G) (@Commutes _ _ F G).
+    let build := constr:(@Build_NaturalTransformation _ _ F G) in
+    let pr1 := constr:(@ComponentsOf _ _ F G) in
+    let pr2 := constr:(@Commutes _ _ F G) in
+    apply (equiv_adjointify (fun u => build u.1 u.2)
+                            (fun v => (pr1 v; pr2 v)));
+      hnf;
+      intros []; intros; simpl; expand; try reflexivity; [].
+    repeat (apply ap || apply path_forall || intro).
+    refine (center _).
+    (*issig (@Build_NaturalTransformation _ _ F G) (@ComponentsOf _ _ F G) (@Commutes _ _ F G) (@Commutes_sym _ _ F G).*)
   Defined.
 
   Global Instance NaturalTransformation_IsHSet : IsHSet (NaturalTransformation F G).
@@ -38,8 +48,8 @@ Section NaturalTransformations_Equal.
     intros.
     destruct T, U; simpl in *.
     path_induction.
-    f_ap.
-    refine (center _).
+    f_ap;
+      refine (center _).
   Qed.
 
   Lemma NaturalTransformation_eq (T U : NaturalTransformation F G)
