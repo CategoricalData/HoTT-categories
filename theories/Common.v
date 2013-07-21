@@ -1300,6 +1300,9 @@ Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{
 (*Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
   := H.*)
 
+Definition unique A (P : A -> Type) (x : A)
+  := P x /\ forall x', P x' -> x = x'.
+
 (** New to HoTT common file **)
 
 Ltac clear_contr_eq_in_match :=
