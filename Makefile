@@ -48,6 +48,8 @@ MODULES    := theories/Peano \
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
 	\
+	theories/IsGroupoid \
+	\
 	theories/Adjoint/UnitCounit \
 	\
 	theories/Grothendieck/ToSet \
