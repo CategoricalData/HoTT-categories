@@ -11,7 +11,7 @@ Local Open Scope morphism_scope.
 
 Notation IsGroupoid C := (forall s d (m : Morphism C s d), IsIsomorphism m).
 
-Definition GroupoidJ `{IsGroupoid C} `{Funext}
+Definition GroupoidJ `{Funext} (C : PreCategory)
 : forall (C0 : Functor (ArrowCategory C) SetCat),
     (forall x : C, C0 (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
                                                   x x (Identity x))
