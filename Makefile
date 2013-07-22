@@ -28,7 +28,10 @@ MODULES    := theories/Peano \
 	theories/NaturalTransformation/Duals \
 	theories/NaturalTransformation \
 	\
-	theories/ProductPreCategory \
+	theories/Category/Product \
+	theories/Functor/Product \
+	theories/NaturalTransformation/Product \
+	\
 	theories/SumPreCategory \
 	\
 	theories/SetCategory \
