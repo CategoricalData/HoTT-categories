@@ -50,6 +50,7 @@ MODULES    := theories/Peano \
 	\
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
+	theories/Comma/Projection \
 	\
 	theories/IsGroupoid \
 	\
