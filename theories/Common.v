@@ -887,8 +887,8 @@ Tactic Notation "change_in_all" constr(from) "with" constr(to) :=
    in the goal with their head normal forms *)
 Ltac expand :=
   match goal with
-    | [ |- ?X = ?Y ] =>
-      let X' := eval hnf in X in let Y' := eval hnf in Y in change (X' = Y')
+    | [ |- @paths ?T ?X ?Y ] =>
+      let X' := eval hnf in X in let Y' := eval hnf in Y in change (@paths T X' Y')
     | [ |- ?X == ?Y ] =>
       let X' := eval hnf in X in let Y' := eval hnf in Y in change (X' == Y')
   end; simpl.
@@ -1367,6 +1367,7 @@ Definition match_eta2 T (x : T) (E : x = x)
 Ltac super_path_induction :=
   repeat match goal with
            | _ => reflexivity
+           | _ => exact (contr _)
            | [ H : _ = _ |- _ ] => (destruct H || induction H || (case H; clear H))
            | [ H : _ = _ |- _ ]
              => let H' := fresh in
@@ -1379,6 +1380,8 @@ Ltac super_path_induction :=
              => let H' := fresh in assert (H' := match_eta2 _ H); destruct H'
            | _ => progress clear_contr_eq_in_match
            | _ => progress replace_contr_idpath
+           | _ => expand; progress destruct_eq_in_match
+           | _ => exact (center _)
          end.
 
 Hint Extern 0 => apply false_ne_true; solve [ trivial ].
