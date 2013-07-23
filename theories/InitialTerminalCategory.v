@@ -15,7 +15,7 @@ Section Functors.
   Variable C : PreCategory.
 
   Definition FunctorTo1 : Functor C 1
-    := Build_Functor C 1 (fun _ => tt) (fun _ _ _ => idpath) (fun _ _ _ _ _ => idpath) (fun _ => idpath).
+    := Build_Functor C 1 (fun _ => tt) (fun _ _ _ => tt) (fun _ _ _ _ _ => idpath) (fun _ => idpath).
   Definition FunctorToTerminal : Functor C TerminalCategory := FunctorTo1.
 
   Definition FunctorFrom1 (c : C) : Functor 1 C

@@ -1,4 +1,4 @@
-Require Export Category DiscreteCategory.
+Require Export Category DiscreteCategory IndiscreteCategory.
 Require Import Common.
 
 Set Universe Polymorphism.
@@ -21,7 +21,12 @@ Proof.
   typeclasses eauto.
 Qed.
 
-Definition NatCategory (n : nat) := DiscreteCategory n.
+Definition NatCategory (n : nat) :=
+  match n with
+    | 0 => IndiscreteCategory 0
+    | 1 => IndiscreteCategory 1
+    | S (S n') => DiscreteCategory (S (S n'))
+  end.
 
 Coercion NatCategory : nat >-> PreCategory.
 
