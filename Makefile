@@ -46,6 +46,7 @@ MODULES    := theories/Peano \
 	theories/IndiscreteCategory \
 	theories/BoolCategory \
 	theories/NatCategory \
+	theories/NatCategory/Duals \
 	\
 	theories/InitialTerminalCategory \
 	\
