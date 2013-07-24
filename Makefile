@@ -55,6 +55,8 @@ MODULES    := theories/Peano \
 	theories/Comma/Duals \
 	theories/Comma/Projection \
 	\
+	theories/UniversalProperties \
+	\
 	theories/IsGroupoid \
 	\
 	theories/Adjoint/UnitCounit \
