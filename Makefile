@@ -43,6 +43,7 @@ MODULES    := theories/Peano \
 	theories/Groupoid \
 	theories/Groupoid/Functors \
 	theories/DiscreteCategory \
+	theories/Discrete/Duals \
 	theories/IndiscreteCategory \
 	theories/BoolCategory \
 	theories/NatCategory \
