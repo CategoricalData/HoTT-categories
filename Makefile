@@ -51,6 +51,8 @@ MODULES    := theories/Peano \
 	\
 	theories/InitialTerminalCategory \
 	\
+	theories/Cat \
+	\
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
 	theories/Comma/Projection \
