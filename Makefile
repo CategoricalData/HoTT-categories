@@ -78,6 +78,8 @@ MODULES    := theories/Peano \
 	\
 	theories/Grothendieck/ToSet \
 	theories/Grothendieck \
+	theories/Grothendieck/PseudofunctorToCat \
+	theories/Grothendieck/ToCat \
 	\
 	theories/NaturalNumbersObject \
 	theories/Hom \

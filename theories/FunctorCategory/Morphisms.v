@@ -37,6 +37,8 @@ Proof.
   - exact (apD10 (ap ComponentsOf RightInverse) x).
 Defined.
 
+Hint Immediate iso_NaturalTransformation0 : typeclass_instances.
+
 Definition iso_NaturalTransformation1_NT `{Funext}
            C D (F G : Functor C D) (T : NaturalTransformation F G)
            `{forall x, IsIsomorphism (T x)}
