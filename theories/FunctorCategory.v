@@ -6,7 +6,7 @@ Generalizable All Variables.
 Set Asymmetric Patterns.
 Set Universe Polymorphism.
 
-Section FunctorPreCategory.
+Section FunctorCategory.
   Context `{Funext}.
 
   Variable C : PreCategory.
@@ -14,7 +14,7 @@ Section FunctorPreCategory.
 
   (** There is a category Fun(C, D) of functors from [C] to [D]. *)
 
-  Definition FunctorPreCategory : PreCategory.
+  Definition FunctorCategory : PreCategory.
     refine (@Build_PreCategory (Functor C D)
                                (NaturalTransformation (C := C) (D := D))
                                (IdentityNaturalTransformation (C := C) (D := D))
@@ -25,6 +25,13 @@ Section FunctorPreCategory.
                                _);
     abstract (nt_eq; auto with morphism).
   Defined.
-End FunctorPreCategory.
+End FunctorCategory.
 
-Notation "C ^ D" := (FunctorPreCategory D C) : category_scope.
+Notation "C ^ D" := (FunctorCategory D C) : category_scope.
+Notation "[ C , D ]" := (FunctorCategory C D) : category_scope.
+
+Lemma IsStrict_FunctorCategory `{Funext} C `{IsStrictCategory D}
+: IsStrictCategory [C, D].
+Proof.
+  typeclasses eauto.
+Defined.

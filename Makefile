@@ -38,7 +38,7 @@ MODULES    := theories/Peano \
 	\
 	theories/ComputableCat \
 	\
-	theories/FunctorPreCategory \
+	theories/FunctorCategory \
 	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
