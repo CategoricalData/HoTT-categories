@@ -12,16 +12,15 @@ Local Open Scope morphism_scope.
 Notation IsGroupoid C := (forall s d (m : Morphism C s d), IsIsomorphism m).
 
 Definition GroupoidJ `{Funext} (C : PreCategory)
+           (Arr_id := fun x => (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
+                                                           x x (Identity x)))
 : forall (C0 : Functor (ArrowCategory C) SetCat),
-    (forall x : C, C0 (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
-                                                  x x (Identity x))
-                   : HSet)
-    -> forall M N (P : Morphism C M N),
-         C0 (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
-                                        M N P)
+    (forall x : C, C0 (Arr_id x)  : HSet)
+    -> forall y : ArrowCategory C,
+         C0 y
          : HSet.
 Proof.
-  intros F H' M N P.
+  intros F H' [M N P].
   specialize (H' M).
   pose (Build_CommaCategory_Morphism
           (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
