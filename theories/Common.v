@@ -1395,3 +1395,88 @@ Coercion HSet_set := @projT1 _ _ : HSet -> Type.
 
 Instance trunc_HProp_set (T : HProp) : IsHProp (HProp_set T) := @projT2 _ _ _.
 Instance trunc_HSet_set (T : HSet) : IsHSet (HSet_set T) := @projT2 _ _ _.
+
+Local Ltac path_forall_beta_t :=
+  lazymatch goal with
+    | [ |- appcontext[@path_forall ?H ?A ?B ?f ?g ?e] ]
+      => let X := fresh in
+         pose proof (eissect (@path_forall H A B f g) e) as X;
+           case X;
+           generalize (@path_forall H A B f g e);
+           clear X; clear e;
+           intro X; destruct X;
+           simpl;
+           unfold apD10;
+           rewrite !(path_forall_1 f)
+  end;
+  reflexivity.
+
+Lemma path_forall_1_beta `{Funext} A B x P f g e Px
+: @transport (forall a : A, B a) (fun f => P (f x)) f g (@path_forall _ _ _ _ _ e) Px
+  = @transport (B x) P (f x) (g x) (e x) Px.
+Proof.
+  path_forall_beta_t.
+Defined.
+
+Lemma transport_inverse A P x y p
+: @transport A P x y p ^
+  = ((@transport A P y x p) ^-1)%equiv.
+Proof.
+  path_induction; reflexivity.
+Defined.
+
+Definition transport_path_universe_fun `{Univalence} `{Funext}
+           A B f `{IsEquiv A B f}
+: transport idmap (path_universe f) = f.
+Proof.
+  apply path_forall; intro.
+  apply transport_path_universe.
+Defined.
+
+Definition transport_path_universe_fun_inv `{Univalence} `{Funext}
+           A B f `{IsEquiv A B f}
+: ((transport idmap (path_universe f)) ^-1 = f ^-1)%equiv.
+Proof.
+  apply path_forall; intro.
+  etransitivity; [ | apply transport_path_universe ].
+  simpl.
+  rewrite <- path_universe_V.
+  reflexivity.
+Defined.
+
+Ltac transport_path_forall_hammer :=
+  progress
+    repeat (
+      let F := match goal with |- appcontext[@transport _ (fun x0 => @?F x0) _ _ (@path_forall ?H ?X ?T ?f ?g ?e)] => constr:(F) end in
+      let H := match goal with |- appcontext[@transport _ (fun x0 => @?F x0) _ _ (@path_forall ?H ?X ?T ?f ?g ?e)] => constr:(H) end in
+      let X := match goal with |- appcontext[@transport _ (fun x0 => @?F x0) _ _ (@path_forall ?H ?X ?T ?f ?g ?e)] => constr:(X) end in
+      let T := match goal with |- appcontext[@transport _ (fun x0 => @?F x0) _ _ (@path_forall ?H ?X ?T ?f ?g ?e)] => constr:(T) end in
+      let T0 := fresh in
+      let T1 := fresh in
+      let t0 := fresh in
+      let t1 := fresh in
+      evar (T0 : Type); evar (t0 : T0); subst T0;
+      evar (T1 : Type); evar (t1 : T1); subst T1;
+      let dummy := fresh in
+      assert (dummy : forall x0, F x0 = t0 (x0 t1));
+      [ let x0 := fresh in
+        intro x0;
+          simpl in *;
+          let GL := match goal with |- ?GL = _ => constr:(GL) end in
+          let GL' := fresh in
+          set (GL' := GL);
+            let arg := match GL with appcontext[x0 ?arg] => constr:(arg) end in
+            assert (t1 = arg) by (subst t1; reflexivity); subst t1;
+            pattern (x0 arg) in GL';
+            match goal with
+              | [ GL'' := ?GR _ |- _ ] => constr_eq GL' GL'';
+                                         assert (t0 = GR)
+            end;
+            subst t0; [ reflexivity | reflexivity ]
+      | clear dummy ];
+      let p := fresh in
+      pose (@path_forall_1_beta H X T t1 t0) as p;
+      simpl in *;
+        rewrite p;
+      subst t0 t1 p
+    ).
