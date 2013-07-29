@@ -67,6 +67,8 @@ MODULES    := theories/Peano \
 	theories/Grothendieck/ToSet \
 	theories/Grothendieck \
 	\
+	theories/NaturalNumbersObject \
+	\
 	theories/Utf8
 
 VS         := $(MODULES:%=%.v)
