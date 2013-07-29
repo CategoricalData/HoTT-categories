@@ -106,3 +106,40 @@ Section FunctorProductUniversal.
     intros.
 *)
 End FunctorProductUniversal.
+
+Section ProductInducedFunctors.
+  Variable C : PreCategory.
+  Variable D : PreCategory.
+  Variable E : PreCategory.
+
+  Variable F : Functor (C * D) E.
+
+  Local Ltac t :=
+    simpl; intros; rewrite <- ?FCompositionOf, <- ?FIdentityOf; simpl;
+    rewrite ?LeftIdentity, ?RightIdentity;
+    trivial.
+
+  (** Note: This is just the currying exponential law *)
+  Definition InducedProductFstFunctor (d : D) : Functor C E.
+  Proof.
+    refine (Build_Functor C E
+                          (fun c => F (c, d))
+                          (fun _ _ m => MorphismOf F (s := (_, _)) (d := (_, _)) (m, Identity d))
+                          _
+                          _);
+    abstract t.
+  Defined.
+
+  Definition InducedProductSndFunctor (c : C) : Functor D E.
+  Proof.
+    refine (Build_Functor D E
+                          (fun d => F (c, d))
+                          (fun _ _ m => MorphismOf F (s := (_, _)) (d := (_, _)) (Identity c, m))
+                          _
+                          _);
+    abstract t.
+  Defined.
+End ProductInducedFunctors.
+
+Notation "F ⟨ c , - ⟩" := (InducedProductSndFunctor F c) : functor_scope.
+Notation "F ⟨ - , d ⟩" := (InducedProductFstFunctor F d) : functor_scope.

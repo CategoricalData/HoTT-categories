@@ -68,6 +68,7 @@ MODULES    := theories/Peano \
 	theories/Grothendieck \
 	\
 	theories/NaturalNumbersObject \
+	theories/Hom \
 	\
 	theories/Utf8
 
