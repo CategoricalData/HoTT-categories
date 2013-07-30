@@ -96,6 +96,8 @@ MODULES    := Peano \
 	NatCategory \
 	NatCategory/Duals \
 	\
+	ProductLaws \
+	\
 	InitialTerminalCategory \
 	\
 	Cat \
