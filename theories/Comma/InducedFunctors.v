@@ -1,4 +1,4 @@
-Require Export Comma.Projection Cat Duals FunctorCategory Category.Product.
+Require Export Comma.Projection Cat Category.Duals FunctorCategory Category.Product.
 Require Import Common.
 
 Set Implicit Arguments.
