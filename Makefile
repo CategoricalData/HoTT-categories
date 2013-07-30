@@ -57,6 +57,7 @@ MODULES    := theories/Peano \
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
 	theories/Comma/Projection \
+	theories/Comma/InducedFunctors \
 	\
 	theories/UniversalProperties \
 	\
