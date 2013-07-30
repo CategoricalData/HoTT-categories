@@ -592,6 +592,13 @@ Lemma sigT_eta : forall A (P : A -> Type) (x : sigT P),
   destruct x; reflexivity.
 Qed.
 
+Lemma sigT_eta_2 A B P (x : @sigT A (fun a : A => @sigT (B a) (P a)))
+: (x.1; (x.2.1; x.2.2)) = x.
+Proof.
+  destruct x as [? [? ?]].
+  reflexivity.
+Qed.
+
 Lemma sigT2_eta : forall A (P Q : A -> Type) (x : sigT2 P Q),
   x = existT2 _ _ (projT1 x) (projT2 x) (projT3 x).
   destruct x; reflexivity.
