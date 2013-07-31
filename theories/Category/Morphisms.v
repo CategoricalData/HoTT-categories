@@ -1,4 +1,4 @@
-Require Export Category.Core.
+Require Export Category.Core Functor.Core.
 Require Import Common Notations.
 
 Set Universe Polymorphism.
@@ -279,3 +279,37 @@ Ltac compose4associativity :=
     | [ |- (?a ∘ ?b) ∘ (?c ∘ ?d) = _ ] => compose4associativity' a b c d
     | [ |- _ = (?a ∘ ?b) ∘ (?c ∘ ?d) ] => compose4associativity' a b c d
   end.
+
+Section iso_lemmas.
+  Lemma transport_to_idtoiso (C D : PreCategory) s d
+        (m1 m2 : Morphism C s d)
+        (p : m1 = m2)
+        (s' d' : Morphism C s d -> D) u
+  : @transport _ (fun m => Morphism D (s' m) (d' m)) _ _ p u
+    = idtoiso _ (ap d' p) ∘ u ∘ (idtoiso _ (ap s' p))^-1.
+  Proof.
+    path_induction; simpl; autorewrite with morphism; reflexivity.
+  Qed.
+
+  Lemma idtoiso_inv (C : PreCategory) (s d : C) (p : s = d)
+  : (idtoiso _ p)^-1 = idtoiso _ (p^)%path.
+  Proof.
+    path_induction; reflexivity.
+  Defined.
+
+  Lemma idtoiso_comp (C : PreCategory) (s d d' : C)
+        (m1 : d = d') (m2 : s = d)
+  : idtoiso _ m1 ∘ idtoiso _ m2 = idtoiso _ (m2 @ m1)%path.
+  Proof.
+    path_induction; simpl; auto with morphism.
+  Qed.
+
+  Lemma idtoiso_functor (C D : PreCategory) (s d : C) (m : s = d)
+        (F : Functor C D)
+  : MorphismOf F (idtoiso _ m) = idtoiso _ (ap (ObjectOf F) m).
+  Proof.
+    path_induction; simpl; apply FIdentityOf.
+  Defined.
+End iso_lemmas.
+
+Hint Rewrite transport_to_idtoiso idtoiso_inv idtoiso_comp idtoiso_functor.

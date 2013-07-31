@@ -5,6 +5,8 @@ MODULES    := theories/Peano \
 	theories/Common \
 	\
 	theories/Category/Core \
+	theories/Functor/Core \
+	\
 	theories/Category/Equality \
 	theories/Category/Morphisms \
 	theories/Category/Category \
@@ -12,7 +14,6 @@ MODULES    := theories/Peano \
 	theories/Category/Objects \
 	theories/Category/Duals \
 	\
-	theories/Functor/Core \
 	theories/Functor/Equality \
 	theories/Functor/Identity \
 	theories/Functor/Composition \

@@ -751,7 +751,7 @@ Ltac intro_fresh_unique :=
          end.
 
 Ltac specialize_with_evars_then_do E tac :=
-  match type of E with
+  lazymatch type of E with
     | forall x : ?T, _ =>
       let y := fresh in evar (y : T);
         let y' := (eval unfold y in y) in clear y;
@@ -840,18 +840,18 @@ Ltac simultaneous_rewrite_rev E := specialize_with_evars_then_do E ltac:(fun E =
 
 (* rewrite by convertiblity rather than syntactic equality *)
 Ltac conv_rewrite_with rew_tac H := specialize_with_evars_then_do H ltac:(fun H =>
-  match type of H with
+  lazymatch type of H with
     | ?a = _ => match goal with
-                  | [ |- appcontext[?a'] ] => let H' := fresh in assert (H' : a = a') by reflexivity; clear H';
-                    change a' with a; rew_tac H
+                  | [ |- appcontext[?a'] ]
+                    => change a' with a; rew_tac H
                 end
   end
 ).
 Ltac conv_rewrite_rev_with rew_tac H := specialize_with_evars_then_do H ltac:(fun H =>
-  match type of H with
+  lazymatch type of H with
     | _ = ?a => match goal with
-                  | [ |- appcontext[?a'] ] => let H' := fresh in assert (H' : a = a') by reflexivity; clear H';
-                    change a' with a; rew_tac H
+                  | [ |- appcontext[?a'] ]
+                    => change a' with a; rew_tac H
                 end
   end
 ).
