@@ -17,16 +17,40 @@ Section Functors_Equal.
 
   Local Open Scope equiv_scope.
 
+
+  Local Notation Functor_eq'_T F G := { HO : ObjectOf F = ObjectOf G
+                                      | transport (fun GO => forall s d, Morphism C s d -> Morphism D (GO s) (GO d))
+                                                  HO
+                                                  (MorphismOf F)
+                                        = MorphismOf G }.
+
+  Definition Functor_eq'_sig (F G : Functor C D) : Functor_eq'_T F G -> F = G.
+  Proof.
+    intros [? ?].
+    destruct F, G; simpl in *.
+    path_induction; simpl.
+    f_ap;
+      abstract exact (center _).
+  Defined.
+
+  Lemma Functor_eq'_sig_fst F G HO HM
+  : ap ObjectOf (@Functor_eq'_sig F G (HO; HM)) = HO.
+  Proof.
+    destruct F, G; simpl in *.
+    super_path_induction.
+  Qed.
+
+  Definition Functor_eq'_sig_inv (F G : Functor C D) : F = G -> Functor_eq'_T F G
+    := fun H0 => match H0 with idpath => (idpath; idpath) end.
+
   Lemma Functor_eq' (F G : Functor C D)
   : forall HO : ObjectOf F = ObjectOf G,
       transport (fun GO => forall s d, Morphism C s d -> Morphism D (GO s) (GO d)) HO (MorphismOf F) = MorphismOf G
       -> F = G.
   Proof.
     intros.
-    destruct F, G; simpl in *.
-    path_induction; simpl.
-    f_ap;
-      abstract refine (center _).
+    apply Functor_eq'_sig.
+    esplit; eassumption.
   Defined.
 
   Lemma Functor_eq (F G : Functor C D)
@@ -43,21 +67,6 @@ Section Functors_Equal.
     eapply (Functor_eq' F G (path_forall _ _ HO)).
     repeat (apply path_forall; intro); apply_hyp.
   Qed.
-
-  Local Notation Functor_eq'_T F G := { HO : ObjectOf F = ObjectOf G
-                                      | transport (fun GO => forall s d, Morphism C s d -> Morphism D (GO s) (GO d))
-                                                  HO
-                                                  (MorphismOf F)
-                                        = MorphismOf G }.
-
-  Definition Functor_eq'_sig (F G : Functor C D) : Functor_eq'_T F G -> F = G.
-    intros [? ?].
-    eapply Functor_eq'.
-    eassumption.
-  Defined.
-
-  Definition Functor_eq'_sig_inv (F G : Functor C D) : F = G -> Functor_eq'_T F G
-    := fun H0 => match H0 with idpath => (idpath; idpath) end.
 
   Local Ltac t :=
     repeat match goal with
@@ -116,6 +125,7 @@ End Functors_Equal.
 
 Ltac functor_eq :=
   repeat match goal with
+           | _ => reflexivity
            | _ => intro
            | _ => apply Functor_eq'_sig; simpl
            | _ => (exists idpath)
