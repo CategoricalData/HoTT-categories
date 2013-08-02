@@ -34,7 +34,7 @@ Section FunctorsUnique.
 
   Global Instance trunc_InitialCategoryFunctor
   : Contr (Functor InitialCategory C)
-    := {| center := FunctorFromInitial C |}.
+    := let x := {| center := FunctorFromInitial C |} in x.
   Proof.
     abstract (
         intros; apply Functor_eq'_sig;
@@ -51,7 +51,7 @@ Section FunctorsUnique.
 
   Global Instance trunc_TerminalCategoryFunctor
   : Contr (Functor C TerminalCategory)
-    := {| center := FunctorToTerminal C |}.
+    := let x := {| center := FunctorToTerminal C |} in x.
   Proof.
     intros.
     exact (center _).
