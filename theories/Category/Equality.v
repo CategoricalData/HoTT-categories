@@ -45,8 +45,7 @@ Section PreCategories_Equal.
     path_induction.
     clear X.
     f_ap;
-      repeat (apply path_forall; intro);
-      abstract refine (center _).
+      abstract (exact (center _)).
   Defined.
 
   Lemma PreCategory_eq' (C D : PreCategory)

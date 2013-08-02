@@ -26,5 +26,27 @@ Local Ltac dual_t :=
 Lemma SelfDual_Discrete `{Funext} `{Univalence} `{IsHSet X}
 : (DiscreteCategory X)^op = DiscreteCategory X.
 Proof.
-  dual_t.
+  repeat match goal with
+           | _ => reflexivity
+           | _ => progress (repeat (apply path_forall; intro); simpl)
+           | _ => apply (path_universe (symmetry _ _))
+           | [ |- @sigT ?A ?P ] => cut A;
+                                  [ let t := fresh in
+                                    intro t; exists t
+                                  | ]
+           | _ => exact (center _)
+         end.
+  category_eq; simpl.
+  repeat match goal with
+           | _ => reflexivity
+           | _ => progress (repeat (apply path_forall; intro); simpl)
+           | _ => apply (path_universe (symmetry _ _))
+           | [ |- @sigT ?A ?P ] => cut A;
+                                  [ let t := fresh in
+                                    intro t; exists t
+                                  | ]
+         end.
+  apply @center.
+  (*** WTF XXX Universe Inconistency on [exact (center _)] *)
+  typeclasses eauto.
 Qed.

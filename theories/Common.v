@@ -1228,8 +1228,6 @@ Hint Extern 0 (@JMeq _ _ Empty_set _) => apply Empty_set_JMeqr.
 
 
 (** Fixes for HoTT library **)
-Existing Instances trunc_arrow trunc_forall.
-
 Definition sigT_of_sum A B (x : A + B) : { b : Bool & if b then A else B }
   := (_;
       match
@@ -1277,13 +1275,6 @@ Proof.
   typeclasses eauto.
 Defined.
 
-Definition IsTrunc_path (A : Type) n `{H : IsTrunc (S n) A} (x y : A)
-: IsTrunc n (x = y)
-  := H x y.
-Definition IsTrunc_path' (A : Type) n `{H : IsTrunc (trunc_S n) A} (x y : A)
-: IsTrunc n (x = y)
-  := H x y.
-
 Ltac do_unless_goal_has_evar tac :=
   match goal with
     | [ |- ?G ] => has_evar G; fail 1 "Goal has evars"
@@ -1291,18 +1282,21 @@ Ltac do_unless_goal_has_evar tac :=
   end;
   tac.
 
-Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path) : typeclass_instances.
-Hint Extern 1 => do_unless_goal_has_evar ltac:(apply IsTrunc_path') : typeclass_instances.
+(*Hint Extern 100 => do_unless_goal_has_evar ltac:(apply @IsTrunc_path) : typeclass_instances.*)
+
 
 (*Hint Extern 1 => progress cbv beta : typeclass_instances.*)
 Hint Extern 0 => assumption : typeclass_instances.
 Hint Extern 3 => progress cbv beta : typeclass_instances.
+Hint Extern 1000 => progress simpl : typeclass_instances.
+Hint Extern 1000 => progress intros : typeclass_instances.
+(*Hint Extern 100 => do_unless_goal_has_evar ltac:(apply @IsTrunc_path') : typeclass_instances.*)
 (*Hint Extern 0 => match goal with
                    | [ |- appcontext[(fun _ => _) _] ] => cbv beta
                  end : typeclass_instances.*)
 
 Global Instance trunc_pointwise_paths `{Funext} A B (f g : forall x : A, B x) `{IsTrunc n (f = g)}
-: IsTrunc n (f == g)
+: IsTrunc n (f == g) | 1000
   := @trunc_equiv' _ _ (symmetry _ _ (equiv_path_forall _ _)) _ _.
 (*Global Instance trunc_contr `{H : forall (x y : T) (pf1 pf2 : x = y), Contr (pf1 = pf2)} : IsTrunc 0 T | 10000
   := H.*)

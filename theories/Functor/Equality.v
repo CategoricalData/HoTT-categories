@@ -107,7 +107,7 @@ Section Functors_Equal.
       end;
       simpl; intros;
       refine (center _)
-    | eapply trunc_equiv';
+    | intros ? ?; eapply trunc_equiv';
       [ exact (Functor_eq'_sig_equiv _ _)
       | typeclasses eauto ]
     ].
