@@ -46,7 +46,5 @@ Proof.
                                     intro t; exists t
                                   | ]
          end.
-  apply @center.
-  (*** WTF XXX Universe Inconistency on [exact (center _)] *)
-  typeclasses eauto.
+  exact (center _).
 Qed.
