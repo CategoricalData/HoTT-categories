@@ -30,10 +30,8 @@ Section NaturalTransformations_Equal.
     apply (equiv_adjointify (fun u => build u.1 u.2)
                             (fun v => (pr1 v; pr2 v)));
       hnf;
-      intros []; intros; simpl; expand; try reflexivity; [].
-    repeat (apply ap || apply path_forall || intro).
-    refine (center _).
-    (*issig (@Build_NaturalTransformation _ _ F G) (@ComponentsOf _ _ F G) (@Commutes _ _ F G) (@Commutes_sym _ _ F G).*)
+      [ intros []; intros; simpl; expand; f_ap; exact (center _)
+      | intros; apply eta_sigma ].
   Defined.
 
   Global Instance NaturalTransformation_IsHSet : IsHSet (NaturalTransformation F G).
@@ -66,12 +64,14 @@ Section NaturalTransformations_Equal.
 
   Lemma NaturalTransformation_eq_equiv_eisretr (T U : NaturalTransformation F G)
   : Sect (NaturalTransformation_eq T U) (@eq_inv T U).
+  Proof.
     repeat intro.
     refine (center _).
   Qed.
 
   Lemma NaturalTransformation_eq_equiv_eissect (T U : NaturalTransformation F G)
   : Sect (@eq_inv T U) (NaturalTransformation_eq T U).
+  Proof.
     repeat intro.
     refine (center _).
   Qed.
@@ -79,12 +79,14 @@ Section NaturalTransformations_Equal.
   Lemma NaturalTransformation_eq_equiv_eisadj (T U : NaturalTransformation F G)
   : forall x, @NaturalTransformation_eq_equiv_eisretr T U (@eq_inv T U x)
               = ap (@eq_inv T U) (NaturalTransformation_eq_equiv_eissect x).
+  Proof.
     repeat intro.
     refine (center _).
   Qed.
 
   Lemma NaturalTransformation_eq_equiv (T U : NaturalTransformation F G)
   : T = U <~> (ComponentsOf T == ComponentsOf U).
+  Proof.
     econstructor; econstructor; exact (@NaturalTransformation_eq_equiv_eisadj T U).
   Defined.
 End NaturalTransformations_Equal.
