@@ -1,5 +1,5 @@
 Require Export Category.Product Functor.Product NaturalTransformation.Core.
-Require Import Common.
+Require Import Common InitialTerminalCategory.
 
 Set Implicit Arguments.
 Generalizable All Variables.
@@ -40,7 +40,7 @@ Section ProductInducedNaturalTransformations.
     reflexivity.
 
   Definition InducedProductFstNaturalTransformation s d (m : Morphism C s d)
-  : NaturalTransformation (F ⟨ s, - ⟩) (F ⟨ d, - ⟩).
+  : NaturalTransformation (F ⟨ s, ─ ⟩) (F ⟨ d, ─ ⟩).
   Proof.
     let F0 := match goal with |- NaturalTransformation ?F0 ?G0 => constr:(F0) end in
     let G0 := match goal with |- NaturalTransformation ?F0 ?G0 => constr:(G0) end in
@@ -52,7 +52,7 @@ Section ProductInducedNaturalTransformations.
   Defined.
 
   Definition InducedProductSndNaturalTransformation s d (m : Morphism D s d)
-  : NaturalTransformation (F ⟨ -, s ⟩) (F ⟨ - , d ⟩).
+  : NaturalTransformation (F ⟨ ─, s ⟩) (F ⟨ ─ , d ⟩).
   Proof.
     let F0 := match goal with |- NaturalTransformation ?F0 ?G0 => constr:(F0) end in
     let G0 := match goal with |- NaturalTransformation ?F0 ?G0 => constr:(G0) end in
@@ -64,5 +64,5 @@ Section ProductInducedNaturalTransformations.
   Defined.
 End ProductInducedNaturalTransformations.
 
-Notation "F ⟨ f , - ⟩" := (InducedProductSndNaturalTransformation F f) : natural_transformation_scope.
-Notation "F ⟨ - , f ⟩" := (InducedProductFstNaturalTransformation F f) : natural_transformation_scope.
+(*Notation "F ⟨ f , - ⟩" := (InducedProductSndNaturalTransformation F f) : natural_transformation_scope.
+Notation "F ⟨ - , f ⟩" := (InducedProductFstNaturalTransformation F f) : natural_transformation_scope.*)

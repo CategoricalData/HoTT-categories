@@ -18,8 +18,8 @@ Section CommaCategory.
 
   Definition CommaCategoryProjection : Functor (S ↓ T) (A * B)
     := Build_Functor (S ↓ T) (A * B)
-                     (fun abf => (CCO_a abf, CCO_b abf))
-                     (fun _ _ m => (CCM_g m, CCM_h m))
+                     (fun abf => (CCO_a abf, CCO_b abf)%core)
+                     (fun _ _ m => (CCM_g m, CCM_h m)%core)
                      (fun _ _ _ _ _ => idpath)
                      (fun _ => idpath).
 End CommaCategory.

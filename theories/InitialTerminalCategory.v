@@ -27,6 +27,8 @@ Section Functors.
   Definition FunctorFromInitial : Functor InitialCategory C := FunctorFrom0.
 End Functors.
 
+Notation "! x" := (FunctorFromTerminal _ x) : functor_scope.
+
 Section FunctorsUnique.
   Context `{Funext}.
 

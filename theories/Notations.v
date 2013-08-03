@@ -56,12 +56,18 @@ Reserved Notation "∐_{ x : A } f" (at level 0, x at level 99).
 (* I'm not terribly happy with this notation, but '('s don't work
    because they interfere with things like [prod]s and grouping,
    and '['s interfere with list notation in Program. *)
-Reserved Notation "F ⟨ c , - ⟩" (at level 70, no associativity).
-Reserved Notation "F ⟨ - , d ⟩" (at level 70, no associativity).
+Reserved Notation "F ⟨ x ⟩" (at level 10, no associativity, x at next level).
+Reserved Notation "F ⟨ x , y ⟩" (at level 10, no associativity, x at next level, y at next level).
+(*Reserved Notation "F ⟨ x , y , .. , z ⟩" (at level 10, no associativity, x at next level, y at next level, z at next level).*)
+(*Reserved Notation "F ⟨ c , - ⟩" (at level 70, no associativity).
+Reserved Notation "F ⟨ - , d ⟩" (at level 70, no associativity).*)
 Reserved Notation "F ₀" (at level 10, no associativity).
 Reserved Notation "F ₁" (at level 10, no associativity).
 Reserved Notation "F ₀ x" (at level 10, no associativity).
 Reserved Notation "F ₁ m" (at level 10, no associativity).
+
+Reserved Notation "¡ x" (at level 10, no associativity).
+Reserved Notation "! x" (at level 10, no associativity).
 
 (* Forced by the notation in Program *)
 Reserved Notation "[ x ]" (at level 0, x at level 200).

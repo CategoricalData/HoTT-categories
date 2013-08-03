@@ -273,4 +273,5 @@ Notation "S ↓ T" := (CommaCategory (S : CC_Functor' _ _)
                                    (T : CC_Functor' _ _)) : category_scope.
 (*Set Printing All.
 Check (fun (C : Category)(D : Category)(E : Category)(S : Functor C D) (T : Functor E D) => (S ↓ T)%category).
-Check (fun (D : Category)(E : Category)(S : Functor E D) (x : D) => (x ↓ S)%category).*)
+Check (fun (D : Category)(E : Category)(S : Functor E D) (x : D) => (x ↓ S)%category).
+Check (fun (D : Category)(E : Category)(S : Functor E D) (x : D) => (S ↓ x)%category).*)

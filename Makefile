@@ -41,6 +41,8 @@ MODULES    := theories/Peano \
 	\
 	theories/FunctorCategory \
 	\
+	theories/NaturalTransformation/Isomorphisms \
+	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
 	theories/Groupoid/Duals \

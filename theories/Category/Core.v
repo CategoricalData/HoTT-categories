@@ -45,6 +45,8 @@ Arguments Compose [!C%category s%object d%object d'%object] m1%morphism m2%morph
 
 Infix "o" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
+(* I'm not sure how much I like this notation... *)
+Notation "─" := (Identity _) : morphism_scope.
 
 Definition Build_PreCategory
            Object Morphism Compose Identity Associativity LeftIdentity RightIdentity
