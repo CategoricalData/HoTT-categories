@@ -27,7 +27,7 @@ Section sig.
 End sig.
 
 (* fail if [tac] succeeds, do nothing otherwise *)
-Tactic Notation "not_tac" tactic(tac) := (tac; fail 1) || idtac.
+Tactic Notation "not_tac" tactic(tac) := try (tac; fail 1).
 
 (* fail if [tac] fails, but don't actually execute [tac] *)
 Tactic Notation "test_tac" tactic(tac) := not_tac (not_tac tac).
@@ -1365,12 +1365,78 @@ Local Ltac path_forall_beta_t :=
   end;
   reflexivity.
 
+
+Create HintDb transport_beta discriminated.
+
+Definition are_different A (x y : A) := True.
+Definition all_are_maybe_different A x y : @are_different A x y := I.
+Opaque are_different.
+
+Hint Extern 0 (_ /\ _) => constructor : transport_beta.
+(* Maybe we should check whether or not [x] and [y] are unifiable via [let check := constr:(idpath : x = y) in idtac] instead of using [constr_eq]?  It's slightly slower, probably, but maybe worth it to deal with lemmas that are like [reflexivity], like [transport_1]. *)
+Hint Extern 0 (@are_different ?A ?x ?y)
+=> progress do_unless_goal_has_evar ltac:((not_tac (constr_eq x y)); apply all_are_maybe_different) : transport_beta.
+
+Definition different_transitivity_l `{@Transitive A R} x y z
+: R x y /\ are_different x y -> R y z -> R x z
+  := fun H => transitivity x y z (fst H).
+Definition different_transitivity_r `{@Transitive A R} `{@Symmetric A R} x y z
+: R x y -> R z y /\ are_different y z -> R x z
+  := fun H H' => transitivity x y z H (symmetry _ _ (fst H')).
+Arguments different_transitivity_l {A} {R} {_} x y z _ _.
+Arguments different_transitivity_r {A} {R} {_} {_} x y z _ _.
+
+Tactic Notation "different_etransitivity_l" open_constr(y) :=
+  let R := match goal with |- ?R ?x ?z => constr:(R) end in
+  let x := match goal with |- ?R ?x ?z => constr:(x) end in
+  let z := match goal with |- ?R ?x ?z => constr:(z) end in
+  eapply (different_transitivity_l (R := R) x y z).
+
+Tactic Notation "different_etransitivity_r" open_constr(y) :=
+  let R := match goal with |- ?R ?x ?z => constr:(R) end in
+  let x := match goal with |- ?R ?x ?z => constr:(x) end in
+  let z := match goal with |- ?R ?x ?z => constr:(z) end in
+  eapply (different_transitivity_r (R := R) x y z).
+
+Tactic Notation "different_etransitivity_l" := different_etransitivity_l _.
+Tactic Notation "different_etransitivity_r" := different_etransitivity_r _.
+
+Ltac compute_transport :=
+  repeat match goal with
+           | _ => apply ap
+           | [ |- transport _ _ _ = _ ] => fail 1
+           | [ |- _ = transport _ _ _ ] => fail 1
+           | _ => f_ap
+         end;
+  first [ different_etransitivity_l; [ solve [ eauto with transport_beta ] | ]
+        | different_etransitivity_r; [ | solve [ eauto with transport_beta ] ] ];
+  trivial;
+  try (compute_transport
+         || (apply path_forall; intro; compute_transport)).
+
 Lemma path_forall_1_beta `{Funext} A B x P f g e Px
 : @transport (forall a : A, B a) (fun f => P (f x)) f g (@path_forall _ _ _ _ _ e) Px
   = @transport (B x) P (f x) (g x) (e x) Px.
 Proof.
   path_forall_beta_t.
 Defined.
+
+Hint Resolve path_forall_1_beta : transport_beta.
+
+Hint Resolve transport_arrow fiber_path (* transport_forall *)
+transport_forall_constant apD (*transport_1 (* causes problems,
+because it's just refl *)*) transport_pp (* do we really want
+[transport_pp]? *) transport_pV transport_Vp transport_const
+transport_compose (* do we want [transport_compose]? *)
+transport_paths_l transport_paths_r transport_paths_Fl
+transport_paths_Fr transport_paths_FlFr transport_paths_FlFr_D
+transport_paths_FFlr transport_paths_lFFr transport_prod
+transport_sigma transport_sigma' transport_sum transport_path_universe
+transport_path_universe' : transport_beta.
+Hint Unfold path_arrow : transport_beta.
+Hint Extern 0 => exact (@transport_forall_constant _ _ _ _ _ _ _ _) : transport_beta. (* because Coq is bad at higher-order unificiation *)
+Hint Extern 0 => exact (@transport_arrow _ _ _ _ _ _ _ _) : transport_beta.
+Hint Extern 0 => eapply ap10 : transport_beta.
 
 Lemma path_forall_2_beta `{Funext} A B x0 x1 P f g e Px
 : @transport (forall a : A, B a) (fun f => P (f x0) (f x1)) f g (@path_forall _ _ _ _ _ e) Px
