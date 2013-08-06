@@ -354,19 +354,19 @@ Section iso_concat_lemmas.
   : p^-1 ∘ p = Identity _
     := LeftInverse.
 
-  Definition iso_compose_V_pp `(@IsIsomorphism C y z p) `(@IsIsomorphism C x y q)
+  Definition iso_compose_V_pp `(@IsIsomorphism C y z p) `(q : Morphism C x y)
   : p^-1 ∘ (p ∘ q) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_compose_p_Vp `(@IsIsomorphism C x z p) `(@IsIsomorphism C y z q)
+  Definition iso_compose_p_Vp `(@IsIsomorphism C x z p) `(q : Morphism C y z)
   : p ∘ (p^-1 ∘ q) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_compose_pp_V `(@IsIsomorphism C y z p) `(@IsIsomorphism C x y q)
+  Definition iso_compose_pp_V `(p : Morphism C y z) `(@IsIsomorphism C x y q)
   : (p ∘ q) ∘ q^-1 = p.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_compose_pV_p `(@IsIsomorphism C x z p) `(@IsIsomorphism C x y q)
+  Definition iso_compose_pV_p `(p : Morphism C x z) `(@IsIsomorphism C x y q)
   : (p ∘ q^-1) ∘ q = p.
   Proof. iso_concat_t. Qed.
 
@@ -386,67 +386,67 @@ Section iso_concat_lemmas.
   : (p^-1 ∘ q^-1)^-1 = q ∘ p.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_Mp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  Definition iso_moveR_Mp `(p : Morphism C x y) `(q : Morphism C x z) `(@IsIsomorphism C y z r)
   : p = (r^-1 ∘ q) -> (r ∘ p) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_pM `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  Definition iso_moveR_pM `(@IsIsomorphism C x y p) `(q : Morphism C x z) `(r : Morphism C y z)
   : r = (q ∘ p^-1) -> (r ∘ p) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_Vp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C z y r)
+  Definition iso_moveR_Vp `(p : Morphism C x y) `(q : Morphism C x z) `(@IsIsomorphism C z y r)
   : p = (r ∘ q) -> (r^-1 ∘ p) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_pV `(@IsIsomorphism C x y p) `(@IsIsomorphism C y z q) `(@IsIsomorphism C x z r)
+  Definition iso_moveR_pV `(@IsIsomorphism C x y p) `(q : Morphism C y z) `(r : Morphism C x z)
   : r = (q ∘ p) -> (r ∘ p^-1) = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_Mp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  Definition iso_moveL_Mp `(p : Morphism C x y) `(q : Morphism C x z) `(@IsIsomorphism C y z r)
   : (r^-1 ∘ q) = p -> q = (r ∘ p).
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_pM `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  Definition iso_moveL_pM `(@IsIsomorphism C x y p) `(q : Morphism C x z) `(r : Morphism C y z)
   : (q ∘ p^-1) = r -> q = (r ∘ p).
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_Vp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C _ _ r)
+  Definition iso_moveL_Vp `(p : Morphism C x y) `(q : Morphism C x z) `(@IsIsomorphism C _ _ r)
   : (r ∘ q) = p -> q = (r^-1 ∘ p).
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_pV `(@IsIsomorphism C x y p) `(@IsIsomorphism C y z q) `(@IsIsomorphism C _ _ r)
+  Definition iso_moveL_pV `(@IsIsomorphism C x y p) `(q : Morphism C y z) r
   : (q ∘ p) = r -> q = (r ∘ p^-1).
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_1M `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  Definition iso_moveL_1M `(p : Morphism C x y) `(@IsIsomorphism C x y q)
   : p ∘ q^-1 = Identity _ -> p = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_M1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  Definition iso_moveL_M1 `(p : Morphism C x y) `(@IsIsomorphism C x y q)
   : q^-1 ∘ p = Identity _ -> p = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_1V `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  Definition iso_moveL_1V `(p : Morphism C x y) `(@IsIsomorphism C y x q)
   : p ∘ q = Identity _ -> p = q^-1.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveL_V1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  Definition iso_moveL_V1 `(p : Morphism C x y) `(@IsIsomorphism C y x q)
   : q ∘ p = Identity _ -> p = q^-1.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_M1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  Definition iso_moveR_M1 `(@IsIsomorphism C x y p) q
   : Identity _ = p^-1 ∘ q -> p = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_1M `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  Definition iso_moveR_1M `(@IsIsomorphism C x y p) q
   : Identity _ = q ∘ p^-1 -> p = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_1V `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  Definition iso_moveR_1V `(@IsIsomorphism C x y p) q
   : Identity _ = q ∘ p -> p^-1 = q.
   Proof. iso_concat_t. Qed.
 
-  Definition iso_moveR_V1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  Definition iso_moveR_V1 `(@IsIsomorphism C x y p) q
   : Identity _ = p ∘ q -> p^-1 = q.
   Proof. iso_concat_t. Qed.
 End iso_concat_lemmas.
