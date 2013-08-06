@@ -40,6 +40,7 @@ MODULES    := theories/Peano \
 	theories/ComputableCat \
 	\
 	theories/FunctorCategory \
+	theories/FunctorCategory/Morphisms \
 	\
 	theories/NaturalTransformation/Isomorphisms \
 	\
