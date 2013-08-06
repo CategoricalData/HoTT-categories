@@ -308,6 +308,14 @@ Section iso_lemmas.
   Proof.
     path_induction; simpl; apply FIdentityOf.
   Defined.
+
+  Global Instance iso_functor C D (F : Functor C D) `(@IsIsomorphism C s d m)
+  : IsIsomorphism (MorphismOf F m)
+    := {| Inverse := MorphismOf F m^-1 |}.
+  Proof.
+    abstract (rewrite <- FCompositionOf, ?LeftInverse, ?RightInverse, FIdentityOf; reflexivity).
+    abstract (rewrite <- FCompositionOf, ?LeftInverse, ?RightInverse, FIdentityOf; reflexivity).
+  Defined.
 End iso_lemmas.
 
 Hint Rewrite transport_to_idtoiso idtoiso_inv idtoiso_comp idtoiso_functor.
