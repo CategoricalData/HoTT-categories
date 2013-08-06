@@ -19,6 +19,8 @@ Class IsIsomorphism {C : PreCategory} {s d} (m : Morphism C s d) :=
 Notation "m ^-1" := (Inverse (m := m)) : morphism_scope.
 Notation "m ⁻¹" := (Inverse (m := m)) : morphism_scope.
 
+Hint Resolve LeftInverse RightInverse : category morphism.
+
 Class Isomorphic {C : PreCategory} s d :=
   {
     IsomorphicMorphism :> Morphism C s d;
@@ -106,53 +108,49 @@ End iso_contr.
 Section iso_equiv_relation.
   Variable C : PreCategory.
 
+  Global Instance isisomorphism_identity (x : C) : IsIsomorphism (Identity x)
+    := {| Inverse := Identity x;
+          LeftInverse := LeftIdentity C x x (Identity x);
+          RightInverse := RightIdentity C x x (Identity x) |}.
+
+  Definition isisomorphism_inverse `(@IsIsomorphism C x y m) : IsIsomorphism m^-1
+    := {| Inverse := m;
+          LeftInverse := RightInverse;
+          RightInverse := LeftInverse |}.
+
+  Local Ltac iso_comp_t inv_lemma :=
+    etransitivity; [ | apply inv_lemma ];
+    instantiate;
+    try_associativity ltac:(apply ap);
+    try_associativity ltac:(rewrite inv_lemma);
+    auto with morphism.
+
+  Global Instance isisomorphism_composition `(@IsIsomorphism C y z m0) `(@IsIsomorphism C x y m1)
+  : IsIsomorphism (m0 ∘ m1).
+  Proof.
+    exists (m1^-1 ∘ m0^-1);
+    [ abstract iso_comp_t @LeftInverse
+    | abstract iso_comp_t @RightInverse ].
+  Defined.
+
+  Hint Immediate isisomorphism_inverse : typeclass_instances.
+
   Global Instance isomorphic_refl : Reflexive (@Isomorphic C)
-    := fun x : C =>
-         {| IsomorphicMorphism := Identity x;
-            Isomorphic_IsIsomorphism :=
-              {|
-                Inverse := Identity x;
-                LeftInverse := LeftIdentity C x x (Identity x);
-                RightInverse := RightIdentity C x x (Identity x) |}
-         |}.
+    := fun x : C => {| IsomorphicMorphism := Identity x |}.
 
   Global Instance isomorphic_sym : Symmetric (@Isomorphic C)
-    := fun x y X =>
-         {| IsomorphicMorphism := Inverse;
-            Isomorphic_IsIsomorphism :=
-              {|
-                Inverse := X;
-                LeftInverse := RightInverse;
-                RightInverse := LeftInverse |}
-         |}.
+    := fun x y X => {| IsomorphicMorphism := Inverse |}.
 
-  Global Instance isomorphic_trans : Transitive (@Isomorphic C).
-  Proof.
-    repeat intro.
-    exists (X0 ∘ X).
-    exists (Inverse ∘ Inverse);
-      [ abstract (
-            etransitivity; [ | apply LeftInverse ];
-            instantiate;
-            try_associativity ltac:(apply ap);
-            try_associativity ltac:(rewrite LeftInverse);
-            auto with morphism
-          )
-      | abstract (
-            etransitivity; [ | apply RightInverse ];
-            instantiate;
-            try_associativity ltac:(apply ap);
-            try_associativity ltac:(rewrite RightInverse);
-            auto with morphism
-          )
-      ].
-  Defined.
+  Global Instance isomorphic_trans : Transitive (@Isomorphic C)
+    := fun x y z X Y => {| IsomorphicMorphism := @IsomorphicMorphism _ _ _ Y ∘ @IsomorphicMorphism _ _ _ X |}.
 
   Definition idtoiso (x y : C) (H : x = y) : Isomorphic x y
     := match H in (_ = y0) return (x ≅ y0) with
          | 1%path => reflexivity x
        end.
 End iso_equiv_relation.
+
+Hint Immediate isisomorphism_inverse : typeclass_instances.
 
 Ltac find_composition_to_identity :=
   match goal with
@@ -313,3 +311,142 @@ Section iso_lemmas.
 End iso_lemmas.
 
 Hint Rewrite transport_to_idtoiso idtoiso_inv idtoiso_comp idtoiso_functor.
+
+Section iso_concat_lemmas.
+  Variable C : PreCategory.
+
+  Local Ltac iso_concat_t' :=
+    intros;
+    repeat match goal with
+             | [ H : ?x = ?y |- _ ] => atomic y; induction H
+             | [ H : ?x = ?y |- _ ] => atomic x; symmetry in H; induction H
+           end;
+    repeat first [ done
+                 | try_associativity ltac:(progress rewrite ?LeftIdentity, ?RightIdentity, ?LeftInverse, ?RightInverse)
+                 | try_associativity ltac:(progress f_ap; []) ].
+
+  Local Ltac iso_concat_t_id_fin :=
+    match goal with
+      | [ |- appcontext[@Identity ?C ?x] ]
+        => generalize dependent (@Identity C x)
+    end;
+    iso_concat_t'.
+
+  Local Ltac iso_concat_t_id lem :=
+    first [ solve [
+                etransitivity; [ | eapply lem ];
+                iso_concat_t_id_fin
+              ]
+          | solve [
+                etransitivity; [ eapply symmetry; eapply lem | ];
+                iso_concat_t_id_fin
+          ] ].
+
+  Local Ltac iso_concat_t :=
+    iso_concat_t';
+    try first [ solve [ iso_concat_t_id @LeftIdentity ]
+              | solve [ iso_concat_t_id @RightIdentity ] ].
+
+  Definition iso_compose_pV `(@IsIsomorphism C x y p)
+  : p ∘ p^-1 = Identity _
+    := RightInverse.
+  Definition iso_compose_Vp `(@IsIsomorphism C x y p)
+  : p^-1 ∘ p = Identity _
+    := LeftInverse.
+
+  Definition iso_compose_V_pp `(@IsIsomorphism C y z p) `(@IsIsomorphism C x y q)
+  : p^-1 ∘ (p ∘ q) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_compose_p_Vp `(@IsIsomorphism C x z p) `(@IsIsomorphism C y z q)
+  : p ∘ (p^-1 ∘ q) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_compose_pp_V `(@IsIsomorphism C y z p) `(@IsIsomorphism C x y q)
+  : (p ∘ q) ∘ q^-1 = p.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_compose_pV_p `(@IsIsomorphism C x z p) `(@IsIsomorphism C x y q)
+  : (p ∘ q^-1) ∘ q = p.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_inv_pp `(@IsIsomorphism C y z p) `(@IsIsomorphism C x y q)
+  : (p ∘ q)^-1 = q^-1 ∘ p^-1.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_inv_Vp `(@IsIsomorphism C y z p) `(@IsIsomorphism C x z q)
+  : (p^-1 ∘ q)^-1 = q^-1 ∘ p.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_inv_pV `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q)
+  : (p ∘ q^-1)^-1 = q ∘ p^-1.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_inv_VV `(@IsIsomorphism C x y p) `(@IsIsomorphism C y z q)
+  : (p^-1 ∘ q^-1)^-1 = q ∘ p.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_Mp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  : p = (r^-1 ∘ q) -> (r ∘ p) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_pM `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  : r = (q ∘ p^-1) -> (r ∘ p) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_Vp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C z y r)
+  : p = (r ∘ q) -> (r^-1 ∘ p) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_pV `(@IsIsomorphism C x y p) `(@IsIsomorphism C y z q) `(@IsIsomorphism C x z r)
+  : r = (q ∘ p) -> (r ∘ p^-1) = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_Mp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  : (r^-1 ∘ q) = p -> q = (r ∘ p).
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_pM `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C y z r)
+  : (q ∘ p^-1) = r -> q = (r ∘ p).
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_Vp `(@IsIsomorphism C x y p) `(@IsIsomorphism C x z q) `(@IsIsomorphism C _ _ r)
+  : (r ∘ q) = p -> q = (r^-1 ∘ p).
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_pV `(@IsIsomorphism C x y p) `(@IsIsomorphism C y z q) `(@IsIsomorphism C _ _ r)
+  : (q ∘ p) = r -> q = (r ∘ p^-1).
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_1M `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  : p ∘ q^-1 = Identity _ -> p = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_M1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  : q^-1 ∘ p = Identity _ -> p = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_1V `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  : p ∘ q = Identity _ -> p = q^-1.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveL_V1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  : q ∘ p = Identity _ -> p = q^-1.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_M1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  : Identity _ = p^-1 ∘ q -> p = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_1M `(@IsIsomorphism C x y p) `(@IsIsomorphism C x y q)
+  : Identity _ = q ∘ p^-1 -> p = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_1V `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  : Identity _ = q ∘ p -> p^-1 = q.
+  Proof. iso_concat_t. Qed.
+
+  Definition iso_moveR_V1 `(@IsIsomorphism C x y p) `(@IsIsomorphism C y x q)
+  : Identity _ = p ∘ q -> p^-1 = q.
+  Proof. iso_concat_t. Qed.
+End iso_concat_lemmas.
