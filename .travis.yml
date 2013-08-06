@@ -1,0 +1,11 @@
+language: c
+before_script:
+ - sudo apt-get update -q
+ - sudo apt-get install -q ocaml camlp5 time
+ - git clone --depth=5 --branch=trunk git://github.com/HoTT/coq.git coq-HoTT
+ - pushd coq-HoTT
+ -   ./configure -prefix /usr/local -debug -no-native-compiler
+ -   make coqlight
+ -   sudo make install-coqlight
+ - popd
+script: "make pretty-timed"
