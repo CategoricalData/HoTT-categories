@@ -57,6 +57,7 @@ MODULES    := theories/Peano \
 	theories/InitialTerminalCategory \
 	\
 	theories/Cat \
+	theories/Cat/Morphisms \
 	\
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
