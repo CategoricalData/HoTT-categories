@@ -115,7 +115,10 @@ Makefile.coq: Makefile $(VS) HoTT
 	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
 	sed s':\$$(COQBIN)coqc:'"$$(readlink -f ./HoTT/hoqc)"':g' -i Makefile.coq
 
-HoTT:
+HoTT/Makefile:
+	cd HoTT; ./configure
+
+HoTT: HoTT/Makefile
 	cd HoTT; $(MAKE)
 
 clean:: Makefile.coq
