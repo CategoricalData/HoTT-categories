@@ -13,6 +13,10 @@ Definition NaturalIsomorphism `{Funext} (C D : PreCategory) F G := @Isomorphic [
 
 Arguments NaturalIsomorphism {_} [C D] F G / .
 
+Coercion NaturalIsomorphismNT `{Funext} C D F G (T : @NaturalIsomorphism _ C D F G)
+: NaturalTransformation F G
+  := T : Morphism _ _ _.
+
 Infix "≅" := NaturalIsomorphism : natural_transformation_scope.
 
 Definition iso_NaturalTransformation0 `{Funext} `{@IsIsomorphism [C, D] F G T} x
@@ -52,3 +56,5 @@ Proof.
             | apply RightInverse ]
     ).
 Defined.
+
+Hint Immediate iso_NaturalTransformation0 iso_NaturalTransformation1 : typeclass_instances.
