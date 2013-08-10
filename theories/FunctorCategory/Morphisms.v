@@ -1,5 +1,5 @@
 Require Export FunctorCategory Category.Morphisms.
-Require Import Common.
+Require Import Common NaturalTransformation.Composition.
 
 Set Universe Polymorphism.
 Set Implicit Arguments.
@@ -18,6 +18,16 @@ Coercion NaturalIsomorphismNT `{Funext} C D F G (T : @NaturalIsomorphism _ C D F
   := T : Morphism _ _ _.
 
 Infix "≅" := NaturalIsomorphism : natural_transformation_scope.
+
+Global Instance NTC_NI_R `{Funext} A (a : A)
+       `(T : @NaturalIsomorphism _ C D F G)
+       `{@NTC_Composable _ _ a (T : Morphism _ _ _) T' term}
+: @NTC_Composable A _ a T T' term | 0.
+
+Global Instance NTC_NI_L `{Funext} A (a : A)
+       `(T : @NaturalIsomorphism _ C D F G)
+       `{@NTC_Composable _ _ (T : Morphism _ _ _) a T' term}
+: @NTC_Composable _ _ T a T' term | 0.
 
 Definition iso_NaturalTransformation0 `{Funext} `{@IsIsomorphism [C, D] F G T} x
 : IsIsomorphism (T x).
