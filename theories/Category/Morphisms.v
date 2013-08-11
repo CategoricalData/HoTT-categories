@@ -103,6 +103,16 @@ Section iso_contr.
     eapply trunc_equiv'; [ exact Isomorphic_sig | ].
     typeclasses eauto.
   Qed.
+
+  Definition Isomorphic_eq (i j : Isomorphic s d)
+  : @IsomorphicMorphism _ _ _ i = @IsomorphicMorphism _ _ _ j
+    -> i = j.
+  Proof.
+    destruct i, j; simpl.
+    intro; path_induction.
+    f_ap.
+    exact (center _).
+  Defined.
 End iso_contr.
 
 Section iso_equiv_relation.
