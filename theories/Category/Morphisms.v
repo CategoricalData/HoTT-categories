@@ -104,7 +104,7 @@ Section iso_contr.
     typeclasses eauto.
   Qed.
 
-  Definition Isomorphic_eq (i j : Isomorphic s d)
+  Definition path_isomorphic (i j : Isomorphic s d)
   : @IsomorphicMorphism _ _ _ i = @IsomorphicMorphism _ _ _ j
     -> i = j.
   Proof.
@@ -112,6 +112,19 @@ Section iso_contr.
     intro; path_induction.
     f_ap.
     exact (center _).
+  Defined.
+
+  Definition Isomorphic_eq := path_isomorphic.
+
+  Global Instance isequiv_path_isomorphic
+  : IsEquiv (path_isomorphic i j).
+  Proof.
+    intros.
+    apply (isequiv_adjointify
+             (path_isomorphic i j)
+             (ap (@IsomorphicMorphism _ _ _)));
+      intro; [ destruct i | destruct i, j ];
+      super_path_induction.
   Defined.
 End iso_contr.
 
