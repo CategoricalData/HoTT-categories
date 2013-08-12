@@ -9,10 +9,11 @@ MODULES    := theories/Peano \
 	\
 	theories/Category/Equality \
 	theories/Category/Morphisms \
-	theories/Category/Category \
+	theories/Category/UnivalentCategory \
 	theories/Category/StrictCategory \
 	theories/Category/Objects \
 	theories/Category/Duals \
+	theories/Category \
 	\
 	theories/Functor/Equality \
 	theories/Functor/Identity \
