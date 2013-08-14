@@ -42,7 +42,7 @@ Proof.
         destruct_head_hnf @Isomorphic;
         destruct_head_hnf @IsIsomorphism;
         destruct_head_hnf @Unit;
-        super_path_induction
+        path_induction_hammer
       ).
 Defined.
 

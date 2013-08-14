@@ -90,14 +90,14 @@ Section PreCategories_Equal.
              | _ => progress simpl in *
              | _ => progress destruct_eq_in_match
              | _ => progress destruct_head sigT
-             | _ => progress clear_contr_eq_in_match
+             | _ => progress clear_paths_in_match
              | [ |- appcontext[path_forall ?x ?y (IdentityUnique ?a ?b ?c ?d ?e)] ]
                => let H := fresh in
                   set (H := path_forall x y (IdentityUnique a b c d e));
                     simpl in *;
                     try clearbody H;
                     try destruct H
-             | _ => progress replace_contr_idpath
+             | _ => progress clear_paths
            end.
 
   Lemma PreCategory_eq'_sig_equiv (C D : PreCategory)

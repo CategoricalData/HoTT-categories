@@ -37,7 +37,7 @@ Section Functors_Equal.
   : ap ObjectOf (@Functor_eq'_sig F G (HO; HM)) = HO.
   Proof.
     destruct F, G; simpl in *.
-    super_path_induction.
+    path_induction_hammer.
   Qed.
 
   Definition Functor_eq'_sig_inv (F G : Functor C D) : F = G -> Functor_eq'_T F G
@@ -77,7 +77,7 @@ Section Functors_Equal.
              | _ => progress simpl in *
              | _ => progress destruct_eq_in_match
              | _ => progress destruct_head sigT
-             | _ => progress clear_contr_eq_in_match
+             | _ => progress step_clear_paths_in_match
            end.
 
   Lemma Functor_eq'_sig_equiv (F G : Functor C D)
@@ -85,7 +85,7 @@ Section Functors_Equal.
   Proof.
     apply (equiv_adjointify (@Functor_eq'_sig F G)
                             (@Functor_eq'_sig_inv F G));
-    t.
+    abstract t.
   Defined.
 
   (*Lemma Functor_sig

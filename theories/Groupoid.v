@@ -49,7 +49,7 @@ Section Groupoid.
       destruct_head @Isomorphic;
       destruct_head @IsIsomorphism;
       compute in *;
-      super_path_induction.
+      path_induction_hammer.
   Qed.
 End Groupoid.
 

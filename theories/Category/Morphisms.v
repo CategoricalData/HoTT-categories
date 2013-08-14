@@ -124,7 +124,7 @@ Section iso_contr.
              (path_isomorphic i j)
              (ap (@IsomorphicMorphism _ _ _)));
       intro; [ destruct i | destruct i, j ];
-      super_path_induction.
+      path_induction_hammer.
   Defined.
 End iso_contr.
 
