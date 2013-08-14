@@ -71,9 +71,9 @@ Section Adjunction.
      with.  **)
 
   Definition AdjunctionUnit :=
-    { T : NaturalTransformation (IdentityFunctor C) (ComposeFunctors G F)
+    { T : NaturalTransformation (IdentityFunctor C) (G ∘ F)
     | forall (c : C) (d : D) (f : C.(Morphism) c (G d)),
-        { g : D.(Morphism) (F c) d | unique (fun g => G.(MorphismOf) g ∘ T c = f) g }
+        { g : D.(Morphism) (F c) d | unique (fun g => G ₁ g ∘ T c = f) g }
     }.
 
   (**
@@ -119,7 +119,7 @@ Section Adjunction.
   Definition AdjunctionCounit :=
     { U : NaturalTransformation (F ∘ G) (IdentityFunctor D)
     | forall (c : C) (d : D) (g : D.(Morphism) (F c) d),
-        { f : C.(Morphism) c (G d) | unique (fun f => U d ∘ F.(MorphismOf) f = g) f }
+        { f : C.(Morphism) c (G d) | unique (fun f => U d ∘ F ₁ f = g) f }
     }.
 
   (** Quoting Wikipedia on Adjoint Functors:
@@ -155,22 +155,22 @@ Section Adjunction.
       counit-unit equations
 
 <<
-      1_F = ε F o F η
-      1_G = G ε o η G
+      1_F = ε F ∘ F η
+      1_G = G ε ∘ η G
 >>
 
       which mean that for each [X] in [C] and each [Y] in [D],
 
 <<
-      1_{FY} = ε_{FY} o F(η_Y)
-      1_{GX} = G(ε_X) o η_{GX}
+      1_{FY} = ε_{FY} ∘ F(η_Y)
+      1_{GX} = G(ε_X) ∘ η_{GX}
 >>
 
       These equations are useful in reducing proofs about adjoint
       functors to algebraic manipulations.  They are sometimes called
       the ``zig-zag equations'' because of the appearance of the
       corresponding string diagrams.  A way to remember them is to
-      first write down the nonsensical equation [1 = ε o η] and then
+      first write down the nonsensical equation [1 = ε ∘ η] and then
       fill in either [F] or [G] in one of the two simple ways which
       make the compositions defined.
 
