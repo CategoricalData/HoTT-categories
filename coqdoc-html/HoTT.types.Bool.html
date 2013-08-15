@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.types.Bool</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.types.Bool</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a name="lab14"></a><h1 class="section">Theorems about the booleans</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Overture.html#"><span class="id" type="library">Overture</span></a> <a class="idref" href="HoTT.Contractible.html#"><span class="id" type="library">Contractible</span></a> <a class="idref" href="HoTT.Equivalences.html#"><span class="id" type="library">Equivalences</span></a> <a class="idref" href="HoTT.types.Prod.html#"><span class="id" type="library">types.Prod</span></a> <a class="idref" href="HoTT.HSet.html#"><span class="id" type="library">HSet</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">equiv_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="Bool"><span class="id" type="inductive">Bool</span></a> : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;| <a name="true"><span class="id" type="constructor">true</span></a> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a><br/>
+&nbsp;&nbsp;| <a name="false"><span class="id" type="constructor">false</span></a> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Add</span> <span class="id" type="keyword">Printing</span> <span class="id" type="var">If</span> <span class="id" type="var">Bool</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Delimit</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">bool_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">Bool</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Bind</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">bool_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">Bool</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="andb"><span class="id" type="definition">andb</span></a> (<span class="id" type="var">b1</span> <span class="id" type="var">b2</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a> := <span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b1"><span class="id" type="variable">b1</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.types.Bool.html#b2"><span class="id" type="variable">b2</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="orb"><span class="id" type="definition">orb</span></a> (<span class="id" type="var">b1</span> <span class="id" type="var">b2</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a> := <span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b1"><span class="id" type="variable">b1</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#b2"><span class="id" type="variable">b2</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="negb"><span class="id" type="definition">negb</span></a> (<span class="id" type="var">b</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) := <span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="implb"><span class="id" type="definition">implb</span></a> (<span class="id" type="var">b1</span> <span class="id" type="var">b2</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a> := <span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b1"><span class="id" type="variable">b1</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.types.Bool.html#b2"><span class="id" type="variable">b2</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Infix</span> <a name=":bool_scope:x_'||'_x"><span class="id" type="notation">"</span></a>||" := <a class="idref" href="HoTT.types.Bool.html#orb"><span class="id" type="definition">orb</span></a> : <span class="id" type="var">bool_scope</span>.<br/>
+<span class="id" type="keyword">Infix</span> <a name=":bool_scope:x_'&&'_x"><span class="id" type="notation">"</span></a>&amp;&amp;" := <a class="idref" href="HoTT.types.Bool.html#andb"><span class="id" type="definition">andb</span></a> : <span class="id" type="var">bool_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="trunc_if"><span class="id" type="instance">trunc_if</span></a> <span class="id" type="var">n</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> `{<a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.types.Bool.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.types.Bool.html#A"><span class="id" type="variable">A</span></a>, <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.types.Bool.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.types.Bool.html#B"><span class="id" type="variable">B</span></a>} (<span class="id" type="var">b</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>)<br/>
+: <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.types.Bool.html#n"><span class="id" type="variable">n</span></a> (<span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.types.Bool.html#A"><span class="id" type="variable">A</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#B"><span class="id" type="variable">B</span></a>) | 100<br/>
+&nbsp;&nbsp;:= <span class="id" type="keyword">if</span> <span class="id" type="var">b</span> <span class="id" type="keyword">as</span> <span class="id" type="var">b</span> <span class="id" type="keyword">return</span> (<a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <span class="id" type="var">n</span> (<span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a> <span class="id" type="keyword">then</span> <span class="id" type="var">A</span> <span class="id" type="keyword">else</span> <span class="id" type="var">B</span>)) <span class="id" type="keyword">then</span> <span class="id" type="var">_</span> <span class="id" type="keyword">else</span> <span class="id" type="var">_</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="BoolDecidable"><span class="id" type="section">BoolDecidable</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="false_ne_true"><span class="id" type="definition">false_ne_true</span></a> : <a class="idref" href="HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a><a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">H</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Bool.html#H"><span class="id" type="variable">H</span></a> <span class="id" type="keyword">in</span> (<span class="id" type="var">_</span> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <span class="id" type="var">y</span>) <span class="id" type="keyword">return</span> (<span class="id" type="keyword">if</span> <a class="idref" href="HoTT.types.Bool.html#y"><span class="id" type="variable">y</span></a> <span class="id" type="keyword">then</span> <a class="idref" href="HoTT.Overture.html#Empty"><span class="id" type="inductive">Empty</span></a> <span class="id" type="keyword">else</span> <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| 1%<span class="id" type="var">path</span> ⇒ <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="true_ne_false"><span class="id" type="definition">true_ne_false</span></a> : <a class="idref" href="HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a><a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">H</span> ⇒ <a class="idref" href="HoTT.types.Bool.html#false_ne_true"><span class="id" type="definition">false_ne_true</span></a> (<a class="idref" href="HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.types.Bool.html#H"><span class="id" type="variable">H</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="decidable_paths_bool"><span class="id" type="definition">decidable_paths_bool</span></a> : <a class="idref" href="HoTT.HSet.html#decidable_paths"><span class="id" type="definition">decidable_paths</span></a> <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Bool.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">as</span> <span class="id" type="var">x</span>, <a class="idref" href="HoTT.types.Bool.html#y"><span class="id" type="variable">y</span></a> <span class="id" type="keyword">as</span> <span class="id" type="var">y</span> <span class="id" type="keyword">return</span> (<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'+'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.types.Bool.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Bool.html#y"><span class="id" type="variable">y</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'+'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'+'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a><a class="idref" href="HoTT.types.Bool.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Bool.html#y"><span class="id" type="variable">y</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'+'_x"><span class="id" type="notation">)</span></a>) <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>, <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#inl"><span class="id" type="constructor">inl</span></a> <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a>, <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#inl"><span class="id" type="constructor">inl</span></a> <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>, <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#inr"><span class="id" type="constructor">inr</span></a> <a class="idref" href="HoTT.types.Bool.html#true_ne_false"><span class="id" type="definition">true_ne_false</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a>, <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#inr"><span class="id" type="constructor">inr</span></a> <a class="idref" href="HoTT.types.Bool.html#false_ne_true"><span class="id" type="definition">false_ne_true</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global Instance</span> <a name="trunc_bool"><span class="id" type="instance">trunc_bool</span></a> : <a class="idref" href="HoTT.Overture.html#IsHSet"><span class="id" type="abbreviation">IsHSet</span></a> <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a> | 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.HSet.html#hset_decidable"><span class="id" type="lemma">hset_decidable</span></a> <a class="idref" href="HoTT.types.Bool.html#decidable_paths_bool"><span class="id" type="definition">decidable_paths_bool</span></a>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.types.Bool.html#BoolDecidable"><span class="id" type="section">BoolDecidable</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="BoolForall"><span class="id" type="section">BoolForall</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="BoolForall.P"><span class="id" type="variable">P</span></a> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Let</span> <a name="BoolForall.f"><span class="id" type="variable">f</span></a> (<span class="id" type="var">s</span> : <span class="id" type="keyword">∀</span> <span class="id" type="var">b</span>, <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a>) := <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:core_scope:'('_x_','_x_','_'..'_','_x_')'"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.types.Bool.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:core_scope:'('_x_','_x_','_'..'_','_x_')'"><span class="id" type="notation">,</span></a> <a class="idref" href="HoTT.types.Bool.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:core_scope:'('_x_','_x_','_'..'_','_x_')'"><span class="id" type="notation">)</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Let</span> <a name="BoolForall.g"><span class="id" type="variable">g</span></a> (<span class="id" type="var">u</span> : <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>) (<span class="id" type="var">b</span> : <a class="idref" href="HoTT.types.Bool.html#Bool"><span class="id" type="inductive">Bool</span></a>) : <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#fst"><span class="id" type="definition">fst</span></a> <a class="idref" href="HoTT.types.Bool.html#u"><span class="id" type="variable">u</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" type="definition">snd</span></a> <a class="idref" href="HoTT.types.Bool.html#u"><span class="id" type="variable">u</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="equiv_bool_forall_prod"><span class="id" type="definition">equiv_bool_forall_prod</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">b</span>, <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#b"><span class="id" type="variable">b</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#false"><span class="id" type="constructor">false</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.types.Bool.html#true"><span class="id" type="constructor">true</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> (<a class="idref" href="HoTT.Equivalences.html#equiv_adjointify"><span class="id" type="definition">equiv_adjointify</span></a> <a class="idref" href="HoTT.types.Bool.html#BoolForall.f"><span class="id" type="variable">f</span></a> <a class="idref" href="HoTT.types.Bool.html#BoolForall.g"><span class="id" type="variable">g</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">reflexivity</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| <span class="id" type="tactic">intros</span> []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| <span class="id" type="tactic">intro</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.types.Bool.html#BoolForall"><span class="id" type="section">BoolForall</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

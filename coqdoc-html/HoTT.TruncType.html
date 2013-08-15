@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.TruncType</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.TruncType</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a name="lab116"></a><h1 class="section">Universes of truncated types.</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Overture.html#"><span class="id" type="library">Overture</span></a> <a class="idref" href="HoTT.PathGroupoids.html#"><span class="id" type="library">PathGroupoids</span></a> <a class="idref" href="HoTT.Trunc.html#"><span class="id" type="library">Trunc</span></a> <a class="idref" href="HoTT.Equivalences.html#"><span class="id" type="library">Equivalences</span></a> <a class="idref" href="HoTT.HProp.html#"><span class="id" type="library">HProp</span></a> <a class="idref" href="HoTT.EquivalenceVarieties.html#"><span class="id" type="library">EquivalenceVarieties</span></a> <a class="idref" href="HoTT.types.Arrow.html#"><span class="id" type="library">Arrow</span></a> <a class="idref" href="HoTT.types.Paths.html#"><span class="id" type="library">Paths</span></a> <a class="idref" href="HoTT.types.Sigma.html#"><span class="id" type="library">Sigma</span></a> <a class="idref" href="HoTT.types.Universe.html#"><span class="id" type="library">Universe</span></a> <span class="id" type="keyword">Record</span> <a class="idref" href="HoTT.Misc.html#"><span class="id" type="library">Misc</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">equiv_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">Variables</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span> <span class="id" type="var">n</span> <span class="id" type="var">f</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab117"></a><h2 class="section"><span class="inlinecode"><a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a></span>: Universes of truncated types</h2>
+
+<div class="paragraph"> </div>
+
+ It is convenient for some purposes to consider the universe of all n-truncated types (within a given universe of types).  In particular, this allows us to state the important fact that each such universe is itself (n+1)-truncated. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="TruncType"><span class="id" type="section">TruncType</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>} `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+
+<br/>
+<span class="id" type="keyword">Record</span> <a name="TruncType"><span class="id" type="record">TruncType</span></a> (<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>) := <a name="BuildTruncType"><span class="id" type="constructor">BuildTruncType</span></a> {<br/>
+&nbsp;&nbsp;<a name="trunctype_type"><span class="id" type="projection">trunctype_type</span></a> :&gt; <span class="id" type="keyword">Type</span> ;<br/>
+&nbsp;&nbsp;<a name="istrunc_trunctype_type"><span class="id" type="projection">istrunc_trunctype_type</span></a> : <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.TruncType.html#trunctype_type"><span class="id" type="method">trunctype_type</span></a><br/>
+}.<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.TruncType.html#BuildTruncType"><span class="id" type="constructor">BuildTruncType</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> {<span class="id" type="var">_</span>}.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.TruncType.html#trunctype_type"><span class="id" type="projection">trunctype_type</span></a> [<span class="id" type="var">_</span>] <span class="id" type="var">_</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.TruncType.html#istrunc_trunctype_type"><span class="id" type="projection">istrunc_trunctype_type</span></a> [<span class="id" type="var">_</span>] <span class="id" type="var">_</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">istrunc_trunctype_type</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="issig_trunctype"><span class="id" type="definition">issig_trunctype</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>}<br/>
+&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a> <span class="id" type="var">X</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a> <span class="id" type="keyword">Type</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a> <span class="id" type="var">X</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="var">issig</span> (@<a class="idref" href="HoTT.TruncType.html#BuildTruncType"><span class="id" type="constructor">BuildTruncType</span></a> <span class="id" type="var">n</span>) (@<a class="idref" href="HoTT.TruncType.html#trunctype_type"><span class="id" type="projection">trunctype_type</span></a> <span class="id" type="var">n</span>) (@<a class="idref" href="HoTT.TruncType.html#istrunc_trunctype_type"><span class="id" type="projection">istrunc_trunctype_type</span></a> <span class="id" type="var">n</span>).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="equiv_path_trunctype"><span class="id" type="definition">equiv_path_trunctype</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>} (<span class="id" type="var">A</span> <span class="id" type="var">B</span> : <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.TruncType.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.TruncType.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">:&gt;</span></a> <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="var">equiv_via</span> (<span class="id" type="var">A</span> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">=</span></a> <span class="id" type="var">B</span> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">:&gt;</span></a> <span class="id" type="keyword">Type</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.types.Universe.html#equiv_path_universe"><span class="id" type="definition">equiv_path_universe</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="var">equiv_via</span> (<a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#issig_trunctype"><span class="id" type="definition">issig_trunctype</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> <span class="id" type="var">A</span><a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#issig_trunctype"><span class="id" type="definition">issig_trunctype</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> <span class="id" type="var">B</span><a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">)</span></a>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;2: <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a>, <a class="idref" href="HoTT.types.Paths.html#equiv_ap"><span class="id" type="definition">equiv_ap</span></a>; <span class="id" type="tactic">refine</span> <span class="id" type="var">_</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">apply</span> (<a class="idref" href="HoTT.Misc.html#equiv_path_sigma_hprop"><span class="id" type="definition">equiv_path_sigma_hprop</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#trunctype_type"><span class="id" type="projection">trunctype_type</span></a> <span class="id" type="var">A</span><a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">;</span></a> <a class="idref" href="HoTT.TruncType.html#istrunc_trunctype_type"><span class="id" type="projection">istrunc_trunctype_type</span></a> <span class="id" type="var">A</span><a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#trunctype_type"><span class="id" type="projection">trunctype_type</span></a> <span class="id" type="var">B</span><a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">;</span></a> <a class="idref" href="HoTT.TruncType.html#istrunc_trunctype_type"><span class="id" type="projection">istrunc_trunctype_type</span></a> <span class="id" type="var">B</span><a class="idref" href="HoTT.Overture.html#:fibration_scope:'('_x_';'_x_')'"><span class="id" type="notation">)</span></a>).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="path_trunctype"><span class="id" type="definition">path_trunctype</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>} {<span class="id" type="var">A</span> <span class="id" type="var">B</span> : <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>}<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.TruncType.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.TruncType.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.TruncType.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.TruncType.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x_':>'_x"><span class="id" type="notation">:&gt;</span></a> <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a><br/>
+:= <a class="idref" href="HoTT.TruncType.html#equiv_path_trunctype"><span class="id" type="definition">equiv_path_trunctype</span></a> <a class="idref" href="HoTT.TruncType.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.TruncType.html#B"><span class="id" type="variable">B</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Global Instance</span> <a name="istrunc_trunctype"><span class="id" type="instance">istrunc_trunctype</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>}<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> (<a class="idref" href="HoTT.Overture.html#trunc_S"><span class="id" type="constructor">trunc_S</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>) (<a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>) | 0.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">A</span> <span class="id" type="var">B</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> (@<a class="idref" href="HoTT.Trunc.html#trunc_equiv"><span class="id" type="definition">trunc_equiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.TruncType.html#equiv_path_trunctype"><span class="id" type="definition">equiv_path_trunctype</span></a> <span class="id" type="var">A</span> <span class="id" type="var">B</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;2: <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#equiv_isequiv"><span class="id" type="projection">equiv_isequiv</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">case</span> <span class="id" type="var">n</span> <span class="id" type="keyword">as</span> [ | <span class="id" type="var">n'</span>].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Misc.html#contr_equiv_contr_contr"><span class="id" type="lemma">contr_equiv_contr_contr</span></a>. &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Misc.html#istrunc_equiv"><span class="id" type="lemma">istrunc_equiv</span></a>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="section">TruncType</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.types.Unit</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.types.Unit</h1>
+
+<div class="code">
+</div>
+
+<div class="doc">
+<a name="lab63"></a><h1 class="section">Theorems about the unit type</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="Unit"><span class="id" type="inductive">Unit</span></a> : <span class="id" type="keyword">Set</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="tt"><span class="id" type="constructor">tt</span></a> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Overture.html#"><span class="id" type="library">Overture</span></a> <a class="idref" href="HoTT.PathGroupoids.html#"><span class="id" type="library">PathGroupoids</span></a> <a class="idref" href="HoTT.Equivalences.html#"><span class="id" type="library">Equivalences</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">path_scope</span>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">equiv_scope</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">Variables</span> <span class="id" type="var">A</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab64"></a><h3 class="section">Eta conversion</h3>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="eta_unit"><span class="id" type="definition">eta_unit</span></a> (<span class="id" type="var">z</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1 <span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab65"></a><h3 class="section">Paths</h3>
+
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> (<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a>, <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>, <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1 <span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="path_unit"><span class="id" type="definition">path_unit</span></a> (<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a><br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="eta_path_unit"><span class="id" type="definition">eta_path_unit</span></a> {<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>} (<span class="id" type="var">p</span> : <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a>) :<br/>
+&nbsp;&nbsp;<a class="idref" href="HoTT.types.Unit.html#path_unit"><span class="id" type="definition">path_unit</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#p"><span class="id" type="variable">p</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> <span class="id" type="var">p</span>. <span class="id" type="tactic">destruct</span> <span class="id" type="var">z</span>. <span class="id" type="tactic">reflexivity</span>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="isequiv_path_unit"><span class="id" type="instance">isequiv_path_unit</span></a> (<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (<a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a>) | 0.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.Overture.html#BuildIsEquiv"><span class="id" type="constructor">BuildIsEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <span class="id" type="var">z</span> <span class="id" type="var">z'</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">p</span>:<span class="id" type="var">z</span><a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a><span class="id" type="var">z'</span> ⇒<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#p"><span class="id" type="variable">p</span></a> <span class="id" type="keyword">in</span> (<span class="id" type="var">_</span> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <span class="id" type="var">z'</span>) <span class="id" type="keyword">return</span> (<a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <span class="id" type="var">z</span> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#p"><span class="id" type="variable">p</span></a>) <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a> ⇒ <span class="id" type="keyword">match</span> <span class="id" type="var">z</span> <span class="id" type="keyword">as</span> <span class="id" type="var">z</span> <span class="id" type="keyword">return</span> (<a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> 1) <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1 <span class="id" type="keyword">end</span>) <span class="id" type="var">_</span>).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> []; <span class="id" type="tactic">destruct</span> <span class="id" type="var">z</span>, <span class="id" type="var">z'</span>; <span class="id" type="tactic">reflexivity</span>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="equiv_path_unit"><span class="id" type="definition">equiv_path_unit</span></a> (<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a><br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.Overture.html#BuildEquiv"><span class="id" type="constructor">BuildEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.types.Unit.html#path_unit_uncurried"><span class="id" type="definition">path_unit_uncurried</span></a> <a class="idref" href="HoTT.types.Unit.html#z"><span class="id" type="variable">z</span></a> <a class="idref" href="HoTT.types.Unit.html#z'"><span class="id" type="variable">z'</span></a>) <span class="id" type="var">_</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab66"></a><h3 class="section">Transport</h3>
+
+<div class="paragraph"> </div>
+
+ Is a special case of transporting in a constant fibration. 
+<div class="paragraph"> </div>
+
+<a name="lab67"></a><h3 class="section">Universal mapping properties</h3>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.types.Unit.html#Unit_rect"><span class="id" type="definition">Unit_rect</span></a> [<span class="id" type="var">A</span>] <span class="id" type="var">a</span> <span class="id" type="var">u</span> : <span class="id" type="tactic">rename</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="isequiv_unit_rect"><span class="id" type="instance">isequiv_unit_rect</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>) : <a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (@<a class="idref" href="HoTT.types.Unit.html#Unit_rect"><span class="id" type="definition">Unit_rect</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a>)) | 0<br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.Equivalences.html#isequiv_adjointify"><span class="id" type="definition">isequiv_adjointify</span></a> <span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">f</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="var">A</span> ⇒ <a class="idref" href="HoTT.types.Unit.html#f"><span class="id" type="variable">f</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">f</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="var">A</span> ⇒ <a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a> (@<a class="idref" href="HoTT.types.Unit.html#Unit_rect"><span class="id" type="definition">Unit_rect</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="var">A</span>) (<a class="idref" href="HoTT.types.Unit.html#f"><span class="id" type="variable">f</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)) <a class="idref" href="HoTT.types.Unit.html#f"><span class="id" type="variable">f</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1 <span class="id" type="keyword">end</span>))<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ 1).<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="unit_name"><span class="id" type="abbreviation">unit_name</span></a> <span class="id" type="var">x</span> := (<span class="id" type="keyword">fun</span> (<span class="id" type="var">_</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) ⇒ <span class="id" type="var">x</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="unit_corect"><span class="id" type="definition">unit_corect</span></a> {<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>} : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a><br/>
+&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="isequiv_unit_corect"><span class="id" type="instance">isequiv_unit_corect</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>) : <a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (@<a class="idref" href="HoTT.types.Unit.html#unit_corect"><span class="id" type="definition">unit_corect</span></a> <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a>) | 0<br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.Equivalences.html#isequiv_adjointify"><span class="id" type="definition">isequiv_adjointify</span></a> <span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">f</span> ⇒ <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)<br/>
+&nbsp;&nbsp;<span class="id" type="var">_</span> <span class="id" type="var">_</span>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;- <span class="id" type="tactic">intro</span> <span class="id" type="var">f</span>. <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a>; <span class="id" type="tactic">intros</span> <span class="id" type="var">x</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.types.Unit.html#path_unit"><span class="id" type="definition">path_unit</span></a>.<br/>
+&nbsp;&nbsp;- <span class="id" type="tactic">intro</span> <span class="id" type="var">x</span>; <span class="id" type="tactic">destruct</span> <span class="id" type="var">x</span>; <span class="id" type="tactic">reflexivity</span>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="equiv_unit_corect"><span class="id" type="definition">equiv_unit_corect</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a><br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.Overture.html#BuildEquiv"><span class="id" type="constructor">BuildEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (@<a class="idref" href="HoTT.types.Unit.html#unit_corect"><span class="id" type="definition">unit_corect</span></a> <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a>) <span class="id" type="var">_</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab68"></a><h3 class="section">Truncation</h3>
+
+</div>
+<div class="code">
+
+<br/>
+</div>
+
+<div class="doc">
+Because <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Contr"><span class="id" type="abbreviation">Contr</span></a></span> is a notation, and <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Contr_internal"><span class="id" type="record">Contr_internal</span></a></span> is the record, we need to iota expand to fool Coq's typeclass machinery into accepting supposedly "mismatched" contexts. 
+</div>
+<div class="code">
+<span class="id" type="keyword">Instance</span> <a name="contr_unit"><span class="id" type="instance">contr_unit</span></a> : <a class="idref" href="HoTT.Overture.html#Contr"><span class="id" type="abbreviation">Contr</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> | 0 := <span class="id" type="keyword">let</span> <span class="id" type="var">x</span> := {|<br/>
+&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">center</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">:=</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">tt</span></a><a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">;</span></a><br/>
+&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">contr</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">:=</span></a> <span class="id" type="keyword">fun</span> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">t</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">:</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">Unit</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">⇒</span></a> <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">t</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">tt</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">⇒</span></a> <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">1</span></a> <span class="id" type="keyword">end</span><br/>
+|} <span class="id" type="keyword">in</span> <a class="idref" href="HoTT.types.Unit.html#x"><span class="id" type="variable">x</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab69"></a><h3 class="section">Equivalences</h3>
+
+<div class="paragraph"> </div>
+
+ A contractible type is equivalent to <span class="inlinecode"><a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a></span>. 
+</div>
+<div class="code">
+<span class="id" type="keyword">Definition</span> <a name="equiv_contr_unit"><span class="id" type="definition">equiv_contr_unit</span></a> `{<a class="idref" href="HoTT.Overture.html#Contr"><span class="id" type="abbreviation">Contr</span></a> <span class="id" type="var">A</span>} : <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.Overture.html#BuildEquiv"><span class="id" type="constructor">BuildEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> (<span class="id" type="var">_</span> : <span class="id" type="var">A</span>) ⇒ <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Overture.html#BuildIsEquiv"><span class="id" type="constructor">BuildIsEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> (<span class="id" type="var">_</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) ⇒ <a class="idref" href="HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">A</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">t</span> : <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.types.Unit.html#t"><span class="id" type="variable">t</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a> ⇒ 1 <span class="id" type="keyword">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> : <span class="id" type="var">A</span> ⇒ <a class="idref" href="HoTT.Overture.html#contr"><span class="id" type="method">contr</span></a> <a class="idref" href="HoTT.types.Unit.html#x"><span class="id" type="variable">x</span></a>) <span class="id" type="var">_</span>)).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">x</span>. <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a>, <a class="idref" href="HoTT.PathGroupoids.html#ap_const"><span class="id" type="definition">ap_const</span></a>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="contr_equiv_unit"><span class="id" type="instance">contr_equiv_unit</span></a> (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>) (<span class="id" type="var">f</span> : <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a>) : <a class="idref" href="HoTT.Overture.html#Contr"><span class="id" type="abbreviation">Contr</span></a> <a class="idref" href="HoTT.types.Unit.html#A"><span class="id" type="variable">A</span></a> | 10000<br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.Overture.html#BuildContr"><span class="id" type="constructor">BuildContr</span></a> <span class="id" type="var">A</span> (<span class="id" type="var">f</span><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>)<br/>
+&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">a</span> ⇒ <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a> <span class="id" type="var">f</span><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> (<a class="idref" href="HoTT.Overture.html#contr"><span class="id" type="method">contr</span></a> (<span class="id" type="var">f</span> <a class="idref" href="HoTT.types.Unit.html#a"><span class="id" type="variable">a</span></a>)) <a class="idref" href="HoTT.Overture.html#:path_scope:x_'@'_x"><span class="id" type="notation">@</span></a> <a class="idref" href="HoTT.Overture.html#eissect"><span class="id" type="method">eissect</span></a> <span class="id" type="var">f</span> <a class="idref" href="HoTT.types.Unit.html#a"><span class="id" type="variable">a</span></a>).<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

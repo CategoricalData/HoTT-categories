@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.hit.Truncations</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.hit.Truncations</h1>
+
+<div class="code">
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab132"></a><h1 class="section">Truncations of types, in all dimensions.</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Overture.html#"><span class="id" type="library">Overture</span></a> <a class="idref" href="HoTT.PathGroupoids.html#"><span class="id" type="library">PathGroupoids</span></a> <a class="idref" href="HoTT.Equivalences.html#"><span class="id" type="library">Equivalences</span></a> <a class="idref" href="HoTT.Trunc.html#"><span class="id" type="library">Trunc</span></a> <a class="idref" href="HoTT.types.Sigma.html#"><span class="id" type="library">Sigma</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">path_scope</span>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">equiv_scope</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">Variables</span> <span class="id" type="var">A</span> <span class="id" type="var">X</span> <span class="id" type="var">n</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab133"></a><h2 class="section">Definition.</h2>
+
+<div class="paragraph"> </div>
+
+ The definition of <span class="inlinecode"><span class="id" type="library">Trunc</span></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Arrow.html#n"><span class="id" type="variable">n</span></a></span>, the n-truncation of a type.
+
+<div class="paragraph"> </div>
+
+If Coq supported higher inductive types natively, we would construct this as somthing like:
+
+<div class="paragraph"> </div>
+
+   Inductive Truncation n (A : Type) : Type :=
+   | truncation_incl : A -&gt; Truncation n A
+   | istrunc_truncation : forall (f : Sphere (trunc_S n) -&gt; Truncation n A)
+       (x : Sphere (trunc_S n)), f x = f North.
+
+<div class="paragraph"> </div>
+
+However, while we are faking our higher-inductives anyway, we can take some shortcuts, rather than translating the definition above.  Firstly, we directly posit a “constructor” giving truncatedness, rather than rephrasing it in terms of maps of spheres.  Secondly, we omit the “computation rule” for this constructor, since it is implied by truncatedness of the result type (and, for essentially that reason, is never wanted in practice anyway).
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Module</span> <span class="id" type="keyword">Export</span> <a name="Truncation"><span class="id" type="module">Truncation</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Inductive</span> <a name="Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> (<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>) (<span class="id" type="var">A</span> :<span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;<a name="Truncation.truncation_incl"><span class="id" type="constructor">truncation_incl</span></a> : <span class="id" type="var">A</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#Truncation"><span class="id" type="inductive">Truncation</span></a> <span class="id" type="var">n</span> <span class="id" type="var">A</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.hit.Truncations.html#Truncation.truncation_incl"><span class="id" type="constructor">truncation_incl</span></a> {<span class="id" type="var">n</span> <span class="id" type="var">A</span>} <span class="id" type="var">a</span>.<br/>
+<span class="id" type="keyword">Axiom</span> <a name="Truncation.istrunc_truncation"><span class="id" type="axiom">istrunc_truncation</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">A</span>, <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> (<a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#A"><span class="id" type="variable">A</span></a>).<br/>
+<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">istrunc_truncation</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="Truncation.Truncation_rect"><span class="id" type="definition">Truncation_rect</span></a> {<span class="id" type="var">n</span> <span class="id" type="var">A</span>}<br/>
+&nbsp;&nbsp;(<span class="id" type="var">P</span> : <a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) `{<span class="id" type="keyword">∀</span> <span class="id" type="var">aa</span>, <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> (<a class="idref" href="HoTT.hit.Truncations.html#P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.hit.Truncations.html#aa"><span class="id" type="variable">aa</span></a>)}<br/>
+&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">a</span>, <a class="idref" href="HoTT.hit.Truncations.html#P"><span class="id" type="variable">P</span></a> (<a class="idref" href="HoTT.hit.Truncations.html#Truncation.truncation_incl"><span class="id" type="constructor">truncation_incl</span></a> <a class="idref" href="HoTT.hit.Truncations.html#a"><span class="id" type="variable">a</span></a>)<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">aa</span>, <a class="idref" href="HoTT.hit.Truncations.html#P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.hit.Truncations.html#aa"><span class="id" type="variable">aa</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a><br/>
+:= (<span class="id" type="keyword">fun</span> <span class="id" type="var">f</span> <span class="id" type="var">aa</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.hit.Truncations.html#aa"><span class="id" type="variable">aa</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="HoTT.hit.Truncations.html#Truncation.truncation_incl"><span class="id" type="constructor">truncation_incl</span></a> <span class="id" type="var">a</span> ⇒ <a class="idref" href="HoTT.hit.Truncations.html#f"><span class="id" type="variable">f</span></a> <span class="id" type="var">a</span> <span class="id" type="keyword">end</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.hit.Truncations.html#"><span class="id" type="module">Truncation</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The non-dependent version of the eliminator. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="Truncation_rect_nondep"><span class="id" type="definition">Truncation_rect_nondep</span></a> {<span class="id" type="var">n</span> <span class="id" type="var">A</span> <span class="id" type="var">X</span>} `{<a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a>}<br/>
+&nbsp;&nbsp;: <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.hit.Truncations.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a><br/>
+:= <a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation_rect"><span class="id" type="definition">Truncation_rect</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab134"></a><h2 class="section">Functoriality</h2>
+
+</div>
+<div class="code">
+<span class="id" type="keyword">Definition</span> <a name="functor_Truncation"><span class="id" type="definition">functor_Truncation</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>} {<span class="id" type="var">X</span> <span class="id" type="var">Y</span>} (<span class="id" type="var">f</span> : <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#Y"><span class="id" type="variable">Y</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation"><span class="id" type="inductive">Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#Y"><span class="id" type="variable">Y</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.hit.Truncations.html#Truncation_rect_nondep"><span class="id" type="definition">Truncation_rect_nondep</span></a>. <span class="id" type="tactic">exact</span> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <a class="idref" href="HoTT.hit.Truncations.html#Truncation.truncation_incl"><span class="id" type="constructor">truncation_incl</span></a> (<span class="id" type="var">f</span> <a class="idref" href="HoTT.hit.Truncations.html#x"><span class="id" type="variable">x</span></a>)).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="functor_Truncation_idmap"><span class="id" type="definition">functor_Truncation_idmap</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>} (<span class="id" type="var">X</span> : <span class="id" type="keyword">Type</span>)<br/>
+&nbsp;&nbsp;: @<a class="idref" href="HoTT.hit.Truncations.html#functor_Truncation"><span class="id" type="definition">functor_Truncation</span></a> <a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="HoTT.Overture.html#idmap"><span class="id" type="abbreviation">idmap</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'=='_x"><span class="id" type="notation">==</span></a> <a class="idref" href="HoTT.Overture.html#idmap"><span class="id" type="abbreviation">idmap</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <a class="idref" href="HoTT.Overture.html#pointwise_paths"><span class="id" type="definition">pointwise_paths</span></a>. <span class="id" type="tactic">apply</span> @<a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation_rect"><span class="id" type="definition">Truncation_rect</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span> ?; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Trunc.html#trunc_succ"><span class="id" type="instance">trunc_succ</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">a</span>; <span class="id" type="tactic">exact</span> 1.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="isequiv_functor_Truncation"><span class="id" type="definition">isequiv_functor_Truncation</span></a> {<span class="id" type="var">n</span> : <a class="idref" href="HoTT.Overture.html#trunc_index"><span class="id" type="inductive">trunc_index</span></a>} {<span class="id" type="var">X</span> <span class="id" type="var">Y</span>} (<span class="id" type="var">f</span> : <a class="idref" href="HoTT.hit.Truncations.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.Truncations.html#Y"><span class="id" type="variable">Y</span></a>)<br/>
+&nbsp;&nbsp;`{<a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.hit.Truncations.html#f"><span class="id" type="variable">f</span></a>} : <a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (<a class="idref" href="HoTT.hit.Truncations.html#functor_Truncation"><span class="id" type="definition">functor_Truncation</span></a> (<span class="id" type="var">n</span>:=<a class="idref" href="HoTT.hit.Truncations.html#n"><span class="id" type="variable">n</span></a>) <a class="idref" href="HoTT.hit.Truncations.html#f"><span class="id" type="variable">f</span></a>).<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.Equivalences.html#isequiv_adjointify"><span class="id" type="definition">isequiv_adjointify</span></a> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.hit.Truncations.html#functor_Truncation"><span class="id" type="definition">functor_Truncation</span></a> (<span class="id" type="var">f</span> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a>)) <span class="id" type="var">_</span> <span class="id" type="var">_</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <a class="idref" href="HoTT.Overture.html#Sect"><span class="id" type="definition">Sect</span></a>; <span class="id" type="tactic">apply</span> @<a class="idref" href="HoTT.hit.Truncations.html#Truncation.Truncation_rect"><span class="id" type="definition">Truncation_rect</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">try</span> (<span class="id" type="tactic">intros</span> ?; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Trunc.html#trunc_succ"><span class="id" type="instance">trunc_succ</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">y</span>; <span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a>, <a class="idref" href="HoTT.Overture.html#eisretr"><span class="id" type="method">eisretr</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">x</span>; <span class="id" type="tactic">simpl</span>. <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a>, <a class="idref" href="HoTT.Overture.html#eissect"><span class="id" type="method">eissect</span></a>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
