@@ -8,4 +8,4 @@ before_script:
  -   make coqlight
  -   sudo make install-coqlight
  - popd
-script: "make pretty-timed"
+script: "make pretty-timed -j5"
