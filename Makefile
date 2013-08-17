@@ -69,13 +69,15 @@ MODULES    := theories/Peano \
 	\
 	theories/IsGroupoid \
 	\
-	theories/Adjoint/UnitCounit \
-	\
 	theories/Grothendieck/ToSet \
 	theories/Grothendieck \
 	\
 	theories/NaturalNumbersObject \
 	theories/Hom \
+	\
+	theories/Adjoint/UnitCounit \
+	theories/Adjoint/Hom \
+	theories/Adjoint \
 	\
 	theories/Utf8
 
