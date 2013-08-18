@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/pushd-root.sh" 1>/dev/null
+
 MAKE="$1"
 NEW_FILE="$2"
 OLD_FILE="$3"
@@ -27,3 +30,5 @@ else
     make clean
     $MAKE TIMED=1 -k 2>&1 | tee "$NEW_FILE"
 fi
+
+popd 1>/dev/null

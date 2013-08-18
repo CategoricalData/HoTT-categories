@@ -28,7 +28,7 @@ def make_table_string(left_times_dict, right_times_dict,
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
-        print('Usage: %s LEFT_FILE_NAME RIGHT_FILE_NAME [OUTPUT_FILE_NAME]')
+        print('Usage: %s LEFT_FILE_NAME RIGHT_FILE_NAME [OUTPUT_FILE_NAME]' % sys.argv[0])
         sys.exit(1)
     else:
         left_dict = get_times(sys.argv[1])

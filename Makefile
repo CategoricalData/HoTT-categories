@@ -101,17 +101,17 @@ html: Makefile.coq
 	$(MAKE) -f Makefile.coq html
 
 pretty-timed-diff:
-	sh ./make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
+	sh ./etc/make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
 	$(MAKE) combine-pretty-timed
 
 combine-pretty-timed:
-	python ./make-both-time-files.py "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)" "$(BOTH_TIME_FILE)"
+	python ./etc/make-both-time-files.py "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)" "$(BOTH_TIME_FILE)"
 	cat "$(BOTH_TIME_FILE)"
 	@echo
 
 pretty-timed:
-	sh ./make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)"
-	python ./make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
+	sh ./etc/make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)"
+	python ./etc/make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
 	cat "$(NEW_PRETTY_TIME_FILE)"
 	@echo
 

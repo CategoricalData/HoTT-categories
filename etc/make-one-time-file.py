@@ -21,7 +21,7 @@ def make_table_string(times_dict,
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('Usage: %s FILE_NAME [OUTPUT_FILE_NAME]')
+        print('Usage: %s FILE_NAME [OUTPUT_FILE_NAME]' % sys.argv[0])
         sys.exit(1)
     else:
         times_dict = get_times(sys.argv[1])
