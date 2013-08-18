@@ -130,15 +130,15 @@ Ltac nt_solve_associator' :=
            | _ => exact (ComposeFunctorsAssociator1 _ _ _)
            | _ => exact (ComposeFunctorsAssociator2 _ _ _)
            | [ |- NaturalTransformation (?F ∘ _) (?F ∘ _) ] =>
-             refine (F ∘ _)
+             refine (NTWhiskerL F _)
            | [ |- NaturalTransformation (_ ∘ ?F) (_ ∘ ?F) ] =>
-             refine (_ ∘ F)
+             refine (NTWhiskerR _ F)
          end.
 Ltac nt_solve_associator :=
   repeat match goal with
-           | _ => refine (ComposeFunctorsAssociator1 _ _ _ ∘ _); progress nt_solve_associator'
-           | _ => refine (_ ∘ ComposeFunctorsAssociator1 _ _ _); progress nt_solve_associator'
-           | _ => refine (ComposeFunctorsAssociator2 _ _ _ ∘ _); progress nt_solve_associator'
-           | _ => refine (_ ∘ ComposeFunctorsAssociator2 _ _ _); progress nt_solve_associator'
+           | _ => refine (NTComposeT (ComposeFunctorsAssociator1 _ _ _) _); progress nt_solve_associator'
+           | _ => refine (NTComposeT _ (ComposeFunctorsAssociator1 _ _ _)); progress nt_solve_associator'
+           | _ => refine (NTComposeT (ComposeFunctorsAssociator2 _ _ _) _); progress nt_solve_associator'
+           | _ => refine (NTComposeT _ (ComposeFunctorsAssociator2 _ _ _)); progress nt_solve_associator'
            | _ => progress nt_solve_associator'
          end.
