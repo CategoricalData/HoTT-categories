@@ -76,11 +76,15 @@ Reserved Notation "∫ F" (at level 0).
 
 Reserved Infix "\" (at level 40, left associativity).
 
+Reserved Infix "-|" (at level 60, right associativity).
+Reserved Infix "⊣" (at level 60, right associativity).
+
 Delimit Scope object_scope with object.
 Delimit Scope morphism_scope with morphism.
 Delimit Scope category_scope with category.
 Delimit Scope functor_scope with functor.
 Delimit Scope natural_transformation_scope with natural_transformation.
+Delimit Scope adjunction_scope with adjunction.
 
 Delimit Scope graph_scope with graph.
 Delimit Scope group_elements_scope with group.

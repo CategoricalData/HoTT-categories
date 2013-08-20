@@ -55,3 +55,5 @@ Reserved Notation "F ₁ m" (at level 10, no associativity).
 Reserved Notation "¡ x" (at level 10, no associativity).
 
 Reserved Notation "∫ F" (at level 0).
+
+Reserved Infix "⊣" (at level 60, right associativity).

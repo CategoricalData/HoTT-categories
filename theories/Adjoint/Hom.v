@@ -70,6 +70,8 @@ Section Adjunction.
                         ∘ (@AComponentsOf A A')
     }.
 
+  Bind Scope adjunction_scope with HomAdjunction.
+
   Global Existing Instance AIsomorphism.
 
   Lemma ACommutes_Inverse (T : HomAdjunction)
@@ -89,8 +91,17 @@ Section Adjunction.
   Qed.
 End Adjunction.
 
-Arguments AComponentsOf {_} {C D} [F G] T A A' _ : simpl nomatch, rename.
-Arguments AIsomorphism {_} {C D} [F G] T A A' : simpl nomatch, rename.
+Bind Scope adjunction_scope with Adjunction.
+Bind Scope adjunction_scope with HomAdjunction.
+
+Arguments AMateOf {_} [C%category D%category F%functor G%functor] _%adjunction.
+
+Arguments AComponentsOf {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object _ : simpl nomatch, rename.
+Arguments AIsomorphism {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object : simpl nomatch, rename.
+Arguments ACommutes {_} [C%category D%category F%functor G%functor] _%adjunction _%object _%object _%object _%object _%morphism _%morphism.
+
+Infix "-|" := Adjunction : type_scope.
+Infix "⊣" := Adjunction : type_scope.
 
 Section AdjunctionEquivalences.
   Context `{Funext}.

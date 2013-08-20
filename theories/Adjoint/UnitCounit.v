@@ -195,3 +195,12 @@ Section Adjunction.
       Adjunction_UnitCounitEquation2 : forall X : D, G.(MorphismOf) (ε X) ∘ η (G X) = Identity (G X)
     }.
 End Adjunction.
+
+Bind Scope adjunction_scope with AdjunctionUnit.
+Bind Scope adjunction_scope with AdjunctionCounit.
+Bind Scope adjunction_scope with AdjunctionUnitCounit.
+
+Arguments Adjunction_Unit [C%category D%category F%functor G%functor] _%adjunction.
+Arguments Adjunction_Counit [C%category D%category F%functor G%functor] _%adjunction.
+Arguments Adjunction_UnitCounitEquation1 [C%category D%category F%functor G%functor] _%adjunction _%object.
+Arguments Adjunction_UnitCounitEquation2 [C%category D%category F%functor G%functor] _%adjunction _%object.
