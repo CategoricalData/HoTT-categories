@@ -1,7 +1,12 @@
 #!/bin/bash
 
+# in case we're run from out of git repo
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-source "$DIR/pushd-root.sh"
+pushd "$DIR" 1>/dev/null
+
+# now change to the git root
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+cd "$ROOT_DIR" 1>/dev/null
 
 MAKE="$1"
 NEW_FILE="$2"
@@ -11,7 +16,7 @@ if [ ! -z "$OLD_FILE" ]; then
     # make the old version
     CHANGE="$(git stash)"
     trap "git stash pop && exit 1" SIGINT SIGTERM
-    
+
     make clean
     $MAKE TIMED=1 -k 2>&1 | tee "$OLD_FILE"
 
@@ -31,4 +36,4 @@ else
     $MAKE TIMED=1 -k 2>&1 | tee "$NEW_FILE"
 fi
 
-#popd
+popd 1>/dev/null

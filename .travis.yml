@@ -11,4 +11,4 @@ before_script:
  -   sudo make install-coqlight
  - popd
 script: "make pretty-timed -j5"
-after_success: etc/ci/after_success.sh
+after_success: "./etc/ci/after_success.sh"

@@ -8,6 +8,7 @@ pushd "$DIR" 1>/dev/null
 if [ ! -z "$UPDATE_HTML" ]; then
     if [ -z "$(git diff origin/master)" ]; then
         # make the html and push it, if we should
+	echo "Making doc"
         ./generate_and_push_doc.sh
     fi
 fi
