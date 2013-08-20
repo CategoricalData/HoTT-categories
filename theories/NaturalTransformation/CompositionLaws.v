@@ -129,6 +129,10 @@ Ltac nt_solve_associator' :=
   repeat match goal with
            | _ => exact (ComposeFunctorsAssociator1 _ _ _)
            | _ => exact (ComposeFunctorsAssociator2 _ _ _)
+           | _ => exact (LeftIdentityFunctorNaturalTransformation1 _)
+           | _ => exact (LeftIdentityFunctorNaturalTransformation2 _)
+           | _ => exact (RightIdentityFunctorNaturalTransformation1 _)
+           | _ => exact (RightIdentityFunctorNaturalTransformation2 _)
            | [ |- NaturalTransformation (?F ∘ _) (?F ∘ _) ] =>
              refine (NTWhiskerL F _)
            | [ |- NaturalTransformation (_ ∘ ?F) (_ ∘ ?F) ] =>
