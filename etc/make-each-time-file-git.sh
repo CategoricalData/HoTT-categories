@@ -31,4 +31,4 @@ else
     $MAKE TIMED=1 -k 2>&1 | tee "$NEW_FILE"
 fi
 
-popd
+#popd
