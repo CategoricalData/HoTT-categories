@@ -88,8 +88,12 @@ NEW_TIME_FILE=time-of-build-after.log
 OLD_TIME_FILE=time-of-build-before.log
 BOTH_TIME_FILE=time-of-build-both.log
 NEW_PRETTY_TIME_FILE=time-of-build-after-pretty.log
+SINGLE_TIME_FILE=time-of-build.log
+SINGLE_PRETTY_TIME_FILE=time-of-build-pretty.log
 TIME_SHELF_NAME=time-of-build-shelf
 
+
+HOQC=$(shell readlink -f ./HoTT/hoqc)
 
 
 .PHONY: coq clean pretty-timed pretty-timed-files html HoTT
@@ -101,7 +105,7 @@ html: Makefile.coq
 	$(MAKE) -f Makefile.coq html
 
 pretty-timed-diff:
-	sh ./etc/make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
+	bash ./etc/make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)" "$(OLD_TIME_FILE)"
 	$(MAKE) combine-pretty-timed
 
 combine-pretty-timed:
@@ -110,14 +114,13 @@ combine-pretty-timed:
 	@echo
 
 pretty-timed:
-	sh ./etc/make-each-time-file.sh "$(MAKE)" "$(NEW_TIME_FILE)"
-	python ./etc/make-one-time-file.py "$(NEW_TIME_FILE)" "$(NEW_PRETTY_TIME_FILE)"
-	cat "$(NEW_PRETTY_TIME_FILE)"
+	bash ./etc/make-each-time-file.sh "$(MAKE)" "$(SINGLE_TIME_FILE)"
+	python ./etc/make-one-time-file.py "$(SINGLE_TIME_FILE)" "$(SINGLE_PRETTY_TIME_FILE)"
+	cat "$(SINGLE_PRETTY_TIME_FILE)"
 	@echo
 
 Makefile.coq: Makefile $(VS) HoTT
-	coq_makefile $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
-	sed s':\$$(COQBIN)coqc:'"$$(readlink -f ./HoTT/hoqc)"':g' -i Makefile.coq
+	coq_makefile COQC = "\$$(TIMER) \"$(HOQC)\"" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
 
 HoTT/Makefile:
 	cd HoTT; ./configure
