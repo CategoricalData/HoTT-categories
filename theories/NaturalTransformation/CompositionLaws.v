@@ -64,8 +64,6 @@ Section NTComposeF.
 End NTComposeF.
 
 Section Associativity.
-  Context `{fs : Funext}.
-
   Variable B : PreCategory.
   Variable C : PreCategory.
   Variable D : PreCategory.
