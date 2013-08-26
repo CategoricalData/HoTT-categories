@@ -219,6 +219,32 @@ Section notation.
   : FunctorApplicationInterpretable F (G, H) (F ∘ (FunctorProduct' G H))%functor | 100.
 End notation.
 
+(** First, a bunch of notations for display *)
+Notation "F ⟨ a , F' ⟨ ─ ⟩ ⟩" := (InducedProductSndFunctor F a ∘ F')%functor : functor_scope.
+Notation "F ⟨ F' ⟨ ─ ⟩ , b ⟩" := (InducedProductFstFunctor F b ∘ F')%functor : functor_scope.
+Notation "F ⟨ a , ─ ⟩" := (InducedProductSndFunctor F a ∘ (IdentityFunctor _))%functor : functor_scope.
+Notation "F ⟨ ─ , b ⟩" := (InducedProductFstFunctor F b ∘ (IdentityFunctor _))%functor : functor_scope.
+Notation "F ⟨ a , b ⟩" := (F (a, b)) : functor_scope.
+Notation "F ⟨ G ⟨ ─ ⟩ , H ⟨ ─ ⟩ ⟩" := (F ∘ (FunctorProduct' G H))%functor : functor_scope.
+
+(** Now, the fully general notation so the defaults can parse *)
+Notation "F ⟨ x ⟩" := (FunctorApplicationOf F%functor x%functor) : functor_scope.
+Notation "F ⟨ x , y ⟩" := (FunctorApplicationOf F%functor (x%functor , y%functor)) : functor_scope.
+
+(** Now, the default notations, so that anything we don't cover can
+    parse, and everything parses in terms of the general notation *)
+Notation "F ⟨ ─ ⟩" := (F ⟨ ( ─ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x , ─ ⟩" := (F ⟨ x , ( ─ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ ─ , y ⟩" := (F ⟨ ( ─ ) , y ⟩)%functor : functor_scope.
+Notation "F ⟨ ─ , ─ ⟩" := (F ⟨ ( ─ ) , ( ─ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ ─ ⟩ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x , y ⟨ ─ ⟩ ⟩" := (F ⟨ x , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ ─ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( ─ ) , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ ─ ⟩ , y ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , y ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ ─ ⟩ , ─ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( ─ ) ⟩)%functor : functor_scope.
+
+(** Redefine the general notation, so it takes precedence when it can *)
 Notation "F ⟨ x ⟩" := (FunctorApplicationOf F%functor x%functor) : functor_scope.
 Notation "F ⟨ x , y ⟩" := (FunctorApplicationOf F%functor (x%functor , y%functor)) : functor_scope.
 (*Notation "F ⟨ c , - ⟩" := (InducedProductSndFunctor F c) : functor_scope.
