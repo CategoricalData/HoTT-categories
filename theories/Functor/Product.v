@@ -226,6 +226,8 @@ Notation "F ⟨ a , ─ ⟩" := (InducedProductSndFunctor F a ∘ (IdentityFunct
 Notation "F ⟨ ─ , b ⟩" := (InducedProductFstFunctor F b ∘ (IdentityFunctor _))%functor : functor_scope.
 Notation "F ⟨ a , b ⟩" := (F (a, b)) : functor_scope.
 Notation "F ⟨ G ⟨ ─ ⟩ , H ⟨ ─ ⟩ ⟩" := (F ∘ (FunctorProduct' G H))%functor : functor_scope.
+Notation "F ⟨ ─ , H ⟨ ─ ⟩ ⟩" := (F ∘ (FunctorProduct' (IdentityFunctor _) H))%functor : functor_scope.
+Notation "F ⟨ G ⟨ ─ ⟩ , ─ ⟩" := (F ∘ (FunctorProduct' G (IdentityFunctor _)))%functor : functor_scope.
 
 (** Now, the fully general notation so the defaults can parse *)
 Notation "F ⟨ x ⟩" := (FunctorApplicationOf F%functor x%functor) : functor_scope.
