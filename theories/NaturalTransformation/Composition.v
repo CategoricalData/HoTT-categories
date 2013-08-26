@@ -1,4 +1,4 @@
-Require Export Functor NaturalTransformation.Core.
+Require Export Functor.Composition NaturalTransformation.Core.
 Require Import Common.
 
 Set Implicit Arguments.

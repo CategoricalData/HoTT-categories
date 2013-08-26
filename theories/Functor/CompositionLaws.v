@@ -1,4 +1,4 @@
-Require Export Category Functor.Core Functor.Composition Functor.Identity.
+Require Export Category.Core Functor.Core Functor.Composition Functor.Identity.
 Require Import Common Functor.Equality.
 
 Set Implicit Arguments.

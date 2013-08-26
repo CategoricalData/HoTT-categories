@@ -1,4 +1,4 @@
-Require Export Functor.
+Require Export Functor.Core.
 Require Import Common.
 
 Set Implicit Arguments.

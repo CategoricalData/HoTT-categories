@@ -1,4 +1,4 @@
-Require Export Functor NaturalTransformation.Core NaturalTransformation.Equality.
+Require Export Functor.Core NaturalTransformation.Core NaturalTransformation.Equality.
 Require Import Common.
 
 Set Implicit Arguments.
