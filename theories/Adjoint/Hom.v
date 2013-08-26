@@ -28,11 +28,6 @@ Section Adjunction.
   Variable F : Functor C D.
   Variable G : Functor D C.
 
-  Record Adjunction :=
-    {
-      AMateOf :> HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩ ≅ HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩
-    }.
-
   (**
      Quoting the 18.705 Lecture Notes:
 
@@ -57,48 +52,19 @@ Section Adjunction.
 >>
      *)
 
-  Local Open Scope morphism_scope.
+  (** We want to [simpl] out the notation machinery *)
+  Let Adjunction_Type := Eval simpl in HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩ ≅ HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩.
 
-  Record HomAdjunction :=
+  Record Adjunction :=
     {
-      AComponentsOf :> forall A A', Morphism SetCat (HomFunctor D (F A, A')) (HomFunctor C (A, G A'));
-      AIsomorphism : forall A A', IsIsomorphism (C := SetCat) (@AComponentsOf A A');
-      ACommutes : forall A A' B B' (m : C.(Morphism) B A) (m' : D.(Morphism) A' B'),
-                    (@AComponentsOf B B')
-                      ∘ (MorphismOf (HomFunctor D) (s := (F A, A')) (d := (F B, B')) (F.(MorphismOf) m, m'))
-                    = (MorphismOf (HomFunctor C) (s := (A, G A')) (d := (B, G B')) (m, G.(MorphismOf) m'))
-                        ∘ (@AComponentsOf A A')
+      AMateOf : Adjunction_Type
     }.
-
-  Bind Scope adjunction_scope with HomAdjunction.
-
-  Global Existing Instance AIsomorphism.
-
-  Lemma ACommutes_Inverse (T : HomAdjunction)
-  : forall A A' B B' (m : C.(Morphism) B A) (m' : D.(Morphism) A' B'),
-      (MorphismOf (HomFunctor D) (s := (F A, A')) (d := (F B, B')) (F.(MorphismOf) m, m'))
-        ∘ ((T A A')^-1)
-      = ((T B B')^-1)
-          ∘ (MorphismOf (HomFunctor C) (s := (A, G A')) (d := (B, G B')) (m, G.(MorphismOf) m')).
-  Proof.
-    intros A A' B B' m m'.
-    pose proof (ACommutes T A A' B B' m m').
-    repeat try_associativity ltac:(first [ apply iso_moveR_Vp
-                                         | apply iso_moveR_pV
-                                         | apply iso_moveL_Vp
-                                         | apply iso_moveL_pV ]).
-    assumption.
-  Qed.
 End Adjunction.
 
+Coercion AMateOf : Adjunction >-> Isomorphic.
 Bind Scope adjunction_scope with Adjunction.
-Bind Scope adjunction_scope with HomAdjunction.
 
 Arguments AMateOf {_} [C%category D%category F%functor G%functor] _%adjunction.
-
-Arguments AComponentsOf {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object _ : simpl nomatch, rename.
-Arguments AIsomorphism {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object : simpl nomatch, rename.
-Arguments ACommutes {_} [C%category D%category F%functor G%functor] _%adjunction _%object _%object _%object _%object _%morphism _%morphism.
 
 Infix "-|" := Adjunction : type_scope.
 Infix "⊣" := Adjunction : type_scope.
@@ -115,56 +81,23 @@ Section AdjunctionEquivalences.
 
   Local Open Scope morphism_scope.
 
-  Definition HomAdjunction2Adjunction_AMateOf (A : HomAdjunction F G)
-    := Build_NaturalTransformation
-         (HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩)
-         (HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩)
-         (fun cd => A (fst cd) (snd cd))
-         (fun s d m =>
-            ACommutes A (fst s) (snd s) (fst d) (snd d) (fst m) (snd m)).
+  Variable A : F ⊣ G.
+  Set Printing All.
+  Set Printing Universes.
+  Definition foo := @AMateOf H C D F G A.
 
-  Definition HomAdjunction2Adjunction (A : HomAdjunction F G)
-  : Adjunction F G
-    := @Build_Adjunction
-         _ _ _ F G
-         (@Build_Isomorphic [_, _] _ _
-                            (HomAdjunction2Adjunction_AMateOf A)
-                            (@iso_NaturalTransformation1 _ _ _ _ _ _ _)).
-
-  Definition Adjunction2HomAdjunction (A : Adjunction F G)
-  : HomAdjunction F G
-    := Build_HomAdjunction
-         F G
-         (fun c d => A (c, d))
-         (fun A0 A' => (@iso_NaturalTransformation0 _ _ _ _ _ A _ (A0, A')))
-         (fun A0 A' B B' m m' => A.(Commutes) (A0, A') (B, B') (m, m')).
-
-  Definition equiv_Adjunction_HomAdjunction
-  : Adjunction F G <~> HomAdjunction F G.
+  (** We need to jump through some hoops with [simpl] for speed *)
+  Lemma adjunction_naturality (A : Adjunction F G) c d d' (f : D.(Morphism) (F c) d) (g : D.(Morphism) d d')
+  : G ₁ g ∘ AMateOf A (c, d) f
+    = A (c, d') (g ∘ f).
   Proof.
-    apply (equiv_adjointify
-             Adjunction2HomAdjunction
-             HomAdjunction2Adjunction);
-    abstract (
-        intros []; intros; simpl;
-        expand;
-        f_ap;
-        first [ apply Isomorphic_eq;
-                nt_eq;
-                destruct_head prod;
-                reflexivity
-              | exact (center _) ]
-      ).
-  Defined.
-
-  Lemma adjunction_naturality (A : HomAdjunction F G) c d d' (f : D.(Morphism) (F c) d) (g : D.(Morphism) d d')
-  : G.(MorphismOf) g ∘ A.(AComponentsOf) _ _ f
-    = A.(AComponentsOf) _ _ (g ∘ f).
-  Proof.
-    assert (H' := fg_equal (A.(ACommutes) _ _ _ _ (Identity c) g) f).
-    simpl in *; autorewrite with category in *.
-    symmetry.
-    assumption.
+    pose (Commutes (AMateOf A) (c, d) (c, d') (Identity c, g)) as H''.
+    simpl in *.
+    pose (apD10 H'' f) as H'.
+    simpl in *.
+    clearbody H'; clear H''.
+    rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in H'.
+    symmetry; assumption.
   Qed.
 
   Lemma adjunction_naturality' (A : HomAdjunction F G) c' c d (f : C.(Morphism) c (G d)) (h : C.(Morphism) c' c)
