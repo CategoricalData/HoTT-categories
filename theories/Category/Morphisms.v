@@ -481,3 +481,17 @@ Section iso_concat_lemmas.
   : Identity _ = p ∘ q -> p^-1 = q.
   Proof. iso_concat_t. Qed.
 End iso_concat_lemmas.
+
+Ltac iso_move_inverse' :=
+  match goal with
+    | [ |- _^-1 ∘ _ = _ ] => apply iso_moveR_Vp
+    | [ |- _ = _^-1 ∘ _ ] => apply iso_moveL_Vp
+    | [ |- _ ∘ _^-1 = _ ] => apply iso_moveR_pV
+    | [ |- _ = _ ∘ _^-1 ] => apply iso_moveL_pV
+    | [ |- _ ∘ (_ ∘ _^-1) = _ ] => rewrite <- Associativity
+    | [ |- _ = _ ∘ (_ ∘ _^-1) ] => rewrite <- Associativity
+    | [ |- (_^-1 ∘ _) ∘ _ = _ ] => rewrite -> Associativity
+    | [ |- _ = (_^-1 ∘ _) ∘ _ ] => rewrite -> Associativity
+  end.
+
+Ltac iso_move_inverse := progress repeat iso_move_inverse'.

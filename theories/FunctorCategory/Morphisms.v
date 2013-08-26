@@ -45,10 +45,7 @@ Proof.
   exists (fun x => (T x)^-1);
   abstract (
       intros;
-      repeat try_associativity ltac:(first [ apply iso_moveL_pV
-                                           | apply iso_moveL_Vp
-                                           | apply iso_moveR_pV
-                                           | apply iso_moveR_Vp ]);
+      iso_move_inverse;
       first [ apply Commutes
             | symmetry; apply Commutes ]
     ).
