@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab4"></a><h1 class="section">Equivalences -*- mode: coq; mode: visual-line -*-</h1>
+<a name="lab95"></a><h1 class="section">Equivalences -*- mode: coq; mode: visual-line -*-</h1>
 
 </div>
 <div class="code">
@@ -36,11 +36,11 @@
 </div>
 
 <div class="doc">
-We now give many ways to construct equivalences.  In each case, we define an instance of the typeclass <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span> named <span class="inlinecode"><span class="id" type="var">isequiv_X</span></span>, followed by an element of the record type <span class="inlinecode"><a class="idref" href="HoTT.hit.quotient.html#Equiv"><span class="id" type="section">Equiv</span></a></span> named <span class="inlinecode"><span class="id" type="var">equiv_X</span></span>.
+We now give many ways to construct equivalences.  In each case, we define an instance of the typeclass <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span> named <span class="inlinecode"><span class="id" type="var">isequiv_X</span></span>, followed by an element of the record type <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Equiv"><span class="id" type="record">Equiv</span></a></span> named <span class="inlinecode"><span class="id" type="var">equiv_X</span></span>.
 
 <div class="paragraph"> </div>
 
-   Whenever we need to assume, as a hypothesis, that a certain function is an equivalence, we do it by assuming separately a function and a proof of <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span>.  This is more general than assuming an inhabitant of <span class="inlinecode"><a class="idref" href="HoTT.hit.quotient.html#Equiv"><span class="id" type="section">Equiv</span></a></span>, since the latter has an implicit coercion and an existing instance to give us the former automatically.  Moreover, implicit generalization makes it easy to assume a function and a proof of <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span>. 
+   Whenever we need to assume, as a hypothesis, that a certain function is an equivalence, we do it by assuming separately a function and a proof of <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span>.  This is more general than assuming an inhabitant of <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Equiv"><span class="id" type="record">Equiv</span></a></span>, since the latter has an implicit coercion and an existing instance to give us the former automatically.  Moreover, implicit generalization makes it easy to assume a function and a proof of <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="record">IsEquiv</span></a></span>. 
 </div>
 <div class="code">
 
@@ -201,7 +201,7 @@ The inverse of an equivalence is an equivalence.
 </div>
 
 <div class="doc">
-<span class="inlinecode"><a class="idref" href="HoTT.hit.quotient.html#Equiv"><span class="id" type="section">Equiv</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> is a symmetric relation. 
+<span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Equiv"><span class="id" type="record">Equiv</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> is a symmetric relation. 
 </div>
 <div class="code">
 <span class="id" type="keyword">Theorem</span> <a name="equiv_inverse"><span class="id" type="lemma">equiv_inverse</span></a> {<span class="id" type="var">A</span> <span class="id" type="var">B</span> : <span class="id" type="keyword">Type</span>} : <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Equivalences.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Equivalences.html#B"><span class="id" type="variable">B</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Equivalences.html#B"><span class="id" type="variable">B</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Equivalences.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a>.<br/>
@@ -424,11 +424,11 @@ Assuming function extensionality, composing with an equivalence is itself an equ
 </div>
 
 <div class="doc">
-The function <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#equiv_rect"><span class="id" type="lemma">equiv_rect</span></a></span> says that given an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, and a hypothesis from <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, one may always assume that the hypothesis is in the image of <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#e"><span class="id" type="variable">e</span></a></span>.
+The function <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#equiv_rect"><span class="id" type="definition">equiv_rect</span></a></span> says that given an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, and a hypothesis from <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, one may always assume that the hypothesis is in the image of <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#e"><span class="id" type="variable">e</span></a></span>.
 
 <div class="paragraph"> </div>
 
-In fibrational terms, if we have a fibration over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> which has a section once pulled back along an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, then it has a section over all of <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>.  
+In fibrational terms, if we have a fibration over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> which has a section once pulled back along an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, then it has a section over all of <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>.  
 </div>
 <div class="code">
 
@@ -444,7 +444,7 @@ In fibrational terms, if we have a fibration over <span class="inlinecode"><a cl
 </div>
 
 <div class="doc">
-Using <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#equiv_rect"><span class="id" type="lemma">equiv_rect</span></a></span>, we define a handy little tactic which introduces a variable and simultaneously substitutes it along an equivalence. 
+Using <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#equiv_rect"><span class="id" type="definition">equiv_rect</span></a></span>, we define a handy little tactic which introduces a variable and simultaneously substitutes it along an equivalence. 
 </div>
 <div class="code">
 
