@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>Coq.Init.Specif</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library Coq.Init.Specif</h1>
+
+<div class="code">
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Basic specifications : sets that may contain logical information 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="Coq.Init.Notations.html#"><span class="id" type="library">Notations</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="Coq.Init.Datatypes.html#"><span class="id" type="library">Datatypes</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">identity_scope</span>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="Coq.Init.Logic.html#"><span class="id" type="library">Logic</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+In standard Coq, <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sig"><span class="id" type="inductive">sig</span></a></span> and <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sig2"><span class="id" type="inductive">sig2</span></a></span> are defined as "subset types" which sum over predicates <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>→<span class="id" type="keyword">Prop</span></span>.  We don't use <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>, so we never need them, but some parts of Coq (like <span class="inlinecode"><span class="id" type="var">Program</span></span> <span class="inlinecode"><span class="id" type="keyword">Definition</span></span>) expect them to be present.  So we include the definitions, but with <span class="inlinecode"><span class="id" type="keyword">Prop</span></span> changed to <span class="inlinecode"><span class="id" type="keyword">Type</span></span> to ensure that our code is not subtly polluted with <span class="inlinecode"><span class="id" type="keyword">Prop</span></span>. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="sig"><span class="id" type="inductive">sig</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">P</span>:<a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="exist"><span class="id" type="constructor">exist</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span>, <span class="id" type="var">P</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#sig"><span class="id" type="inductive">sig</span></a> <span class="id" type="var">P</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="sig2"><span class="id" type="inductive">sig2</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">P</span> <span class="id" type="var">Q</span>:<a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="exist2"><span class="id" type="constructor">exist2</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span>, <span class="id" type="var">P</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="var">Q</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#sig2"><span class="id" type="inductive">sig2</span></a> <span class="id" type="var">P</span> <span class="id" type="var">Q</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Now we define the Sigma-types that we will actually use. 
+<div class="paragraph"> </div>
+
+ <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a>)</span>, or more suggestively <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)}</span> is a Sigma-type.
+    Similarly for <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Forall.html#Q"><span class="id" type="variable">Q</span></a>)</span>, also written <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)</span> <span class="inlinecode">&amp;</span> <span class="inlinecode">(<a class="idref" href="HoTT.types.Forall.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)}</span>. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">P</span>:<a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="existT"><span class="id" type="constructor">existT</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span>, <span class="id" type="var">P</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <span class="id" type="var">P</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Inductive</span> <a name="sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Type</span>) (<span class="id" type="var">P</span> <span class="id" type="var">Q</span>:<a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) : <span class="id" type="keyword">Type</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="existT2"><span class="id" type="constructor">existT2</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span>, <span class="id" type="var">P</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="var">Q</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> <span class="id" type="var">P</span> <span class="id" type="var">Q</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="var">A</span> <span class="id" type="var">P</span>)%<span class="id" type="var">type</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="var">A</span> <span class="id" type="var">P</span> <span class="id" type="var">Q</span>)%<span class="id" type="var">type</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span>  <a name="ex_intro"><span class="id" type="abbreviation">ex_intro</span></a> := <a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a> (<span class="id" type="var">only</span> <span class="id" type="var">parsing</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_'|'_x_'}'"><span class="id" type="notation">"</span></a>{ x | P }" := (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">P</span>)) : <span class="id" type="var">type_scope</span>.<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_'|'_x_'&'_x_'}'"><span class="id" type="notation">"</span></a>{ x | P &amp; Q }" := (<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">P</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">Q</span>)) : <span class="id" type="var">type_scope</span>.<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">"</span></a>{ x : A | P }" := (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">P</span>)) : <span class="id" type="var">type_scope</span>.<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_':'_x_'|'_x_'&'_x_'}'"><span class="id" type="notation">"</span></a>{ x : A | P &amp; Q }" := (<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">P</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">Q</span>)) :<br/>
+&nbsp;&nbsp;<span class="id" type="var">type_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'exists'_x_'..'_x_','_x"><span class="id" type="notation">"</span></a>'exists' x .. y , p" := (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ .. (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">y</span> ⇒ <span class="id" type="var">p</span>)) ..))<br/>
+&nbsp;&nbsp;(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="var">x</span> <span class="id" type="var">binder</span>, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>,<br/>
+&nbsp;&nbsp;&nbsp;<span class="id" type="var">format</span> "'[' 'exists'  '/  ' x  ..  y ,  '/  ' p ']'")<br/>
+&nbsp;&nbsp;: <span class="id" type="var">type_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'exists2'_x_','_x_'&'_x"><span class="id" type="notation">"</span></a>'exists2' x , p &amp; q" := (<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">p</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="var">q</span>))<br/>
+&nbsp;&nbsp;(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="var">x</span> <span class="id" type="var">ident</span>, <span class="id" type="var">p</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>) : <span class="id" type="var">type_scope</span>.<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'exists2'_x_':'_x_','_x_'&'_x"><span class="id" type="notation">"</span></a>'exists2' x : t , p &amp; q" := (<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">t</span> ⇒ <span class="id" type="var">p</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">t</span> ⇒ <span class="id" type="var">q</span>))<br/>
+&nbsp;&nbsp;(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="var">x</span> <span class="id" type="var">ident</span>, <span class="id" type="var">t</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="var">p</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">format</span> "'[' 'exists2'  '/  ' x  :  t ,  '/  ' '[' p  &amp;  '/' q ']' ']'")<br/>
+&nbsp;&nbsp;: <span class="id" type="var">type_scope</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">"</span></a>{ x : A  &amp; P }" := (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">P</span>)) : <span class="id" type="var">type_scope</span>.<br/>
+<span class="id" type="keyword">Notation</span> <a name=":type_scope:'{'_x_':'_x_'&'_x_'&'_x_'}'"><span class="id" type="notation">"</span></a>{ x : A  &amp; P  &amp; Q }" := (<a class="idref" href="Coq.Init.Specif.html#sigT2"><span class="id" type="inductive">sigT2</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">P</span>) (<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span>:<span class="id" type="var">A</span> ⇒ <span class="id" type="var">Q</span>)) :<br/>
+&nbsp;&nbsp;<span class="id" type="var">type_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Add</span> <span class="id" type="keyword">Printing</span> <span class="id" type="keyword">Let</span> <span class="id" type="var">sigT</span>.<br/>
+<span class="id" type="keyword">Add</span> <span class="id" type="keyword">Printing</span> <span class="id" type="keyword">Let</span> <span class="id" type="var">sigT2</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="proj1_sig"><span class="id" type="definition">proj1_sig</span></a> (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>) (<span class="id" type="var">P</span> : <a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) (<span class="id" type="var">hP</span> : <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="Coq.Init.Specif.html#P"><span class="id" type="variable">P</span></a>) : <a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <a class="idref" href="Coq.Init.Specif.html#hP"><span class="id" type="variable">hP</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a> <span class="id" type="var">x</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="var">x</span> <span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Projections of <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sig"><span class="id" type="inductive">sig</span></a></span>
+
+<div class="paragraph"> </div>
+
+    An element <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span> of a subset <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">|</span> <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)}</span> is the pair of an <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a></span>
+    of type <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> and of a proof <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#h"><span class="id" type="variable">h</span></a></span> that <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a></span> satisfies <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span>.  Then
+    <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#proj1_sig"><span class="id" type="definition">proj1_sig</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> is the witness <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a></span> and <span class="inlinecode">(<span class="id" type="var">proj2_sig</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> is the
+    proof of <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a>)</span> 
+<div class="paragraph"> </div>
+
+ Projections of <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a></span>
+
+<div class="paragraph"> </div>
+
+    An element <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> of a sigma-type <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>}</span> is a dependent pair
+    made of an <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a></span> of type <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> and an <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#h"><span class="id" type="variable">h</span></a></span> of type <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#a"><span class="id" type="variable">a</span></a></span>.  Then,
+    <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)</span> is the first projection and <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>)</span> is the
+    second projection, the type of which depends on the <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span>. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="Projections"><span class="id" type="section">Projections</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Projections.A"><span class="id" type="variable">A</span></a> : <span class="id" type="keyword">Type</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Projections.P"><span class="id" type="variable">P</span></a> : <a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="projT1"><span class="id" type="definition">projT1</span></a> (<span class="id" type="var">x</span>:<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a>) : <a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a> := <span class="id" type="keyword">match</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a> <span class="id" type="var">a</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="var">a</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="projT2"><span class="id" type="definition">projT2</span></a> (<span class="id" type="var">x</span>:<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a>) : <a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a> (<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a>) :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">return</span> <a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a> (<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a>) <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a> <span class="id" type="var">_</span> <span class="id" type="var">h</span> ⇒ <span class="id" type="var">h</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="Coq.Init.Specif.html#Projections"><span class="id" type="section">Projections</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Various forms of the axiom of choice for specifications 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="Choice_lemmas"><span class="id" type="section">Choice_lemmas</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variables</span> <a name="Choice_lemmas.S"><span class="id" type="variable">S</span></a> <a name="Choice_lemmas.S'"><span class="id" type="variable">S'</span></a> : <span class="id" type="keyword">Type</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Choice_lemmas.R"><span class="id" type="variable">R</span></a> : <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S'"><span class="id" type="variable">S'</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Choice_lemmas.R'"><span class="id" type="variable">R'</span></a> : <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S'"><span class="id" type="variable">S'</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variables</span> <a name="Choice_lemmas.R1"><span class="id" type="variable">R1</span></a> <a name="Choice_lemmas.R2"><span class="id" type="variable">R2</span></a> : <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Lemma</span> <a name="Choice"><span class="id" type="lemma">Choice</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;<a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a>, <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a><span class="id" type="var">y</span><a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a><a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S'"><span class="id" type="variable">S'</span></a> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.R'"><span class="id" type="variable">R'</span></a> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="var">y</span><a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a><span class="id" type="var">f</span><a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a><a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S'"><span class="id" type="variable">S'</span></a> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <span class="id" type="keyword">∀</span> <span class="id" type="var">z</span>:<a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.S"><span class="id" type="variable">S</span></a>, <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas.R'"><span class="id" type="variable">R'</span></a> <a class="idref" href="Coq.Init.Specif.html#z"><span class="id" type="variable">z</span></a> (<span class="id" type="var">f</span> <a class="idref" href="Coq.Init.Specif.html#z"><span class="id" type="variable">z</span></a>)<a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">H</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">∃</span> (<span class="id" type="keyword">fun</span> <span class="id" type="var">z</span> ⇒ <a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a> (<span class="id" type="var">H</span> <a class="idref" href="Coq.Init.Specif.html#z"><span class="id" type="variable">z</span></a>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">z</span>; <span class="id" type="tactic">destruct</span> (<span class="id" type="var">H</span> <span class="id" type="var">z</span>); <span class="id" type="tactic">assumption</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="Coq.Init.Specif.html#Choice_lemmas"><span class="id" type="section">Choice_lemmas</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="Dependent_choice_lemmas"><span class="id" type="section">Dependent_choice_lemmas</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variables</span> <a name="Dependent_choice_lemmas.X"><span class="id" type="variable">X</span></a> : <span class="id" type="keyword">Type</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Dependent_choice_lemmas.R"><span class="id" type="variable">R</span></a> : <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.X"><span class="id" type="variable">X</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.X"><span class="id" type="variable">X</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Lemma</span> <a name="dependent_choice"><span class="id" type="lemma">dependent_choice</span></a> :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>:<a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.X"><span class="id" type="variable">X</span></a>, <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a><span class="id" type="var">y</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a> <span class="id" type="var">_</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.R"><span class="id" type="variable">R</span></a> <a class="idref" href="Coq.Init.Specif.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="var">y</span><a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">∀</span> <span class="id" type="var">x0</span>, <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a><span class="id" type="var">f</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a> <a class="idref" href="Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.X"><span class="id" type="variable">X</span></a> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">(</span></a><span class="id" type="var">f</span> <a class="idref" href="Coq.Init.Datatypes.html#O"><span class="id" type="constructor">O</span></a> <a class="idref" href="Coq.Init.Datatypes.html#:identity_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="Coq.Init.Specif.html#x0"><span class="id" type="variable">x0</span></a><a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">n</span>, <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas.R"><span class="id" type="variable">R</span></a> (<span class="id" type="var">f</span> <a class="idref" href="Coq.Init.Specif.html#n"><span class="id" type="variable">n</span></a>) (<span class="id" type="var">f</span> (<a class="idref" href="Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="Coq.Init.Specif.html#n"><span class="id" type="variable">n</span></a>))<a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">)</span></a><a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">H</span> <span class="id" type="var">x0</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">set</span> (<span class="id" type="var">f</span>:=<span class="id" type="keyword">fix</span> <span class="id" type="var">f</span> <span class="id" type="var">n</span> := <span class="id" type="keyword">match</span> <a class="idref" href="Coq.Init.Specif.html#n"><span class="id" type="variable">n</span></a> <span class="id" type="keyword">with</span> <a class="idref" href="Coq.Init.Datatypes.html#O"><span class="id" type="constructor">O</span></a> ⇒ <span class="id" type="var">x0</span> | <a class="idref" href="Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <span class="id" type="var">n'</span> ⇒ <a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a> (<span class="id" type="var">H</span> (<a class="idref" href="Coq.Init.Specif.html#f"><span class="id" type="variable">f</span></a> <span class="id" type="var">n'</span>)) <span class="id" type="keyword">end</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">∃</span> <span class="id" type="var">f</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">split</span>. <span class="id" type="tactic">reflexivity</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">induction</span> <span class="id" type="var">n</span>; <span class="id" type="tactic">simpl</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="Coq.Init.Specif.html#Dependent_choice_lemmas"><span class="id" type="section">Dependent_choice_lemmas</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+A result of type <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Exc"><span class="id" type="definition">Exc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span> is either a normal value of type <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> or
+     an <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#error"><span class="id" type="definition">error</span></a></span> :
+
+<div class="paragraph"> </div>
+
+     <span class="inlinecode"><span class="id" type="keyword">Inductive</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Exc"><span class="id" type="definition">Exc</span></a></span> <span class="inlinecode">[<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>:<span class="id" type="keyword">Type</span>]</span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="keyword">Type</span></span> <span class="inlinecode">:=</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#value"><span class="id" type="definition">value</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>-&gt;(<a class="idref" href="Coq.Init.Specif.html#Exc"><span class="id" type="definition">Exc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span> <span class="inlinecode">|</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#error"><span class="id" type="definition">error</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#Exc"><span class="id" type="definition">Exc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span>.
+
+<div class="paragraph"> </div>
+
+     It is implemented using the option type. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="Exc"><span class="id" type="definition">Exc</span></a> := <a class="idref" href="Coq.Init.Datatypes.html#option"><span class="id" type="inductive">option</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="value"><span class="id" type="definition">value</span></a> := <a class="idref" href="Coq.Init.Datatypes.html#Some"><span class="id" type="constructor">Some</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="error"><span class="id" type="definition">error</span></a> := @<a class="idref" href="Coq.Init.Datatypes.html#None"><span class="id" type="constructor">None</span></a>.<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="Coq.Init.Specif.html#error"><span class="id" type="definition">error</span></a> [<span class="id" type="var">A</span>].<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="except"><span class="id" type="definition">except</span></a> := <a class="idref" href="Coq.Init.Logic.html#False_rec"><span class="id" type="definition">False_rec</span></a>. 
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="Coq.Init.Specif.html#except"><span class="id" type="definition">except</span></a> [<span class="id" type="var">P</span>] <span class="id" type="var">_</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="absurd_set"><span class="id" type="lemma">absurd_set</span></a> : <span class="id" type="keyword">∀</span> (<span class="id" type="var">A</span>:<span class="id" type="keyword">Prop</span>) (<span class="id" type="var">C</span>:<span class="id" type="keyword">Set</span>), <a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a> <a class="idref" href="Coq.Init.Specif.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="Coq.Init.Specif.html#C"><span class="id" type="variable">C</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">A</span> <span class="id" type="var">C</span> <span class="id" type="var">h1</span> <span class="id" type="var">h2</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="Coq.Init.Logic.html#False_rec"><span class="id" type="definition">False_rec</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> (<span class="id" type="var">h2</span> <span class="id" type="var">h1</span>).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">existT</span> <span class="id" type="var">existT2</span>: <span class="id" type="var">core</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="existS"><span class="id" type="abbreviation">existS</span></a> := <a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a> (<span class="id" type="var">compat</span> "8.2").<br/>
+<span class="id" type="keyword">Notation</span> <a name="projS1"><span class="id" type="abbreviation">projS1</span></a> := <a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a> (<span class="id" type="var">compat</span> "8.2").<br/>
+<span class="id" type="keyword">Notation</span> <a name="projS2"><span class="id" type="abbreviation">projS2</span></a> := <a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a> (<span class="id" type="var">compat</span> "8.2").<br/>
+
+<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

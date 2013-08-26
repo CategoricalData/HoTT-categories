@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>Coq.Init.Notations</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library Coq.Init.Notations</h1>
+
+<div class="code">
+
+<br/>
+</div>
+
+<div class="doc">
+These are the notations whose level and associativity are imposed by Coq 
+<div class="paragraph"> </div>
+
+ Notations for propositional connectives 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x -&gt; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;-&gt; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 95, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x /\ y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 80, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x \/ y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 85, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "~ x" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 75, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Notations for equality and inequalities 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x = y  :&gt;  T"<br/>
+(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x = y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x = y = z"<br/>
+(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;&gt; y  :&gt;  T"<br/>
+(<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;&gt; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;= y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &gt;= y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &gt; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;= y &lt;= z" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt;= y &lt; z" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt; y &lt; z" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &lt; y &lt;= z" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 70, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="var">next</span> <span class="id" type="keyword">level</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Arithmetical notations (also used for type constructors) 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x + y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 50, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x - y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 50, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x * y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 40, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x / y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 40, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "- x" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 35, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "/ x" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 35, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x ^ y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 30, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Notations for booleans 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x || y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 50, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "x &amp;&amp; y" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 40, <span class="id" type="tactic">left</span> <span class="id" type="keyword">associativity</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Notations for pairs 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "( x , y , .. , z )" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Notation "{ x }" is reserved and has a special status as component
+    of other notations such as "{ A } + { B }" and "A + { B }" (which
+    are at the same level than "x + y");
+    "{ x }" is at level 0 to factor with "{ x : A | P }" 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Notations for sigma-types or subsets 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x  |  P }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x  |  P  &amp; Q }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x : A  |  P }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x : A  |  P  &amp; Q }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+
+<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x : A  &amp; P }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+<span class="id" type="keyword">Reserved Notation</span> "{ x : A  &amp; P  &amp; Q }" (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 0, <span class="id" type="var">x</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99).<br/>
+
+<br/>
+<span class="id" type="keyword">Delimit</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">type_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">type</span>.<br/>
+<span class="id" type="keyword">Delimit</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">core_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">core</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">core_scope</span>.<br/>
+<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">type_scope</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
