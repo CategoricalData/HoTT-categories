@@ -28,11 +28,6 @@ Section Adjunction.
   Variable F : Functor C D.
   Variable G : Functor D C.
 
-  Record Adjunction :=
-    {
-      AMateOf :> HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩ ≅ HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩
-    }.
-
   (**
      Quoting the 18.705 Lecture Notes:
 
@@ -57,48 +52,40 @@ Section Adjunction.
 >>
      *)
 
-  Local Open Scope morphism_scope.
+  (** We want to [simpl] out the notation machinery *)
+  Local Opaque NaturalIsomorphism.
+  Let Adjunction_Type := Eval simpl in HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩ ≅ HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩.
+  (*Set Printing All.
+  Print Adjunction_Type.*)
+  (** Just putting in [Adjunction_Type] breaks [AMateOf] *)
 
-  Record HomAdjunction :=
+  Record Adjunction :=
     {
-      AComponentsOf :> forall A A', Morphism SetCat (HomFunctor D (F A, A')) (HomFunctor C (A, G A'));
-      AIsomorphism : forall A A', IsIsomorphism (C := SetCat) (@AComponentsOf A A');
-      ACommutes : forall A A' B B' (m : C.(Morphism) B A) (m' : D.(Morphism) A' B'),
-                    (@AComponentsOf B B')
-                      ∘ (MorphismOf (HomFunctor D) (s := (F A, A')) (d := (F B, B')) (F.(MorphismOf) m, m'))
-                    = (MorphismOf (HomFunctor C) (s := (A, G A')) (d := (B, G B')) (m, G.(MorphismOf) m'))
-                        ∘ (@AComponentsOf A A')
+      AMateOf : @NaturalIsomorphism H
+                                    (ProductCategory (OppositeCategory C) D)
+                                    (@SetCat H)
+                                    (@ComposeFunctors
+                                       (ProductCategory (OppositeCategory C) D)
+                                       (ProductCategory (OppositeCategory D) D)
+                                       (@SetCat H) (@HomFunctor H D)
+                                       (@FunctorProduct' (OppositeCategory C)
+                                                         (OppositeCategory D) D D
+                                                         (@OppositeFunctor C D F)
+                                                         (IdentityFunctor D)))
+                                    (@ComposeFunctors
+                                       (ProductCategory (OppositeCategory C) D)
+                                       (ProductCategory (OppositeCategory C) C)
+                                       (@SetCat H) (@HomFunctor H C)
+                                       (@FunctorProduct' (OppositeCategory C)
+                                                         (OppositeCategory C) D C
+                                                         (IdentityFunctor (OppositeCategory C)) G))
     }.
-
-  Bind Scope adjunction_scope with HomAdjunction.
-
-  Global Existing Instance AIsomorphism.
-
-  Lemma ACommutes_Inverse (T : HomAdjunction)
-  : forall A A' B B' (m : C.(Morphism) B A) (m' : D.(Morphism) A' B'),
-      (MorphismOf (HomFunctor D) (s := (F A, A')) (d := (F B, B')) (F.(MorphismOf) m, m'))
-        ∘ ((T A A')^-1)
-      = ((T B B')^-1)
-          ∘ (MorphismOf (HomFunctor C) (s := (A, G A')) (d := (B, G B')) (m, G.(MorphismOf) m')).
-  Proof.
-    intros A A' B B' m m'.
-    pose proof (ACommutes T A A' B B' m m').
-    repeat try_associativity ltac:(first [ apply iso_moveR_Vp
-                                         | apply iso_moveR_pV
-                                         | apply iso_moveL_Vp
-                                         | apply iso_moveL_pV ]).
-    assumption.
-  Qed.
 End Adjunction.
 
+Coercion AMateOf : Adjunction >-> NaturalIsomorphism.
 Bind Scope adjunction_scope with Adjunction.
-Bind Scope adjunction_scope with HomAdjunction.
 
 Arguments AMateOf {_} [C%category D%category F%functor G%functor] _%adjunction.
-
-Arguments AComponentsOf {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object _ : simpl nomatch, rename.
-Arguments AIsomorphism {_} {C%category D%category} [F%functor G%functor] T%adjunction A%object A'%object : simpl nomatch, rename.
-Arguments ACommutes {_} [C%category D%category F%functor G%functor] _%adjunction _%object _%object _%object _%object _%morphism _%morphism.
 
 Infix "-|" := Adjunction : type_scope.
 Infix "⊣" := Adjunction : type_scope.
@@ -115,66 +102,48 @@ Section AdjunctionEquivalences.
 
   Local Open Scope morphism_scope.
 
-  Definition HomAdjunction2Adjunction_AMateOf (A : HomAdjunction F G)
-    := Build_NaturalTransformation
-         (HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩)
-         (HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩)
-         (fun cd => A (fst cd) (snd cd))
-         (fun s d m =>
-            ACommutes A (fst s) (snd s) (fst d) (snd d) (fst m) (snd m)).
+  (** We need to jump through some hoops with [simpl] for speed *)
+  Section adjunction_naturality.
+    Variable A : Adjunction F G.
 
-  Definition HomAdjunction2Adjunction (A : HomAdjunction F G)
-  : Adjunction F G
-    := @Build_Adjunction
-         _ _ _ F G
-         (@Build_Isomorphic [_, _] _ _
-                            (HomAdjunction2Adjunction_AMateOf A)
-                            (@iso_NaturalTransformation1 _ _ _ _ _ _ _)).
+    Let adjunction_naturalityT c d d'
+        (f : Morphism D (F c) d)
+        (g : Morphism D d d')
+      := Eval simpl in
+          G ₁ g ∘ A (c, d) f
+          = A (c, d') (g ∘ f).
 
-  Definition Adjunction2HomAdjunction (A : Adjunction F G)
-  : HomAdjunction F G
-    := Build_HomAdjunction
-         F G
-         (fun c d => A (c, d))
-         (fun A0 A' => (@iso_NaturalTransformation0 _ _ _ _ _ A _ (A0, A')))
-         (fun A0 A' B B' m m' => A.(Commutes) (A0, A') (B, B') (m, m')).
+    Lemma adjunction_naturality c d d' f g : @adjunction_naturalityT c d d' f g.
+    Proof.
+      subst adjunction_naturalityT.
+      pose (Commutes (AMateOf A) (c, d) (c, d') (Identity c, g)) as H''.
+      simpl in *.
+      pose (apD10 H'' f) as H'.
+      simpl in *.
+      clearbody H'; clear H''.
+      rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in H'.
+      symmetry; assumption.
+    Qed.
 
-  Definition equiv_Adjunction_HomAdjunction
-  : Adjunction F G <~> HomAdjunction F G.
-  Proof.
-    apply (equiv_adjointify
-             Adjunction2HomAdjunction
-             HomAdjunction2Adjunction);
-    abstract (
-        intros []; intros; simpl;
-        expand;
-        f_ap;
-        first [ apply Isomorphic_eq;
-                nt_eq;
-                destruct_head prod;
-                reflexivity
-              | exact (center _) ]
-      ).
-  Defined.
+    Let adjunction_naturality'T c' c d
+        (f : C.(Morphism) c (G d))
+        (h : C.(Morphism) c' c)
+      := Eval simpl in
+          ((A (c, d))^-1 f) ∘ F ₁ h
+          = (A (c', d))^-1 (f ∘ h).
 
-  Lemma adjunction_naturality (A : HomAdjunction F G) c d d' (f : D.(Morphism) (F c) d) (g : D.(Morphism) d d')
-  : G.(MorphismOf) g ∘ A.(AComponentsOf) _ _ f
-    = A.(AComponentsOf) _ _ (g ∘ f).
-  Proof.
-    assert (H' := fg_equal (A.(ACommutes) _ _ _ _ (Identity c) g) f).
-    simpl in *; autorewrite with category in *.
-    symmetry.
-    assumption.
-  Qed.
-
-  Lemma adjunction_naturality' (A : HomAdjunction F G) c' c d (f : C.(Morphism) c (G d)) (h : C.(Morphism) c' c)
-  : ((A _ _)^-1 f) ∘ F.(MorphismOf) h
-    = (A _ _)^-1 (f ∘ h).
-  Proof.
-    assert (H' := fg_equal (ACommutes_Inverse A _ _ _ _ h (Identity d)) f).
-    simpl in *; autorewrite with category in *.
-    assumption.
-  Qed.
+    Lemma adjunction_naturality' c' c d f h : @adjunction_naturality'T c' c d f h.
+    Proof.
+      subst adjunction_naturality'T.
+      pose (Commutes (AMateOf A)^-1 (c, d) (c', d) (h, Identity d)) as H''.
+      simpl in *.
+      pose (apD10 H'' f) as H'.
+      simpl in *.
+      clearbody H'; clear H''.
+      rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in H'.
+      symmetry; assumption.
+    Qed.
+  End adjunction_naturality.
 
   (**
      Quoting from Awody's "Category Theory":
@@ -208,58 +177,59 @@ Section AdjunctionEquivalences.
      [η c = ϕ(1_{F c})]
      *)
 
-  Local Ltac unit_counit_of_t :=
+  (** We play tricks with ordering and tactics for speed *)
+  Local Ltac unit_counit_of_t_with_tac tac :=
     repeat match goal with
              | _ => split
              | _ => intro
-             | _ => eassumption
-             | _ => symmetry; eassumption
              | _ => reflexivity
-             | _ => progress rewrite ?iso_compose_pV, ?iso_compose_Vp
+             | _ => progress tac
              | _ => progress simpl in *
-             | _ => progress simpl_do_clear ltac:(fun H => rewrite H) adjunction_naturality
-             | _ => progress simpl_do_clear ltac:(fun H => rewrite H) adjunction_naturality'
-             | _ => progress autorewrite with category in *
-             | _ => progress path_induction
-             | [ |- ?f (?g ?x) = ?x ] => change ((f ∘ g) x = (fun x => x) x); f_ap
+             | _ => rewrite adjunction_naturality
+             | _ => rewrite adjunction_naturality'
+             | _ => progress rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in *
+             | [ |- appcontext[@ComponentsOf ?C ?D ?F ?G ?A ?x] ]
+               => exact (apD10 (apD10 (ap ComponentsOf (@iso_compose_pV [C, D] F G A _)) x) _)
+             | [ |- appcontext[@ComponentsOf ?C ?D ?F ?G ?A ?x] ]
+               => exact (apD10 (apD10 (ap ComponentsOf (@iso_compose_Vp [C, D] F G A _)) x) _)
            end.
 
-  Definition UnitOf (A : HomAdjunction F G) : AdjunctionUnit F G.
+
+  Definition UnitOf (A : Adjunction F G) : AdjunctionUnit F G.
   Proof.
     eexists (Build_NaturalTransformation
                (IdentityFunctor C) (G ∘ F)
-               (fun c => A.(AComponentsOf) c (F c) (Identity _))
+               (fun c => A (c, F c) (Identity _))
                _).
     simpl in *.
     intros c d f.
-    exists ((A c d)^-1 f).
-    abstract unit_counit_of_t.
+    exists ((A (c, d))^-1 f); simpl in *.
+    abstract unit_counit_of_t_with_tac ltac:(progress path_induction).
     Grab Existential Variables.
     abstract (
         intros s d m;
-        let H := fresh in
-        assert (H := fg_equal (A.(ACommutes) d (F d) s (F d) m (Identity _)) (Identity _));
-        unit_counit_of_t
+        pose (ap10 (Commutes A (d, F d) (s, F d) (m, Identity _)) (Identity _));
+        unit_counit_of_t_with_tac ltac:(eassumption || (symmetry; eassumption))
       ).
   Defined.
 
 
-  Definition CounitOf (A : HomAdjunction F G) : AdjunctionCounit F G.
+  Definition CounitOf (A : Adjunction F G) : AdjunctionCounit F G.
   Proof.
     eexists (Build_NaturalTransformation
                (F ∘ G) (IdentityFunctor D)
-               (fun d => (A (G d) d)^-1 (Identity _))
+               (fun d => (A (G d, d))^-1 (Identity _))
                _).
     simpl.
     intros c d f.
-    exists (A c d f).
-    abstract unit_counit_of_t.
+    exists ((A (c, d)) f); simpl in *.
+    abstract unit_counit_of_t_with_tac ltac:(progress path_induction).
     Grab Existential Variables.
     abstract (
         intros s d m;
-        let H := fresh in assert (H := fg_equal (ACommutes_Inverse A (G s) s (G s) d (Identity (G s)) m) (Identity _));
-        unit_counit_of_t
-    ).
+        pose (ap10 (Commutes (AMateOf A)^-1 (G s, s) (G s, d) (Identity _, m)) (Identity _));
+        unit_counit_of_t_with_tac ltac:(eassumption || (symmetry; eassumption))
+      ).
   Defined.
 
   (** Quoting Wikipedia on Adjoint Functors:
@@ -275,37 +245,31 @@ Section AdjunctionEquivalences.
       determine [Φ]). *)
 
   Lemma UnitCounitOf_Helper1
-        (Φ : HomAdjunction F G)
+        (Φ : Adjunction F G)
         (ε := projT1 (CounitOf Φ))
         (η := projT1 (UnitOf Φ))
-  : forall X Y (f : Morphism _ (F Y) X), Φ Y X f = G.(MorphismOf) f ∘ η Y.
+  : forall X Y (f : Morphism _ (F Y) X), Φ (Y, X) f = G.(MorphismOf) f ∘ η Y.
   Proof.
-    intros.
-    destruct Φ as [ ? ? ACommutes'0 ]; simpl in *.
+    intros X Y f.
     subst_body.
-    pose proof (fg_equal (ACommutes'0 _ _ _ _ (Identity _) f) (Identity _)) as H'.
-    simpl in *.
-    autorewrite with functor morphism in H'.
-    assumption.
+    pose (ap10 (Commutes Φ (Y, F Y) (Y, X) (Identity _, f)) (Identity _)) as H';
+      simpl in *.
+    rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in H'.
+    exact H'.
   Qed.
 
   Lemma UnitCounitOf_Helper2
-        (Φ : HomAdjunction F G)
+        (Φ : Adjunction F G)
         (ε := projT1 (CounitOf Φ))
         (η := projT1 (UnitOf Φ))
-        (Φ_Inverse := fun Y X g => (Φ Y X)^-1 g)
-  : forall X Y (g : Morphism _ Y (G X)), Φ_Inverse Y X g = ε X ∘ F.(MorphismOf) g.
+  : forall X Y (g : Morphism _ Y (G X)), (Φ (Y, X))^-1 g = ε X ∘ F.(MorphismOf) g.
   Proof.
-    pose proof (ACommutes_Inverse Φ) as ACommutes_Inverse'.
-    destruct Φ as [ ? ? ACommutes'0 ]; simpl in *.
-    subst_body.
-    simpl in *.
     intros X Y g.
-    pose proof (fg_equal (ACommutes_Inverse' _ _ _ _ g (Identity _)) (Identity _)) as H'.
-    simpl in *.
-    autorewrite with functor morphism in H'.
-    symmetry.
-    assumption.
+    subst_body.
+    pose (ap10 (Commutes (AMateOf Φ)^-1 (G X, X) (Y, X) (g, Identity _)) (Identity _)) as H';
+      simpl in *.
+    rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity in H'.
+    exact H'.
   Qed.
 
   Local Ltac UnitCounitOf_helper make_H :=
@@ -315,9 +279,9 @@ Section AdjunctionEquivalences.
       let HT := constr:(make_H X) in
       pose proof HT as H; simpl in H;
       etransitivity; [ symmetry; apply H | ];
-      unit_counit_of_t.
+      unit_counit_of_t_with_tac ltac:(eassumption || (symmetry; eassumption)).
 
-  Definition UnitCounitOf (A : HomAdjunction F G) : AdjunctionUnitCounit F G.
+  Definition UnitCounitOf (A : Adjunction F G) : AdjunctionUnitCounit F G.
   Proof.
     exists (projT1 (UnitOf A))
            (projT1 (CounitOf A));
@@ -338,83 +302,108 @@ Section AdjunctionEquivalences'.
   Local Open Scope morphism_scope.
 
   Local Ltac unit_counit_both_t' :=
-    idtac;
-    first [ progress simpl in *
-          | simpl_do_clear ltac:(fun H => try_associativity ltac:(rewrite H)) Adjunction_UnitCounitEquation1
-          | simpl_do_clear ltac:(fun H => try_associativity ltac:(rewrite H)) Adjunction_UnitCounitEquation2 ].
+    simpl in *;
+    try_associativity_quick
+      ltac:(progress rewrite ?Adjunction_UnitCounitEquation1, ?Adjunction_UnitCounitEquation2).
 
   Local Ltac unit_counit_single_t' :=
     idtac;
     match goal with
+      | _ => done
       | [ |- ?x.1 = _ ] => apply (snd x.2)
       | [ |- appcontext[?x.1] ] => rewrite (fst x.2)
-      | [ |- appcontext[MorphismOf ?G (MorphismOf ?F ?m)] ]
-        => change (MorphismOf G (MorphismOf F m)) with (MorphismOf (G ∘ F) m)
-      | _ => simpl; rewrite <- ?FCompositionOf; f_ap
+      (*| [ |- appcontext[MorphismOf ?G (MorphismOf ?F ?m)] ]
+        => change (MorphismOf G (MorphismOf F m)) with (MorphismOf (G ∘ F) m)*)
+      | _ => simpl; rewrite <- ?FCompositionOf; try_associativity_quick ltac:(f_ap)
     end.
 
-  Local Ltac unit_counit_t'_with' t :=
-    first [ done
-          | intro
-          | split
-          | apply path_forall
-          | rewrite !FCompositionOf
-          | progress repeat try_associativity ltac:(f_ap)
-          | progress auto with morphism
-          | t ].
-
-  Local Ltac unit_counit_t'_with t :=
+  Local Ltac unit_counit_t_with tac :=
     simpl;
-    repeat first [ unit_counit_t'_with' t
-                 | eapply symmetry; progress unit_counit_t'_with' t ].
-
-  Local Ltac unit_counit_t_with t :=
-    let progress_tac := (fun tac lem
-                         => simpl_do_clear ltac:(fun H => try_associativity ltac:(tac H)) lem;
-                         ((try_associativity ltac:(f_ap))
-                            || solve [ unit_counit_t'_with t ])) in
     repeat match goal with
-             | _ => progress unit_counit_t'_with t
-             | [ |- appcontext[ComponentsOf ?T] ] => progress_tac do_rewrite (Commutes T)
-             | [ |- appcontext[ComponentsOf ?T] ] => progress_tac do_rewrite_rev (Commutes T)
+             | _ => intro
+             | _ => progress auto with morphism
+             | _ => apply path_forall; intro
+             | _ => rewrite !FCompositionOf
+             | _ => progress tac
+             | _ => progress repeat try_associativity_quick ltac:(f_ap)
+             | [ |- appcontext[ComponentsOf ?T] ] => exact (Commutes T _ _ _)
+             | [ |- appcontext[ComponentsOf ?T] ] => symmetry; exact (Commutes T _ _ _)
+             | [ |- appcontext[ComponentsOf ?T] ]
+               => simpl_do_clear try_associativity_quick_rewrite (Commutes T);
+                 progress tac
+             | [ |- appcontext[ComponentsOf ?T] ]
+               => simpl_do_clear try_associativity_quick_rewrite_rev (Commutes T);
+                 progress tac
+             | _ => progress simpl
            end.
 
   Local Ltac unit_counit_t_both := unit_counit_t_with unit_counit_both_t'.
   Local Ltac unit_counit_t_single := unit_counit_t_with unit_counit_single_t'.
 
-  Definition HomAdjunctionOfUnitCounit  (T : AdjunctionUnitCounit F G)
-  : HomAdjunction F G.
+  Definition AdjunctionOfUnitCounit  (T : AdjunctionUnitCounit F G)
+  : Adjunction F G.
   Proof.
-    exists (fun c d (g : Morphism _ (F c) d) => MorphismOf G g ∘ Adjunction_Unit T c);
-    [ intros; exists (fun f => Adjunction_Counit T A' ∘ F.(MorphismOf) f) | ];
+    constructor.
+    let F0 := match goal with |- ?R ?F ?G => constr:(F) end in
+    let G0 := match goal with |- ?R ?F ?G => constr:(G) end in
+    (eexists (Build_NaturalTransformation
+                F0 G0
+                (fun cd (g : Morphism _ (F (fst cd)) (snd cd)) => MorphismOf G g ∘ Adjunction_Unit T (fst cd))
+                _));
+      apply iso_NaturalTransformation1;
+      simpl;
+      intros cd;
+      exists (fun f => Adjunction_Counit T (snd cd) ∘ F.(MorphismOf) f);
+      abstract unit_counit_t_both.
+    Grab Existential Variables.
     abstract unit_counit_t_both.
   Defined.
 
-  Definition HomAdjunctionOfUnit (T : AdjunctionUnit F G) : HomAdjunction F G.
+  Definition AdjunctionOfUnit (T : AdjunctionUnit F G) : Adjunction F G.
   Proof.
-    exists (fun c d (g : Morphism _ (F c) d) => G.(MorphismOf) g ∘ projT1 T c);
-    [ intros; exists (fun f => projT1 (projT2 T _ _ f)) | ];
+    constructor.
+    let F0 := match goal with |- ?R ?F ?G => constr:(F) end in
+    let G0 := match goal with |- ?R ?F ?G => constr:(G) end in
+    (eexists (Build_NaturalTransformation
+                F0 G0
+                (fun cd (g : Morphism _ (F (fst cd)) (snd cd)) => MorphismOf G g ∘ projT1 T (fst cd))
+                _));
+      apply iso_NaturalTransformation1;
+      simpl;
+      intros cd;
+      exists (fun f => projT1 (projT2 T _ _ f));
+      abstract unit_counit_t_single.
+    Grab Existential Variables.
     abstract unit_counit_t_single.
   Defined.
 
-  Definition HomAdjunctionOfCounit (T : AdjunctionCounit F G) : HomAdjunction F G.
-    exists (fun c d (g : Morphism _ (F c) d) =>
-              let inverseOf := (fun s d f => projT1 (projT2 T s d f)) in
-              let f := inverseOf _ _ g in
-              let AComponentsOf_Inverse := projT1 T d ∘ F.(MorphismOf) f in
-              inverseOf _ _ AComponentsOf_Inverse
-           );
-    [ intros; exists (fun f => projT1 T _ ∘ F.(MorphismOf) f) | ];
+  Definition AdjunctionOfCounit (T : AdjunctionCounit F G) : Adjunction F G.
+  Proof.
+    constructor.
+    let F0 := match goal with |- ?R ?F ?G => constr:(F) end in
+    let G0 := match goal with |- ?R ?F ?G => constr:(G) end in
+    (eexists (Build_NaturalTransformation
+                F0 G0
+                (fun cd (g : Morphism _ (F (fst cd)) (snd cd)) =>
+                   let inverseOf := (fun s d f => projT1 (projT2 T s d f)) in
+                   let f := inverseOf _ _ g in
+                   let AComponentsOf_Inverse := projT1 T (snd cd) ∘ F.(MorphismOf) f in
+                   inverseOf _ _ AComponentsOf_Inverse
+                )
+                _));
+      apply iso_NaturalTransformation1;
+      simpl;
+      intros cd;
+      exists (fun f => projT1 T _ ∘ F.(MorphismOf) f);
+      abstract unit_counit_t_single.
+    Grab Existential Variables.
     abstract unit_counit_t_single.
   Defined.
 End AdjunctionEquivalences'.
 
-Coercion HomAdjunction2Adjunction : HomAdjunction >-> Adjunction.
-Coercion Adjunction2HomAdjunction : Adjunction >-> HomAdjunction.
-
-Coercion UnitOf : HomAdjunction >-> AdjunctionUnit.
-Coercion CounitOf : HomAdjunction >-> AdjunctionCounit.
-Coercion UnitCounitOf : HomAdjunction >-> AdjunctionUnitCounit.
+Coercion UnitOf : Adjunction >-> AdjunctionUnit.
+Coercion CounitOf : Adjunction >-> AdjunctionCounit.
+Coercion UnitCounitOf : Adjunction >-> AdjunctionUnitCounit.
 
 Definition AdjunctionUnitWithFunext `{Funext} C D F G := @AdjunctionUnit C D F G.
 Definition AdjunctionCounitWithFunext `{Funext} C D F G := @AdjunctionCounit C D F G.
@@ -423,13 +412,13 @@ Identity Coercion AdjunctionUnit_Funext : AdjunctionUnitWithFunext >-> Adjunctio
 Identity Coercion AdjunctionCounit_Funext : AdjunctionCounitWithFunext >-> AdjunctionCounit.
 Identity Coercion AdjunctionUnitCounit_Funext : AdjunctionUnitCounitWithFunext >-> AdjunctionUnitCounit.
 
-Definition HomAdjunctionOfUnit_Funext `{Funext} C D F G : AdjunctionUnitWithFunext _ _ -> HomAdjunction _ _
-  := @HomAdjunctionOfUnit _ C D F G.
-Definition HomAdjunctionOfCounit_Funext `{Funext} C D F G : AdjunctionCounitWithFunext _ _ -> HomAdjunction _ _
-  := @HomAdjunctionOfCounit _ C D F G.
-Definition HomAdjunctionOfUnitCounit_Funext `{Funext} C D F G : AdjunctionUnitCounitWithFunext _ _ -> HomAdjunction _ _
-  := @HomAdjunctionOfUnitCounit _ C D F G.
+Definition AdjunctionOfUnit_Funext `{Funext} C D F G : AdjunctionUnitWithFunext _ _ -> Adjunction _ _
+  := @AdjunctionOfUnit _ C D F G.
+Definition AdjunctionOfCounit_Funext `{Funext} C D F G : AdjunctionCounitWithFunext _ _ -> Adjunction _ _
+  := @AdjunctionOfCounit _ C D F G.
+Definition AdjunctionOfUnitCounit_Funext `{Funext} C D F G : AdjunctionUnitCounitWithFunext _ _ -> Adjunction _ _
+  := @AdjunctionOfUnitCounit _ C D F G.
 
-Coercion HomAdjunctionOfUnit_Funext : AdjunctionUnitWithFunext >-> HomAdjunction.
-Coercion HomAdjunctionOfCounit_Funext : AdjunctionCounitWithFunext >-> HomAdjunction.
-Coercion HomAdjunctionOfUnitCounit_Funext : AdjunctionUnitCounitWithFunext >-> HomAdjunction.
+Coercion AdjunctionOfUnit_Funext : AdjunctionUnitWithFunext >-> Adjunction.
+Coercion AdjunctionOfCounit_Funext : AdjunctionCounitWithFunext >-> Adjunction.
+Coercion AdjunctionOfUnitCounit_Funext : AdjunctionUnitCounitWithFunext >-> Adjunction.
