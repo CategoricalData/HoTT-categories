@@ -116,3 +116,7 @@ Hint Rewrite @AssociativityNoEvar using noEvar : morphism.
 
 Ltac try_associativity_quick tac := try_rewrite Associativity tac.
 Ltac try_associativity tac := try_rewrite_by AssociativityNoEvar ltac:(idtac; noEvar) tac.
+Ltac try_associativity_quick_rewrite H := try_associativity_quick ltac:(rewrite H).
+Ltac try_associativity_quick_rewrite_rev H := try_associativity_quick ltac:(rewrite <- H).
+Ltac try_associativity_rewrite H := try_associativity ltac:(rewrite H).
+Ltac try_associativity_rewrite_rev H := try_associativity ltac:(rewrite <- H).
