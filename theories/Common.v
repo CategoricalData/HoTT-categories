@@ -241,12 +241,12 @@ Ltac specialize_all_ways :=
 
 (* try to do [tac] after [repeat rewrite] on [rew_H], in both directions *)
 Ltac try_rewrite rew_H tac :=
-  (repeat rewrite rew_H; tac) ||
-    (repeat rewrite <- rew_H; tac).
+  (rewrite ?rew_H; tac) ||
+    (rewrite <- ?rew_H; tac).
 
 Ltac try_rewrite_by rew_H by_tac tac :=
-  (repeat rewrite rew_H by by_tac; tac) ||
-    (repeat rewrite <- rew_H by by_tac; tac).
+  (rewrite ?rew_H by by_tac; tac) ||
+    (rewrite <- ?rew_H by by_tac; tac).
 
 Ltac try_rewrite_repeat rew_H tac :=
   (repeat (rewrite rew_H; tac)) ||
