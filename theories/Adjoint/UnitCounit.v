@@ -184,15 +184,27 @@ Section Adjunction.
   Local Reserved Notation "'ε'".
   Local Reserved Notation "'η'".
 
-  (* Use the per-object version of the equations, so that we don't need the associator in the middle *)
+  (** Use the per-object version of the equations, so that we don't
+      need the associator in the middle.  Also, explicitly simplify
+      some of the types so that [rewrite] works better. *)
   Record AdjunctionUnitCounit :=
     {
       Adjunction_Unit : NaturalTransformation (IdentityFunctor C) (G ∘ F)
                                               where "'η'" := Adjunction_Unit;
       Adjunction_Counit : NaturalTransformation (F ∘ G) (IdentityFunctor D)
                                                 where "'ε'" := Adjunction_Counit;
-      Adjunction_UnitCounitEquation1 : forall Y : C, ε (F Y) ∘ F.(MorphismOf) (η Y) = Identity (F Y);
-      Adjunction_UnitCounitEquation2 : forall X : D, G.(MorphismOf) (ε X) ∘ η (G X) = Identity (G X)
+      Adjunction_UnitCounitEquation1
+      : forall Y : C, (*ε (F Y) ∘ F ₁ (η Y) = Identity (F Y);*)
+          @Compose D (F Y) (F (G (F Y))) (F Y)
+                   (ε (F Y))
+                   (MorphismOf F (s := Y) (d := G (F Y)) (η Y))
+          = Identity (F Y);
+      Adjunction_UnitCounitEquation2
+      : forall X : D, (* G ₁ (ε X) ∘ η (G X) = Identity (G X) *)
+          @Compose C (G X) (G (F (G X))) (G X)
+                   (MorphismOf G (s := F (G X)) (d := X) (ε X))
+                   (η (G X))
+          = Identity (G X)
     }.
 End Adjunction.
 
