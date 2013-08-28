@@ -80,6 +80,7 @@ MODULES    := theories/Peano \
 	theories/Adjoint/Hom \
 	theories/Adjoint/Duals \
 	theories/Adjoint/Identity \
+	theories/Adjoint/Composition \
 	theories/Adjoint \
 	\
 	theories/Utf8
