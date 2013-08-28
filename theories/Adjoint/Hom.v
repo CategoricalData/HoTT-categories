@@ -216,19 +216,12 @@ Section AdjunctionEquivalences'.
   Local Arguments HomFunctor_MorphismOf / .
   Local Open Scope morphism_scope.
 
-  Local Ltac unit_counit_both_t' :=
-    simpl in *;
-    try_associativity_quick
-      ltac:(progress rewrite ?Adjunction_UnitCounitEquation1, ?Adjunction_UnitCounitEquation2).
-
   Local Ltac unit_counit_single_t' :=
     idtac;
     match goal with
       | _ => done
       | [ |- ?x.1 = _ ] => apply (snd x.2)
       | [ |- appcontext[?x.1] ] => rewrite (fst x.2)
-      (*| [ |- appcontext[MorphismOf ?G (MorphismOf ?F ?m)] ]
-        => change (MorphismOf G (MorphismOf F m)) with (MorphismOf (G ∘ F) m)*)
       | _ => simpl; rewrite <- ?FCompositionOf; try_associativity_quick ltac:(f_ap)
     end.
 
@@ -252,28 +245,7 @@ Section AdjunctionEquivalences'.
              | _ => progress simpl
            end.
 
-  Local Ltac unit_counit_t_both := unit_counit_t_with unit_counit_both_t'.
   Local Ltac unit_counit_t_single := unit_counit_t_with unit_counit_single_t'.
-
-  Definition AdjunctionHomOfAdjunctionUnitCounit
-             (T : AdjunctionUnitCounit F G)
-  : AdjunctionHom F G.
-  Proof.
-    constructor.
-    let F0 := match goal with |- ?R ?F ?G => constr:(F) end in
-    let G0 := match goal with |- ?R ?F ?G => constr:(G) end in
-    (eexists (Build_NaturalTransformation
-                F0 G0
-                (fun cd (g : Morphism _ (F (fst cd)) (snd cd)) => MorphismOf G g ∘ Adjunction_Unit T (fst cd))
-                _));
-      apply iso_NaturalTransformation1;
-      simpl;
-      intros cd;
-      exists (fun f => Adjunction_Counit T (snd cd) ∘ F.(MorphismOf) f);
-      abstract unit_counit_t_both.
-    Grab Existential Variables.
-    abstract unit_counit_t_both.
-  Defined.
 
   Definition AdjunctionHomOfAdjunctionUnit
              (T : AdjunctionUnit F G)
@@ -294,31 +266,6 @@ Section AdjunctionEquivalences'.
     Grab Existential Variables.
     abstract unit_counit_t_single.
   Defined.
-
-  Definition AdjunctionHomOfAdjunctionCounit
-             (T : AdjunctionCounit F G)
-  : AdjunctionHom F G.
-  Proof.
-    constructor.
-    let F0 := match goal with |- ?R ?F ?G => constr:(F) end in
-    let G0 := match goal with |- ?R ?F ?G => constr:(G) end in
-    (eexists (Build_NaturalTransformation
-                F0 G0
-                (fun cd (g : Morphism _ (F (fst cd)) (snd cd)) =>
-                   let inverseOf := (fun s d f => projT1 (projT2 T s d f)) in
-                   let f := inverseOf _ _ g in
-                   let AComponentsOf_Inverse := projT1 T (snd cd) ∘ F.(MorphismOf) f in
-                   inverseOf _ _ AComponentsOf_Inverse
-                )
-                _));
-      apply iso_NaturalTransformation1;
-      simpl;
-      intros cd;
-      exists (fun f => projT1 T _ ∘ F.(MorphismOf) f);
-      abstract unit_counit_t_single.
-    Grab Existential Variables.
-    abstract unit_counit_t_single.
-  Defined.
 End AdjunctionEquivalences'.
 
 Coercion AdjunctionUnitOfAdjunctionHom : AdjunctionHom >-> AdjunctionUnit.
@@ -331,14 +278,17 @@ Identity Coercion AdjunctionCounit_Funext : AdjunctionCounitWithFunext >-> Adjun
 Identity Coercion AdjunctionUnitCounit_Funext : AdjunctionUnitCounitWithFunext >-> AdjunctionUnitCounit.
 
 Definition AdjunctionHomOfAdjunctionUnit_Funext `{Funext} C D F G
-: AdjunctionUnitWithFunext _ _ -> AdjunctionHom _ _
-  := @AdjunctionHomOfAdjunctionUnit _ C D F G.
+           (A : AdjunctionUnitWithFunext _ _)
+: AdjunctionHom _ _
+  := @AdjunctionHomOfAdjunctionUnit _ C D F G A.
 Definition AdjunctionHomOfAdjunctionCounit_Funext `{Funext} C D F G
-: AdjunctionCounitWithFunext _ _ -> AdjunctionHom _ _
-  := @AdjunctionHomOfAdjunctionCounit _ C D F G.
+           (A : AdjunctionCounitWithFunext _ _)
+: AdjunctionHom _ _
+  := @AdjunctionHomOfAdjunctionUnit _ C D F G A.
 Definition AdjunctionHomOfAdjunctionUnitCounit_Funext `{Funext} C D F G
-: AdjunctionUnitCounitWithFunext _ _ -> AdjunctionHom _ _
-  := @AdjunctionHomOfAdjunctionUnitCounit _ C D F G.
+           (A : AdjunctionUnitCounitWithFunext _ _)
+: AdjunctionHom _ _
+  := @AdjunctionHomOfAdjunctionUnit _ C D F G A.
 
 Coercion AdjunctionHomOfAdjunctionUnit_Funext
 : AdjunctionUnitWithFunext >-> AdjunctionHom.
