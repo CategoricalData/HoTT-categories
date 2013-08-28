@@ -30,7 +30,7 @@ Notation "T ^op" := (OppositeNaturalTransformation T) : natural_transformation_s
    unicode characters [ᵒᵖ].  So, really, this notation is just a
    reminder to do something when Coq's parser is better. *)
 
-Notation "T ᵒᵖ" := (OppositeNaturalTransformation T) : natural_transformation_scope.
+Notation "T ᵒᵖ" := (OppositeNaturalTransformation T) (only parsing) : natural_transformation_scope.
 
 Section OppositeNaturalTransformation_Id.
   Variable C : PreCategory.
