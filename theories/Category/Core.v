@@ -76,6 +76,7 @@ Hint Rewrite @LeftIdentity @RightIdentity : morphism.
 Section IdentityUnique.
   Variable C : PreCategory.
 
+  (** The Identity morphism is uniuqe. *)
   Lemma IdentityUnique (id0 id1 : forall x, Morphism C x x)
         (id1_left : forall s d (m : Morphism C s d), id1 _ ∘ m = m)
         (id0_right : forall s d (m : Morphism C s d), m ∘ id0 _ = m)
@@ -85,6 +86,16 @@ Section IdentityUnique.
       [ symmetry; apply id1_left
       | apply id0_right ].
   Qed.
+
+  (** Anything equal to the identity acts like it.  This is obvious,
+      but useful as a helper lemma for automation. *)
+  Definition concat_LeftIdentity s d (m : Morphism C s d) i
+  : i = ─ -> i ∘ m = m
+    := fun H => (ap10 (ap _ H) _ @ LeftIdentity _ _ _ m)%path.
+
+  Definition concat_RightIdentity s d (m : Morphism C s d) i
+  : i = ─ -> m ∘ i = m
+    := fun H => (ap _ H @ RightIdentity _ _ _ m)%path.
 End IdentityUnique.
 (** * Version of [Associativity] that avoids going off into the weeds in the presence of unification variables *)
 
