@@ -1,1 +1,1 @@
-Require Export Adjoint.UnitCounit Adjoint.Hom.
+Require Export Adjoint.UnitCounit Adjoint.Hom Adjoint.UnitCounitCoercions.

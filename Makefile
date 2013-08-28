@@ -76,6 +76,7 @@ MODULES    := theories/Peano \
 	theories/Hom \
 	\
 	theories/Adjoint/UnitCounit \
+	theories/Adjoint/UnitCounitCoercions \
 	theories/Adjoint/Hom \
 	theories/Adjoint \
 	\

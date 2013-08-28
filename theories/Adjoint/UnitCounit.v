@@ -216,3 +216,8 @@ Arguments Adjunction_Unit [C%category D%category F%functor G%functor] _%adjuncti
 Arguments Adjunction_Counit [C%category D%category F%functor G%functor] _%adjunction.
 Arguments Adjunction_UnitCounitEquation1 [C%category D%category F%functor G%functor] _%adjunction _%object.
 Arguments Adjunction_UnitCounitEquation2 [C%category D%category F%functor G%functor] _%adjunction _%object.
+
+Notation Adjunction := AdjunctionUnitCounit.
+
+Infix "-|" := Adjunction : type_scope.
+Infix "⊣" := Adjunction : type_scope.
