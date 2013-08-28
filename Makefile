@@ -79,6 +79,7 @@ MODULES    := theories/Peano \
 	theories/Adjoint/UnitCounitCoercions \
 	theories/Adjoint/Hom \
 	theories/Adjoint/Duals \
+	theories/Adjoint/Identity \
 	theories/Adjoint \
 	\
 	theories/Utf8
