@@ -82,6 +82,7 @@ MODULES    := theories/Peano \
 	theories/Adjoint/Identity \
 	theories/Adjoint/Composition \
 	theories/Adjoint/Equality \
+	theories/Adjoint/UniversalMorphisms \
 	theories/Adjoint \
 	\
 	theories/Utf8
