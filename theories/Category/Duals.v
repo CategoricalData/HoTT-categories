@@ -1,4 +1,4 @@
-Require Export Category Category.Objects.
+Require Export Category.Core Category.Objects.
 Require Import Common.
 
 Set Implicit Arguments.
@@ -20,6 +20,7 @@ Section OppositeCategory.
                            (fun _ _ _ _ _ _ _ => @Associativity _ _ _ _ _ _ _ _)
                            (fun _ _ => @RightIdentity _ _ _)
                            (fun _ _ => @LeftIdentity _ _ _)
+                           (@IdentityIdentity C)
                            _.
 End OppositeCategory.
 

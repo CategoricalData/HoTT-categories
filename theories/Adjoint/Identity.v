@@ -13,8 +13,8 @@ Section IdentityAdjunction.
          C C ─ ─
          (IdentityNaturalTransformation _)
          (IdentityNaturalTransformation _)
-         (fun _ => LeftIdentity _ _ _ _)
-         (fun _ => RightIdentity _ _ _ _).
+         (fun _ => IdentityIdentity _ _)
+         (fun _ => IdentityIdentity _ _).
 End IdentityAdjunction.
 
 (* I'm not sure how much I like this notation... *)

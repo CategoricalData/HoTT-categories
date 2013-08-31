@@ -24,6 +24,7 @@ Section IndiscreteCategory.
                            (fun _ _ _ _ _ _ _ => idpath)
                            (fun _ _ f => match f with tt => idpath end)
                            (fun _ _ f => match f with tt => idpath end)
+                           (fun _ => idpath)
                            _.
 End IndiscreteCategory.
 

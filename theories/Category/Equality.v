@@ -131,7 +131,7 @@ Section PreCategories_Equal.
     [ refine {| center := (Build_PreCategory C D
                                          (fun _ => center D)
                                          (fun _ _ _ => Identity _)
-                                         (fun _ _ _ _ _ => symmetry _ _ (LeftIdentity D _ _ _))
+                                         (fun _ _ _ _ _ => symmetry _ _ (IdentityIdentity D _))
                                          (fun _ => idpath)) |};
       intros;
       match goal with

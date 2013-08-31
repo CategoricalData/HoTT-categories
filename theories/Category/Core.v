@@ -30,6 +30,8 @@ Record PreCategory :=
 
     LeftIdentity : forall a b (f : Morphism a b), (Identity b) ∘ f = f;
     RightIdentity : forall a b (f : Morphism a b), f ∘ (Identity a) = f;
+    (* Ask for the double-identity version so that [FunctorFromTerminal Cᵒᵖ X] and [(FunctorFromTerminal C X)ᵒᵖ] are convertible. *)
+    IdentityIdentity : forall x, Identity x ∘ Identity x = Identity x;
 
     MorphismIsHSet : forall s d, IsHSet (Morphism s d)
   }.
@@ -57,7 +59,8 @@ Definition Build_PreCategory
                          Associativity
                          (fun _ _ _ _ _ _ _ => symmetry _ _ (Associativity _ _ _ _ _ _ _))
                          LeftIdentity
-                         RightIdentity.
+                         RightIdentity
+                         (fun _ => LeftIdentity _ _ _).
 
 Existing Instance MorphismIsHSet.
 Instance MorphismIsHSet' C s d (m1 m2 : Morphism C s d) (pf1 pf2 : m1 = m2)

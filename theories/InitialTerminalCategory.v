@@ -19,7 +19,7 @@ Section Functors.
   Definition FunctorToTerminal : Functor C TerminalCategory := FunctorTo1.
 
   Definition FunctorFrom1 (c : C) : Functor 1 C
-    := Build_Functor 1 C (fun _ => c) (fun _ _ _ => Identity c) (fun _ _ _ _ _ => symmetry _ _ (@RightIdentity _ _ _ _)) (fun _ => idpath).
+    := Build_Functor 1 C (fun _ => c) (fun _ _ _ => Identity c) (fun _ _ _ _ _ => symmetry _ _ (@IdentityIdentity _ _)) (fun _ => idpath).
   Definition FunctorFromTerminal (c : C) : Functor TerminalCategory C := FunctorFrom1 c.
 
   Definition FunctorFrom0 : Functor 0 C
