@@ -1229,6 +1229,14 @@ Hint Extern 0 (@JMeq _ _ Empty_set _) => apply Empty_set_JMeqr.
 
 (** Fixes for HoTT library **)
 
+Tactic Notation "subst" :=
+  repeat match goal with
+           | [ H : ?x = ?y |- _ ]
+             => is_var y; (destruct H || induction H)
+           | [ H : ?x = ?y |- _ ]
+             => is_var x; symmetry in H;
+                (destruct H || induction H)
+         end.
 
 
 (** A variant of [induction] which also tries [destruct] and [case], and may be extended to using other [destruct]-like tactics. *)
