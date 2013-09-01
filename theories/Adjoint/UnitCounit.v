@@ -1,5 +1,5 @@
 Require Export Category Functor NaturalTransformation.
-Require Import Common.
+Require Import Common Category.Duals Functor.Duals NaturalTransformation.Duals.
 
 Set Implicit Arguments.
 Set Asymmetric Patterns.
@@ -9,11 +9,6 @@ Local Open Scope category_scope.
 Local Open Scope morphism_scope.
 
 Section Adjunction.
-  Variable C : PreCategory.
-  Variable D : PreCategory.
-  Variable F : Functor C D.
-  Variable G : Functor D C.
-
   (** Quoting from Awody's "Category Theory":
 
       An adjunction between categories [C] and [D] consists of
@@ -70,11 +65,18 @@ Section Adjunction.
      rather ``this functor has an adjoint'' that we are concerned
      with.  **)
 
-  Definition AdjunctionUnit :=
-    { T : NaturalTransformation (IdentityFunctor C) (G ∘ F)
-    | forall (c : C) (d : D) (f : C.(Morphism) c (G d)),
-        { g : D.(Morphism) (F c) d | unique (fun g => G ₁ g ∘ T c = f) g }
-    }.
+  Section unit.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable F : Functor C D.
+    Variable G : Functor D C.
+
+    Definition AdjunctionUnit :=
+      { T : NaturalTransformation (IdentityFunctor C) (G ∘ F)
+      | forall (c : C) (d : D) (f : C.(Morphism) c (G d)),
+          { g : D.(Morphism) (F c) d | unique (fun g => G ₁ g ∘ T c = f) g }
+      }.
+  End unit.
 
   (**
      Paraphrasing and quoting from Awody's "Category Theory":
@@ -116,11 +118,73 @@ Section Adjunction.
 
     * The statement (o) is the UMP of the counit [U].
     **)
-  Definition AdjunctionCounit :=
-    { U : NaturalTransformation (F ∘ G) (IdentityFunctor D)
-    | forall (c : C) (d : D) (g : D.(Morphism) (F c) d),
-        { f : C.(Morphism) c (G d) | unique (fun f => U d ∘ F ₁ f = g) f }
-    }.
+  Section counit.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable F : Functor C D.
+    Variable G : Functor D C.
+
+    Definition AdjunctionCounit :=
+      { U : NaturalTransformation (F ∘ G) (IdentityFunctor D)
+      | forall (c : C) (d : D) (g : D.(Morphism) (F c) d),
+          { f : C.(Morphism) c (G d) | unique (fun f => U d ∘ F ₁ f = g) f }
+      }.
+  End counit.
+
+  (** The counit is just the dual of the unit.  We formalize this here
+      so that we can use it to make coercions easier. *)
+
+  Section unit_counit_op.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable F : Functor C D.
+    Variable G : Functor D C.
+
+    Definition AdjunctionUnitOpCounit (A : AdjunctionUnit G^op F^op)
+    : AdjunctionCounit F G
+      := existT
+           (fun U : NaturalTransformation (F ∘ G) ─ =>
+              forall (c : C) (d : D) (g : Morphism D (F c) d),
+                {f : Morphism C c (G d)
+                | unique (fun f0 : Morphism C c (G d) => U d ∘ F ₁ f0 = g) f})
+           (@OppositeNaturalTransformation_Tinv _ _ (F ∘ G) ─ A.1)
+           (fun c d g => A.2 d c g).
+
+    Definition AdjunctionUnitOpCounit_inv (A : AdjunctionUnit G F)
+    : AdjunctionCounit F^op G^op
+      := existT
+           (fun U : NaturalTransformation (F ^op ∘ G ^op) ─
+            => forall (c : C ^op) (d : D ^op) (g : Morphism D ^op ((F ^op)%functor c) d),
+                 {f : Morphism C ^op c ((G ^op)%functor d)
+                 | unique
+                     (fun f0 : Morphism C ^op c ((G ^op)%functor d) => U d ∘ F ^op ₁ f0 = g)
+                     f})
+           (@OppositeNaturalTransformation_Finv _ _ (F^op ∘ G^op) ─ A.1)
+           (fun c d g => A.2 d c g).
+
+    Definition AdjunctionCounitOpUnit (A : AdjunctionCounit G^op F^op)
+    : AdjunctionUnit F G
+      := existT
+           (fun T : NaturalTransformation ─ (G ∘ F) =>
+              forall (c : C) (d : D) (f : Morphism C c (G d)),
+                { g : Morphism D (F c) d
+                | unique (fun g0 : Morphism D (F c) d =>
+                            G ₁ g0 ∘ T c = f) g })
+           (@OppositeNaturalTransformation_Tinv _ _ ─ (G ∘ F) A.1)
+           (fun c d g => A.2 d c g).
+
+    Definition AdjunctionCounitOpUnit_inv (A : AdjunctionCounit G F)
+    : AdjunctionUnit F^op G^op
+      := existT
+           (fun T : NaturalTransformation ─ (G ^op ∘ F ^op)
+            => forall (c : C ^op) (d : D ^op) (f : Morphism C ^op c ((G ^op)%functor d)),
+                 {g : Morphism D ^op ((F ^op)%functor c) d
+                 | unique
+                     (fun g0 : Morphism D ^op ((F ^op)%functor c) d => G ^op ₁ g0 ∘ T c = f)
+                     g})
+           (@OppositeNaturalTransformation_Finv _ _ ─ (G^op ∘ F^op) A.1)
+           (fun c d g => A.2 d c g).
+  End unit_counit_op.
 
   (** Quoting Wikipedia on Adjoint Functors:
 
@@ -181,31 +245,38 @@ Section Adjunction.
       term unit here is borrowed from the theory of monads where it
       looks like the insertion of the identity 1 into a monoid.  *)
 
-  Local Reserved Notation "'ε'".
-  Local Reserved Notation "'η'".
+  Section unit_counit.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable F : Functor C D.
+    Variable G : Functor D C.
 
-  (** Use the per-object version of the equations, so that we don't
-      need the associator in the middle.  Also, explicitly simplify
-      some of the types so that [rewrite] works better. *)
-  Record AdjunctionUnitCounit :=
-    {
-      Adjunction_Unit : NaturalTransformation (IdentityFunctor C) (G ∘ F)
-                                              where "'η'" := Adjunction_Unit;
-      Adjunction_Counit : NaturalTransformation (F ∘ G) (IdentityFunctor D)
-                                                where "'ε'" := Adjunction_Counit;
-      Adjunction_UnitCounitEquation1
-      : forall Y : C, (*ε (F Y) ∘ F ₁ (η Y) = Identity (F Y);*)
-          @Compose D (F Y) (F (G (F Y))) (F Y)
-                   (ε (F Y))
-                   (MorphismOf F (s := Y) (d := G (F Y)) (η Y))
-          = Identity (F Y);
-      Adjunction_UnitCounitEquation2
-      : forall X : D, (* G ₁ (ε X) ∘ η (G X) = Identity (G X) *)
-          @Compose C (G X) (G (F (G X))) (G X)
-                   (MorphismOf G (s := F (G X)) (d := X) (ε X))
-                   (η (G X))
-          = Identity (G X)
-    }.
+    Local Reserved Notation "'ε'".
+    Local Reserved Notation "'η'".
+
+    (** Use the per-object version of the equations, so that we don't
+        need the associator in the middle.  Also, explicitly simplify
+        some of the types so that [rewrite] works better. *)
+    Record AdjunctionUnitCounit :=
+      {
+        Adjunction_Unit : NaturalTransformation (IdentityFunctor C) (G ∘ F)
+                                                where "'η'" := Adjunction_Unit;
+        Adjunction_Counit : NaturalTransformation (F ∘ G) (IdentityFunctor D)
+                                                  where "'ε'" := Adjunction_Counit;
+        Adjunction_UnitCounitEquation1
+        : forall Y : C, (*ε (F Y) ∘ F ₁ (η Y) = Identity (F Y);*)
+            @Compose D (F Y) (F (G (F Y))) (F Y)
+                     (ε (F Y))
+                     (MorphismOf F (s := Y) (d := G (F Y)) (η Y))
+            = Identity (F Y);
+        Adjunction_UnitCounitEquation2
+        : forall X : D, (* G ₁ (ε X) ∘ η (G X) = Identity (G X) *)
+            @Compose C (G X) (G (F (G X))) (G X)
+                     (MorphismOf G (s := F (G X)) (d := X) (ε X))
+                     (η (G X))
+            = Identity (G X)
+      }.
+  End unit_counit.
 End Adjunction.
 
 Bind Scope adjunction_scope with AdjunctionUnit.

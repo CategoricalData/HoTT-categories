@@ -24,6 +24,18 @@ Section OppositeAdjunction.
          (Adjunction_UnitCounitEquation2 A)
          (Adjunction_UnitCounitEquation1 A).
 
+  Definition OppositeAdjunction_inv
+             (F : Functor C D)
+             (G : Functor D C)
+             (A : F^op ⊣ G^op)
+  : G ⊣ F
+    := @Build_AdjunctionUnitCounit
+         _ _ G F
+         (@OppositeNaturalTransformation_Tinv _ _ ─ (F ∘ G) (Adjunction_Counit A))
+         (@OppositeNaturalTransformation_Tinv _ _ (G ∘ F) ─ (Adjunction_Unit A))
+         (Adjunction_UnitCounitEquation2 A)
+         (Adjunction_UnitCounitEquation1 A).
+
   Definition OppositeAdjunction'R
              (F : Functor C^op D^op)
              (G : Functor D C)
@@ -50,6 +62,7 @@ Section OppositeAdjunction.
 End OppositeAdjunction.
 
 Notation "A ^op" := (OppositeAdjunction A) : adjunction_scope.
+Notation "A ^op'" := (OppositeAdjunction_inv A) : adjunction_scope.
 Notation "A ^op'L" := (OppositeAdjunction'L A) : adjunction_scope.
 Notation "A ^op'R" := (OppositeAdjunction'R A) : adjunction_scope.
 
@@ -59,6 +72,7 @@ Notation "A ^op'R" := (OppositeAdjunction'R A) : adjunction_scope.
    reminder to do something when Coq's parser is better. *)
 
 Notation "A ᵒᵖ" := (OppositeAdjunction A) (only parsing) : adjunction_scope.
+Notation "A ᵒᵖ'" := (OppositeAdjunction_inv A) (only parsing) : adjunction_scope.
 Notation "A ᵒᵖ'ᴸ" := (OppositeAdjunction'L A) (only parsing) : adjunction_scope.
 Notation "A ᵒᵖ'ᴿ" := (OppositeAdjunction'R A) (only parsing) : adjunction_scope.
 
