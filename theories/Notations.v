@@ -12,9 +12,11 @@ Reserved Notation "i ^-1" (at level 3).
 Reserved Notation "i ^op" (at level 3).
 Reserved Notation "i ^op'" (at level 3).
 Reserved Notation "i ^op''" (at level 3).
+Reserved Notation "i ^op'''" (at level 3).
 Reserved Notation "C ᵒᵖ" (at level 3).
 Reserved Notation "C ᵒᵖ'" (at level 3).
 Reserved Notation "C ᵒᵖ''" (at level 3).
+Reserved Notation "C ᵒᵖ'''" (at level 3).
 
 Reserved Notation "C ★^ M D" (at level 70, no associativity).
 Reserved Notation "C ★^{ M } D" (at level 70, no associativity).
