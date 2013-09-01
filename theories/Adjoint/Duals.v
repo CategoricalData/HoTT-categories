@@ -11,10 +11,11 @@ Local Open Scope category_scope.
 Section OppositeAdjunction.
   Variable C : PreCategory.
   Variable D : PreCategory.
-  Variable F : Functor C D.
-  Variable G : Functor D C.
 
-  Definition OppositeAdjunction (A : F ⊣ G)
+  Definition OppositeAdjunction
+             (F : Functor C D)
+             (G : Functor D C)
+             (A : F ⊣ G)
   : G^op ⊣ F^op
     := @Build_AdjunctionUnitCounit
          _ _ (G^op) (F^op)

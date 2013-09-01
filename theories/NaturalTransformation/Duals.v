@@ -11,18 +11,38 @@ Local Open Scope category_scope.
 Section OppositeNaturalTransformation.
   Variable C : PreCategory.
   Variable D : PreCategory.
-  Variables F G : Functor C D.
-  Variable T : NaturalTransformation F G.
 
   Definition OppositeNaturalTransformation
-  : NaturalTransformation (G ^op) (F ^op)
-    := Build_NaturalTransformation' (G ^op) (F ^op)
+             (F G : Functor C D)
+             (T : NaturalTransformation F G)
+  : NaturalTransformation G^op F^op
+    := Build_NaturalTransformation' (G^op) (F^op)
+                                    (ComponentsOf T)
+                                    (fun s d => Commutes_sym T d s)
+                                    (fun s d => Commutes T d s).
+
+  Definition OppositeNaturalTransformation_Finv
+             (F G : Functor C^op D^op)
+             (T : NaturalTransformation G^op' F^op')
+  : NaturalTransformation F G
+    := Build_NaturalTransformation' F G
+                                    (ComponentsOf T)
+                                    (fun s d => Commutes_sym T d s)
+                                    (fun s d => Commutes T d s).
+
+  Definition OppositeNaturalTransformation_Tinv
+             (F G : Functor C D)
+             (T : NaturalTransformation G^op F^op)
+  : NaturalTransformation F G
+    := Build_NaturalTransformation' F G
                                     (ComponentsOf T)
                                     (fun s d => Commutes_sym T d s)
                                     (fun s d => Commutes T d s).
 End OppositeNaturalTransformation.
 
 Notation "T ^op" := (OppositeNaturalTransformation T) : natural_transformation_scope.
+Notation "T ^op'" := (OppositeNaturalTransformation_Finv T) : natural_transformation_scope.
+Notation "T ^op''" := (OppositeNaturalTransformation_Tinv T) : natural_transformation_scope.
 
 
 (* This notation should be [only parsing] for now, because otherwise
@@ -31,6 +51,8 @@ Notation "T ^op" := (OppositeNaturalTransformation T) : natural_transformation_s
    reminder to do something when Coq's parser is better. *)
 
 Notation "T ᵒᵖ" := (OppositeNaturalTransformation T) (only parsing) : natural_transformation_scope.
+Notation "T ᵒᵖ'" := (OppositeNaturalTransformation_Finv T) (only parsing) : natural_transformation_scope.
+Notation "T ᵒᵖ''" := (OppositeNaturalTransformation_Tinv T) (only parsing) : natural_transformation_scope.
 
 Section OppositeNaturalTransformation_Id.
   Variable C : PreCategory.

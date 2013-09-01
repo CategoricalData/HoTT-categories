@@ -4,6 +4,8 @@ Reserved Notation "x ≅ y" (at level 70, no associativity).
 
 Reserved Notation "i ⁻¹" (at level 3).
 Reserved Notation "C ᵒᵖ" (at level 3).
+Reserved Notation "C ᵒᵖ'" (at level 3).
+Reserved Notation "C ᵒᵖ''" (at level 3).
 
 Reserved Notation "C ★^ M D" (at level 70, no associativity).
 Reserved Notation "C ★^{ M } D" (at level 70, no associativity).
