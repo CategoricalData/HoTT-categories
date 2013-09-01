@@ -23,9 +23,35 @@ Section OppositeAdjunction.
          ((Adjunction_Unit A)^op)
          (Adjunction_UnitCounitEquation2 A)
          (Adjunction_UnitCounitEquation1 A).
+
+  Definition OppositeAdjunction'R
+             (F : Functor C^op D^op)
+             (G : Functor D C)
+             (A : F ⊣ G^op)
+  : G ⊣ F^op'
+    := @Build_AdjunctionUnitCounit
+         _ _ G (F^op')
+         ((Adjunction_Counit A)^op')
+         ((Adjunction_Unit A)^op')
+         (Adjunction_UnitCounitEquation2 A)
+         (Adjunction_UnitCounitEquation1 A).
+
+  Definition OppositeAdjunction'L
+             (F : Functor C D)
+             (G : Functor D^op C^op)
+             (A : F^op ⊣ G)
+  : G^op' ⊣ F
+    := @Build_AdjunctionUnitCounit
+         _ _ (G^op') F
+         ((Adjunction_Counit A)^op')
+         ((Adjunction_Unit A)^op')
+         (Adjunction_UnitCounitEquation2 A)
+         (Adjunction_UnitCounitEquation1 A).
 End OppositeAdjunction.
 
 Notation "A ^op" := (OppositeAdjunction A) : adjunction_scope.
+Notation "A ^op'L" := (OppositeAdjunction'L A) : adjunction_scope.
+Notation "A ^op'R" := (OppositeAdjunction'R A) : adjunction_scope.
 
 (* This notation should be [only parsing] for now, because otherwise
    copy/paste doesn't work, because the parser doesn't recognize the
@@ -33,6 +59,8 @@ Notation "A ^op" := (OppositeAdjunction A) : adjunction_scope.
    reminder to do something when Coq's parser is better. *)
 
 Notation "A ᵒᵖ" := (OppositeAdjunction A) (only parsing) : adjunction_scope.
+Notation "A ᵒᵖ'ᴸ" := (OppositeAdjunction'L A) (only parsing) : adjunction_scope.
+Notation "A ᵒᵖ'ᴿ" := (OppositeAdjunction'R A) (only parsing) : adjunction_scope.
 
 Section OppositeAdjunction_Id.
   Variable C : PreCategory.

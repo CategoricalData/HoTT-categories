@@ -1,5 +1,5 @@
 Require Export HoTT HoTT.types.Sum.
-Require Export Notations.
+Require Export Notations NotationsUtf8.
 
 Set Implicit Arguments.
 Generalizable All Variables.
