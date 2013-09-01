@@ -52,7 +52,7 @@ End OppositeNaturalTransformation.
 Notation "T ^op" := (OppositeNaturalTransformation T) : natural_transformation_scope.
 Notation "T ^op'" := (OppositeNaturalTransformation' T) : natural_transformation_scope.
 Notation "T ^op''" := (OppositeNaturalTransformation_Finv T) : natural_transformation_scope.
-Notation "T ^op'''" := (OppositeNaturalTransformation_Finv T) : natural_transformation_scope.
+Notation "T ^op'''" := (OppositeNaturalTransformation_Tinv T) : natural_transformation_scope.
 
 
 (* This notation should be [only parsing] for now, because otherwise
