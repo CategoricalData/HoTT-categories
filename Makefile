@@ -100,6 +100,7 @@ NEW_PRETTY_TIME_FILE=time-of-build-after-pretty.log
 SINGLE_TIME_FILE=time-of-build.log
 SINGLE_PRETTY_TIME_FILE=time-of-build-pretty.log
 TIME_SHELF_NAME=time-of-build-shelf
+COQDOCFLAGS=--external http://hott.github.io/HoTT/coqdoc-html/ HoTT -interpolate -utf8
 
 
 HOQC=$(shell readlink -f ./HoTT/hoqc)
@@ -129,7 +130,7 @@ pretty-timed:
 	@echo
 
 Makefile.coq: Makefile $(VS) HoTT
-	coq_makefile COQC = "\$$(TIMER) \"$(HOQC)\"" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
+	coq_makefile COQC = "\$$(TIMER) \"$(HOQC)\"" COQDOCFLAGS = "$(COQDOCFLAGS)" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
 
 HoTT/Makefile:
 	cd HoTT; ./configure
