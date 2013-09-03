@@ -37,7 +37,7 @@ git log HEAD{^..,} >> /tmp/msg.txt
 export MESSAGE="$(cat /tmp/msg.txt)"
 
 echo '$ make html'
-make html
+make html || exit $?
 echo '$ git checkout -b gh-pages upstream/gh-pages'
 git checkout -b gh-pages upstream/gh-pages
 rm -rf coqdoc-html
@@ -46,7 +46,7 @@ git add coqdoc-html/*
 echo '$ git commit -am "'"$MESSAGE"'"'
 git commit -am "$MESSAGE"
 # use the copy of the script which stayed around when we changed branches
-source "$DIR"/push_remote_tmp.sh gh-pages:gh-pages
+source "$DIR"/push_remote_tmp.sh gh-pages:gh-pages -f
 
 popd 1>/dev/null
 popd 1>/dev/null
