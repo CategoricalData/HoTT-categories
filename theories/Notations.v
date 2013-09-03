@@ -37,6 +37,7 @@ Delimit Scope object_scope with object.
 Delimit Scope morphism_scope with morphism.
 Delimit Scope category_scope with category.
 Delimit Scope functor_scope with functor.
+Delimit Scope pseudofunctor_scope with pseudofunctor.
 Delimit Scope natural_transformation_scope with natural_transformation.
 Delimit Scope adjunction_scope with adjunction.
 
