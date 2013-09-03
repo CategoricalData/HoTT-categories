@@ -1,7 +1,7 @@
 language: c
 env:
  global:
-  - secure: "xQl3rzBR99zDyI42BEu/8aWArZV6hu1uC41MsIgo4vRDHOfkmEIEbLNmp25oqPjQPVhFRA7YNpcCmjjlgPcIH8YhWwcQkJwdA8JYZ2RFOVcv1ngPfC3tYDu1suzoRZXPSGp/LgAn48MPYf3dAMJvChTX2mE1m9z2P6fkSpkwsnk="
+  - secure: "NvflvvlMf9VcrtA5AOvwcHFaDSSOJcCMLxkDKnLYH8AvW0aoWEWLQgV7uCYSm0FYGQORBvf/pqQbB0eVL8ENl8TYz4sPqB7ZuaOGURcdRLpeC1Ta11c7sTtUKrKuElc/w32AbDVVVZhr7sCKxHqTA9uts8t0QlfJwnk8RX9EhTw="
   - UPDATE_HTML="yes"
 before_script:
  - sudo apt-get update -q
