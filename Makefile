@@ -48,9 +48,6 @@ MODULES    := theories/Peano \
 	theories/Functor/Pointwise \
 	theories/NaturalTransformation/Pointwise \
 	\
-	theories/Pseudofunctor/Core \
-	theories/Pseudofunctor \
-	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
 	theories/Groupoid/Duals \
@@ -65,6 +62,10 @@ MODULES    := theories/Peano \
 	\
 	theories/Cat \
 	theories/Cat/Morphisms \
+	\
+	theories/Pseudofunctor/Core \
+	theories/Pseudofunctor/FromFunctor \
+	theories/Pseudofunctor \
 	\
 	theories/Comma/CommaCategory \
 	theories/Comma/Duals \
