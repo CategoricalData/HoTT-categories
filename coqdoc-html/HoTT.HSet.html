@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab119"></a><h1 class="section">H-Sets</h1>
+<a name="lab101"></a><h1 class="section">H-Sets</h1>
 
 </div>
 <div class="code">
@@ -154,6 +154,12 @@ Hedberg's theorem: any type with "decidable equality" is a set.
 
 <br/>
 <span class="id" type="keyword">Record</span> <a name="hSet"><span class="id" type="record">hSet</span></a> := <a name="BuildhSet"><span class="id" type="constructor">BuildhSet</span></a> {<a name="setT"><span class="id" type="projection">setT</span></a>:&gt; <span class="id" type="keyword">Type</span>; <a name="iss"><span class="id" type="projection">iss</span></a> :&gt; <a class="idref" href="HoTT.Overture.html#IsHSet"><span class="id" type="abbreviation">IsHSet</span></a> <a class="idref" href="HoTT.HSet.html#setT"><span class="id" type="method">setT</span></a>}.<br/>
+</div>
+
+<div class="doc">
+This one is needed in <span class="inlinecode"><a class="idref" href="HoTT.hit.epi.html#epi_surj"><span class="id" type="lemma">epi_surj</span></a></span> to coerce <span class="inlinecode"><a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a></span> into <span class="inlinecode"><a class="idref" href="HoTT.HSet.html#hSet"><span class="id" type="record">hSet</span></a></span>
+</div>
+<div class="code">
 <span class="id" type="keyword">Canonical</span> <span class="id" type="keyword">Structure</span> <span class="id" type="var">default_HSet</span>:= <span class="id" type="keyword">fun</span> <span class="id" type="var">T</span> <span class="id" type="var">P</span> ⇒ (@<a class="idref" href="HoTT.HSet.html#BuildhSet"><span class="id" type="constructor">BuildhSet</span></a> <a class="idref" href="HoTT.HSet.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="HoTT.HSet.html#P"><span class="id" type="variable">P</span></a>).<br/>
 <span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">iss</span>.<br/>
 <span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">iss</span>.<br/>

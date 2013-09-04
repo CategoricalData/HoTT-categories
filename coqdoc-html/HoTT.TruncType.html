@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab130"></a><h1 class="section">Universes of truncated types.</h1>
+<a name="lab105"></a><h1 class="section">Universes of truncated types.</h1>
 
 </div>
 <div class="code">
@@ -38,7 +38,7 @@
 </div>
 
 <div class="doc">
-<a name="lab131"></a><h2 class="section"><span class="inlinecode"><a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a></span>: Universes of truncated types</h2>
+<a name="lab106"></a><h2 class="section"><span class="inlinecode"><a class="idref" href="HoTT.TruncType.html#TruncType"><span class="id" type="record">TruncType</span></a></span>: Universes of truncated types</h2>
 
 <div class="paragraph"> </div>
 
@@ -100,6 +100,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;2: <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#equiv_isequiv"><span class="id" type="projection">equiv_isequiv</span></a>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">case</span> <span class="id" type="var">n</span> <span class="id" type="keyword">as</span> [ | <span class="id" type="var">n'</span>].<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Misc.html#contr_equiv_contr_contr"><span class="id" type="lemma">contr_equiv_contr_contr</span></a>. &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Misc.html#istrunc_equiv"><span class="id" type="lemma">istrunc_equiv</span></a>.<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Global Instance</span> <a name="Sn_trunctype"><span class="id" type="instance">Sn_trunctype</span></a>: <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span>, <a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> (<a class="idref" href="HoTT.Overture.html#trunc_S"><span class="id" type="constructor">trunc_S</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>) (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> (<a class="idref" href="HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> <a class="idref" href="HoTT.TruncType.html#n"><span class="id" type="variable">n</span></a>)) |0.<br/>
+<span class="id" type="tactic">intro</span> <span class="id" type="var">n</span>.<br/>
+<span class="id" type="tactic">apply</span> (@<a class="idref" href="HoTT.Trunc.html#trunc_equiv'"><span class="id" type="definition">trunc_equiv'</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.Equivalences.html#equiv_inverse"><span class="id" type="lemma">equiv_inverse</span></a> <a class="idref" href="HoTT.TruncType.html#issig_trunctype"><span class="id" type="definition">issig_trunctype</span></a>) <span class="id" type="var">_</span> (@<a class="idref" href="HoTT.TruncType.html#istrunc_trunctype"><span class="id" type="instance">istrunc_trunctype</span></a> <span class="id" type="var">n</span>)).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Global Instance</span> <a name="hProp_is_hSet"><span class="id" type="instance">hProp_is_hSet</span></a> : (<a class="idref" href="HoTT.Overture.html#IsHSet"><span class="id" type="abbreviation">IsHSet</span></a> <a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>) | 0.<br/>
+<span class="id" type="tactic">apply</span> (@<a class="idref" href="HoTT.Trunc.html#trunc_equiv'"><span class="id" type="definition">trunc_equiv'</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.HProp.html#issig_hProp"><span class="id" type="definition">issig_hProp</span></a> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.TruncType.html#Sn_trunctype"><span class="id" type="instance">Sn_trunctype</span></a> <span class="id" type="var">_</span>)).<br/>
 <span class="id" type="keyword">Defined</span>.<br/>
 
 <br/>

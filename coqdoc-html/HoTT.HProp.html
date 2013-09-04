@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab117"></a><h1 class="section">HPropositions</h1>
+<a name="lab102"></a><h1 class="section">HPropositions</h1>
 
 </div>
 <div class="code">
@@ -39,7 +39,7 @@
 </div>
 
 <div class="doc">
-<a name="lab118"></a><h2 class="section">Facts about <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a></span></h2>
+<a name="lab103"></a><h2 class="section">Facts about <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a></span></h2>
 
 <div class="paragraph"> </div>
 
@@ -64,7 +64,6 @@ An inhabited proposition is contractible.
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">∃</span> <span class="id" type="var">x</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">y</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> <span class="id" type="var">H</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#center"><span class="id" type="method">center</span></a>, <span class="id" type="var">H</span>.<br/>
 <span class="id" type="keyword">Defined</span>.<br/>
 
@@ -77,8 +76,7 @@ If inhabitation implies contractibility, then we have an h-proposition.  We prob
 <div class="code">
 <span class="id" type="keyword">Instance</span> <a name="hprop_inhabited_contr"><span class="id" type="instance">hprop_inhabited_contr</span></a> (<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>) : <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.HProp.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Overture.html#Contr"><span class="id" type="abbreviation">Contr</span></a> <a class="idref" href="HoTT.HProp.html#A"><span class="id" type="variable">A</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> <a class="idref" href="HoTT.HProp.html#A"><span class="id" type="variable">A</span></a> | 10000.<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">H</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">H</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">pose</span> (<span class="id" type="var">C</span> := <span class="id" type="var">H</span> <span class="id" type="var">x</span>).<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Contractible.html#contr_paths_contr"><span class="id" type="instance">contr_paths_contr</span></a>.<br/>
 <span class="id" type="keyword">Defined</span>.<br/>
@@ -258,29 +256,32 @@ Here are some alternate characterizations of contractibility.
 The type of Propositions 
 </div>
 <div class="code">
-<span class="id" type="keyword">Record</span> <a name="hProp"><span class="id" type="record">hProp</span></a> := <a name="BuildhProp"><span class="id" type="constructor">BuildhProp</span></a> {<a name="propT"><span class="id" type="projection">propT</span></a>:&gt; <span class="id" type="keyword">Type</span>; <a name="isp"><span class="id" type="projection">isp</span></a> :&gt; <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> <a class="idref" href="HoTT.HProp.html#propT"><span class="id" type="method">propT</span></a>}.<br/>
-<span class="id" type="keyword">Canonical</span> <span class="id" type="keyword">Structure</span> <span class="id" type="var">default_HProp</span>:= <span class="id" type="keyword">fun</span> <span class="id" type="var">T</span> <span class="id" type="var">P</span> ⇒ (@<a class="idref" href="HoTT.HProp.html#BuildhProp"><span class="id" type="constructor">BuildhProp</span></a> <a class="idref" href="HoTT.HProp.html#T"><span class="id" type="variable">T</span></a> <a class="idref" href="HoTT.HProp.html#P"><span class="id" type="variable">P</span></a>).<br/>
+<span class="id" type="keyword">Record</span> <a name="hProp"><span class="id" type="record">hProp</span></a> := <a name="hp"><span class="id" type="constructor">hp</span></a> { <a name="hproptype"><span class="id" type="projection">hproptype</span></a> :&gt; <span class="id" type="keyword">Type</span> ; <a name="isp"><span class="id" type="projection">isp</span></a> : <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> <a class="idref" href="HoTT.HProp.html#hproptype"><span class="id" type="method">hproptype</span></a>}.<br/>
 </div>
 
 <div class="doc">
-the eta-expansion seems needed 
+This one would allow us to turn the record type of contractible types 
+into an <span class="inlinecode"><a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a></span>.
+<pre>
+Canonical Structure default_HProp:= fun T P =&gt; (@hp T P).
+</pre>
+
 </div>
 <div class="code">
-<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">isp</span>.<br/>
-<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">isp</span>.<br/>
+<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">isp</span>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.types.Unit.html#"><span class="id" type="library">Unit</span></a> <a class="idref" href="HoTT.types.Empty.html#"><span class="id" type="library">Empty</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="Unit_hp"><span class="id" type="definition">Unit_hp</span></a>:<a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>:=(<a class="idref" href="HoTT.HProp.html#hp"><span class="id" type="constructor">hp</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <span class="id" type="var">_</span>).<br/>
+<span class="id" type="keyword">Definition</span> <a name="False_hp"><span class="id" type="definition">False_hp</span></a>:<a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>:=(<a class="idref" href="HoTT.HProp.html#hp"><span class="id" type="constructor">hp</span></a> <a class="idref" href="HoTT.types.Unit.html#Unit"><span class="id" type="inductive">Unit</span></a> <span class="id" type="var">_</span>).<br/>
+</div>
+
+<div class="doc">
+We could continue with products etc 
+</div>
+<div class="code">
 
 <br/>
-<span class="id" type="keyword">Definition</span> <a name="issig_hProp"><span class="id" type="definition">issig_hProp</span></a><br/>
-: <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">{</span></a> <span class="id" type="var">propT</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">:</span></a> <span class="id" type="keyword">Type</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">&amp;</span></a> <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> <span class="id" type="var">propT</span> <a class="idref" href="Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'&'_x_'}'"><span class="id" type="notation">}</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>.<br/>
-<span class="id" type="keyword">Proof</span>.<br/>
-&nbsp;&nbsp;<span class="id" type="var">issig</span> <a class="idref" href="HoTT.HProp.html#BuildhProp"><span class="id" type="constructor">BuildhProp</span></a> <a class="idref" href="HoTT.HProp.html#propT"><span class="id" type="projection">propT</span></a> <a class="idref" href="HoTT.HProp.html#isp"><span class="id" type="projection">isp</span></a>.<br/>
-<span class="id" type="keyword">Defined</span>.<br/>
-
-<br/>
-<span class="id" type="keyword">Lemma</span> <a name="sigma_prop_eq"><span class="id" type="lemma">sigma_prop_eq</span></a> {<span class="id" type="var">A</span>} {<span class="id" type="var">P</span> : <a class="idref" href="HoTT.HProp.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>}: <span class="id" type="keyword">∀</span> <span class="id" type="var">u</span> <span class="id" type="var">v</span> : <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="HoTT.HProp.html#P"><span class="id" type="variable">P</span></a>, <a class="idref" href="HoTT.HProp.html#u"><span class="id" type="variable">u</span></a><a class="idref" href="HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.HProp.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.HProp.html#u"><span class="id" type="variable">u</span></a><a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a><a class="idref" href="HoTT.HProp.html#v"><span class="id" type="variable">v</span></a>.<br/>
-<span class="id" type="keyword">Proof</span>.<br/>
-<span class="id" type="tactic">intros</span> ? ? <span class="id" type="var">H</span>.<br/>
-<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.types.Sigma.html#path_sigma"><span class="id" type="definition">path_sigma</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">H</span>. <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.HProp.html#allpath_hprop"><span class="id" type="lemma">allpath_hprop</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="issig_hProp"><span class="id" type="definition">issig_hProp</span></a>: <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="var">issig</span> <a class="idref" href="HoTT.HProp.html#hp"><span class="id" type="constructor">hp</span></a> <a class="idref" href="HoTT.HProp.html#hproptype"><span class="id" type="projection">hproptype</span></a> <a class="idref" href="HoTT.HProp.html#isp"><span class="id" type="projection">isp</span></a>.<br/>
 <span class="id" type="keyword">Defined</span>.<br/>
 </div>
 </div>
