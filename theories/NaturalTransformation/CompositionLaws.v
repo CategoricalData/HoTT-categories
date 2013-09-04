@@ -64,22 +64,41 @@ Section NTComposeF.
 End NTComposeF.
 
 Section Associativity.
-  Variable B : PreCategory.
-  Variable C : PreCategory.
-  Variable D : PreCategory.
-  Variable E : PreCategory.
-  Variable F : Functor D E.
-  Variable G : Functor C D.
-  Variable H : Functor B C.
+  Section functors.
+    Variable B : PreCategory.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable E : PreCategory.
+    Variable F : Functor D E.
+    Variable G : Functor C D.
+    Variable H : Functor B C.
 
-  Notation F0 := ((F ∘ G) ∘ H)%functor.
-  Notation F1 := (F ∘ (G ∘ H))%functor.
+    Notation F0 := ((F ∘ G) ∘ H)%functor.
+    Notation F1 := (F ∘ (G ∘ H))%functor.
 
-  Definition ComposeFunctorsAssociator1 : NaturalTransformation F0 F1
-    := Eval simpl in GeneralizedIdentityNaturalTransformation F0 F1 idpath idpath.
+    Definition ComposeFunctorsAssociator1 : NaturalTransformation F0 F1
+      := Eval simpl in GeneralizedIdentityNaturalTransformation F0 F1 idpath idpath.
 
-  Definition ComposeFunctorsAssociator2 : NaturalTransformation F1 F0
-    := Eval simpl in GeneralizedIdentityNaturalTransformation F1 F0 idpath idpath.
+    Definition ComposeFunctorsAssociator2 : NaturalTransformation F1 F0
+      := Eval simpl in GeneralizedIdentityNaturalTransformation F1 F0 idpath idpath.
+  End functors.
+
+  Section nt.
+    Context `{fs : Funext}.
+
+    Local Open Scope natural_transformation_scope.
+
+    Definition NTComposeT_Associativity
+               C D F G H I
+               (T : @NaturalTransformation C D H I)
+               (U : @NaturalTransformation C D G H)
+               (V : @NaturalTransformation C D F G)
+    : NTComposeT (NTComposeT T U) V = NTComposeT T (NTComposeT U V).
+    Proof.
+      nt_eq.
+      apply Associativity.
+    Qed.
+  End nt.
 End Associativity.
 
 Section IdentityFunctor.
