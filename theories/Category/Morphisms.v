@@ -325,6 +325,22 @@ Section iso_lemmas.
     path_induction; simpl; auto with morphism.
   Qed.
 
+  (** These are useful when tactics are too slow and [rewrite] doesn't
+      work. *)
+  Lemma idtoiso_comp2 (C : PreCategory) (s d d' d'' : C)
+        (m0 : d' = d'') (m1 : d = d') (m2 : s = d)
+  : idtoiso _ m0 ∘ (idtoiso _ m1 ∘ idtoiso _ m2) = idtoiso _ ((m2 @ m1) @ m0)%path.
+  Proof.
+    path_induction; simpl; autorewrite with morphism; reflexivity.
+  Qed.
+
+  Lemma idtoiso_comp2' (C : PreCategory) (s d d' d'' : C)
+        (m0 : d' = d'') (m1 : d = d') (m2 : s = d)
+  : (idtoiso _ m0 ∘ idtoiso _ m1) ∘ idtoiso _ m2 = idtoiso _ (m2 @ (m1 @ m0))%path.
+  Proof.
+    path_induction; simpl; autorewrite with morphism; reflexivity.
+  Qed.
+
   Lemma idtoiso_functor (C D : PreCategory) (s d : C) (m : s = d)
         (F : Functor C D)
   : MorphismOf F (idtoiso _ m) = idtoiso _ (ap (ObjectOf F) m).
