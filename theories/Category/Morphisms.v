@@ -302,15 +302,16 @@ Ltac compose4associativity :=
   end.
 
 Section iso_lemmas.
+  Local Ltac idtoiso_t :=
+    path_induction; simpl; autorewrite with morphism; reflexivity.
+
   Lemma transport_to_idtoiso (C D : PreCategory) s d
         (m1 m2 : Morphism C s d)
         (p : m1 = m2)
         (s' d' : Morphism C s d -> D) u
   : @transport _ (fun m => Morphism D (s' m) (d' m)) _ _ p u
     = idtoiso _ (ap d' p) ∘ u ∘ (idtoiso _ (ap s' p))^-1.
-  Proof.
-    path_induction; simpl; autorewrite with morphism; reflexivity.
-  Qed.
+  Proof. idtoiso_t. Qed.
 
   Lemma idtoiso_inv (C : PreCategory) (s d : C) (p : s = d)
   : (idtoiso _ p)^-1 = idtoiso _ (p^)%path.
@@ -321,25 +322,41 @@ Section iso_lemmas.
   Lemma idtoiso_comp (C : PreCategory) (s d d' : C)
         (m1 : d = d') (m2 : s = d)
   : idtoiso _ m1 ∘ idtoiso _ m2 = idtoiso _ (m2 @ m1)%path.
-  Proof.
-    path_induction; simpl; auto with morphism.
-  Qed.
+  Proof. idtoiso_t. Qed.
 
   (** These are useful when tactics are too slow and [rewrite] doesn't
       work. *)
-  Lemma idtoiso_comp2 (C : PreCategory) (s d d' d'' : C)
+  Lemma idtoiso_comp3 (C : PreCategory) (s d d' d'' : C)
         (m0 : d' = d'') (m1 : d = d') (m2 : s = d)
   : idtoiso _ m0 ∘ (idtoiso _ m1 ∘ idtoiso _ m2) = idtoiso _ ((m2 @ m1) @ m0)%path.
-  Proof.
-    path_induction; simpl; autorewrite with morphism; reflexivity.
-  Qed.
+  Proof. idtoiso_t. Qed.
 
-  Lemma idtoiso_comp2' (C : PreCategory) (s d d' d'' : C)
+  Lemma idtoiso_comp3' (C : PreCategory) (s d d' d'' : C)
         (m0 : d' = d'') (m1 : d = d') (m2 : s = d)
   : (idtoiso _ m0 ∘ idtoiso _ m1) ∘ idtoiso _ m2 = idtoiso _ (m2 @ (m1 @ m0))%path.
-  Proof.
-    path_induction; simpl; autorewrite with morphism; reflexivity.
-  Qed.
+  Proof. idtoiso_t. Qed.
+
+  Lemma idtoiso_comp4 (C : PreCategory) (s d d' d'' d''' : C)
+        (m0 : d'' = d''') (m1 : d' = d'') (m2 : d = d') (m3 : s = d)
+  : idtoiso _ m0 ∘ (idtoiso _ m1 ∘ (idtoiso _ m2 ∘ idtoiso _ m3)) = idtoiso _ (((m3 @ m2) @ m1) @ m0)%path.
+  Proof. idtoiso_t. Qed.
+
+  Lemma idtoiso_comp4' (C : PreCategory) (s d d' d'' d''' : C)
+        (m0 : d'' = d''') (m1 : d' = d'') (m2 : d = d') (m3 : s = d)
+  : ((idtoiso _ m0 ∘ idtoiso _ m1) ∘ idtoiso _ m2) ∘ idtoiso _ m3 = idtoiso _ (m3 @ (m2 @ (m1 @ m0)))%path.
+  Proof. idtoiso_t. Qed.
+
+  Lemma idtoiso_comp5 (C : PreCategory) (s d d' d'' d''' d'''' : C)
+        (m0 : d''' = d'''') (m1 : d'' = d''') (m2 : d' = d'') (m3 : d = d') (m4 : s = d)
+  : idtoiso _ m0 ∘ (idtoiso _ m1 ∘ (idtoiso _ m2 ∘ (idtoiso _ m3 ∘ idtoiso _ m4)))
+    = idtoiso _ ((((m4 @ m3) @ m2) @ m1) @ m0)%path.
+  Proof. idtoiso_t. Qed.
+
+  Lemma idtoiso_comp5' (C : PreCategory) (s d d' d'' d''' d'''' : C)
+        (m0 : d''' = d'''') (m1 : d'' = d''') (m2 : d' = d'') (m3 : d = d') (m4 : s = d)
+  : (((idtoiso _ m0 ∘ idtoiso _ m1) ∘ idtoiso _ m2) ∘ idtoiso _ m3) ∘ idtoiso _ m4
+    = idtoiso _ (m4 @ (m3 @ (m2 @ (m1 @ m0))))%path.
+  Proof. idtoiso_t. Qed.
 
   Lemma idtoiso_functor (C D : PreCategory) (s d : C) (m : s = d)
         (F : Functor C D)
