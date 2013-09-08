@@ -64,4 +64,45 @@ Proof.
     ).
 Defined.
 
+Section idtoiso.
+  Context `{Funext}.
+  Variable C : PreCategory.
+  Variable D : PreCategory.
+
+  Definition idtoiso_FunctorCategory_NT
+             (F G : Object [C, D])
+             (T : F = G)
+  : NaturalTransformation F G.
+  Proof.
+    refine (Build_NaturalTransformation
+              F G
+              (fun x => idtoiso _ (ap10 (ap ObjectOf T) x))
+              _).
+    intros; case T; simpl.
+    etransitivity; [ | symmetry ];
+    first [ apply LeftIdentity
+          | apply RightIdentity ].
+  Defined.
+
+  Definition idtoiso_FunctorCategory
+             (F G : Object [C, D])
+             (T : F = G)
+  : F ≅ G.
+  Proof.
+    exists (idtoiso_FunctorCategory_NT T).
+    exists (idtoiso_FunctorCategory_NT (inverse T));
+      abstract (nt_eq; case T; simpl; auto with morphism).
+  Defined.
+
+  Lemma eta_idtoiso_FunctorCategory
+        (F G : Object [C, D])
+        (T : F = G)
+  : idtoiso _ T = idtoiso_FunctorCategory T.
+  Proof.
+    case T.
+    expand; f_ap.
+    exact (center _).
+  Qed.
+End idtoiso.
+
 Hint Immediate iso_NaturalTransformation0 iso_NaturalTransformation1 : typeclass_instances.
