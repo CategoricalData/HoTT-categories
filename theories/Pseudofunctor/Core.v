@@ -1,5 +1,5 @@
 Require Export Category.Core Category.Morphisms FunctorCategory FunctorCategory.Morphisms NaturalTransformation.CompositionLaws.
-Require Import Common.
+Require Import Common NaturalTransformation.Isomorphisms.
 
 Set Implicit Arguments.
 Generalizable All Variables.
@@ -195,3 +195,56 @@ Arguments PMorphismOf {_} [C%category] F%pseudofunctor [s d]%object m%morphism :
 
 (*Notation "F ₀ x" := (PObjectOf F x) : object_scope.
 Notation "F ₁ m" := (PMorphismOf F m) : morphism_scope.*)
+
+Section lemmas.
+  Local Open Scope natural_transformation_scope.
+  Context `{Funext}.
+
+  Variable C : PreCategory.
+  Variable F : Pseudofunctor C.
+
+  Lemma PFCompositionOfCoherent_for_rewrite w x y z
+        (f : Morphism C w x) (g : Morphism C x y) (h : Morphism C y z)
+  : (idtoiso [_, _] (ap (@PMorphismOf _ _ F w z) (Associativity C w x y z f g h)) : Morphism _ _ _)
+    = (NTComposeT
+         (PFCompositionOf F w y z h (g ∘ f))^-1
+         (NTComposeT
+            (NTWhiskerL (PMorphismOf F h) (PFCompositionOf F w x y g f)^-1)
+            (NTComposeT
+               (ComposeFunctorsAssociator1 (PMorphismOf F h) (PMorphismOf F g) (PMorphismOf F f))
+               (NTComposeT
+                  (NTWhiskerR (PFCompositionOf F x y z h g) (PMorphismOf F f))
+                  (PFCompositionOf F w x z (h ∘ g) f))))).
+  Proof.
+    simpl_do_clear do_rewrite (@PFCompositionOfCoherent _ C F w x y z f g h).
+    let C := match goal with |- @paths (@NaturalTransformation ?C ?D ?F ?G) _ _ => constr:([C, D])%category end in
+    apply (@iso_moveL_Vp C);
+      apply (@iso_moveL_Mp C _ _ _ _ _ _ (iso_NTWhiskerL _ _ _ _ _ _ _)).
+    nt_eq.
+    reflexivity.
+  Qed.
+
+  Lemma PFLeftIdentityOfCoherent_for_rewrite x y (f : Morphism C x y)
+  : (idtoiso [_, _] (ap (@PMorphismOf _ _ F x y) (LeftIdentity C x y f)) : Morphism _ _ _)
+    = NTComposeT (LeftIdentityFunctorNaturalTransformation1 (PMorphismOf F f))
+                 (NTComposeT (NTWhiskerR (PFIdentityOf F y) (PMorphismOf F f))
+                             (PFCompositionOf F x y y ─ f)).
+  Proof.
+    simpl_do_clear do_rewrite (@PFLeftIdentityOfCoherent _ C F x y f).
+    nt_eq.
+    symmetry.
+    etransitivity; apply LeftIdentity.
+  Qed.
+
+  Lemma PFRightIdentityOfCoherent_for_rewrite x y (f : Morphism C x y)
+  : (idtoiso [_, _] (ap (@PMorphismOf _ _ F x y) (RightIdentity C x y f)) : Morphism _ _ _)
+    = NTComposeT (RightIdentityFunctorNaturalTransformation1 (PMorphismOf F f))
+                 (NTComposeT (NTWhiskerL (PMorphismOf F f) (PFIdentityOf F x))
+                             (PFCompositionOf F x x y f ─)).
+  Proof.
+    simpl_do_clear do_rewrite (@PFRightIdentityOfCoherent _ C F x y f).
+    nt_eq.
+    symmetry.
+    etransitivity; apply LeftIdentity.
+  Qed.
+End lemmas.
