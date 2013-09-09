@@ -1,4 +1,4 @@
-Require Export Category.Core Functor.Core Category.Morphisms Cat FunctorCategory FunctorCategory.Morphisms.
+Require Export Category.Core Functor.Core Category.Morphisms FunctorCategory FunctorCategory.Morphisms.
 Require Import Common.
 
 Set Universe Polymorphism.
@@ -13,28 +13,27 @@ Section iso_lemmas.
   Context `{Funext}.
 
   Variable C : PreCategory.
-  Variable P : PreCategory -> Type.
-  Context `{forall C, IsHProp (P C)}.
-  Context `{HF : forall C D, P C -> P D -> IsHSet (Functor C D)}.
 
   Variables s d : C.
   Variables m1 m2 : Morphism C s d.
   Variable p : m1 = m2.
 
-  Let Cat := SubPreCat P.
+  Variable Fs : PreCategory.
+  Variable Fd : PreCategory.
+  Variable Fm : Morphism C s d -> Functor Fs Fd.
 
   Lemma transport_Fc_to_idtoiso
-        (F : Functor C Cat) s' d' u
-  : @transport _ (fun m => Morphism _ (MorphismOf F m s') d') _ _ p u
-    = u ∘ ComponentsOf (idtoiso [_, _] (ap (MorphismOf F (s := s) (d := d)) p) : Morphism _ _ _)^-1 s'.
+        s' d' u
+  : @transport _ (fun m => Morphism _ (Fm m s') d') _ _ p u
+    = u ∘ ComponentsOf (idtoiso [_, _] (ap Fm p) : Morphism _ _ _)^-1 s'.
   Proof.
     case p; clear p; simpl; autorewrite with morphism; reflexivity.
   Qed.
 
   Lemma transport_cF_to_idtoiso
-        (F : Functor C Cat) s' d' u
-  : @transport _ (fun m => Morphism _ s' (MorphismOf F m d')) _ _ p u
-    = ComponentsOf (idtoiso [_, _] (ap (MorphismOf F (s := s) (d := d)) p) : Morphism _ _ _) d' ∘ u.
+        s' d' u
+  : @transport _ (fun m => Morphism _ s' (Fm m d')) _ _ p u
+    = ComponentsOf (idtoiso [_, _] (ap Fm p) : Morphism _ _ _) d' ∘ u.
   Proof.
     case p; clear p; simpl; autorewrite with morphism; reflexivity.
   Qed.
