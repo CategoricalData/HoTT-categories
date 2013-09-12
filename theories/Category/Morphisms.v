@@ -20,6 +20,8 @@ Notation "m ^-1" := (Inverse (m := m)) : morphism_scope.
 Notation "m ⁻¹" := (Inverse (m := m)) : morphism_scope.
 
 Hint Resolve LeftInverse RightInverse : category morphism.
+Hint Rewrite @LeftInverse @RightInverse : category.
+Hint Rewrite @LeftInverse @RightInverse : morphism.
 
 Class Isomorphic {C : PreCategory} s d :=
   {
@@ -277,6 +279,32 @@ Section EpiMono.
     Global Instance monomorphism_trans : Transitive (@Monomorphism C)
       := fun _ _ _ m0 m1 => IsMonomorphismComposition m1 m0.
   End equiv.
+
+  Section iso.
+    Local Ltac epi_iso_mono_t :=
+      try_associativity_quick
+        ltac:(solve [ autorewrite with morphism;
+                      reflexivity
+                    | rewrite_hyp; reflexivity ]).
+
+    Global Instance iso_is_epi `(@IsIsomorphism C s d m)
+    : IsEpimorphism m | 1000.
+    Proof.
+      (intros ? m1 m2 ?).
+      transitivity ((m1 ∘ m) ∘ m^-1);
+        [ | transitivity ((m2 ∘ m) ∘ m^-1) ];
+        epi_iso_mono_t.
+    Qed.
+
+    Global Instance iso_is_mono `(@IsIsomorphism C s d m)
+    : IsMonomorphism m | 1000.
+    Proof.
+      (intros ? m1 m2 ?).
+      transitivity (m^-1 ∘ (m ∘ m1));
+        [ | transitivity (m^-1 ∘ (m ∘ m2)) ];
+        epi_iso_mono_t.
+    Qed.
+  End iso.
 End EpiMono.
 
 Hint Immediate @IdentityIsEpimorphism @IdentityIsMonomorphism @IsMonomorphismComposition @IsEpimorphismComposition : category morphism.
