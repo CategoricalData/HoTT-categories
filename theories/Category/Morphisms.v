@@ -231,6 +231,11 @@ Infix "(->" := Monomorphism.
 Infix "↠" := Epimorphism.
 Infix "↪" := Monomorphism.
 
+Class IsSectionOf C x y (s : Morphism C x y) (r : Morphism C y x)
+  := is_sect_morphism : r ∘ s = Identity _.
+
+Arguments IsSectionOf [C x y] s r.
+
 Section EpiMono.
   Variable C : PreCategory.
 
@@ -280,30 +285,50 @@ Section EpiMono.
       := fun _ _ _ m0 m1 => IsMonomorphismComposition m1 m0.
   End equiv.
 
-  Section iso.
-    Local Ltac epi_iso_mono_t :=
+  Section sect.
+    Local Ltac epi_mono_sect_t :=
       try_associativity_quick
         ltac:(solve [ autorewrite with morphism;
                       reflexivity
-                    | rewrite_hyp; reflexivity ]).
+                    | rewrite_hyp;
+                      autorewrite with morphism;
+                      reflexivity ]).
 
+    Global Instance retr_is_epi `(@IsSectionOf C x y s r)
+    : IsEpimorphism r | 1000.
+    Proof.
+      (intros ? m1 m2 ?).
+      unfold IsSectionOf in *.
+      transitivity ((m1 ∘ r) ∘ s);
+        [ | transitivity ((m2 ∘ r) ∘ s) ];
+        epi_mono_sect_t.
+    Qed.
+
+    Global Instance sect_is_mono `(@IsSectionOf C x y s r)
+    : IsMonomorphism s | 1000.
+    Proof.
+      (intros ? m1 m2 ?).
+      transitivity (r ∘ (s ∘ m1));
+        [ | transitivity (r ∘ (s ∘ m2)) ];
+        epi_mono_sect_t.
+    Qed.
+
+    Global Instance iso_is_sect `(@IsIsomorphism C x y m)
+    : IsSectionOf m m^-1 | 1000
+      := LeftInverse.
+
+    Global Instance iso_is_retr `(@IsIsomorphism C x y m)
+    : IsSectionOf m^-1 m | 1000
+      := RightInverse.
+  End sect.
+
+  Section iso.
     Global Instance iso_is_epi `(@IsIsomorphism C s d m)
-    : IsEpimorphism m | 1000.
-    Proof.
-      (intros ? m1 m2 ?).
-      transitivity ((m1 ∘ m) ∘ m^-1);
-        [ | transitivity ((m2 ∘ m) ∘ m^-1) ];
-        epi_iso_mono_t.
-    Qed.
-
+    : IsEpimorphism m | 1000
+      := _.
     Global Instance iso_is_mono `(@IsIsomorphism C s d m)
-    : IsMonomorphism m | 1000.
-    Proof.
-      (intros ? m1 m2 ?).
-      transitivity (m^-1 ∘ (m ∘ m1));
-        [ | transitivity (m^-1 ∘ (m ∘ m2)) ];
-        epi_iso_mono_t.
-    Qed.
+    : IsMonomorphism m | 1000
+      := _.
   End iso.
 End EpiMono.
 
