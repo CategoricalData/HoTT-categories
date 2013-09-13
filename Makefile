@@ -84,6 +84,8 @@ MODULES    := theories/Peano \
 	theories/NaturalNumbersObject \
 	theories/Hom \
 	\
+	theories/Functor/Attributes \
+	\
 	theories/Adjoint/UnitCounit \
 	theories/Adjoint/UnitCounitCoercions \
 	theories/Adjoint/Hom \
