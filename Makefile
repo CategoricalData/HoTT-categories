@@ -90,6 +90,8 @@ MODULES    := theories/Peano \
 	theories/Grothendieck/PseudofunctorToCat \
 	theories/Grothendieck/ToCat \
 	\
+	theories/DependentProduct \
+	\
 	theories/NaturalNumbersObject \
 	theories/Hom \
 	\
