@@ -50,6 +50,8 @@ MODULES    := theories/Peano \
 	theories/FunctorCategory \
 	theories/FunctorCategory/Morphisms \
 	\
+	theories/CategoryOfSections \
+	\
 	theories/NaturalTransformation/Isomorphisms \
 	\
 	theories/Functor/Pointwise \
