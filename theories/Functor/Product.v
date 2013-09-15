@@ -184,13 +184,13 @@ Section notation.
   : FunctorApplicationInterpretable F (a, F') (InducedProductSndFunctor F a ∘ F')%functor | 10.
 
   Global Instance FunctorApplicationObjIdentity A B D (F : Functor (A * B) D) (a : A)
-  : FunctorApplicationInterpretable F (a, IdentityFunctor B) (InducedProductSndFunctor F a)%functor | 10.
+  : FunctorApplicationInterpretable F (a, IdentityFunctor B) (InducedProductSndFunctor F a)%functor | 5.
 
   Global Instance FunctorApplicationFunctorObj A B C D (F : Functor (A^op * B) D) (F' : Functor C A) (b : B)
   : FunctorApplicationInterpretable F (F', b) (InducedProductFstFunctor F b ∘ F'^op)%functor | 10.
 
   Global Instance FunctorApplicationIdentityObj A B D (F : Functor (A * B) D) (b : B)
-  : FunctorApplicationInterpretable F (IdentityFunctor A, b) (InducedProductFstFunctor F b)%functor | 10.
+  : FunctorApplicationInterpretable F (IdentityFunctor A, b) (InducedProductFstFunctor F b)%functor | 5.
 
   (** Do we want this?  (to special case pairs of functors from the
       same category, so that, e.g., if [F : C * C -> D], then [F ⟨ ─ ,
@@ -228,8 +228,8 @@ End notation.
 (** First, a bunch of notations for display *)
 Notation "F ⟨ a , F' ⟨ 1 ⟩ ⟩" := (InducedProductSndFunctor F a^op ∘ F')%functor : functor_scope.
 Notation "F ⟨ F' ⟨ 1 ⟩ , b ⟩" := (InducedProductFstFunctor F b^op ∘ F')%functor : functor_scope.
-Notation "F ⟨ a , 1 ⟩" := (InducedProductSndFunctor F a^op ∘ (IdentityFunctor _))%functor : functor_scope.
-Notation "F ⟨ 1 , b ⟩" := (InducedProductFstFunctor F b^op ∘ (IdentityFunctor _))%functor : functor_scope.
+Notation "F ⟨ a , 1 ⟩" := (InducedProductSndFunctor F a^op)%functor : functor_scope.
+Notation "F ⟨ 1 , b ⟩" := (InducedProductFstFunctor F b^op)%functor : functor_scope.
 Notation "F ⟨ a , b ⟩" := (F (a, b)) : functor_scope.
 Notation "F ⟨ G ⟨ 1 ⟩ , H ⟨ 1 ⟩ ⟩" := (F ∘ (FunctorProduct' G^op H))%functor : functor_scope.
 Notation "F ⟨ 1 , H ⟨ 1 ⟩ ⟩" := (F ∘ (FunctorProduct' (IdentityFunctor _) H))%functor : functor_scope.
