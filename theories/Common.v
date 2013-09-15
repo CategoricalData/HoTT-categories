@@ -1238,6 +1238,18 @@ Tactic Notation "subst" :=
                 (destruct H || induction H)
          end.
 
+Lemma transport_projT1_path_sigma_uncurried
+      A (P : A -> Type) (u v : sigT P)
+      (pq : { p : u.1 = v.1 & transport P p u.2 = v.2 })
+      Q Qx
+: transport (fun x => Q x.1) (@path_sigma_uncurried A P u v pq) Qx
+  = transport _ pq.1 Qx.
+Proof.
+  destruct pq as [p q], u, v; simpl in *.
+  destruct p, q; simpl in *.
+  reflexivity.
+Defined.
+
 
 (** A variant of [induction] which also tries [destruct] and [case], and may be extended to using other [destruct]-like tactics. *)
 Ltac induction_hammer H :=

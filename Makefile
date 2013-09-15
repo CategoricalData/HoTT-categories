@@ -72,6 +72,8 @@ MODULES    := theories/Peano \
 	theories/Cat \
 	theories/Cat/Morphisms \
 	\
+	theories/DualFunctor \
+	\
 	theories/Pseudofunctor/Core \
 	theories/Pseudofunctor/FromFunctor \
 	theories/Pseudofunctor \
