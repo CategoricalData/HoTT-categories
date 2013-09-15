@@ -1229,6 +1229,11 @@ Hint Extern 0 (@JMeq _ _ Empty_set _) => apply Empty_set_JMeqr.
 
 (** Fixes for HoTT library **)
 
+Notation "0" := (trunc_S (trunc_S minus_two)) : trunc_scope.
+Notation "1" := (trunc_S 0) : trunc_scope.
+Notation "2" := (trunc_S 1) : trunc_scope.
+Notation "3" := (trunc_S 3) : trunc_scope.
+
 Tactic Notation "subst" :=
   repeat match goal with
            | [ H : ?x = ?y |- _ ]

@@ -49,6 +49,7 @@ Infix "o" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
 (* I'm not sure how much I like this notation... *)
 Notation "─" := (Identity _) : morphism_scope.
+Notation "1" := (Identity _) : morphism_scope.
 
 Definition Build_PreCategory
            Object Morphism Compose Identity Associativity LeftIdentity RightIdentity
