@@ -67,10 +67,10 @@ Section compose.
                  | _ => progress rewrite ?FIdentityOf, ?LeftIdentity, ?RightIdentity
                  | _ => rewrite <- ?FCompositionOf, Adjunction_UnitCounitEquation1
                  | _ => rewrite <- ?FCompositionOf, Adjunction_UnitCounitEquation2
-                 | [ A : _ ⊣ _ |- _ = ─%morphism ]
+                 | [ A : _ ⊣ _ |- _ = 1%morphism ]
                    => (etransitivity; [ | apply (Adjunction_UnitCounitEquation1 A) ];
                        instantiate; try_associativity ltac:(f_ap))
-                 | [ A : _ ⊣ _ |- _ = ─%morphism ]
+                 | [ A : _ ⊣ _ |- _ = 1%morphism ]
                    => (etransitivity; [ | apply (Adjunction_UnitCounitEquation2 A) ];
                        instantiate; try_associativity ltac:(f_ap))
                  | _ => repeat try_associativity_quick ltac:(rewrite <- !FCompositionOf);

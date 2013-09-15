@@ -16,6 +16,4 @@ Section IdentityFunctor.
                      (fun _ => idpath).
 End IdentityFunctor.
 
-(* I'm not sure how much I like this notation... *)
-Notation "─" := (IdentityFunctor _) : functor_scope.
 Notation "1" := (IdentityFunctor _) : functor_scope.

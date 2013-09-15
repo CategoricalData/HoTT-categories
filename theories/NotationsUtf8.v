@@ -49,28 +49,28 @@ Reserved Notation "∐_{ x : A } f" (at level 0, x at level 99).
    and '['s interfere with list notation in Program. *)
 Reserved Notation "F ⟨ x ⟩" (at level 10, no associativity, x at level 10).
 Reserved Notation "F ⟨ x , y ⟩" (at level 10, no associativity, x at level 10, y at level 10).
-Reserved Notation "F ⟨ ─ ⟩" (at level 10, no associativity).
-Reserved Notation "F ⟨ x , ─ ⟩" (at level 10, no associativity, x at level 10).
-Reserved Notation "F ⟨ ─ , y ⟩" (at level 10, no associativity, y at level 10).
-Reserved Notation "F ⟨ ─ , ─ ⟩" (at level 10, no associativity).
-Reserved Notation "F ⟨ x ⟨ ─ ⟩ ⟩" (at level 10, no associativity, x at level 10).
-Reserved Notation "F ⟨ x ⟨ ─ ⟩ , y ⟨ ─ ⟩ ⟩" (at level 10, no associativity, x at level 10, y at level 10).
-Reserved Notation "F ⟨ x , y ⟨ ─ ⟩ ⟩" (at level 10, no associativity, x at level 10, y at level 10).
-Reserved Notation "F ⟨ ─ , y ⟨ ─ ⟩ ⟩" (at level 10, no associativity, y at level 10).
-Reserved Notation "F ⟨ x ⟨ ─ ⟩ , y ⟩" (at level 10, no associativity, x at level 10, y at level 10).
-Reserved Notation "F ⟨ x ⟨ ─ ⟩ , ─ ⟩" (at level 10, no associativity, x at level 10).
+Reserved Notation "F ⟨ 1 ⟩" (at level 10, no associativity).
+Reserved Notation "F ⟨ x , 1 ⟩" (at level 10, no associativity, x at level 10).
+Reserved Notation "F ⟨ 1 , y ⟩" (at level 10, no associativity, y at level 10).
+Reserved Notation "F ⟨ 1 , 1 ⟩" (at level 10, no associativity).
+Reserved Notation "F ⟨ x ⟨ 1 ⟩ ⟩" (at level 10, no associativity, x at level 10).
+Reserved Notation "F ⟨ x ⟨ 1 ⟩ , y ⟨ 1 ⟩ ⟩" (at level 10, no associativity, x at level 10, y at level 10).
+Reserved Notation "F ⟨ x , y ⟨ 1 ⟩ ⟩" (at level 10, no associativity, x at level 10, y at level 10).
+Reserved Notation "F ⟨ 1 , y ⟨ 1 ⟩ ⟩" (at level 10, no associativity, y at level 10).
+Reserved Notation "F ⟨ x ⟨ 1 ⟩ , y ⟩" (at level 10, no associativity, x at level 10, y at level 10).
+Reserved Notation "F ⟨ x ⟨ 1 ⟩ , 1 ⟩" (at level 10, no associativity, x at level 10).
 (*
 (** Default notations *)
-Notation "F ⟨ ─ ⟩" := (F ⟨ ( ─ ) ⟩)%scope : scope.
-Notation "F ⟨ x , ─ ⟩" := (F ⟨ x , ( ─ ) ⟩)%scope : scope.
-Notation "F ⟨ ─ , y ⟩" := (F ⟨ ( ─ ) , y ⟩)%scope : scope.
-Notation "F ⟨ ─ , ─ ⟩" := (F ⟨ ( ─ ) , ( ─ ) ⟩)%scope : scope.
-Notation "F ⟨ x ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) ⟩)%scope : scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( y ⟨ ─ ⟩ ) ⟩)%scope : scope.
-Notation "F ⟨ x , y ⟨ ─ ⟩ ⟩" := (F ⟨ x , ( y ⟨ ─ ⟩ ) ⟩)%scope : scope.
-Notation "F ⟨ ─ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( ─ ) , ( y ⟨ ─ ⟩ ) ⟩)%scope : scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , y ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , y ⟩)%scope : scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , ─ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( ─ ) ⟩)%scope : scope.
+Notation "F ⟨ 1 ⟩" := (F ⟨ ( 1 ) ⟩)%scope : scope.
+Notation "F ⟨ x , 1 ⟩" := (F ⟨ x , ( 1 ) ⟩)%scope : scope.
+Notation "F ⟨ 1 , y ⟩" := (F ⟨ ( 1 ) , y ⟩)%scope : scope.
+Notation "F ⟨ 1 , 1 ⟩" := (F ⟨ ( 1 ) , ( 1 ) ⟩)%scope : scope.
+Notation "F ⟨ x ⟨ 1 ⟩ ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) ⟩)%scope : scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , y ⟨ 1 ⟩ ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , ( y ⟨ 1 ⟩ ) ⟩)%scope : scope.
+Notation "F ⟨ x , y ⟨ 1 ⟩ ⟩" := (F ⟨ x , ( y ⟨ 1 ⟩ ) ⟩)%scope : scope.
+Notation "F ⟨ 1 , y ⟨ 1 ⟩ ⟩" := (F ⟨ ( 1 ) , ( y ⟨ 1 ⟩ ) ⟩)%scope : scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , y ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , y ⟩)%scope : scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , 1 ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , ( 1 ) ⟩)%scope : scope.
 *)
 (*Reserved Notation "F ⟨ x , y , .. , z ⟩" (at level 10, no associativity, x at next level, y at next level, z at next level).*)
 (*Reserved Notation "F ⟨ c , - ⟩" (at level 70, no associativity).

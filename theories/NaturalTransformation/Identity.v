@@ -70,3 +70,5 @@ Section IdentityNaturalTransformation.
 End IdentityNaturalTransformation.
 
 Global Opaque GeneralizedIdentityNaturalTransformation_Commutes.
+
+Notation "1" := (IdentityNaturalTransformation _) : natural_transformation_scope.

@@ -18,11 +18,11 @@ Section FullFaithful.
   Variable F' : Functor C' D'.
 
   Definition InducedHomNaturalTransformation
-  : NaturalTransformation (HomFunctor C) (HomFunctor D ⟨ F^op ⟨ ─ ⟩ , F ⟨ ─ ⟩ ⟩).
+  : NaturalTransformation (HomFunctor C) (HomFunctor D ⟨ F ⟨ 1 ⟩ , F ⟨ 1 ⟩ ⟩).
   Proof.
     refine (Build_NaturalTransformation
               (HomFunctor C)
-              (HomFunctor D ⟨ F^op ⟨ ─ ⟩ , F ⟨ ─ ⟩ ⟩)
+              (HomFunctor D ⟨ F ⟨ 1 ⟩ , F ⟨ 1 ⟩ ⟩)
               (fun sd : (C^op * C) =>
                  MorphismOf F (s := _) (d := _))
               _

@@ -174,13 +174,13 @@ Section PseudoFunctor.
       PFLeftIdentityOfCoherent
       : forall x y (f : Morphism C x y),
           NTComposeT (NTWhiskerR (PFIdentityOf y) (PMorphismOf x y f))
-                     (PFCompositionOf x y y ─ f)
+                     (PFCompositionOf x y y 1 f)
           = NTComposeT (LeftIdentityFunctorNaturalTransformation2 (PMorphismOf x y f))
                        (idtoiso [_, _] (ap (PMorphismOf x y) (LeftIdentity C x y f)) : Morphism _ _ _);
       PFRightIdentityOfCoherent
       : forall x y (f : Morphism C x y),
           NTComposeT (NTWhiskerL (PMorphismOf x y f) (PFIdentityOf x))
-                       (PFCompositionOf x x y f ─)
+                       (PFCompositionOf x x y f 1)
           = NTComposeT (RightIdentityFunctorNaturalTransformation2 (PMorphismOf x y f))
                        (idtoiso [_, _] (ap (PMorphismOf x y) (RightIdentity C x y f)) : Morphism _ _ _)
     }.
@@ -228,7 +228,7 @@ Section lemmas.
   : (idtoiso [_, _] (ap (@PMorphismOf _ _ F x y) (LeftIdentity C x y f)) : Morphism _ _ _)
     = NTComposeT (LeftIdentityFunctorNaturalTransformation1 (PMorphismOf F f))
                  (NTComposeT (NTWhiskerR (PFIdentityOf F y) (PMorphismOf F f))
-                             (PFCompositionOf F x y y ─ f)).
+                             (PFCompositionOf F x y y 1 f)).
   Proof.
     simpl_do_clear do_rewrite (@PFLeftIdentityOfCoherent _ C F x y f).
     nt_eq.
@@ -240,7 +240,7 @@ Section lemmas.
   : (idtoiso [_, _] (ap (@PMorphismOf _ _ F x y) (RightIdentity C x y f)) : Morphism _ _ _)
     = NTComposeT (RightIdentityFunctorNaturalTransformation1 (PMorphismOf F f))
                  (NTComposeT (NTWhiskerL (PMorphismOf F f) (PFIdentityOf F x))
-                             (PFCompositionOf F x x y f ─)).
+                             (PFCompositionOf F x x y f 1)).
   Proof.
     simpl_do_clear do_rewrite (@PFRightIdentityOfCoherent _ C F x y f).
     nt_eq.

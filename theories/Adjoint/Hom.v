@@ -47,7 +47,7 @@ Section Adjunction.
 
   (** We want to [simpl] out the notation machinery *)
   Local Opaque NaturalIsomorphism.
-  Let Adjunction_Type := Eval simpl in HomFunctor D ⟨ F^op ⟨ ─ ⟩ , ─ ⟩ ≅ HomFunctor C ⟨ ─ , G ⟨ ─ ⟩ ⟩.
+  Let Adjunction_Type := Eval simpl in HomFunctor D ⟨ F ⟨ 1 ⟩ , 1 ⟩ ≅ HomFunctor C ⟨ 1 , G ⟨ 1 ⟩ ⟩.
   (*Set Printing All.
   Print Adjunction_Type.*)
   (** Just putting in [Adjunction_Type] breaks [AMateOf] *)

@@ -47,8 +47,6 @@ Arguments Compose [!C%category s%object d%object d'%object] m1%morphism m2%morph
 
 Infix "o" := Compose : morphism_scope.
 Infix "∘" := Compose : morphism_scope.
-(* I'm not sure how much I like this notation... *)
-Notation "─" := (Identity _) : morphism_scope.
 Notation "1" := (Identity _) : morphism_scope.
 
 Definition Build_PreCategory
@@ -94,11 +92,11 @@ Section IdentityUnique.
   (** Anything equal to the identity acts like it.  This is obvious,
       but useful as a helper lemma for automation. *)
   Definition concat_LeftIdentity s d (m : Morphism C s d) i
-  : i = ─ -> i ∘ m = m
+  : i = 1 -> i ∘ m = m
     := fun H => (ap10 (ap _ H) _ @ LeftIdentity _ _ _ m)%path.
 
   Definition concat_RightIdentity s d (m : Morphism C s d) i
-  : i = ─ -> m ∘ i = m
+  : i = 1 -> m ∘ i = m
     := fun H => (ap _ H @ RightIdentity _ _ _ m)%path.
 End IdentityUnique.
 (** * Version of [Associativity] that avoids going off into the weeds in the presence of unification variables *)

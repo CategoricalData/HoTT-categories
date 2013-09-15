@@ -20,10 +20,10 @@ Section Adjunctions_Equal.
   Local Open Scope equiv_scope.
 
   Notation Adjunction_sigT :=
-    { η : NaturalTransformation ─ (G ∘ F)
-    | { ε : NaturalTransformation (F ∘ G) ─
-      | { equ1 : forall Y : C, (ε (F Y) ∘ F ₁ (η Y))%morphism = ─
-        | forall X : D, (G ₁ (ε X) ∘ η (G X))%morphism = ─ }}}.
+    { η : NaturalTransformation 1 (G ∘ F)
+    | { ε : NaturalTransformation (F ∘ G) 1
+      | { equ1 : forall Y : C, (ε (F Y) ∘ F ₁ (η Y))%morphism = 1%morphism
+        | forall X : D, (G ₁ (ε X) ∘ η (G X))%morphism = 1%morphism }}}.
 
   Lemma Adjunction_sig
   : Adjunction_sigT <~> (F ⊣ G).

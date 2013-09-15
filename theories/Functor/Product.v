@@ -1,5 +1,5 @@
 Require Export Category Functor.Core Category.Product NaturalTransformation.Core.
-Require Import Common Functor.Equality InitialTerminalCategory.
+Require Import Common Functor.Equality InitialTerminalCategory Functor.Duals.
 
 Set Implicit Arguments.
 Generalizable All Variables.
@@ -183,8 +183,14 @@ Section notation.
   Global Instance FunctorApplicationObjFunctor A B C D (F : Functor (A * B) D) (a : A) (F' : Functor C B)
   : FunctorApplicationInterpretable F (a, F') (InducedProductSndFunctor F a ∘ F')%functor | 10.
 
-  Global Instance FunctorApplicationFunctorObj A B C D (F : Functor (A * B) D) (F' : Functor C A) (b : B)
-  : FunctorApplicationInterpretable F (F', b) (InducedProductFstFunctor F b ∘ F')%functor | 10.
+  Global Instance FunctorApplicationObjIdentity A B D (F : Functor (A * B) D) (a : A)
+  : FunctorApplicationInterpretable F (a, IdentityFunctor B) (InducedProductSndFunctor F a)%functor | 10.
+
+  Global Instance FunctorApplicationFunctorObj A B C D (F : Functor (A^op * B) D) (F' : Functor C A) (b : B)
+  : FunctorApplicationInterpretable F (F', b) (InducedProductFstFunctor F b ∘ F'^op)%functor | 10.
+
+  Global Instance FunctorApplicationIdentityObj A B D (F : Functor (A * B) D) (b : B)
+  : FunctorApplicationInterpretable F (IdentityFunctor A, b) (InducedProductFstFunctor F b)%functor | 10.
 
   (** Do we want this?  (to special case pairs of functors from the
       same category, so that, e.g., if [F : C * C -> D], then [F ⟨ ─ ,
@@ -215,19 +221,19 @@ Section notation.
   (**  Global Instance FunctorApplicationFunctorFunctor A B C D (F : Functor (A * B) D) (G : Functor C A) (H : Functor C B)
   : FunctorApplicationInterpretable F (G, H) (F ∘ (FunctorProduct G H))%functor | 10.*)
 
-  Global Instance FunctorApplicationFunctorFunctor' A B C C' D (F : Functor (A * B) D) (G : Functor C A) (H : Functor C' B)
-  : FunctorApplicationInterpretable F (G, H) (F ∘ (FunctorProduct' G H))%functor | 100.
+  Global Instance FunctorApplicationFunctorFunctor' A B C C' D (F : Functor (A^op * B) D) (G : Functor C A) (H : Functor C' B)
+  : FunctorApplicationInterpretable F (G, H) (F ∘ (FunctorProduct' G^op H))%functor | 100.
 End notation.
 
 (** First, a bunch of notations for display *)
-Notation "F ⟨ a , F' ⟨ ─ ⟩ ⟩" := (InducedProductSndFunctor F a ∘ F')%functor : functor_scope.
-Notation "F ⟨ F' ⟨ ─ ⟩ , b ⟩" := (InducedProductFstFunctor F b ∘ F')%functor : functor_scope.
-Notation "F ⟨ a , ─ ⟩" := (InducedProductSndFunctor F a ∘ (IdentityFunctor _))%functor : functor_scope.
-Notation "F ⟨ ─ , b ⟩" := (InducedProductFstFunctor F b ∘ (IdentityFunctor _))%functor : functor_scope.
+Notation "F ⟨ a , F' ⟨ 1 ⟩ ⟩" := (InducedProductSndFunctor F a^op ∘ F')%functor : functor_scope.
+Notation "F ⟨ F' ⟨ 1 ⟩ , b ⟩" := (InducedProductFstFunctor F b^op ∘ F')%functor : functor_scope.
+Notation "F ⟨ a , 1 ⟩" := (InducedProductSndFunctor F a^op ∘ (IdentityFunctor _))%functor : functor_scope.
+Notation "F ⟨ 1 , b ⟩" := (InducedProductFstFunctor F b^op ∘ (IdentityFunctor _))%functor : functor_scope.
 Notation "F ⟨ a , b ⟩" := (F (a, b)) : functor_scope.
-Notation "F ⟨ G ⟨ ─ ⟩ , H ⟨ ─ ⟩ ⟩" := (F ∘ (FunctorProduct' G H))%functor : functor_scope.
-Notation "F ⟨ ─ , H ⟨ ─ ⟩ ⟩" := (F ∘ (FunctorProduct' (IdentityFunctor _) H))%functor : functor_scope.
-Notation "F ⟨ G ⟨ ─ ⟩ , ─ ⟩" := (F ∘ (FunctorProduct' G (IdentityFunctor _)))%functor : functor_scope.
+Notation "F ⟨ G ⟨ 1 ⟩ , H ⟨ 1 ⟩ ⟩" := (F ∘ (FunctorProduct' G^op H))%functor : functor_scope.
+Notation "F ⟨ 1 , H ⟨ 1 ⟩ ⟩" := (F ∘ (FunctorProduct' (IdentityFunctor _) H))%functor : functor_scope.
+Notation "F ⟨ G ⟨ 1 ⟩ , 1 ⟩" := (F ∘ (FunctorProduct' G^op (IdentityFunctor _)))%functor : functor_scope.
 
 (** Now, the fully general notation so the defaults can parse *)
 Notation "F ⟨ x ⟩" := (FunctorApplicationOf F%functor x%functor) : functor_scope.
@@ -235,16 +241,16 @@ Notation "F ⟨ x , y ⟩" := (FunctorApplicationOf F%functor (x%functor , y%fun
 
 (** Now, the default notations, so that anything we don't cover can
     parse, and everything parses in terms of the general notation *)
-Notation "F ⟨ ─ ⟩" := (F ⟨ ( ─ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ x , ─ ⟩" := (F ⟨ x , ( ─ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ ─ , y ⟩" := (F ⟨ ( ─ ) , y ⟩)%functor : functor_scope.
-Notation "F ⟨ ─ , ─ ⟩" := (F ⟨ ( ─ ) , ( ─ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ x ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ x , y ⟨ ─ ⟩ ⟩" := (F ⟨ x , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ ─ , y ⟨ ─ ⟩ ⟩" := (F ⟨ ( ─ ) , ( y ⟨ ─ ⟩ ) ⟩)%functor : functor_scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , y ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , y ⟩)%functor : functor_scope.
-Notation "F ⟨ x ⟨ ─ ⟩ , ─ ⟩" := (F ⟨ ( x ⟨ ─ ⟩ ) , ( ─ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ 1 ⟩" := (F ⟨ ( 1 ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x , 1 ⟩" := (F ⟨ x , ( 1 ) ⟩)%functor : functor_scope.
+Notation "F ⟨ 1 , y ⟩" := (F ⟨ ( 1 ) , y ⟩)%functor : functor_scope.
+Notation "F ⟨ 1 , 1 ⟩" := (F ⟨ ( 1 ) , ( 1 ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ 1 ⟩ ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , y ⟨ 1 ⟩ ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , ( y ⟨ 1 ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x , y ⟨ 1 ⟩ ⟩" := (F ⟨ x , ( y ⟨ 1 ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ 1 , y ⟨ 1 ⟩ ⟩" := (F ⟨ ( 1 ) , ( y ⟨ 1 ⟩ ) ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , y ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , y ⟩)%functor : functor_scope.
+Notation "F ⟨ x ⟨ 1 ⟩ , 1 ⟩" := (F ⟨ ( x ⟨ 1 ⟩ ) , ( 1 ) ⟩)%functor : functor_scope.
 
 (** Redefine the general notation, so it takes precedence when it can *)
 Notation "F ⟨ x ⟩" := (FunctorApplicationOf F%functor x%functor) : functor_scope.

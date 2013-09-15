@@ -31,8 +31,8 @@ Section OppositeAdjunction.
   : G ⊣ F
     := @Build_AdjunctionUnitCounit
          _ _ G F
-         (@OppositeNaturalTransformation_Tinv _ _ ─ (F ∘ G) (Adjunction_Counit A))
-         (@OppositeNaturalTransformation_Tinv _ _ (G ∘ F) ─ (Adjunction_Unit A))
+         (@OppositeNaturalTransformation_Tinv _ _ 1 (F ∘ G) (Adjunction_Counit A))
+         (@OppositeNaturalTransformation_Tinv _ _ (G ∘ F) 1 (Adjunction_Unit A))
          (Adjunction_UnitCounitEquation2 A)
          (Adjunction_UnitCounitEquation1 A).
 

@@ -202,7 +202,7 @@ intros a b c d [f f'] [g g'] [h h']; simpl.
            {fst_hyp : x7 ∘ x5 ∘ x2 = x7 ∘ (x5 ∘ x2)}
            (rew_hyp : forall x3 : p0,
                         (idtoiso [p0, p] (ap f fst_hyp) : Morphism _ _ _) x3 =
-                        x11 ⁻¹ x3 ∘ (f0 ₁ (x15 ⁻¹ x3) ∘ (─ ∘ (x9 (f3 x3) ∘ x16 x3))))
+                        x11 ⁻¹ x3 ∘ (f0 ₁ (x15 ⁻¹ x3) ∘ (1 ∘ (x9 (f3 x3) ∘ x16 x3))))
            {H0' : IsIsomorphism x16}
            {H1' : IsIsomorphism x9}
            {x13 : p} {x3 : p0} {x6 : p1} {x10 : p2}
@@ -220,17 +220,17 @@ intros a b c d [f f'] [g g'] [h h']; simpl.
   Lemma pseudofunctor_to_cat_left_identity_helper
   : forall {x1 x2 : C} {f : Morphism C x2 x1} {p p0 : PreCategory}
            {f0 : Morphism C x2 x1 -> Functor p0 p} {f1 : Functor p p}
-           {x0 : Morphism [_, _] (f0 (─ ∘ f)) (f1 ∘ f0 f)%functor}
-           {x : Morphism [_, _] f1 ─%functor}
-           {fst_hyp : ─ ∘ f = f}
+           {x0 : Morphism [_, _] (f0 (1 ∘ f)) (f1 ∘ f0 f)%functor}
+           {x : Morphism [_, _] f1 1%functor}
+           {fst_hyp : 1 ∘ f = f}
            (rewrite_hyp : forall x3 : p0,
                             (idtoiso [p0, p] (ap f0 fst_hyp) : Morphism _ _ _) x3
-                            = ─ ∘ (x ((f0 f) x3) ∘ x0 x3))
+                            = 1 ∘ (x ((f0 f) x3) ∘ x0 x3))
            {H0' : IsIsomorphism x0}
            {H1' : IsIsomorphism x}
            {x3 : p} {x4 : p0} {f' : Morphism p ((f0 f) x4) x3},
       existT (fun f2 : Morphism C x2 x1 => Morphism p ((f0 f2) x4) x3)
-             (─ ∘ f)
+             (1 ∘ f)
              (x x3 ∘ (f1 ₁ f' ∘ x0 x4))
       = (f; f').
   Proof.
@@ -240,17 +240,17 @@ intros a b c d [f f'] [g g'] [h h']; simpl.
   Lemma pseudofunctor_to_cat_right_identity_helper
   : forall {x1 x2 : C} {f : Morphism C x2 x1} {p p0 : PreCategory}
            {f0 : Morphism C x2 x1 -> Functor p0 p} {f1 : Functor p0 p0}
-           {x0 : Morphism [_, _] (f0 (f ∘ ─)) (f0 f ∘ f1)%functor}
+           {x0 : Morphism [_, _] (f0 (f ∘ 1)) (f0 f ∘ f1)%functor}
            {H0' : IsIsomorphism x0}
-           {x : Morphism [_, _] f1 ─%functor}
+           {x : Morphism [_, _] f1 1%functor}
            {H1' : IsIsomorphism x}
-           {fst_hyp : f ∘ ─ = f}
+           {fst_hyp : f ∘ 1 = f}
            (rew_hyp : forall x3 : p0,
                         (idtoiso [p0, p] (ap f0 fst_hyp) : Morphism _ _ _) x3
-                        = ─ ∘ ((f0 f) ₁ (x x3) ∘ x0 x3))
+                        = 1 ∘ ((f0 f) ₁ (x x3) ∘ x0 x3))
            {x3 : p} {x4 : p0} {f' : Morphism p ((f0 f) x4) x3},
         existT (fun f2 : Morphism C x2 x1 => Morphism p ((f0 f2) x4) x3)
-               (f ∘ ─)
+               (f ∘ 1)
                (f' ∘ ((f0 f) ₁ (x x4) ∘ x0 x4))
         = (f; f').
   Proof.

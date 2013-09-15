@@ -67,7 +67,7 @@ Section equivalences.
             (A : AdjunctionUnit F G)
             s d (m : Morphism D s d)
             (η := A.1)
-            (ε := fun X => (A.2 (G X) X ─).1)
+            (ε := fun X => (A.2 (G X) X 1).1)
       : G ₁ (ε d ∘ F ₁ (G ₁ m)) ∘ η (G s) = G ₁ m
         -> G ₁ (m ∘ ε s) ∘ η (G s) = G ₁ m
         -> ε d ∘ F ₁ (G ₁ m) = m ∘ ε s.
@@ -80,10 +80,10 @@ Section equivalences.
 
       Definition CounitNTOfAdjunctionUnit
                  (A : AdjunctionUnit F G)
-      : NaturalTransformation (F ∘ G) ─.
+      : NaturalTransformation (F ∘ G) 1.
       Proof.
         refine (Build_NaturalTransformation
-                  (F ∘ G) ─
+                  (F ∘ G) 1
                   (fun d => (A.2 (G d) d (Identity _)).1)
                   _).
         abstract (to_unit_counit_nt
@@ -95,10 +95,10 @@ Section equivalences.
                  (A : AdjunctionUnit F G)
                  (Y : C)
                  (η := A.1)
-                 (ε := fun X => (A.2 (G X) X ─).1)
+                 (ε := fun X => (A.2 (G X) X 1).1)
 
       : G ₁ (ε (F Y) ∘ F ₁ (η Y)) ∘ η Y = η Y
-        -> ε (F Y) ∘ F ₁ (η Y) = ─.
+        -> ε (F Y) ∘ F ₁ (η Y) = 1.
       Proof.
         intros.
         etransitivity; [ symmetry | ];

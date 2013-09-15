@@ -143,46 +143,46 @@ Section Adjunction.
     Definition AdjunctionUnitOpCounit (A : AdjunctionUnit G^op F^op)
     : AdjunctionCounit F G
       := existT
-           (fun U : NaturalTransformation (F ∘ G) ─ =>
+           (fun U : NaturalTransformation (F ∘ G) 1 =>
               forall (c : C) (d : D) (g : Morphism D (F c) d),
                 {f : Morphism C c (G d)
                 | unique (fun f0 : Morphism C c (G d) => U d ∘ F ₁ f0 = g) f})
-           (@OppositeNaturalTransformation_Tinv _ _ (F ∘ G) ─ A.1)
+           (@OppositeNaturalTransformation_Tinv _ _ (F ∘ G) 1 A.1)
            (fun c d g => A.2 d c g).
 
     Definition AdjunctionUnitOpCounit_inv (A : AdjunctionUnit G F)
     : AdjunctionCounit F^op G^op
       := existT
-           (fun U : NaturalTransformation (F ^op ∘ G ^op) ─
+           (fun U : NaturalTransformation (F ^op ∘ G ^op) 1
             => forall (c : C ^op) (d : D ^op) (g : Morphism D ^op ((F ^op)%functor c) d),
                  {f : Morphism C ^op c ((G ^op)%functor d)
                  | unique
                      (fun f0 : Morphism C ^op c ((G ^op)%functor d) => U d ∘ F ^op ₁ f0 = g)
                      f})
-           (@OppositeNaturalTransformation_Finv _ _ (F^op ∘ G^op) ─ A.1)
+           (@OppositeNaturalTransformation_Finv _ _ (F^op ∘ G^op) 1 A.1)
            (fun c d g => A.2 d c g).
 
     Definition AdjunctionCounitOpUnit (A : AdjunctionCounit G^op F^op)
     : AdjunctionUnit F G
       := existT
-           (fun T : NaturalTransformation ─ (G ∘ F) =>
+           (fun T : NaturalTransformation 1 (G ∘ F) =>
               forall (c : C) (d : D) (f : Morphism C c (G d)),
                 { g : Morphism D (F c) d
                 | unique (fun g0 : Morphism D (F c) d =>
                             G ₁ g0 ∘ T c = f) g })
-           (@OppositeNaturalTransformation_Tinv _ _ ─ (G ∘ F) A.1)
+           (@OppositeNaturalTransformation_Tinv _ _ 1 (G ∘ F) A.1)
            (fun c d g => A.2 d c g).
 
     Definition AdjunctionCounitOpUnit_inv (A : AdjunctionCounit G F)
     : AdjunctionUnit F^op G^op
       := existT
-           (fun T : NaturalTransformation ─ (G ^op ∘ F ^op)
+           (fun T : NaturalTransformation 1 (G ^op ∘ F ^op)
             => forall (c : C ^op) (d : D ^op) (f : Morphism C ^op c ((G ^op)%functor d)),
                  {g : Morphism D ^op ((F ^op)%functor c) d
                  | unique
                      (fun g0 : Morphism D ^op ((F ^op)%functor c) d => G ^op ₁ g0 ∘ T c = f)
                      g})
-           (@OppositeNaturalTransformation_Finv _ _ ─ (G^op ∘ F^op) A.1)
+           (@OppositeNaturalTransformation_Finv _ _ 1 (G^op ∘ F^op) A.1)
            (fun c d g => A.2 d c g).
   End unit_counit_op.
 
