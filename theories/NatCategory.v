@@ -30,6 +30,8 @@ Definition NatCategory (n : nat) :=
 
 Coercion NatCategory : nat >-> PreCategory.
 
+Notation "1" := (NatCategory 1) : category_scope.
+
 Typeclasses Transparent NatCategory.
 Hint Unfold NatCategory.
 Arguments NatCategory / .
