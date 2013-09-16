@@ -2,6 +2,7 @@ Require Export Category Category.Objects InitialTerminalCategory Functor.
 Require Import Common.
 
 Set Implicit Arguments.
+Generalizable All Variables.
 Set Asymmetric Patterns.
 Set Universe Polymorphism.
 
@@ -45,14 +46,18 @@ Section Objects.
   Context `{forall C, IsHProp (P C)}.
   Context `{HF : forall C D, P C -> P D -> IsHSet (Functor C D)}.
 
-  Lemma TerminalCategory_Terminal (HT : P TerminalCategory)
-  : IsTerminalObject (SubPreCat P) (TerminalCategory; HT).
+  Lemma TerminalCategory_Terminal
+        `(IsTerminalCategory one)
+        (HT : P one)
+  : IsTerminalObject (SubPreCat P) (one; HT).
   Proof.
     typeclasses eauto.
   Defined.
 
-  Lemma InitialCategory_Initial (HI : P InitialCategory)
-  : IsInitialObject (SubPreCat P) (InitialCategory; HI).
+  Lemma InitialCategory_Initial
+        `(IsInitialCategory zero)
+        (HI : P zero)
+  : IsInitialObject (SubPreCat P) (zero; HI).
   Proof.
     typeclasses eauto.
   Defined.
