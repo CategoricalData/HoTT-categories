@@ -15,16 +15,16 @@ def make_table_string(left_times_dict, right_times_dict,
     middle_width = max(map(len, names + ["File Name", "Total"]))
     format_string = "%%-%ds | %%-%ds | %%-%ds" % (left_width, middle_width, right_width)
     header = format_string % (left_tag, "File Name", right_tag)
-    footer = format_string % (sum_times(left_times_dict.values()),
-                              "Total",
-                              sum_times(right_times_dict.values()))
+    total = format_string % (sum_times(left_times_dict.values()),
+                             "Total",
+                             sum_times(right_times_dict.values()))
     sep = '-' * len(header)
     left_rep, right_rep = ("%%-%ds" % left_width) % 0, ("%%-%ds" % right_width) % 0
-    return '\n'.join([header, sep] + [format_string % (left_times_dict.get(name, 0),
-                                                       name,
-                                                       right_times_dict.get(name, 0))
-                                      for name in names] +
-                     [sep, footer]).replace(left_rep, 'N/A'.center(len(left_rep))).replace(right_rep, 'N/A'.center(len(right_rep)))
+    return '\n'.join([header, sep, total, sep] +
+                     [format_string % (left_times_dict.get(name, 0),
+                                       name,
+                                       right_times_dict.get(name, 0))
+                      for name in names]).replace(left_rep, 'N/A'.center(len(left_rep))).replace(right_rep, 'N/A'.center(len(right_rep)))
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

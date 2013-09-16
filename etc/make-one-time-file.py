@@ -11,13 +11,12 @@ def make_table_string(times_dict,
     names_width = max(map(len, names + ["File Name", "Total"]))
     format_string = "%%-%ds | %%-%ds" % (times_width, names_width)
     header = format_string % (tag, "File Name")
-    footer = format_string % (sum_times(times_dict.values()),
-                              "Total")
+    total = format_string % (sum_times(times_dict.values()),
+                             "Total")
     sep = '-' * len(header)
-    return '\n'.join([header, sep] + [format_string % (times_dict[name],
-                                                       name)
-                                      for name in names] +
-                     [sep, footer])
+    return '\n'.join([header, sep, total, sep] + [format_string % (times_dict[name],
+                                                                   name)
+                                                  for name in names])
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
