@@ -73,12 +73,14 @@ Section swap_functor.
   Proof.
     functor_eq.
     exists (path_forall _ _ sum_swap_swap_id_helper).
-    repeat (apply (@path_forall _) || intros [] || intro);
-      repeat match goal with
+    repeat (apply (@path_forall _); intro).
+    repeat match goal with
                | [ |- appcontext[transport (fun x => forall y, @?C x y) ?p ?f ?x] ]
                  => simpl_do_clear do_rewrite (@transport_forall_constant _ _ C _ _ p f x)
-             end;
-      transport_path_forall_hammer;
+             end.
+    transport_path_forall_hammer.
+    destruct_head_hnf sum;
+      destruct_head_hnf Empty;
       trivial.
   Qed.
 End swap_functor.
