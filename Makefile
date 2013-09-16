@@ -34,14 +34,15 @@ MODULES    := theories/Peano \
 	theories/Functor/Product \
 	theories/NaturalTransformation/Product \
 	\
+	theories/Category/Sum \
+	theories/Functor/Sum \
+	\
 	theories/Subcategory/Sigma \
 	theories/Subcategory/SigmaObjects \
 	theories/Subcategory/SigmaMorphisms \
 	theories/Subcategory/Wide \
 	theories/Subcategory/Full \
 	theories/Subcategory \
-	\
-	theories/SumPreCategory \
 	\
 	theories/SetCategory \
 	\
