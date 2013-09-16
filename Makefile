@@ -36,6 +36,7 @@ MODULES    := theories/Peano \
 	\
 	theories/Category/Sum \
 	theories/Functor/Sum \
+	theories/NaturalTransformation/Sum \
 	\
 	theories/Subcategory/Sigma \
 	theories/Subcategory/SigmaObjects \
