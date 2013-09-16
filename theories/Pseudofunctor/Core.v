@@ -203,6 +203,33 @@ Section lemmas.
   Variable C : PreCategory.
   Variable F : Pseudofunctor C.
 
+  Lemma PFCompositionOfCoherent_for_rewrite_helper w x y z
+        (f : Morphism C w x) (g : Morphism C x y) (h : Morphism C y z)
+        (p p0 p1 p2 : PreCategory) (f0 : Morphism C w z -> Functor p2 p1)
+        (f1 : Functor p0 p1) (f2 : Functor p2 p) (f3 : Functor p p0)
+        (f4 : Functor p2 p0) `(@IsIsomorphism [_, _] f4 (f3 ∘ f2)%functor n)
+        `(@IsIsomorphism [_, _] (f0 (h ∘ (g ∘ f))%morphism) (f1 ∘ f4)%functor n0)
+  : (idtoiso [p2, p1] (ap f0 (Associativity C w x y z f g h)) : Morphism _ _ _)
+    = (NTComposeT
+         (n0 ⁻¹)
+         (NTComposeT
+            (NTWhiskerL f1 n ⁻¹)
+            (NTComposeT
+               (NTWhiskerL f1 n)
+               (NTComposeT
+                  n0
+                  (idtoiso [p2, p1] (ap f0 (Associativity C w x y z f g h)) : Morphism _ _ _))))).
+  Proof.
+    simpl in *.
+    let C := match goal with |- @paths (@NaturalTransformation ?C ?D ?F ?G) _ _ => constr:([C, D])%category end in
+    apply (@iso_moveL_Vp C);
+      apply (@iso_moveL_Mp C _ _ _ _ _ _ (iso_NTWhiskerL _ _ _ _ _ _ _)).
+    nt_eq.
+    reflexivity.
+  Qed.
+
+  Arguments PFCompositionOfCoherent_for_rewrite_helper {_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _}.
+
   Lemma PFCompositionOfCoherent_for_rewrite w x y z
         (f : Morphism C w x) (g : Morphism C x y) (h : Morphism C y z)
   : (idtoiso [_, _] (ap (@PMorphismOf _ _ F w z) (Associativity C w x y z f g h)) : Morphism _ _ _)
@@ -217,11 +244,7 @@ Section lemmas.
                   (PFCompositionOf F w x z (h ∘ g) f))))).
   Proof.
     simpl_do_clear do_rewrite (@PFCompositionOfCoherent _ C F w x y z f g h).
-    let C := match goal with |- @paths (@NaturalTransformation ?C ?D ?F ?G) _ _ => constr:([C, D])%category end in
-    apply (@iso_moveL_Vp C);
-      apply (@iso_moveL_Mp C _ _ _ _ _ _ (iso_NTWhiskerL _ _ _ _ _ _ _)).
-    nt_eq.
-    reflexivity.
+    exact PFCompositionOfCoherent_for_rewrite_helper.
   Qed.
 
   Lemma PFLeftIdentityOfCoherent_for_rewrite x y (f : Morphism C x y)
@@ -232,7 +255,7 @@ Section lemmas.
   Proof.
     simpl_do_clear do_rewrite (@PFLeftIdentityOfCoherent _ C F x y f).
     nt_eq.
-    symmetry.
+    apply symmetry.
     etransitivity; apply LeftIdentity.
   Qed.
 
@@ -244,7 +267,7 @@ Section lemmas.
   Proof.
     simpl_do_clear do_rewrite (@PFRightIdentityOfCoherent _ C F x y f).
     nt_eq.
-    symmetry.
+    apply symmetry.
     etransitivity; apply LeftIdentity.
   Qed.
 End lemmas.
