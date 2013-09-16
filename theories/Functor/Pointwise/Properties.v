@@ -81,12 +81,12 @@ Section FunctorCategoryParts.
   End FIdentityOf.
 
   Section FCompositionOf.
-    Variable C : Category.
-    Variable D : Category.
-    Variable C' : Category.
-    Variable D' : Category.
-    Variable C'' : Category.
-    Variable D'' : Category.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable C' : PreCategory.
+    Variable D' : PreCategory.
+    Variable C'' : PreCategory.
+    Variable D'' : PreCategory.
 
     Variable F' : Functor C' C''.
     Variable G : Functor D D'.
