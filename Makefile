@@ -73,6 +73,8 @@ MODULES    := theories/Peano \
 	theories/Cat \
 	theories/Cat/Morphisms \
 	\
+	theories/FunctorCategory/Functorial \
+	\
 	theories/DualFunctor \
 	\
 	theories/Pseudofunctor/Core \
