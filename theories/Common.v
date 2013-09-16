@@ -1234,10 +1234,6 @@ Notation "1" := (trunc_S 0) : trunc_scope.
 Notation "2" := (trunc_S 1) : trunc_scope.
 Notation "3" := (trunc_S 3) : trunc_scope.
 
-Definition transport_idmap_ap A (P : A -> Type) x y (p : x = y) (u : P x)
-: transport idmap (ap P p) u = transport P p u
-  := match p with idpath => idpath end.
-
 Tactic Notation "subst" :=
   repeat match goal with
            | [ H : ?x = ?y |- _ ]

@@ -12,6 +12,12 @@ Local Open Scope functor_scope.
 Section FunctorCategoryParts.
   Context `{Funext}.
 
+  Let transport_idmap_ap A (P : A -> Type) x y (p : x = y) (u : P x)
+  : transport idmap (ap P p) u = transport P p u
+  := inverse (transport_compose idmap _ _ _).
+
+  (** We could do this all in a big [repeat match], but we split it
+      up, to shave off about two seconds per proof. *)
   Local Ltac functor_pointwise_t helper_lem_match helper_lem :=
     repeat (apply path_forall; intro);
     rewrite !transport_forall_constant, !path_forall_2_beta, !transport_path_prod'_beta;
