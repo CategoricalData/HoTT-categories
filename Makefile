@@ -68,6 +68,8 @@ MODULES    := theories/Peano \
 	theories/Functor/Pointwise/Properties \
 	theories/NaturalTransformation/Pointwise \
 	\
+	theories/ExponentialLaws \
+	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
 	theories/Groupoid/Duals \
