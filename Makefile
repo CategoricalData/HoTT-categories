@@ -1,4 +1,10 @@
 MODULES    := theories/Peano \
+	theories/Coq/Arith/Le \
+	theories/Coq/Arith/Lt \
+	theories/Coq/Arith/Plus \
+	theories/Coq/Arith/Gt \
+	theories/Coq/Logic/Decidable \
+	theories/Coq/Arith/Compare_dec \
 	\
 	theories/Notations \
 	theories/NotationsUtf8 \
