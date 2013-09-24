@@ -6,6 +6,7 @@
 (*         *       GNU Lesser General Public License Version 2.1        *)
 (************************************************************************)
 
+Require Export HoTT.Overture.
 Require Import Le.
 Require Import Lt.
 Require Import Gt.
@@ -120,13 +121,13 @@ Qed.*)
 Theorem not_le : forall n m, ~ n <= m -> n > m.
 Proof.
   intros x y H; elim (le_gt_dec x y);
-    [ intros H1; absurd (x <= y); assumption | trivial with arith ].
+  [ intros H1; elim H; assumption | trivial with arith ].
 Qed.
 
 Theorem not_gt : forall n m, ~ n > m -> n <= m.
 Proof.
   intros x y H; elim (le_gt_dec x y);
-    [ trivial with arith | intros H1; absurd (x > y); assumption ].
+    [ trivial with arith | intros H1; elim H; assumption ].
 Qed.
 
 Theorem not_ge : forall n m, ~ n >= m -> n < m.

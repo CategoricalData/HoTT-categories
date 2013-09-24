@@ -7,9 +7,11 @@
 (************************************************************************)
 (** Typeerties of decidable propositions *)
 
+Require Export HoTT.Overture.
+
 Definition decidable (P:Type) := P \/ ~ P.
 
-Definition dec_not_not : forall P:Type, decidable P -> (~ P -> False) -> P
+Definition dec_not_not : forall P:Type, decidable P -> (~ P -> Empty) -> P
   := fun P ponp nnp => match ponp with
                          | inl p => p
                          | inr np => match nnp np with end
@@ -18,7 +20,7 @@ Definition dec_not_not : forall P:Type, decidable P -> (~ P -> False) -> P
 Definition dec_True : decidable True
   := inl I.
 
-Definition dec_False : decidable False
+Definition dec_Empty : decidable Empty
   := inr (fun x => x).
 
 Definition dec_or :
@@ -112,12 +114,12 @@ Definition not_iff :
 (** We begin with lemmas that, when read from left to right,
     can be understood as ways to eliminate uses of [not]. *)
 
-Definition not_true_iff : (True -> False) <-> False.
+Definition not_true_iff : (True -> Empty) <-> Empty.
 Proof.
   constructor; auto.
 Defined.
 
-Definition not_false_iff : (False -> False) <-> True.
+Definition not_false_iff : (Empty -> Empty) <-> True.
 Proof.
   constructor; auto.
 Defined.
@@ -125,26 +127,26 @@ Defined.
 Local Ltac decide_by_auto :=
   repeat (intros [?|?] || intro);
   constructor; intros; auto;
-  refine (match _ : False with end);
+  refine (match _ : Empty with end);
   unfold not in *;
   auto.
 
 Definition not_not_iff : forall A:Type, decidable A ->
-  (((A -> False) -> False) <-> A).
+  (((A -> Empty) -> Empty) <-> A).
 Proof.
   decide_by_auto.
 Defined.
 
 Definition contrapositive : forall A B:Type, decidable A ->
-  (((A -> False) -> (B -> False)) <-> (B -> A)).
+  (((A -> Empty) -> (B -> Empty)) <-> (B -> A)).
 Proof.
   decide_by_auto.
 Defined.
 
 Definition or_not_l_iff_1 : forall A B: Type, decidable A ->
-  ((A -> False) \/ B <-> (A -> B))
+  ((A -> Empty) \/ B <-> (A -> B))
   := fun A B HA => Iff (fun nab => fun a => match nab with
-                                              | inl na => match na a : False with end
+                                              | inl na => match na a : Empty with end
                                               | inr b => b
                                             end)
                        (fun ab => match HA with
@@ -153,25 +155,25 @@ Definition or_not_l_iff_1 : forall A B: Type, decidable A ->
                                   end).
 (*
 Lemma or_not_l_iff_2 : forall A B: Type, decidable B ->
-  ((A -> False) \/ B <-> (A -> B)).
+  ((A -> Empty) \/ B <-> (A -> B)).
 Proof.
 unfold decidable. tauto.
 Qed.
 
 Lemma or_not_r_iff_1 : forall A B: Type, decidable A ->
-  (A \/ (B -> False) <-> (B -> A)).
+  (A \/ (B -> Empty) <-> (B -> A)).
 Proof.
 unfold decidable. tauto.
 Qed.
 
 Lemma or_not_r_iff_2 : forall A B: Type, decidable B ->
-  (A \/ (B -> False) <-> (B -> A)).
+  (A \/ (B -> Empty) <-> (B -> A)).
 Proof.
 unfold decidable. tauto.
 Qed.
 
 Lemma imp_not_l : forall A B: Type, decidable A ->
-  (((A -> False) -> B) <-> (A \/ B)).
+  (((A -> Empty) -> B) <-> (A \/ B)).
 Proof.
 unfold decidable. tauto.
 Qed.
@@ -184,25 +186,25 @@ Qed.
     how to pull negations toward the top of a proposition. *)
 
 Definition not_or_iff : forall A B:Type,
-  (A \/ B -> False) <-> (A -> False) /\ (B -> False).
+  (A \/ B -> Empty) <-> (A -> Empty) /\ (B -> Empty).
 Proof.
 tauto.
 Qed.
 
 Lemma not_and_iff : forall A B:Type,
-  (A /\ B -> False) <-> (A -> B -> False).
+  (A /\ B -> Empty) <-> (A -> B -> Empty).
 Proof.
 tauto.
 Qed.
 
 Lemma not_imp_iff : forall A B:Type, decidable A ->
-  (((A -> B) -> False) <-> A /\ (B -> False)).
+  (((A -> B) -> Empty) <-> A /\ (B -> Empty)).
 Proof.
 unfold decidable. tauto.
 Qed.
 
 Lemma not_imp_rev_iff : forall A B : Type, decidable A ->
-  (((A -> B) -> False) <-> (B -> False) /\ A).
+  (((A -> B) -> Empty) <-> (B -> Empty) /\ A).
 Proof.
 unfold decidable. tauto.
 Qed.
@@ -221,7 +223,7 @@ Qed.
 (** With the following hint database, we can leverage [auto] to check
     decidability of propositions. *)
 
-Hint Resolve dec_True dec_False dec_or dec_and dec_imp dec_not dec_iff
+Hint Resolve dec_True dec_Empty dec_or dec_and dec_imp dec_not dec_iff
  : decidable_prop.
 
 (** [solve_decidable using lib] will solve goals about the

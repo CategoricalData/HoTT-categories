@@ -16,6 +16,7 @@ where "n <= m" := (le n m) : nat_scope.
 >>
  *)
 
+Require Export HoTT.Overture.
 Require Export Coq.Init.Peano.
 
 Local Open Scope nat_scope.
@@ -28,13 +29,13 @@ Implicit Types m n p : nat.
 Theorem le_refl : forall n, n <= n.
 Proof.
   exact le_n.
-Qed.
+Defined.
 
 (** Transitivity *)
 Theorem le_trans : forall n m p, n <= m -> m <= p -> n <= p.
 Proof.
   induction 2; auto.
-Qed.
+Defined.
 Hint Resolve le_trans: arith v62.
 
 (** * Properties of [le] w.r.t. successor, predecessor and 0 *)
@@ -44,13 +45,14 @@ Hint Resolve le_trans: arith v62.
 Theorem le_0_n : forall n, 0 <= n.
 Proof.
   induction n; auto.
-Qed.
+Defined.
 
 Theorem le_Sn_0 : forall n, ~ S n <= 0.
 Proof.
   red; intros n H.
-  change (IsSucc 0); elim H; simpl; auto with arith.
-Qed.
+  change (match 0 with 0 => Empty | _ => True end);
+  elim H; simpl; auto with arith.
+Defined.
 
 Hint Resolve le_0_n le_Sn_0: arith v62.
 
@@ -58,7 +60,7 @@ Hint Resolve le_0_n le_Sn_0: arith v62.
 Proof.
   induction n. auto with arith.  idtac. auto with arith.
   intro; contradiction le_Sn_0 with n.
-Qed.
+Defined.
 Hint Immediate le_n_0_eq: arith v62.*)
 
 
@@ -67,31 +69,31 @@ Hint Immediate le_n_0_eq: arith v62.*)
 Theorem le_n_S : forall n m, n <= m -> S n <= S m.
 Proof.
   induction 1; auto.
-Qed.
+Defined.
 
 Theorem le_n_Sn : forall n, n <= S n.
 Proof.
   auto.
-Qed.
+Defined.
 
 Hint Resolve le_n_S le_n_Sn : arith v62.
 
 Theorem le_Sn_le : forall n m, S n <= m -> n <= m.
 Proof.
   intros n m H; apply le_trans with (S n); auto with arith.
-Qed.
+Defined.
 Hint Immediate le_Sn_le: arith v62.
 
 Theorem le_S_n : forall n m, S n <= S m -> n <= m.
 Proof.
   exact Peano.le_S_n.
-Qed.
+Defined.
 Hint Immediate le_S_n: arith v62.
 
 Theorem le_Sn_n : forall n, ~ S n <= n.
 Proof.
   induction n; auto with arith.
-Qed.
+Defined.
 Hint Resolve le_Sn_n: arith v62.
 
 (** [le] and predecessor *)
@@ -99,13 +101,13 @@ Hint Resolve le_Sn_n: arith v62.
 Theorem le_pred_n : forall n, pred n <= n.
 Proof.
   induction n; auto with arith.
-Qed.
+Defined.
 Hint Resolve le_pred_n: arith v62.
 
 Theorem le_pred : forall n m, n <= m -> pred n <= pred m.
 Proof.
   exact Peano.le_pred.
-Qed.
+Defined.
 
 (** * [le] is a order on [nat] *)
 (** Antisymmetry *)
@@ -116,7 +118,7 @@ Proof.
   intros H1.
   absurd (S m' <= m'); auto with arith.
   apply le_trans with n; auto with arith.
-Qed.
+Defined.
 Hint Immediate le_antisym: arith v62.*)
 
 
@@ -131,7 +133,7 @@ Proof.
   induction n; auto with arith.
   intros m Le.
   elim Le; auto with arith.
-Qed.
+Defined.
 
 (* begin hide *)
 Notation le_O_n := le_0_n (only parsing).

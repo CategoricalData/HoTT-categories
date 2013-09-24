@@ -13,6 +13,7 @@ Infix "<" := lt : nat_scope.
 >>
 *)
 
+Require Export HoTT.Overture.
 Require Import Le.
 Local Open Scope nat_scope.
 
