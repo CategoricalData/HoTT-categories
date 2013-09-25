@@ -44,23 +44,45 @@ Hint Rewrite @LeftIdentityNaturalTransformation @RightIdentityNaturalTransformat
 Hint Rewrite @LeftIdentityNaturalTransformation @RightIdentityNaturalTransformation : natural_transformation.
 
 Section NTComposeF.
-  Context `{Funext}.
+  Context `{fs : Funext}.
 
-  Variable C : PreCategory.
-  Variable D : PreCategory.
-  Variable E : PreCategory.
-  Variables G G' : Functor D E.
-  Variables F F' : Functor C D.
-  Variable T' : NaturalTransformation G G'.
-  Variable T : NaturalTransformation F F'.
+  Section exch.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variable E : PreCategory.
+    Variables G G' : Functor D E.
+    Variables F F' : Functor C D.
+    Variable T' : NaturalTransformation G G'.
+    Variable T : NaturalTransformation F F'.
 
-  Lemma NTWhiskerExchange
-  : (G' ∘ T) ∘ (T' ∘ F) = (T' ∘ F') ∘ (G ∘ T).
-  Proof.
-    nt_eq; simpl.
-    symmetry.
-    apply Commutes.
-  Qed.
+    Lemma NTWhiskerExchange
+    : (G' ∘ T) ∘ (T' ∘ F) = (T' ∘ F') ∘ (G ∘ T).
+    Proof.
+      nt_eq; simpl.
+      symmetry.
+      apply Commutes.
+    Qed.
+  End exch.
+
+  Section whisker.
+    Variable C : PreCategory.
+    Variable D : PreCategory.
+    Variables F G H : Functor C D.
+    Variable T : NaturalTransformation G H.
+    Variable T' : NaturalTransformation F G.
+
+    Lemma NTWhiskerL_CompositionOf E (I : Functor D E)
+    : NTWhiskerL I (NTComposeT T T') = NTComposeT (NTWhiskerL I T) (NTWhiskerL I T').
+    Proof.
+      nt_eq; apply FCompositionOf.
+    Qed.
+
+    Lemma NTWhiskerR_CompositionOf B (I : Functor B C)
+    : NTWhiskerR (NTComposeT T T') I = NTComposeT (NTWhiskerR T I) (NTWhiskerR T' I).
+    Proof.
+      exact idpath.
+    Defined.
+  End whisker.
 End NTComposeF.
 
 Section Associativity.
