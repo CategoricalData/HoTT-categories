@@ -125,6 +125,16 @@ MODULES    := theories/Peano \
 VS         := $(MODULES:%=%.v)
 VDS	   := $(MODULES:%=%.v.d)
 
+V = 0
+
+SILENCE_HOQC_0 := @echo \"HOQC $$<\"; #
+SILENCE_HOQC_1 :=
+SILENCE_HOQC = $(SILENCE_HOQC_$(V))
+
+SILENCE_COQDEP_0 := @echo \"COQDEP $$<\"; #
+SILENCE_COQDEP_1 :=
+SILENCE_COQDEP = $(SILENCE_COQDEP_$(V))
+
 NEW_TIME_FILE=time-of-build-after.log
 OLD_TIME_FILE=time-of-build-before.log
 BOTH_TIME_FILE=time-of-build-both.log
@@ -156,13 +166,13 @@ combine-pretty-timed:
 	@echo
 
 pretty-timed:
-	bash ./etc/make-each-time-file.sh "$(MAKE)" "$(SINGLE_TIME_FILE)"
+	bash ./etc/make-each-time-file.sh "$(MAKE) SEMICOLON=;" "$(SINGLE_TIME_FILE)"
 	python ./etc/make-one-time-file.py "$(SINGLE_TIME_FILE)" "$(SINGLE_PRETTY_TIME_FILE)"
 	cat "$(SINGLE_PRETTY_TIME_FILE)"
 	@echo
 
 Makefile.coq: Makefile $(VS) HoTT
-	coq_makefile COQC = "\$$(TIMER) \"$(HOQC)\"" COQDOCFLAGS = "$(COQDOCFLAGS)" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
+	coq_makefile COQC = "$(SILENCE_HOQC)\$$(TIMER) \"$(HOQC)\"" COQDEP = "$(SILENCE_COQDEP)\"\$$(COQBIN)coqdep\" -c" COQDOCFLAGS = "$(COQDOCFLAGS)" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
 
 HoTT/Makefile:
 	cd HoTT; ./configure
