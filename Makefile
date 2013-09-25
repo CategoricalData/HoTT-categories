@@ -58,6 +58,8 @@ MODULES    := theories/Peano \
 	theories/FunctorCategory \
 	theories/FunctorCategory/Morphisms \
 	\
+	theories/Functor/ProductFunctor \
+	\
 	theories/CategoryOfSections \
 	\
 	theories/NaturalTransformation/Isomorphisms \
