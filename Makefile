@@ -58,7 +58,7 @@ MODULES    := theories/Peano \
 	theories/FunctorCategory \
 	theories/FunctorCategory/Morphisms \
 	\
-	theories/Functor/ProductFunctor \
+	theories/Functor/Product/ProductFunctor \
 	\
 	theories/CategoryOfSections \
 	\
