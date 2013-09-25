@@ -109,15 +109,17 @@ End notations.
 
 Hint Unfold PointwiseFunctor_Typable_term : typeclass_instances.
 
-(* Set some notations for printing *)
+(** Set some notations for printing *)
 Notation "G ^ F" := (PointwiseFunctor F G) : functor_scope.
 Notation "D ^ F" := (PointwiseFunctorWhiskerR F D) : functor_scope.
 Notation "G ^ C" := (PointwiseFunctorWhiskerL C G) : functor_scope.
-Notation "D ^ C" := (FunctorCategory C D) : functor_scope.
+(** Included for completeness, but not required, because we want the version in category_scope to dominate. *)
+Notation "D ^ C" := (FunctorCategory C D) (only parsing) : functor_scope.
 Notation "[ F , G ]" := (PointwiseFunctor F G) : functor_scope.
 Notation "[ F , D ]" := (PointwiseFunctorWhiskerR F D) : functor_scope.
 Notation "[ C , G ]" := (PointwiseFunctorWhiskerL C G) : functor_scope.
-Notation "[ C , D ]" := (FunctorCategory C D) : functor_scope.
+(** Included for completeness, but not required, because we want the version in category_scope to dominate. *)
+Notation "[ C , D ]" := (FunctorCategory C D) (only parsing) : functor_scope.
 
 (* Notation for parsing *)
 Notation "G ^ F"
