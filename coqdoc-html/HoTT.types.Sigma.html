@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab71"></a><h1 class="section">Theorems about Sigma-types (dependent sums)</h1>
+<a name="lab47"></a><h1 class="section">Theorems about Sigma-types (dependent sums)</h1>
 
 </div>
 <div class="code">
@@ -51,11 +51,11 @@ From such a <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html
 The base and fiber components of a point in the total space are extracted with the two projections <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> and <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span>. 
 <div class="paragraph"> </div>
 
-<a name="lab72"></a><h3 class="section">Unpacking</h3>
+<a name="lab48"></a><h3 class="section">Unpacking</h3>
 
 <div class="paragraph"> </div>
 
- Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> by writing <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><span class="id" type="var">sigT_unpack</span></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
+ Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> by writing <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><span class="id" type="var">sigT_unpack</span></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
 </div>
 <div class="code">
 
@@ -70,7 +70,7 @@ The base and fiber components of a point in the total space are extracted with t
 </div>
 
 <div class="doc">
-<a name="lab73"></a><h3 class="section">Eta conversion</h3>
+<a name="lab49"></a><h3 class="section">Eta conversion</h3>
 
 </div>
 <div class="code">
@@ -96,7 +96,7 @@ The base and fiber components of a point in the total space are extracted with t
 </div>
 
 <div class="doc">
-<a name="lab74"></a><h3 class="section">Paths</h3>
+<a name="lab50"></a><h3 class="section">Paths</h3>
 
 <div class="paragraph"> </div>
 
@@ -379,7 +379,7 @@ Applying a function constructed with <span class="inlinecode"><a class="idref" h
 </div>
 
 <div class="doc">
-<a name="lab75"></a><h3 class="section">Transport</h3>
+<a name="lab51"></a><h3 class="section">Transport</h3>
 
 <div class="paragraph"> </div>
 
@@ -419,7 +419,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab76"></a><h3 class="section">Functorial action</h3>
+<a name="lab52"></a><h3 class="section">Functorial action</h3>
 
 </div>
 <div class="code">
@@ -451,7 +451,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab77"></a><h3 class="section">Equivalences</h3>
+<a name="lab53"></a><h3 class="section">Equivalences</h3>
 
 </div>
 <div class="code">
@@ -511,7 +511,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab78"></a><h3 class="section">Associativity</h3>
+<a name="lab54"></a><h3 class="section">Associativity</h3>
 
 </div>
 <div class="code">
@@ -548,7 +548,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab79"></a><h3 class="section">Universal mapping properties</h3>
+<a name="lab55"></a><h3 class="section">Universal mapping properties</h3>
 
 </div>
 <div class="code">
@@ -614,7 +614,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab80"></a><h3 class="section">Sigmas preserve truncation</h3>
+<a name="lab56"></a><h3 class="section">Sigmas preserve truncation</h3>
 
 </div>
 <div class="code">

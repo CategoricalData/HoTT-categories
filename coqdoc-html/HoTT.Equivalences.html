@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab95"></a><h1 class="section">Equivalences -*- mode: coq; mode: visual-line -*-</h1>
+<a name="lab3"></a><h1 class="section">Equivalences -*- mode: coq; mode: visual-line -*-</h1>
 
 </div>
 <div class="code">
@@ -424,7 +424,7 @@ Assuming function extensionality, composing with an equivalence is itself an equ
 </div>
 
 <div class="doc">
-The function <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#equiv_rect"><span class="id" type="definition">equiv_rect</span></a></span> says that given an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, and a hypothesis from <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, one may always assume that the hypothesis is in the image of <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#e"><span class="id" type="variable">e</span></a></span>.
+The function <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#equiv_rect"><span class="id" type="lemma">equiv_rect</span></a></span> says that given an equivalence <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&lt;~&gt;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, and a hypothesis from <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span>, one may always assume that the hypothesis is in the image of <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#e"><span class="id" type="variable">e</span></a></span>.
 
 <div class="paragraph"> </div>
 
@@ -444,7 +444,7 @@ In fibrational terms, if we have a fibration over <span class="inlinecode"><a cl
 </div>
 
 <div class="doc">
-Using <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#equiv_rect"><span class="id" type="definition">equiv_rect</span></a></span>, we define a handy little tactic which introduces a variable and simultaneously substitutes it along an equivalence. 
+Using <span class="inlinecode"><a class="idref" href="HoTT.Functorish.html#equiv_rect"><span class="id" type="lemma">equiv_rect</span></a></span>, we define a handy little tactic which introduces a variable and simultaneously substitutes it along an equivalence. 
 </div>
 <div class="code">
 
