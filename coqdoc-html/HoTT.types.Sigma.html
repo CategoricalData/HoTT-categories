@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab89"></a><h1 class="section">Theorems about Sigma-types (dependent sums)</h1>
+<a name="lab71"></a><h1 class="section">Theorems about Sigma-types (dependent sums)</h1>
 
 </div>
 <div class="code">
@@ -40,22 +40,22 @@
 </div>
 
 <div class="doc">
-In homotopy type theory, We think of elements of <span class="inlinecode"><span class="id" type="keyword">Type</span></span> as spaces, homotopy types, or weak omega-groupoids. A type family <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><span class="id" type="keyword">Type</span></span> corresponds to a fibration whose base is <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> and whose fiber over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> is <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>.
+In homotopy type theory, We think of elements of <span class="inlinecode"><span class="id" type="keyword">Type</span></span> as spaces, homotopy types, or weak omega-groupoids. A type family <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><span class="id" type="keyword">Type</span></span> corresponds to a fibration whose base is <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> and whose fiber over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> is <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>.
 
 <div class="paragraph"> </div>
 
-From such a <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> we can build a total space over the base space <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> so that the fiber over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> is <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>. This is just Coq's dependent sum construction, written as <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> or <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span>. The elements of <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> are pairs, written <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span> in Coq, where <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> and <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>.  In <span class="inlinecode"><span class="id" type="var">Common.v</span></span> we defined the notation <span class="inlinecode">(<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>;<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> to mean <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a></span> <span class="inlinecode"><span class="id" type="var">_</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>.
+From such a <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> we can build a total space over the base space <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> so that the fiber over <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> is <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>. This is just Coq's dependent sum construction, written as <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> or <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span>. The elements of <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> are pairs, written <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span> in Coq, where <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> and <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>.  In <span class="inlinecode"><span class="id" type="var">Common.v</span></span> we defined the notation <span class="inlinecode">(<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>;<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> to mean <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#existT"><span class="id" type="constructor">existT</span></a></span> <span class="inlinecode"><span class="id" type="var">_</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>.
 
 <div class="paragraph"> </div>
 
 The base and fiber components of a point in the total space are extracted with the two projections <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> and <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span>. 
 <div class="paragraph"> </div>
 
-<a name="lab90"></a><h3 class="section">Unpacking</h3>
+<a name="lab72"></a><h3 class="section">Unpacking</h3>
 
 <div class="paragraph"> </div>
 
- Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> by writing <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><span class="id" type="var">sigT_unpack</span></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
+ Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">{<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">&amp;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a>}</span> by writing <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Specif.html#projT1"><span class="id" type="definition">projT1</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#projT2"><span class="id" type="definition">projT2</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><span class="id" type="var">sigT_unpack</span></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
 </div>
 <div class="code">
 
@@ -70,7 +70,7 @@ The base and fiber components of a point in the total space are extracted with t
 </div>
 
 <div class="doc">
-<a name="lab91"></a><h3 class="section">Eta conversion</h3>
+<a name="lab73"></a><h3 class="section">Eta conversion</h3>
 
 </div>
 <div class="code">
@@ -96,14 +96,14 @@ The base and fiber components of a point in the total space are extracted with t
 </div>
 
 <div class="doc">
-<a name="lab92"></a><h3 class="section">Paths</h3>
+<a name="lab74"></a><h3 class="section">Paths</h3>
 
 <div class="paragraph"> </div>
 
  A path in a total space is commonly shown component wise. Because we use this over and over, we write down the proofs by hand to make sure they are what we think they should be. 
 <div class="paragraph"> </div>
 
- With this version of the function, we often have to give <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#u"><span class="id" type="variable">u</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.types.Record.html#v"><span class="id" type="variable">v</span></a></span> explicitly, so we make them explicit arguments. 
+ With this version of the function, we often have to give <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#u"><span class="id" type="variable">u</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.Fibrations.html#v"><span class="id" type="variable">v</span></a></span> explicitly, so we make them explicit arguments. 
 </div>
 <div class="code">
 <span class="id" type="keyword">Definition</span> <a name="path_sigma_uncurried"><span class="id" type="definition">path_sigma_uncurried</span></a> {<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>} (<span class="id" type="var">P</span> : <a class="idref" href="HoTT.types.Sigma.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>) (<span class="id" type="var">u</span> <span class="id" type="var">v</span> : <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="HoTT.types.Sigma.html#P"><span class="id" type="variable">P</span></a>)<br/>
@@ -379,7 +379,7 @@ Applying a function constructed with <span class="inlinecode"><a class="idref" h
 </div>
 
 <div class="doc">
-<a name="lab93"></a><h3 class="section">Transport</h3>
+<a name="lab75"></a><h3 class="section">Transport</h3>
 
 <div class="paragraph"> </div>
 
@@ -419,7 +419,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab94"></a><h3 class="section">Functorial action</h3>
+<a name="lab76"></a><h3 class="section">Functorial action</h3>
 
 </div>
 <div class="code">
@@ -451,7 +451,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab95"></a><h3 class="section">Equivalences</h3>
+<a name="lab77"></a><h3 class="section">Equivalences</h3>
 
 </div>
 <div class="code">
@@ -511,7 +511,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab96"></a><h3 class="section">Associativity</h3>
+<a name="lab78"></a><h3 class="section">Associativity</h3>
 
 </div>
 <div class="code">
@@ -548,7 +548,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab97"></a><h3 class="section">Universal mapping properties</h3>
+<a name="lab79"></a><h3 class="section">Universal mapping properties</h3>
 
 </div>
 <div class="code">
@@ -614,7 +614,7 @@ The special case when the second variable doesn't depend on the first is simpler
 </div>
 
 <div class="doc">
-<a name="lab98"></a><h3 class="section">Sigmas preserve truncation</h3>
+<a name="lab80"></a><h3 class="section">Sigmas preserve truncation</h3>
 
 </div>
 <div class="code">
