@@ -68,7 +68,19 @@ MODULES    := theories/Peano \
 	theories/Functor/Pointwise/Properties \
 	theories/NaturalTransformation/Pointwise \
 	\
-	theories/ExponentialLaws \
+	theories/ExponentialLaws/Law1/Functors \
+	theories/ExponentialLaws/Law2/Functors \
+	theories/ExponentialLaws/Law3/Functors \
+	theories/ExponentialLaws/Law4/Functors \
+	theories/ExponentialLaws/Law1/Law \
+	theories/ExponentialLaws/Law2/Law \
+	theories/ExponentialLaws/Law3/Law \
+	theories/ExponentialLaws/Law4/Law \
+	theories/ExponentialLaws/Law0 \
+	theories/ExponentialLaws/Law1 \
+	theories/ExponentialLaws/Law2 \
+	theories/ExponentialLaws/Law3 \
+	theories/ExponentialLaws/Law4 \
 	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
