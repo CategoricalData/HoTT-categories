@@ -81,6 +81,7 @@ MODULES    := theories/Peano \
 	theories/ExponentialLaws/Law2 \
 	theories/ExponentialLaws/Law3 \
 	theories/ExponentialLaws/Law4 \
+	theories/ExponentialLaws \
 	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
