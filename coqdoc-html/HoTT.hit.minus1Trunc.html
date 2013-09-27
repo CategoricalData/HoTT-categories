@@ -120,7 +120,7 @@ The non-dependent version of the eliminator.
 </div>
 
 <div class="doc">
-<span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> is always a proposition. 
+<span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> is always a proposition. 
 </div>
 <div class="code">
 
@@ -142,7 +142,7 @@ The non-dependent version of the eliminator.
 </div>
 
 <div class="doc">
-And if <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> was already a proposition, then <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span> is equivalent to <span class="inlinecode"><a class="idref" href="Coq.Init.Specif.html#Projections.A"><span class="id" type="variable">A</span></a></span>. 
+And if <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> was already a proposition, then <span class="inlinecode"><a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> is equivalent to <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span>. 
 </div>
 <div class="code">
 <span class="id" type="keyword">Instance</span> <a name="IsEquivmin1"><span class="id" type="instance">IsEquivmin1</span></a> {<span class="id" type="var">A</span>} `{<a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> <a class="idref" href="HoTT.hit.minus1Trunc.html#A"><span class="id" type="variable">A</span></a>} : <a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (@<a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.min1"><span class="id" type="constructor">min1</span></a> <a class="idref" href="HoTT.hit.minus1Trunc.html#A"><span class="id" type="variable">A</span></a>) | 1000.<br/>
@@ -384,7 +384,7 @@ Unit laws.
 We may want to define the other connectives to at some point. 
 </div>
 <div class="code">
-<span class="id" type="keyword">Definition</span> <a name="hexists"><span class="id" type="definition">hexists</span></a> {<span class="id" type="var">X</span>} (<span class="id" type="var">P</span>:<a class="idref" href="HoTT.hit.minus1Trunc.html#X"><span class="id" type="variable">X</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a><span class="id" type="keyword">Type</span>):<span class="id" type="keyword">Type</span>:= <a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a> (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a>  <a class="idref" href="HoTT.hit.minus1Trunc.html#P"><span class="id" type="variable">P</span></a>).<br/>
+<span class="id" type="keyword">Definition</span> <a name="hexists"><span class="id" type="definition">hexists</span></a> {<span class="id" type="var">X</span>} (<span class="id" type="var">P</span>:<a class="idref" href="HoTT.hit.minus1Trunc.html#X"><span class="id" type="variable">X</span></a><a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a><span class="id" type="keyword">Type</span>):<span class="id" type="keyword">Type</span>:= <a class="idref" href="HoTT.hit.minus1Trunc.html#minus1Trunc.minus1Trunc"><span class="id" type="inductive">minus1Trunc</span></a> (<a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="abbreviation">sigT</span></a>  <a class="idref" href="HoTT.hit.minus1Trunc.html#P"><span class="id" type="variable">P</span></a>).<br/>
 </div>
 </div>
 

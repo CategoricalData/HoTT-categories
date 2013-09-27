@@ -62,7 +62,7 @@ Conversely, several files in <span class="inlinecode"><span class="id" type="var
 </div>
 
 <div class="doc">
-<a name="lab56"></a><h2 class="section">Null homotopies of maps</h2>
+<a name="lab128"></a><h2 class="section">Null homotopies of maps</h2>
 
 </div>
 <div class="code">
@@ -100,7 +100,7 @@ Geometrically, a nullhomotopy of a map <span class="inlinecode"><a class="idref"
 </div>
 
 <div class="doc">
-<a name="lab57"></a><h2 class="section">Sigmas of hprops.</h2>
+<a name="lab129"></a><h2 class="section">Sigmas of hprops.</h2>
 
 </div>
 <div class="code">
@@ -117,7 +117,7 @@ The sigma of an hprop over a type can be viewed as a subtype. In particular, pat
 </div>
 <div class="code">
 <span class="id" type="keyword">Definition</span> <a name="equiv_path_sigma_hprop"><span class="id" type="definition">equiv_path_sigma_hprop</span></a> {<span class="id" type="var">A</span> : <span class="id" type="keyword">Type</span>} {<span class="id" type="var">P</span> : <a class="idref" href="HoTT.Misc.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">Type</span>}<br/>
-&nbsp;&nbsp;{<span class="id" type="var">HP</span> : <span class="id" type="keyword">∀</span> <span class="id" type="var">a</span>, <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> (<a class="idref" href="HoTT.Misc.html#P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.Misc.html#a"><span class="id" type="variable">a</span></a>)} (<span class="id" type="var">u</span> <span class="id" type="var">v</span> : <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="inductive">sigT</span></a> <a class="idref" href="HoTT.Misc.html#P"><span class="id" type="variable">P</span></a>)<br/>
+&nbsp;&nbsp;{<span class="id" type="var">HP</span> : <span class="id" type="keyword">∀</span> <span class="id" type="var">a</span>, <a class="idref" href="HoTT.Overture.html#IsHProp"><span class="id" type="abbreviation">IsHProp</span></a> (<a class="idref" href="HoTT.Misc.html#P"><span class="id" type="variable">P</span></a> <a class="idref" href="HoTT.Misc.html#a"><span class="id" type="variable">a</span></a>)} (<span class="id" type="var">u</span> <span class="id" type="var">v</span> : <a class="idref" href="Coq.Init.Specif.html#sigT"><span class="id" type="abbreviation">sigT</span></a> <a class="idref" href="HoTT.Misc.html#P"><span class="id" type="variable">P</span></a>)<br/>
 : <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Misc.html#u"><span class="id" type="variable">u</span></a><a class="idref" href="HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Misc.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">&lt;~&gt;</span></a> <a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Misc.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Misc.html#v"><span class="id" type="variable">v</span></a><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'<~>'_x"><span class="id" type="notation">)</span></a>.<br/>
 <span class="id" type="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" type="tactic">apply</span> (<a class="idref" href="HoTT.Equivalences.html#equiv_compose'"><span class="id" type="definition">equiv_compose'</span></a> (<a class="idref" href="HoTT.types.Sigma.html#equiv_path_sigma"><span class="id" type="definition">equiv_path_sigma</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)); <span class="id" type="tactic">simpl</span>.<br/>
@@ -130,7 +130,7 @@ The sigma of an hprop over a type can be viewed as a subtype. In particular, pat
 (This lemma would fit well in <span class="inlinecode"><span class="id" type="library">types.Sigma</span></span>, except that it depends on <span class="inlinecode"><span class="id" type="library">EquivalenceVarieties</span></span> via <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#hprop_isequiv"><span class="id" type="instance">hprop_isequiv</span></a></span>, which itself depends on <span class="inlinecode"><span class="id" type="library">types.Sigma</span></span>.) 
 <div class="paragraph"> </div>
 
-<a name="lab58"></a><h3 class="section">Paths between equivalences</h3>
+<a name="lab130"></a><h3 class="section">Paths between equivalences</h3>
 
 <div class="paragraph"> </div>
 
@@ -175,7 +175,7 @@ The sigma of an hprop over a type can be viewed as a subtype. In particular, pat
 </div>
 
 <div class="doc">
-<a name="lab59"></a><h2 class="section">Equivalences between contractible types</h2>
+<a name="lab131"></a><h2 class="section">Equivalences between contractible types</h2>
 
 </div>
 <div class="code">
