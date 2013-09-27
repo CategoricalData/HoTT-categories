@@ -58,6 +58,8 @@ MODULES    := theories/Peano \
 	theories/FunctorCategory \
 	theories/FunctorCategory/Morphisms \
 	\
+	theories/NaturalTransformation/Composition/Functorial \
+	\
 	theories/Functor/Product/ProductFunctor \
 	\
 	theories/CategoryOfSections \
