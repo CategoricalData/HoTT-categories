@@ -1,5 +1,5 @@
-Require Export FunctorCategory Functor.Pointwise Functor.Pointwise.Properties Category.Duals Category.Product.
-Require Import Common Cat.
+Require Export FunctorCategory Functor.Pointwise Functor.Pointwise.Properties Category.Duals Category.Product Cat ExponentialLaws.Law4.Functors.
+Require Import Common.
 
 Set Implicit Arguments.
 Generalizable All Variables.
@@ -28,6 +28,6 @@ Section FunctorCategoryFunctor.
          (fun _ _ _ _ _ => FunctorCompositionPointwise _ _ _ _)
          (fun _ => IdentityFunctorPointwise _ _).
 
-  (* Definition FunctorCategoryFunctor : ((Cat ^ Cat) ^ (OppositeCategory Cat))%category
-    := ExponentialLaw4Functor_Inverse _ _ _ FunctorCategoryUncurriedFunctor. *)
-End FunctorCategoryFunctor.
+  Definition FunctorCategoryFunctor `{fs2 : Funext} : [Cat^op, [Cat, Cat]]
+    := ExponentialLaw4Functor_Inverse _ _ _ (@FunctorCategoryFunctor_uncurried fs2).
+  End FunctorCategoryFunctor.
