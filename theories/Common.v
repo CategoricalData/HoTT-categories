@@ -1255,6 +1255,55 @@ Proof.
   reflexivity.
 Defined.
 
+Lemma transport_path_prod_uncurried A B (P : A * B -> Type) (x y : A * B)
+      (H : (fst x = fst y) * (snd x = snd y))
+      Px
+: transport P (path_prod_uncurried _ _ H) Px
+  = match y as y' return P (fst y', snd y') -> P y' with
+      | (_, _) => idmap
+    end (transport (fun x => P (x, snd y))
+                   (fst H)
+                   (transport (fun y => P (fst x, y))
+                              (snd H)
+                              (match x as x' return P x' -> P (fst x', snd x') with
+                                 | (_, _) => idmap
+                               end Px))).
+Proof.
+  destruct x, y, H; simpl in *.
+  path_induction.
+  reflexivity.
+Defined.
+
+Definition transport_path_prod A B (P : A * B -> Type) (x y : A * B)
+           (HA : fst x = fst y)
+           (HB : snd x = snd y)
+           Px
+: transport P (path_prod _ _ HA HB) Px
+  = match y as y' return P (fst y', snd y') -> P y' with
+      | (_, _) => idmap
+    end (transport (fun x => P (x, snd y))
+                   HA
+                   (transport (fun y => P (fst x, y))
+                              HB
+                              (match x as x' return P x' -> P (fst x', snd x') with
+                                 | (_, _) => idmap
+                               end Px)))
+  := transport_path_prod_uncurried P x y (HA, HB) Px.
+
+Definition transport_path_prod'
+           A B (P : A * B -> Type)
+           (x y : A)
+           (x' y' : B)
+           (HA : x = y)
+           (HB : x' = y')
+           Px
+: transport P (path_prod' HA HB) Px
+  = transport (fun x => P (x, y'))
+              HA
+              (transport (fun y => P (x, y))
+                         HB
+                         Px)
+  := transport_path_prod P (x, x') (y, y') HA HB Px.
 
 (** A variant of [induction] which also tries [destruct] and [case], and may be extended to using other [destruct]-like tactics. *)
 Ltac induction_hammer H :=
