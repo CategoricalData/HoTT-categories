@@ -58,8 +58,6 @@ MODULES    := theories/Peano \
 	theories/FunctorCategory \
 	theories/FunctorCategory/Morphisms \
 	\
-	theories/NaturalTransformation/Composition/Functorial \
-	\
 	theories/Functor/Product/ProductFunctor \
 	\
 	theories/CategoryOfSections \
@@ -84,6 +82,9 @@ MODULES    := theories/Peano \
 	theories/ExponentialLaws/Law3 \
 	theories/ExponentialLaws/Law4 \
 	theories/ExponentialLaws \
+	\
+	theories/NaturalTransformation/Composition/Functorial \
+	theories/Functor/Composition/Functorial \
 	\
 	theories/Groupoid \
 	theories/Groupoid/Functors \
