@@ -2,7 +2,7 @@
 from __future__ import with_statement
 import os, sys, re
 
-STRIP_PREFIX='theories/'
+STRIP_PREFIX='theories/Categories/'
 
 def get_times(file_name):
     with open(file_name, 'r') as f:

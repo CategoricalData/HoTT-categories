@@ -1,5 +1,5 @@
 Require Export Category Functor NaturalTransformation Adjoint.UnitCounitCoercions.
-Require Import Common FunctorCategory Category.Morphisms Category.Duals Category.Product Hom Functor.Product Functor.Duals NaturalTransformation.Isomorphisms.
+Require Import Common FunctorCategory Category.Morphisms Category.Duals Category.Product Categories.Hom Functor.Product Functor.Duals NaturalTransformation.Isomorphisms.
 
 Set Implicit Arguments.
 Generalizable All Variables.

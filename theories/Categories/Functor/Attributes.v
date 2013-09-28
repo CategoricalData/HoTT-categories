@@ -1,5 +1,5 @@
 Require Export Functor.Core.
-Require Import Common Hom Category.Morphisms Category.Duals Functor.Duals Functor.Product NaturalTransformation SetCategory.
+Require Import Common Categories.Hom Category.Morphisms Category.Duals Functor.Duals Functor.Product NaturalTransformation SetCategory.
 
 Set Implicit Arguments.
 Generalizable All Variables.

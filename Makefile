@@ -1,149 +1,149 @@
-MODULES    := theories/Peano \
-	theories/Coq/Arith/Le \
-	theories/Coq/Arith/Lt \
-	theories/Coq/Arith/Plus \
-	theories/Coq/Arith/Gt \
-	theories/Coq/Logic/Decidable \
-	theories/Coq/Arith/Compare_dec \
+MODULES    := Peano \
+	Coq/Arith/Le \
+	Coq/Arith/Lt \
+	Coq/Arith/Plus \
+	Coq/Arith/Gt \
+	Coq/Logic/Decidable \
+	Coq/Arith/Compare_dec \
 	\
-	theories/Notations \
-	theories/NotationsUtf8 \
-	theories/Common \
+	Notations \
+	NotationsUtf8 \
+	Common \
 	\
-	theories/Category/Core \
-	theories/Functor/Core \
+	Category/Core \
+	Functor/Core \
 	\
-	theories/Category/Equality \
-	theories/Category/Morphisms \
-	theories/Category/UnivalentCategory \
-	theories/Category/StrictCategory \
-	theories/Category/Objects \
-	theories/Category/Duals \
-	theories/Category \
+	Category/Equality \
+	Category/Morphisms \
+	Category/UnivalentCategory \
+	Category/StrictCategory \
+	Category/Objects \
+	Category/Duals \
+	Category \
 	\
-	theories/Functor/Equality \
-	theories/Functor/Identity \
-	theories/Functor/Composition \
-	theories/Functor/CompositionLaws \
-	theories/Functor/Duals \
-	theories/Functor \
+	Functor/Equality \
+	Functor/Identity \
+	Functor/Composition \
+	Functor/CompositionLaws \
+	Functor/Duals \
+	Functor \
 	\
-	theories/NaturalTransformation/Core \
-	theories/NaturalTransformation/Equality \
-	theories/NaturalTransformation/Identity \
-	theories/NaturalTransformation/Composition \
-	theories/NaturalTransformation/CompositionLaws \
-	theories/NaturalTransformation/Duals \
-	theories/NaturalTransformation \
+	NaturalTransformation/Core \
+	NaturalTransformation/Equality \
+	NaturalTransformation/Identity \
+	NaturalTransformation/Composition \
+	NaturalTransformation/CompositionLaws \
+	NaturalTransformation/Duals \
+	NaturalTransformation \
 	\
-	theories/Category/Product \
-	theories/Functor/Product \
-	theories/NaturalTransformation/Product \
+	Category/Product \
+	Functor/Product \
+	NaturalTransformation/Product \
 	\
-	theories/Category/Sum \
-	theories/Functor/Sum \
-	theories/NaturalTransformation/Sum \
+	Category/Sum \
+	Functor/Sum \
+	NaturalTransformation/Sum \
 	\
-	theories/Subcategory/Sigma \
-	theories/Subcategory/SigmaObjects \
-	theories/Subcategory/SigmaMorphisms \
-	theories/Subcategory/Wide \
-	theories/Subcategory/Full \
-	theories/Subcategory \
+	Subcategory/Sigma \
+	Subcategory/SigmaObjects \
+	Subcategory/SigmaMorphisms \
+	Subcategory/Wide \
+	Subcategory/Full \
+	Subcategory \
 	\
-	theories/SetCategory \
+	SetCategory \
 	\
-	theories/ComputableCat \
+	ComputableCat \
 	\
-	theories/FunctorCategory \
-	theories/FunctorCategory/Morphisms \
+	FunctorCategory \
+	FunctorCategory/Morphisms \
 	\
-	theories/Functor/Product/ProductFunctor \
+	Functor/Product/ProductFunctor \
 	\
-	theories/CategoryOfSections \
+	CategoryOfSections \
 	\
-	theories/NaturalTransformation/Isomorphisms \
+	NaturalTransformation/Isomorphisms \
 	\
-	theories/Functor/Pointwise \
-	theories/Functor/Pointwise/Properties \
-	theories/NaturalTransformation/Pointwise \
+	Functor/Pointwise \
+	Functor/Pointwise/Properties \
+	NaturalTransformation/Pointwise \
 	\
-	theories/ExponentialLaws/Law1/Functors \
-	theories/ExponentialLaws/Law2/Functors \
-	theories/ExponentialLaws/Law3/Functors \
-	theories/ExponentialLaws/Law4/Functors \
-	theories/ExponentialLaws/Law1/Law \
-	theories/ExponentialLaws/Law2/Law \
-	theories/ExponentialLaws/Law3/Law \
-	theories/ExponentialLaws/Law4/Law \
-	theories/ExponentialLaws/Law0 \
-	theories/ExponentialLaws/Law1 \
-	theories/ExponentialLaws/Law2 \
-	theories/ExponentialLaws/Law3 \
-	theories/ExponentialLaws/Law4 \
-	theories/ExponentialLaws \
+	ExponentialLaws/Law1/Functors \
+	ExponentialLaws/Law2/Functors \
+	ExponentialLaws/Law3/Functors \
+	ExponentialLaws/Law4/Functors \
+	ExponentialLaws/Law1/Law \
+	ExponentialLaws/Law2/Law \
+	ExponentialLaws/Law3/Law \
+	ExponentialLaws/Law4/Law \
+	ExponentialLaws/Law0 \
+	ExponentialLaws/Law1 \
+	ExponentialLaws/Law2 \
+	ExponentialLaws/Law3 \
+	ExponentialLaws/Law4 \
+	ExponentialLaws \
 	\
-	theories/NaturalTransformation/Composition/Functorial \
-	theories/Functor/Composition/Functorial \
+	NaturalTransformation/Composition/Functorial \
+	Functor/Composition/Functorial \
 	\
-	theories/Groupoid \
-	theories/Groupoid/Functors \
-	theories/Groupoid/Duals \
-	theories/DiscreteCategory \
-	theories/Discrete/Duals \
-	theories/IndiscreteCategory \
-	theories/BoolCategory \
-	theories/NatCategory \
-	theories/NatCategory/Duals \
+	Groupoid \
+	Groupoid/Functors \
+	Groupoid/Duals \
+	DiscreteCategory \
+	Discrete/Duals \
+	IndiscreteCategory \
+	BoolCategory \
+	NatCategory \
+	NatCategory/Duals \
 	\
-	theories/InitialTerminalCategory \
+	InitialTerminalCategory \
 	\
-	theories/Cat \
-	theories/Cat/Morphisms \
+	Cat \
+	Cat/Morphisms \
 	\
-	theories/FunctorCategory/Functorial \
+	FunctorCategory/Functorial \
 	\
-	theories/DualFunctor \
+	DualFunctor \
 	\
-	theories/Pseudofunctor/Core \
-	theories/Pseudofunctor/FromFunctor \
-	theories/Pseudofunctor \
+	Pseudofunctor/Core \
+	Pseudofunctor/FromFunctor \
+	Pseudofunctor \
 	\
-	theories/Comma/CommaCategory \
-	theories/Comma/Duals \
-	theories/Comma/Projection \
-	theories/Comma/InducedFunctors \
+	Comma/CommaCategory \
+	Comma/Duals \
+	Comma/Projection \
+	Comma/InducedFunctors \
 	\
-	theories/UniversalProperties \
+	UniversalProperties \
 	\
-	theories/IsGroupoid \
+	IsGroupoid \
 	\
-	theories/Grothendieck/ToSet \
-	theories/Grothendieck \
-	theories/Grothendieck/PseudofunctorToCat \
-	theories/Grothendieck/ToCat \
+	Grothendieck/ToSet \
+	Grothendieck \
+	Grothendieck/PseudofunctorToCat \
+	Grothendieck/ToCat \
 	\
-	theories/DependentProduct \
+	DependentProduct \
 	\
-	theories/NaturalNumbersObject \
-	theories/Hom \
+	NaturalNumbersObject \
+	Hom \
 	\
-	theories/Functor/Attributes \
+	Functor/Attributes \
 	\
-	theories/Adjoint/UnitCounit \
-	theories/Adjoint/UnitCounitCoercions \
-	theories/Adjoint/Hom \
-	theories/Adjoint/Duals \
-	theories/Adjoint/Identity \
-	theories/Adjoint/Composition \
-	theories/Adjoint/Equality \
-	theories/Adjoint/UniversalMorphisms \
-	theories/Adjoint \
+	Adjoint/UnitCounit \
+	Adjoint/UnitCounitCoercions \
+	Adjoint/Hom \
+	Adjoint/Duals \
+	Adjoint/Identity \
+	Adjoint/Composition \
+	Adjoint/Equality \
+	Adjoint/UniversalMorphisms \
+	Adjoint \
 	\
-	theories/Utf8
+	Utf8
 
-VS         := $(MODULES:%=%.v)
-VDS	   := $(MODULES:%=%.v.d)
+VS         := $(MODULES:%=theories/Categories/%.v)
+VDS	   := $(MODULES:%=theories/Categories/%.v.d)
 
 V = 0
 
@@ -192,9 +192,18 @@ pretty-timed:
 	@echo
 
 Makefile.coq: Makefile $(VS) HoTT
-	coq_makefile COQC = "$(SILENCE_HOQC)\$$(TIMER) \"$(HOQC)\"" COQDEP = "$(SILENCE_COQDEP)\"\$$(COQBIN)coqdep\" -c" COQDOCFLAGS = "$(COQDOCFLAGS)" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT.Categories
+	coq_makefile COQC = "$(SILENCE_HOQC)\$$(TIMER) \"$(HOQC)\"" COQDEP = "$(SILENCE_COQDEP)\"\$$(COQBIN)coqdep\" -c" COQDOCFLAGS = "$(COQDOCFLAGS)" $(VS) -arg -dont-load-proofs -o Makefile.coq -R HoTT/theories HoTT -R theories HoTT
 
-HoTT/Makefile:
+HoTT/configure.ac::
+
+HoTT/Makefile.am::
+
+HoTT/autogen.sh::
+
+HoTT/configure: HoTT/configure.ac HoTT/autogen.sh
+	cd HoTT; ./autogen.sh
+
+HoTT/Makefile: HoTT/configure HoTT/Makefile.am
 	cd HoTT; ./configure
 
 HoTT: HoTT/Makefile
