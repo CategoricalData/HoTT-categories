@@ -15,27 +15,31 @@ Section FunctorialComposition.
   Local Open Scope natural_transformation_scope.
 
   Definition FunctorialComposition_MorphismOf
-             s d (m : Morphism [D, E] s d)
-  : Morphism [[C, D], [C, E]]
-             (NTWhiskerL_Functorial _ s)
-             (NTWhiskerL_Functorial _ d)
+             s d (m : Morphism [C, D] s d)
+  : Morphism [[D, E], [C, E]]
+             (NTWhiskerR_Functorial _ s)
+             (NTWhiskerR_Functorial _ d)
     := Build_NaturalTransformation
-         (NTWhiskerL_Functorial C s)
-         (NTWhiskerL_Functorial C d)
-         (fun x => NTWhiskerR m x)
-         (fun _ _ _ => inverse (NTWhiskerExchange _ _)).
+         (NTWhiskerR_Functorial E s)
+         (NTWhiskerR_Functorial E d)
+         (fun x => NTWhiskerL x m)
+         (fun _ _ _ => NTWhiskerExchange _ _).
 
-  Definition FunctorialComposition : Object [[D, E], [[C, D], [C, E]]].
+  Definition FunctorialComposition : Object [[C, D], [[D, E], [C, E]]].
   Proof.
     refine (Build_Functor
-              [D, E] [[C, D], [C, E]]
-              (@NTWhiskerL_Functorial _ _ _ _)
+              [C, D] [[D, E], [C, E]]
+              (@NTWhiskerR_Functorial _ _ _ _)
               FunctorialComposition_MorphismOf
               _
               _);
-    abstract (nt_eq; reflexivity).
+    abstract (
+        nt_eq;
+        rewrite ?FCompositionOf, ?FIdentityOf;
+        reflexivity
+      ).
   Defined.
 
-  Definition FunctorialComposition_uncurried : Object [[D, E] * [C, D], [C, E]]
+  Definition FunctorialComposition_uncurried : Object [[C, D] * [D, E], [C, E]]
     := ExponentialLaw4Functor _ _ _ FunctorialComposition.
 End FunctorialComposition.
