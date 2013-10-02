@@ -79,34 +79,106 @@ Section FunctorProductUniversal.
   Variable B : PreCategory.
   Variable C : PreCategory.
 
-  Variable a : Functor C A.
-  Variable b : Functor C B.
-
   Local Open Scope functor_scope.
 
-  Local Transparent ComposeFunctors_FCompositionOf ComposeFunctors_FIdentityOf.
+  Section universal.
+    Variable a : Functor C A.
+    Variable b : Functor C B.
 
-  Lemma FunctorProduct_Commutes_fst : fst_Functor ∘ (a * b) = a.
+    Local Transparent ComposeFunctors_FCompositionOf ComposeFunctors_FIdentityOf.
+
+    Lemma FunctorProduct_Commutes_fst : fst_Functor ∘ (a * b) = a.
+    Proof.
+      functor_eq; trivial.
+    Defined.
+
+    Lemma FunctorProduct_Commutes_snd : snd_Functor ∘ (a * b) = b.
+    Proof.
+      functor_eq; trivial.
+    Defined.
+
+    Section unique.
+      Variable F : Functor C (A * B).
+      Hypothesis H1 : fst_Functor ∘ F = a.
+      Hypothesis H2 : snd_Functor ∘ F = b.
+
+      Lemma FunctorProduct_uniuqe_helper
+            c
+      : (a * b) c = F c.
+      Proof.
+        pose proof (ap (fun F => ObjectOf F c) H1).
+        pose proof (ap (fun F => ObjectOf F c) H2).
+        simpl in *.
+        path_induction.
+        apply eta_prod.
+      Defined.
+
+      Lemma FunctorProduct_uniuqe
+      : a * b = F.
+      Proof.
+        functor_eq.
+        exists (path_forall _ _ FunctorProduct_uniuqe_helper).
+        repeat (apply path_forall; intro).
+        repeat match goal with
+                 | _ => reflexivity
+                 | _ => progress simpl
+                 | _ => rewrite !transport_forall_constant
+                 | [ |- appcontext[?f (transport ?P ?p ?z)] ]
+                   => rewrite (@ap_transport _ P _ _ _ p (fun _ => f) z)
+               end.
+        lazymatch goal with
+        | [ |- appcontext[transport
+                            (fun f => prod
+                                        (?P0 (?fst (f ?x0)) (?fst (f ?x1)))
+                                        (?P1 (?snd (f ?x0)) (?snd (f ?x1))))
+                            (@path_forall ?H ?A ?B ?f ?g ?e)] ]
+          => simpl_do_clear do_rewrite (@path_forall_2_beta
+                                          H A B x0 x1
+                                          (fun fx0 fx1
+                                           => prod (P0 (fst fx0) (fst fx1))
+                                                   (P1 (snd fx0) (snd fx1)))
+                                          f g)
+        end.
+        rewrite transport_path_prod'.
+        unfold FunctorProduct_uniuqe_helper.
+        case H1; simpl; clear H1.
+        case H2; simpl; clear H2.
+        repeat match goal with
+                 | [ |- appcontext[@MorphismOf ?C ?D ?F ?s ?d ?m] ]
+                   => destruct (@MorphismOf C D F s d m); clear m
+                 | [ |- appcontext[@ObjectOf ?C ?D ?F ?x] ]
+                   => destruct (@ObjectOf C D F x); clear x
+               end.
+        reflexivity.
+      Qed.
+    End unique.
+
+    Global Instance FunctorProduct_contr
+           `{IsHSet (Functor C A), IsHSet (Functor C B)}
+    : Contr { F : Functor C (A * B)
+            | fst_Functor ∘ F = a
+              /\ snd_Functor ∘ F = b }
+      := let x := {| center := (a * b;
+                                (FunctorProduct_Commutes_fst,
+                                 FunctorProduct_Commutes_snd)) |}
+         in x.
+    Proof.
+      intro y.
+      apply path_sigma_uncurried.
+      simpl.
+      exists (FunctorProduct_uniuqe (fst y.2) (snd y.2)).
+      exact (center _).
+    Qed.
+  End universal.
+
+  Definition path_prod_functor (F G : Functor C (A * B))
+             (H1 : fst_Functor ∘ F = fst_Functor ∘ G)
+             (H2 : snd_Functor ∘ F = snd_Functor ∘ G)
+  : F = G.
   Proof.
-    functor_eq; trivial.
+    etransitivity; [ apply symmetry | ];
+    apply FunctorProduct_uniuqe; try eassumption; reflexivity.
   Defined.
-
-  Lemma FunctorProduct_Commutes_snd : snd_Functor ∘ (a * b) = b.
-  Proof.
-    functor_eq; trivial.
-  Defined.
-
-  (*Global Instance FunctorProduct_contr
-  : Contr { F : Functor C (A * B)
-          | fst_Functor ∘ F = a
-            /\ snd_Functor ∘ F = b }
-    := {| center := (a * b;
-                     (FunctorProduct_Commutes_fst,
-                      FunctorProduct_Commutes_snd)) |}.
-  Proof.
-    SearchAbout IsTrunc Functor.
-    intros.
-*)
 End FunctorProductUniversal.
 
 Section ProductInducedFunctors.
