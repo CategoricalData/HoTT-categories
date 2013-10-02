@@ -614,10 +614,6 @@ Lemma sig2_eta : forall A (P Q : A -> Prop) (x : sig2 P Q),
   destruct x; reflexivity.
 Qed.
 *)
-Lemma prod_eta : forall (A B : Type) (x : A * B),
-  x = pair (fst x) (snd x).
-  destruct x; reflexivity.
-Qed.
 
 Ltac rewrite_eta_in Hf :=
   repeat match type of Hf with
@@ -625,7 +621,7 @@ Ltac rewrite_eta_in Hf :=
            | context[match ?E with exist2 _ _ _ => _ end] => rewrite (sig2_eta E) in Hf; simpl in Hf*)
            | context[match ?E with existT _ _ => _ end] => rewrite (sigT_eta E) in Hf; simpl in Hf
 (*           | context[match ?E with exist _ _ => _ end] => rewrite (sig_eta E) in Hf; simpl in Hf*)
-           | context[match ?E with pair _ _ => _ end] => rewrite (prod_eta E) in Hf; simpl in Hf
+           | context[match ?E with pair _ _ => _ end] => rewrite (eta_prod E) in Hf; simpl in Hf
          end.
 
 Ltac destruct_match_in' T :=
@@ -653,7 +649,7 @@ Ltac rewrite_eta :=
 (*           | [ |- context[match ?E with exist2 _ _ _ => _ end] ] => rewrite (sig2_eta E); simpl*)
            | [ |- context[match ?E with existT _ _ => _ end] ] => rewrite (sigT_eta E); simpl
 (*           | [ |- context[match ?E with exist _ _ => _ end] ] => rewrite (sig_eta E); simpl*)
-           | [ |- context[match ?E with pair _ _ => _ end] ] => rewrite (prod_eta E); simpl
+           | [ |- context[match ?E with pair _ _ => _ end] ] => rewrite (eta_prod E); simpl
          end.
 (*
 Ltac intro_proj2_sig_from_goal'_by tac :=
