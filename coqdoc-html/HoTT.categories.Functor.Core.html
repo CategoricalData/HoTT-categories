@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.Functor.Core</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.Functor.Core</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Delimit</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">functor_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">functor</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="Functor"><span class="id" type="section">Functor</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Functor.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Functor.D"><span class="id" type="variable">D</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+Quoting from the lecture notes for MIT's 18.705, Commutative Algebra:
+
+<div class="paragraph"> </div>
+
+      A map of categories is known as a functor. Namely, given
+      categories <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Sum.html#sum.C'"><span class="id" type="variable">C'</span></a></span>, a (covariant) functor <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Sum.html#sum.C'"><span class="id" type="variable">C'</span></a></span> is
+      a rule that assigns to each object <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span> an object <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> of
+      <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Sum.html#sum.C'"><span class="id" type="variable">C'</span></a></span> and to each map <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span> a map <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span>
+      <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Sum.html#sum.C'"><span class="id" type="variable">C'</span></a></span> preserving composition and identity; that is,
+
+<div class="paragraph"> </div>
+
+     (1) <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">(<span class="id" type="var">m'</span></span> <span class="inlinecode">∘</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a>)</span> <span class="inlinecode">=</span> <span class="inlinecode">(<a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><span class="id" type="var">m'</span>)</span> <span class="inlinecode">∘</span> <span class="inlinecode">(<a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a>)</span> for maps <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> and <span class="inlinecode"><span class="id" type="var">m'</span></span> <span class="inlinecode">:</span>
+         <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span>, and
+
+<div class="paragraph"> </div>
+
+     (2) <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">(<span class="id" type="var">id</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">id</span></span> <span class="inlinecode">(<a class="idref" href="HoTT.categories.Functor.Composition.html#composition.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span> for any object <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a></span>, where <span class="inlinecode"><span class="id" type="var">id</span></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span>
+         is the identity morphism of <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span>. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Record</span> <a name="Functor"><span class="id" type="record">Functor</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="object_of"><span class="id" type="projection">object_of</span></a> :&gt; <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.C"><span class="id" type="variable">C</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.D"><span class="id" type="variable">D</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="morphism_of"><span class="id" type="projection">morphism_of</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span>, <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#d"><span class="id" type="variable">d</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.D"><span class="id" type="variable">D</span></a> (<a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="method">object_of</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#s"><span class="id" type="variable">s</span></a>) (<a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="method">object_of</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#d"><span class="id" type="variable">d</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="composition_of"><span class="id" type="projection">composition_of</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> <span class="id" type="var">d'</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">m1</span> : <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#d"><span class="id" type="variable">d</span></a>) (<span class="id" type="var">m2</span>: <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#d'"><span class="id" type="variable">d'</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.Functor.Core.html#morphism_of"><span class="id" type="method">morphism_of</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.Functor.Core.html#m2"><span class="id" type="variable">m2</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#m1"><span class="id" type="variable">m1</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.Core.html#morphism_of"><span class="id" type="method">morphism_of</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.categories.Functor.Core.html#m2"><span class="id" type="variable">m2</span></a><a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.Core.html#morphism_of"><span class="id" type="method">morphism_of</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.categories.Functor.Core.html#m1"><span class="id" type="variable">m1</span></a><a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">)</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="identity_of"><span class="id" type="projection">identity_of</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">x</span>, <a class="idref" href="HoTT.categories.Functor.Core.html#morphism_of"><span class="id" type="method">morphism_of</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.Category.Core.html#identity"><span class="id" type="projection">identity</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#x"><span class="id" type="variable">x</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#identity"><span class="id" type="projection">identity</span></a> (<a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="method">object_of</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#x"><span class="id" type="variable">x</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="section">Functor</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Bind</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">functor_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">Functor</span>.<br/>
+
+<br/>
+<span class="id" type="var">Create</span> <span class="id" type="var">HintDb</span> <span class="id" type="var">functor</span> <span class="id" type="var">discriminated</span>.<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <span class="id" type="var">C</span> <span class="id" type="var">D</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="projection">object_of</span></a> {<span class="id" type="var">C</span>%<span class="id" type="var">category</span> <span class="id" type="var">D</span>%<span class="id" type="var">category</span>} <span class="id" type="var">F</span>%<span class="id" type="var">functor</span> <span class="id" type="var">c</span>%<span class="id" type="var">object</span> : <span class="id" type="tactic">rename</span>, <span class="id" type="tactic">simpl</span> <span class="id" type="var">nomatch</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.Functor.Core.html#morphism_of"><span class="id" type="projection">morphism_of</span></a> [<span class="id" type="var">C</span>%<span class="id" type="var">category</span>] [<span class="id" type="var">D</span>%<span class="id" type="var">category</span>] <span class="id" type="var">F</span>%<span class="id" type="var">functor</span> [<span class="id" type="var">s</span>%<span class="id" type="var">object</span> <span class="id" type="var">d</span>%<span class="id" type="var">object</span>] <span class="id" type="var">m</span>%<span class="id" type="var">morphism</span> : <span class="id" type="tactic">rename</span>, <span class="id" type="tactic">simpl</span> <span class="id" type="var">nomatch</span>.<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.Functor.Core.html#composition_of"><span class="id" type="projection">composition_of</span></a> [<span class="id" type="var">C</span> <span class="id" type="var">D</span>] <span class="id" type="var">F</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> : <span class="id" type="tactic">rename</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.Functor.Core.html#identity_of"><span class="id" type="projection">identity_of</span></a> [<span class="id" type="var">C</span> <span class="id" type="var">D</span>] <span class="id" type="var">F</span> <span class="id" type="var">_</span> : <span class="id" type="tactic">rename</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Module</span> <span class="id" type="keyword">Export</span> <a name="FunctorCoreNotations"><span class="id" type="module">FunctorCoreNotations</span></a>.<br/>
+</div>
+
+<div class="doc">
+Perhaps we should consider making this more global? 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="FunctorCoreNotations.:type_scope:x_'-->'_x"><span class="id" type="notation">"</span></a>C --&gt; D" := (<a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.Functor"><span class="id" type="record">Functor</span></a> <span class="id" type="var">C</span> <span class="id" type="var">D</span>) (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 99, <span class="id" type="tactic">right</span> <span class="id" type="keyword">associativity</span>, <span class="id" type="var">y</span> <span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 200) : <span class="id" type="var">type_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Notation</span> <a name="FunctorCoreNotations.:object_scope:x_'_0'_x"><span class="id" type="notation">"</span></a>F '_0' x" := (<a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.object_of"><span class="id" type="projection">object_of</span></a> <span class="id" type="var">F</span> <span class="id" type="var">x</span>) (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 10, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>, <span class="id" type="var">only</span> <span class="id" type="var">parsing</span>) : <span class="id" type="var">object_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Notation</span> <a name="FunctorCoreNotations.:morphism_scope:x_'_1'_x"><span class="id" type="notation">"</span></a>F '_1' m" := (<a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.morphism_of"><span class="id" type="projection">morphism_of</span></a> <span class="id" type="var">F</span> <span class="id" type="var">m</span>) (<span class="id" type="tactic">at</span> <span class="id" type="keyword">level</span> 10, <span class="id" type="keyword">no</span> <span class="id" type="keyword">associativity</span>) : <span class="id" type="var">morphism_scope</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="module">FunctorCoreNotations</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> @<a class="idref" href="HoTT.categories.Functor.Core.html#composition_of"><span class="id" type="projection">composition_of</span></a> @<a class="idref" href="HoTT.categories.Functor.Core.html#identity_of"><span class="id" type="projection">identity_of</span></a> : <span class="id" type="var">category</span> <span class="id" type="var">functor</span>.<br/>
+<span class="id" type="keyword">Hint Rewrite</span> @<a class="idref" href="HoTT.categories.Functor.Core.html#identity_of"><span class="id" type="projection">identity_of</span></a> : <span class="id" type="var">category</span>.<br/>
+<span class="id" type="keyword">Hint Rewrite</span> @<a class="idref" href="HoTT.categories.Functor.Core.html#identity_of"><span class="id" type="projection">identity_of</span></a> : <span class="id" type="var">functor</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

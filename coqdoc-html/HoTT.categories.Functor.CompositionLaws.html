@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.Functor.CompositionLaws</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.Functor.CompositionLaws</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#"><span class="id" type="library">Functor.Composition</span></a> <a class="idref" href="HoTT.categories.Functor.Identity.html#"><span class="id" type="library">Functor.Identity</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Functor.Paths.html#"><span class="id" type="library">Functor.Paths</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="identity_lemmas"><span class="id" type="section">identity_lemmas</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="identity_lemmas.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="identity_lemmas.D"><span class="id" type="variable">D</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">functor_scope</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Transparent</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#compose_identity_of"><span class="id" type="definition">compose_identity_of</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Transparent</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#compose_composition_of"><span class="id" type="definition">compose_composition_of</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+If we had that <span class="inlinecode"><span class="id" type="keyword">match</span></span> <span class="inlinecode">(<a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#a"><span class="id" type="variable">a</span></a></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#b"><span class="id" type="variable">b</span></a>)</span> <span class="inlinecode"><span class="id" type="keyword">in</span></span> <span class="inlinecode">(<span class="id" type="var">_</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> <span class="inlinecode"><span class="id" type="keyword">return</span></span> <span class="inlinecode">(<a class="idref" href="HoTT.Equivalences.html#a"><span class="id" type="variable">a</span></a></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a>)</span> <span class="inlinecode"><span class="id" type="keyword">with</span></span> <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a></span> <span class="inlinecode">⇒</span> <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a></span> <span class="inlinecode"><span class="id" type="keyword">end</span></span> <span class="inlinecode">≡</span> <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a></span> (a form of eta for paths), this would be judgemental. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" type="keyword">Lemma</span> <a name="left_identity"><span class="id" type="lemma">left_identity</span></a> (<span class="id" type="var">F</span> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.D"><span class="id" type="variable">D</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.C"><span class="id" type="variable">C</span></a>) : <a class="idref" href="HoTT.categories.Functor.Identity.html#identity"><span class="id" type="definition">identity</span></a> <span class="id" type="var">_</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">by</span> <span class="id" type="var">path_functor</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Lemma</span> <a name="right_identity"><span class="id" type="lemma">right_identity</span></a> (<span class="id" type="var">F</span> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.D"><span class="id" type="variable">D</span></a>) : <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.Identity.html#identity"><span class="id" type="definition">identity</span></a> <span class="id" type="var">_</span> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">by</span> <span class="id" type="var">path_functor</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="left_identity_fst"><span class="id" type="definition">left_identity_fst</span></a> <span class="id" type="var">F</span><br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="projection">object_of</span></a> (<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#left_identity"><span class="id" type="lemma">left_identity</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>) <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<a class="idref" href="HoTT.categories.Functor.Paths.html#path_functor'_sig_fst"><span class="id" type="lemma">path_functor'_sig_fst</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.Functor.Identity.html#identity"><span class="id" type="definition">identity</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>) <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> 1%<span class="id" type="var">path</span> 1%<span class="id" type="var">path</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="right_identity_fst"><span class="id" type="definition">right_identity_fst</span></a> <span class="id" type="var">F</span><br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="projection">object_of</span></a> (<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#right_identity"><span class="id" type="lemma">right_identity</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>) <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<a class="idref" href="HoTT.categories.Functor.Paths.html#path_functor'_sig_fst"><span class="id" type="lemma">path_functor'_sig_fst</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.Identity.html#identity"><span class="id" type="definition">identity</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> 1%<span class="id" type="var">path</span> 1%<span class="id" type="var">path</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#identity_lemmas"><span class="id" type="section">identity_lemmas</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Rewrite</span> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#left_identity"><span class="id" type="lemma">left_identity</span></a> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#right_identity"><span class="id" type="lemma">right_identity</span></a> : <span class="id" type="var">category</span>.<br/>
+<span class="id" type="keyword">Hint Rewrite</span> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#left_identity"><span class="id" type="lemma">left_identity</span></a> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#right_identity"><span class="id" type="lemma">right_identity</span></a> : <span class="id" type="var">functor</span>.<br/>
+<span class="id" type="keyword">Hint Immediate</span> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#left_identity"><span class="id" type="lemma">left_identity</span></a> @<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#right_identity"><span class="id" type="lemma">right_identity</span></a> : <span class="id" type="var">category</span> <span class="id" type="var">functor</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="composition_lemmas"><span class="id" type="section">composition_lemmas</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<span class="id" type="var">H0</span> : <a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="composition_lemmas.B"><span class="id" type="variable">B</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="composition_lemmas.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="composition_lemmas.D"><span class="id" type="variable">D</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="composition_lemmas.E"><span class="id" type="variable">E</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">functor_scope</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Transparent</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#compose_composition_of"><span class="id" type="definition">compose_composition_of</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Transparent</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#compose_identity_of"><span class="id" type="definition">compose_identity_of</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Lemma</span> <span class="id" type="keyword">associativity</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">F</span> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.B"><span class="id" type="variable">B</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a>) (<span class="id" type="var">G</span> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.D"><span class="id" type="variable">D</span></a>) (<span class="id" type="var">H</span> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.D"><span class="id" type="variable">D</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas.E"><span class="id" type="variable">E</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#H"><span class="id" type="variable">H</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#G"><span class="id" type="variable">G</span></a><a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#H"><span class="id" type="variable">H</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a><a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">)</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">by</span> <span class="id" type="var">path_functor</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="associativity_fst"><span class="id" type="definition">associativity_fst</span></a> <span class="id" type="var">F</span> <span class="id" type="var">G</span> <span class="id" type="var">H</span><br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#object_of"><span class="id" type="projection">object_of</span></a> (<span class="id" type="keyword">associativity</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#H"><span class="id" type="variable">H</span></a>) <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<a class="idref" href="HoTT.categories.Functor.Paths.html#path_functor'_sig_fst"><span class="id" type="lemma">path_functor'_sig_fst</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#H"><span class="id" type="variable">H</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#G"><span class="id" type="variable">G</span></a><a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">)</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a>) (<a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#H"><span class="id" type="variable">H</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#F"><span class="id" type="variable">F</span></a><a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">)</span></a>) 1%<span class="id" type="var">path</span> 1%<span class="id" type="var">path</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#composition_lemmas"><span class="id" type="section">composition_lemmas</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> @<span class="id" type="keyword">associativity</span> : <span class="id" type="var">category</span> <span class="id" type="var">functor</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Opaque</span> <span class="id" type="keyword">associativity</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#left_identity"><span class="id" type="lemma">left_identity</span></a> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#right_identity"><span class="id" type="lemma">right_identity</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
