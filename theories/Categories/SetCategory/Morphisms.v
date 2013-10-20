@@ -6,6 +6,9 @@ Generalizable All Variables.
 Set Asymmetric Patterns.
 Set Universe Polymorphism.
 
+Local Open Scope equiv_scope.
+Local Open Scope category_scope.
+
 Instance trunc_path_IsHProp `{Univalence, Funext} X Y `{IsHProp Y}
 : IsHProp (X = Y).
 Proof.
@@ -50,34 +53,75 @@ Instance IsStrictCategory_PropCat `{Funext, Univalence}
 : IsStrictCategory PropCat
   := trunc_hProp.
 
-Definition isotoid_SetCat `{Funext, Univalence}
-           (x y : SetCat)
-: (x ≅ y)%category -> x = y.
+Local Ltac do_equiv_iso_equiv :=
+  repeat first [ etransitivity; [ apply symmetry; by apply Isomorphic_sig | ]
+               | etransitivity; [ | by apply issig_equiv ]
+               | etransitivity; [ apply symmetry; by apply IsIsomorphism_sig | ]
+               | etransitivity; [ | by apply issig_isequiv ]
+               | apply equiv_functor_sigma_id; intro ];
+  apply equiv_iff_hprop;
+  intros;
+  repeat match goal with
+           | _ => intro
+           | [ H : _ |- _ ] => (exists (ap10 H.1))
+           | [ H : _ |- _ ] => (exists (path_forall _ _ H.1))
+           | [ H : _ |- _ ] => (exact (path_forall _ _ H.1))
+           | [ H : _ |- _ ] => (exists (ap10 H.2))
+           | [ H : _ |- _ ] => (exists (path_forall _ _ H.2))
+           | [ H : _ |- _ ] => (exact (path_forall _ _ H.2))
+           | [ H : _ |- _ ] => (exists (ap10 H.2.1))
+           | [ H : _ |- _ ] => (exists (path_forall _ _ H.2.1))
+           | [ H : _ |- _ ] => (exact (path_forall _ _ H.2.1))
+           | _ => by apply allpath_hprop
+         end.
+
+Lemma equiv_iso_equiv_PropCat `{Funext} (s d : PropCat)
+: s ≅ d <~> (s <~> d).
 Proof.
-  intro Hi.
-  destruct x as [x Hx], y as [y Hy].
-  assert (x = y); [ | subst; apply ap; apply allpath_hprop ].
-  apply path_universe_uncurried.
-  destruct Hi as [f [g H' H'']]; simpl in *.
-  apply ap10 in H'; apply ap10 in H''.
-  apply (equiv_adjointify f g);
-    assumption.
+  do_equiv_iso_equiv.
 Defined.
 
-Definition isotoid_PropCat `{Funext, Univalence}
-           (x y : PropCat)
-: (x ≅ y)%category -> x = y.
+Lemma equiv_iso_equiv_SetCat `{Funext} (s d : SetCat)
+: s ≅ d <~> (s <~> d).
 Proof.
-  intro Hi.
-  destruct x as [x Hx], y as [y Hy].
-  assert (x = y); [ | subst; apply ap; apply allpath_hprop ].
-  apply path_universe_uncurried.
-  destruct Hi as [f [g H' H'']]; simpl in *.
-  apply ap10 in H'; apply ap10 in H''.
-  apply (equiv_adjointify f g);
-    assumption.
+  do_equiv_iso_equiv.
 Defined.
 
+Eval cbv beta iota zeta delta [equiv_iso_equiv_SetCat transitivity transitive_equiv equiv_compose equiv_fun issig_equiv equiv_functor_sigma_id equiv_functor_sigma functor_sigma compose equiv_idmap]
+  in equiv_iso_equiv_SetCat _ _.
+
+Lemma idtoiso_equiv_path_PropCat `{Funext} (s d : PropCat) (p : s = d)
+: idtoiso _ p = (equiv_iso_equiv_PropCat s d)^-1 (equiv_path s d (ap _ p)).
+Proof.
+  induction p.
+  unfold ap.
+  unfold equiv_path.
+  apply Isomorphic_eq.
+  apply path_forall.
+  intro.
+  etransitivity; [ simpl; reflexivity | ].
+  unfold equiv_iso_equiv_PropCat.
+  unfold equiv_fun.
+  unfold equiv_inv.
+  unfold equiv_isequiv.
+  unfold transitivity.
+  unfold symmetry.
+  unfold transitive_equiv, symmetric_equiv.
+  unfold equiv_compose.
+  unfold isequiv_compose.
+
+
+  unfold IsomorphicMorphism.
+  simpl.
+
+  Unfold Idtoiso.
+  Simpl.
+  Unfold ap.
+  SearchAbout idtoiso idpath.
+  apply path_equiv.
+  unfold equiv_path.
+  SearchAbout equiv_path.
+simpl.*)
 
 Definition eta_path_universe_uncurried `{Univalence} A B (p : A = B)
 : path_universe_uncurried (equiv_path A B p) = p
@@ -93,6 +137,7 @@ Instance IsCategory_PropCat `{Funext, Univalence}
 : IsCategory PropCat.
 Proof.
   intros C D.
+
   apply (isequiv_adjointify _ (@isotoid_PropCat _ _ C D));
     hnf; intros;
     [ apply Isomorphic_eq | ];
