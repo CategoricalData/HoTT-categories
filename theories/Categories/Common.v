@@ -1432,15 +1432,6 @@ Definition unique A (P : A -> Type) (x : A)
 Hint Extern 0 => apply false_ne_true; solve [ trivial ].
 Hint Extern 0 => apply true_ne_false; solve [ trivial ].
 
-Definition HProp := sigT (IsTrunc minus_one).
-Definition HSet := sigT (IsTrunc 0).
-
-Coercion HProp_set := @projT1 _ _ : HProp -> Type.
-Coercion HSet_set := @projT1 _ _ : HSet -> Type.
-
-Instance trunc_HProp_set (T : HProp) : IsHProp (HProp_set T) := @projT2 _ _ _.
-Instance trunc_HSet_set (T : HSet) : IsHSet (HSet_set T) := @projT2 _ _ _.
-
 Lemma transport_inverse A P x y p
 : @transport A P x y p ^
   = ((@transport A P y x p) ^-1)%equiv.

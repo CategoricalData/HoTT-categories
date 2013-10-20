@@ -15,10 +15,10 @@ Definition GroupoidJ `{Funext} (C : PreCategory)
            (Arr_id := fun x => (Build_CommaCategory_Object (IdentityFunctor C) (IdentityFunctor C)
                                                            x x (Identity x)))
 : forall (C0 : Functor (ArrowCategory C) SetCat),
-    (forall x : C, C0 (Arr_id x)  : HSet)
+    (forall x : C, C0 (Arr_id x)  : hSet)
     -> forall y : ArrowCategory C,
          C0 y
-         : HSet.
+         : hSet.
 Proof.
   intros F H' [M N P].
   specialize (H' M).

@@ -34,7 +34,7 @@ Section Grothendieck.
   Record GrothendieckPair :=
     {
       GrothendieckC : C;
-      GrothendieckX : (F GrothendieckC : HSet)
+      GrothendieckX : (F GrothendieckC : hSet)
     }.
 
   Local Notation GrothendieckMorphism s d :=

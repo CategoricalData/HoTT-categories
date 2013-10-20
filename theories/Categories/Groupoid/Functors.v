@@ -55,14 +55,14 @@ Section Obj.
   Variable I : Type.
   Variable Index2Cat : I -> PreCategory.
 
-  Local Notation build_obj_functor_evar C D typ :=
+  Local Notation build_obj_functor_evar C D typ build :=
     (@Build_Functor C D
-                    (fun C' : I => (Object (Index2Cat C'); typ C'))
+                    (fun C' : I => build (Object (Index2Cat C')) (typ C'))
                     (fun _ _ F => ObjectOf F)
                     (fun _ _ _ _ _ => idpath)
                     (fun _ => idpath)).
 
-  Local Ltac build_obj_functor :=
+  Local Ltac build_obj_functor build :=
     let C := match goal with |- Functor ?C ?D => constr:(C) end in
     let D := match goal with |- Functor ?C ?D => constr:(D) end in
     let T := fresh in
@@ -70,7 +70,7 @@ Section Obj.
     evar (T : Type);
       cut T; subst T;
       [ intro t;
-        exact (build_obj_functor_evar C D t)
+        exact (build_obj_functor_evar C D t build)
       | ];
       instantiate;
       typeclasses eauto.
@@ -78,7 +78,7 @@ Section Obj.
   Definition SetObjectFunctor `{H0 : forall i : I, IsTrunc 0 (Index2Cat i)}
   : Functor (ComputableCat Index2Cat) SetCat.
   Proof.
-    build_obj_functor.
+    build_obj_functor BuildhSet.
   Defined.
 
   (** We need to force the shape of the computable cat, or else
@@ -88,7 +88,7 @@ Section Obj.
   Definition PropObjectFunctor `{H0 : forall i : I, IsHProp (Index2Cat i)}
   : Functor (@ComputableCat _ _ Index2Cat (fun _ _ => Functor_IsTrunc _ _)) PropCat.
   Proof.
-    build_obj_functor.
+    build_obj_functor hp.
   Defined.
 End Obj.
 
@@ -100,12 +100,12 @@ Section Mor.
   Variable I : Type.
   Variable Index2Cat : I -> PreCategory.
 
-  Local Ltac build_mor_functor :=
+  Local Ltac build_mor_functor build :=
     let C := match goal with |- Functor ?C ?D => constr:(C) end in
     let D := match goal with |- Functor ?C ?D => constr:(D) end in
     refine (Build_Functor
               C D
-              (fun C' => ({ sd : Index2Cat C' * Index2Cat C' & Morphism (Index2Cat C') (fst sd) (snd sd) }; _))
+              (fun C' => build { sd : Index2Cat C' * Index2Cat C' & Morphism (Index2Cat C') (fst sd) (snd sd) } _)
               (fun _ _ F => (fun sdm =>
                                existT (fun sd => Morphism _ (fst sd) (snd sd))
                                       (F (fst (projT1 sdm)), F (snd (projT1 sdm)))
@@ -117,14 +117,14 @@ Section Mor.
   Definition SetMorphismFunctor `{forall i : I, IsHSet (Index2Cat i)}
   : Functor (ComputableCat Index2Cat) SetCat.
   Proof.
-    build_mor_functor.
+    build_mor_functor BuildhSet.
   Defined.
 
   Definition PropMorphismFunctor `{forall i : I, IsHProp (Index2Cat i)}
              `{forall i s d, IsHProp (Morphism (Index2Cat i) s d)}
   : Functor (@ComputableCat _ _ Index2Cat (fun _ _ => Functor_IsTrunc _ _)) PropCat.
   Proof.
-    build_mor_functor.
+    build_mor_functor hp.
   Defined.
 End Mor.
 

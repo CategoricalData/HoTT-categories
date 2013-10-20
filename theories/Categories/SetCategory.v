@@ -19,8 +19,8 @@ Notation CatOf obj :=
 (** There is a category [Set], where the objects are sets and the
     morphisms are set morphisms *)
 
-Definition PropCat `{Funext} : PreCategory := CatOf HProp.
-Definition SetCat `{Funext} : PreCategory := CatOf HSet.
+Definition PropCat `{Funext} : PreCategory := CatOf hProp.
+Definition SetCat `{Funext} : PreCategory := CatOf hSet.
 
 Section SetCoercionsDefinitions.
   Context `{Funext}.
@@ -46,17 +46,24 @@ Section SetCoercions.
 
   Definition FunctorTo_Prop2Set (F : FunctorToProp C) : FunctorToSet C :=
     Build_Functor C SetCat
-                  (fun x => ((ObjectOf F x).1; (_ : IsHSet ((ObjectOf F x).1))))
+                  (fun x => BuildhSet (F x) _)
                   (fun s d m => MorphismOf F m)
                   (fun s d d' m m' => FCompositionOf F s d d' m m')
                   (fun x => FIdentityOf F x).
 
   Definition FunctorFrom_Set2Prop (F : FunctorFromSet C) : FunctorFromProp C
     := Build_Functor PropCat C
-                     (fun x => ObjectOf F (x.1; (_ : IsHSet (x.1))))
-                     (fun s d m => MorphismOf F (m : Morphism SetCat (s.1; _) (d.1; _)))
-                     (fun s d d' m m' => FCompositionOf F (s.1; _) (d.1; _) (d'.1; _) m  m')
-                     (fun x => FIdentityOf F (x.1; (_ : IsHSet (x.1)))).
+                     (fun x => F (BuildhSet x _))
+                     (fun s d m => MorphismOf F (m : Morphism SetCat
+                                                              (BuildhSet s _)
+                                                              (BuildhSet d _)))
+                     (fun s d d' m m' => FCompositionOf F
+                                                        (BuildhSet s _)
+                                                        (BuildhSet d _)
+                                                        (BuildhSet d' _)
+                                                        m
+                                                        m')
+                     (fun x => FIdentityOf F (BuildhSet x _)).
 End SetCoercions.
 
 Coercion FunctorTo_Prop2Set : FunctorToProp >-> FunctorToSet.

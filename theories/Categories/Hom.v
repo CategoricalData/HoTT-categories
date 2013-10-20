@@ -28,9 +28,9 @@ Section HomFunctor.
   Variable C : PreCategory.
 
   Local Notation objOf c'c :=
-    ((Morphism C (fst (c'c : Object (C^op * C))) (snd (c'c : Object (C^op * C)))
-      ; _)
-     : HSet).
+    (BuildhSet
+       (Morphism C (fst (c'c : Object (C^op * C))) (snd (c'c : Object (C^op * C))))
+       _).
 
   Definition HomFunctor_MorphismOf s's d'd (hf : Morphism (C^op * C) s's d'd)
   : Morphism SetCat (objOf s's) (objOf d'd)
