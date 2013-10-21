@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.NaturalTransformation.Sum</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.NaturalTransformation.Sum</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a> <a class="idref" href="HoTT.categories.Category.Sum.html#"><span class="id" type="library">Category.Sum</span></a> <a class="idref" href="HoTT.categories.Functor.Sum.html#"><span class="id" type="library">Functor.Sum</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#"><span class="id" type="library">NaturalTransformation.Core</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="sum"><span class="id" type="section">sum</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="sum"><span class="id" type="definition">sum</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">C</span> <span class="id" type="var">C'</span> <span class="id" type="var">D</span> <span class="id" type="var">F</span> <span class="id" type="var">G</span> <span class="id" type="var">F'</span> <span class="id" type="var">G'</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">T</span> : @<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation"><span class="id" type="record">NaturalTransformation</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#D"><span class="id" type="variable">D</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#G"><span class="id" type="variable">G</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">T'</span> : @<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation"><span class="id" type="record">NaturalTransformation</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#C'"><span class="id" type="variable">C'</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#D"><span class="id" type="variable">D</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#F'"><span class="id" type="variable">F'</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#G'"><span class="id" type="variable">G'</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation"><span class="id" type="record">NaturalTransformation</span></a> (<a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.Sum.html#FunctorSumNotations.:functor_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#F'"><span class="id" type="variable">F'</span></a>) (<a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.Sum.html#FunctorSumNotations.:functor_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#G'"><span class="id" type="variable">G'</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#Build_NaturalTransformation"><span class="id" type="definition">Build_NaturalTransformation</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">F</span> <a class="idref" href="HoTT.categories.Functor.Sum.html#FunctorSumNotations.:functor_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <span class="id" type="var">F'</span>) (<span class="id" type="var">G</span> <a class="idref" href="HoTT.categories.Functor.Sum.html#FunctorSumNotations.:functor_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <span class="id" type="var">G'</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <span class="id" type="keyword">match</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#x"><span class="id" type="variable">x</span></a> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Coq.Init.Datatypes.html#inl"><span class="id" type="constructor">Datatypes.inl</span></a> <span class="id" type="var">c</span> ⇒ <span class="id" type="var">T</span> <span class="id" type="var">c</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <a class="idref" href="Coq.Init.Datatypes.html#inr"><span class="id" type="constructor">Datatypes.inr</span></a> <span class="id" type="var">c'</span> ⇒ <span class="id" type="var">T'</span> <span class="id" type="var">c'</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">abstract</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">intros</span> [] || <span class="id" type="tactic">intro</span>); <span class="id" type="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">natural_transformation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#sum"><span class="id" type="section">sum</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Module</span> <span class="id" type="keyword">Export</span> <a name="NaturalTransformationSumNotations"><span class="id" type="module">NaturalTransformationSumNotations</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Notation</span> <a name="NaturalTransformationSumNotations.:natural_transformation_scope:x_'+'_x"><span class="id" type="notation">"</span></a>T + U" := (<a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#NaturalTransformationSumNotations.sum"><span class="id" type="definition">sum</span></a> <span class="id" type="var">T</span> <span class="id" type="var">U</span>) : <span class="id" type="var">natural_transformation_scope</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Sum.html#"><span class="id" type="module">NaturalTransformationSumNotations</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

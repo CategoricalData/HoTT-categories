@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.NaturalTransformation.Core</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.NaturalTransformation.Core</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Delimit</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">natural_transformation_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">natural_transformation</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">natural_transformation_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="NaturalTransformation"><span class="id" type="section">NaturalTransformation</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="NaturalTransformation.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="NaturalTransformation.D"><span class="id" type="variable">D</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variables</span> <a name="NaturalTransformation.F"><span class="id" type="variable">F</span></a> <a name="NaturalTransformation.G"><span class="id" type="variable">G</span></a> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.D"><span class="id" type="variable">D</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+     Quoting from the lecture notes for 18.705, Commutative Algebra:
+
+<div class="paragraph"> </div>
+
+     A map of functors is known as a natural transformation. Namely,
+     given two functors <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Duals.html#opposite_involutive.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.InitialTerminalCategory.html#NaturalTransformations.NaturalTransformations.C"><span class="id" type="variable">C</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.FunctorCategory.Core.html#functor_category.D"><span class="id" type="variable">D</span></a></span>, <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.G"><span class="id" type="variable">G</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.InitialTerminalCategory.html#NaturalTransformations.NaturalTransformations.C"><span class="id" type="variable">C</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.FunctorCategory.Core.html#functor_category.D"><span class="id" type="variable">D</span></a></span>, a natural
+     transformation <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.CompositionLaws.html#whisker.whisker.T"><span class="id" type="variable">T</span></a>:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Duals.html#opposite_involutive.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.G"><span class="id" type="variable">G</span></a></span> is a collection of maps <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.CompositionLaws.html#whisker.whisker.T"><span class="id" type="variable">T</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Duals.html#opposite_involutive.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span>
+     <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Composition.html#composition.G"><span class="id" type="variable">G</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span>, one for each object <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.InitialTerminalCategory.html#NaturalTransformations.NaturalTransformations.C"><span class="id" type="variable">C</span></a></span>, such that <span class="inlinecode">(<a class="idref" href="HoTT.categories.NaturalTransformation.CompositionLaws.html#whisker.whisker.T"><span class="id" type="variable">T</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a>)</span> <span class="inlinecode">∘</span> <span class="inlinecode">(<a class="idref" href="HoTT.categories.Functor.Duals.html#opposite_involutive.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a>)</span> <span class="inlinecode">=</span>
+     <span class="inlinecode">(<a class="idref" href="HoTT.categories.Functor.Composition.html#composition.G"><span class="id" type="variable">G</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a>)</span> <span class="inlinecode">∘</span> <span class="inlinecode">(<a class="idref" href="HoTT.categories.NaturalTransformation.CompositionLaws.html#whisker.whisker.T"><span class="id" type="variable">T</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>)</span> for every map <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#iso_contr.IsIsomorphism.m"><span class="id" type="variable">m</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> of <span class="inlinecode"><a class="idref" href="HoTT.categories.InitialTerminalCategory.html#NaturalTransformations.NaturalTransformations.C"><span class="id" type="variable">C</span></a></span>; that is, the
+     following diagram is commutative:
+
+<div class="paragraph"> </div>
+
+<pre>
+           F m
+     F A -------&gt; F B
+      |            |
+      |            |
+      | T A        | T B
+      |            |
+      V    G m     V
+     G A --------&gt; G B
+</pre>
+     
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Record</span> <a name="NaturalTransformation"><span class="id" type="record">NaturalTransformation</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="Build_NaturalTransformation'"><span class="id" type="constructor">Build_NaturalTransformation'</span></a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="components_of"><span class="id" type="projection">components_of</span></a> :&gt; <span class="id" type="keyword">∀</span> <span class="id" type="var">c</span>, <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.D"><span class="id" type="variable">D</span></a> (<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#c"><span class="id" type="variable">c</span></a>) (<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#c"><span class="id" type="variable">c</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="commutes"><span class="id" type="projection">commutes</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> (<span class="id" type="var">m</span> : <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#d"><span class="id" type="variable">d</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#components_of"><span class="id" type="method">components_of</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.:morphism_scope:x_'_1'_x"><span class="id" type="notation">_1</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.:morphism_scope:x_'_1'_x"><span class="id" type="notation">_1</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#components_of"><span class="id" type="method">components_of</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#s"><span class="id" type="variable">s</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="commutes_sym"><span class="id" type="projection">commutes_sym</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> (<span class="id" type="var">m</span> : <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.C"><span class="id" type="variable">C</span></a>.(<a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a>) <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#d"><span class="id" type="variable">d</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.G"><span class="id" type="variable">G</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.:morphism_scope:x_'_1'_x"><span class="id" type="notation">_1</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#components_of"><span class="id" type="method">components_of</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#components_of"><span class="id" type="method">components_of</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="HoTT.categories.Category.Core.html#CategoryCoreNotations.:morphism_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation.F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#FunctorCoreNotations.:morphism_scope:x_'_1'_x"><span class="id" type="notation">_1</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#m"><span class="id" type="variable">m</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="Build_NaturalTransformation"><span class="id" type="definition">Build_NaturalTransformation</span></a> <span class="id" type="var">CO</span> <span class="id" type="var">COM</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#Build_NaturalTransformation'"><span class="id" type="constructor">Build_NaturalTransformation'</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#CO"><span class="id" type="variable">CO</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#COM"><span class="id" type="variable">COM</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#COM"><span class="id" type="variable">COM</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)).<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#NaturalTransformation"><span class="id" type="section">NaturalTransformation</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Bind</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">natural_transformation_scope</span> <span class="id" type="keyword">with</span> <span class="id" type="var">NaturalTransformation</span>.<br/>
+
+<br/>
+<span class="id" type="var">Create</span> <span class="id" type="var">HintDb</span> <span class="id" type="var">natural_transformation</span> <span class="id" type="var">discriminated</span>.<br/>
+
+<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#components_of"><span class="id" type="projection">components_of</span></a> {<span class="id" type="var">C</span> <span class="id" type="var">D</span>}%<span class="id" type="var">category</span> {<span class="id" type="var">F</span> <span class="id" type="var">G</span>}%<span class="id" type="var">functor</span> <span class="id" type="var">T</span>%<span class="id" type="var">natural_transformation</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">c</span>%<span class="id" type="var">object</span> : <span class="id" type="tactic">rename</span>, <span class="id" type="tactic">simpl</span> <span class="id" type="var">nomatch</span>.<br/>
+<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#commutes"><span class="id" type="projection">commutes</span></a> [<span class="id" type="var">C</span> <span class="id" type="var">D</span> <span class="id" type="var">F</span> <span class="id" type="var">G</span>] <span class="id" type="var">T</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> : <span class="id" type="tactic">rename</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> @<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#commutes"><span class="id" type="projection">commutes</span></a> : <span class="id" type="var">category</span> <span class="id" type="var">natural_transformation</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

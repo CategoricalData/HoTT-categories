@@ -30,12 +30,12 @@
 </div>
 
 <div class="doc">
-<a name="lab5"></a><h1 class="section">Extra tactics for homotopy type theory.</h1>
+<a name="lab8"></a><h1 class="section">Extra tactics for homotopy type theory.</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab6"></a><h2 class="section">Tactics for dealing with <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="record">Funext</span></a></span></h2>
-<a name="lab7"></a><h3 class="section">Tactics about <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#transport"><span class="id" type="definition">transport</span></a></span>ing with <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span></h3>
+<a name="lab9"></a><h2 class="section">Tactics for dealing with <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="record">Funext</span></a></span></h2>
+<a name="lab10"></a><h3 class="section">Tactics about <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#transport"><span class="id" type="definition">transport</span></a></span>ing with <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span></h3>
 
 <div class="paragraph"> </div>
 
@@ -47,7 +47,7 @@ The high-level idea is that we don't really need functional extensionality if we
 
 <div class="paragraph"> </div>
 
-In a bit more detail, if we are transporting across <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.g"><span class="id" type="variable">g</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#H"><span class="id" type="variable">H</span></a></span>, and in the function <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span>, all instances of <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> are applied to some expressions, say we only see <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>, <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>, ..., <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span>, then we can eliminate the <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span> by explicitly transporting across <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>, <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>, ..., <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span>.  The lemma <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#path_forall_1_beta"><span class="id" type="lemma">path_forall_1_beta</span></a></span> expresses this fact in the case that we see <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> applied to only a single argument in <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span>, and the tactic <span class="inlinecode"><span class="id" type="var">transport_path_forall_hammer</span></span> is some fancy Ltac to auto-infer what <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> is and what the argument to <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> is.
+In a bit more detail, if we are transporting across <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.g"><span class="id" type="variable">g</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.Identity.html#identity.generalized'.H"><span class="id" type="variable">H</span></a></span>, and in the function <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span>, all instances of <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> are applied to some expressions, say we only see <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>, <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>, ..., <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span>, then we can eliminate the <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a></span> by explicitly transporting across <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.Identity.html#identity.generalized'.H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.x"><span class="id" type="variable">x</span></a></span>, <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.Identity.html#identity.generalized'.H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.y"><span class="id" type="variable">y</span></a></span>, ..., <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.Identity.html#identity.generalized'.H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span>.  The lemma <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#path_forall_1_beta"><span class="id" type="lemma">path_forall_1_beta</span></a></span> expresses this fact in the case that we see <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> applied to only a single argument in <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span>, and the tactic <span class="inlinecode"><span class="id" type="var">transport_path_forall_hammer</span></span> is some fancy Ltac to auto-infer what <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> is and what the argument to <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.f"><span class="id" type="variable">f</span></a></span> is.
 
 <div class="paragraph"> </div>
 
@@ -214,7 +214,7 @@ An example showing that it works
 </div>
 
 <div class="doc">
-<a name="lab8"></a><h2 class="section">A more powerful variant of <span class="inlinecode"><span class="id" type="var">path_induction</span></span></h2>
+<a name="lab11"></a><h2 class="section">A more powerful variant of <span class="inlinecode"><span class="id" type="var">path_induction</span></span></h2>
  We first define some helper tactics, and then define <span class="inlinecode"><span class="id" type="var">path_induction_hammer</span></span>, which has poor computational behavior, but is vastly more powerful than <span class="inlinecode"><span class="id" type="var">path_induction</span></span>, and removes paths which are discoverably contractible, and paths which only appear in the goal, etc. 
 <div class="paragraph"> </div>
 
@@ -359,11 +359,11 @@ And now the actual tactic.  Note that the order of the cases in the <span class=
 </div>
 
 <div class="doc">
-<a name="lab9"></a><h1 class="section">Miscellaneous tactics</h1>
+<a name="lab12"></a><h1 class="section">Miscellaneous tactics</h1>
 
 <div class="paragraph"> </div>
 
- Substitute all hypotheses with bodies, i.e., of the form <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" type="var">_</span></span>. 
+ Substitute all hypotheses with bodies, i.e., of the form <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.Identity.html#identity.generalized'.H"><span class="id" type="variable">H</span></a></span> <span class="inlinecode">:=</span> <span class="inlinecode"><span class="id" type="var">_</span></span>. 
 </div>
 <div class="code">
 <span class="id" type="keyword">Ltac</span> <span class="id" type="var">subst_body</span> :=<br/>
@@ -433,6 +433,62 @@ Run <span class="inlinecode"><span class="id" type="tactic">simpl</span></span> 
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="keyword">∀</span> <span class="id" type="var">_</span>, <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">fail</span> 1 <span class="id" type="var">x</span> "is not atomic"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">idtac</span><br/>
 &nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+find the head of the given expression 
+</div>
+<div class="code">
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">head</span> <span class="id" type="var">expr</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">expr</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| ?<span class="id" type="var">f</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="var">head</span> <span class="id" type="var">f</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="var">expr</span><br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">head_hnf</span> <span class="id" type="var">expr</span> := <span class="id" type="keyword">let</span> <span class="id" type="var">expr'</span> := <span class="id" type="tactic">eval</span> <span class="id" type="tactic">hnf</span> <span class="id" type="keyword">in</span> <span class="id" type="var">expr</span> <span class="id" type="keyword">in</span> <span class="id" type="var">head</span> <span class="id" type="var">expr'</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_all_matches_then</span> <span class="id" type="var">matcher</span> <span class="id" type="var">tac</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> <span class="id" type="keyword">match</span> <span class="id" type="keyword">goal</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [ <span class="id" type="var">H</span> : ?<span class="id" type="var">T</span> |- <span class="id" type="var">_</span> ] ⇒ <span class="id" type="var">matcher</span> <span class="id" type="var">T</span>; <span class="id" type="tactic">destruct</span> <span class="id" type="var">H</span>; <span class="id" type="var">tac</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_all_matches</span> <span class="id" type="var">matcher</span> := <span class="id" type="var">destruct_all_matches_then</span> <span class="id" type="var">matcher</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> *).<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_all_matches'</span> <span class="id" type="var">matcher</span> := <span class="id" type="var">destruct_all_matches_then</span> <span class="id" type="var">matcher</span> <span class="id" type="tactic">idtac</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+matches anything whose type has a <span class="inlinecode"><a class="idref" href="HoTT.categories.NaturalTransformation.CompositionLaws.html#whisker.whisker.T"><span class="id" type="variable">T</span></a></span> in it 
+</div>
+<div class="code">
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_type_matcher</span> <span class="id" type="var">T</span> <span class="id" type="var">HT</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">HT</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="keyword">context</span>[<span class="id" type="var">T</span>] ⇒ <span class="id" type="tactic">idtac</span><br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_type</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_type_matcher</span> <span class="id" type="var">T</span>).<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_type'</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches'</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_type_matcher</span> <span class="id" type="var">T</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head_matcher</span> <span class="id" type="var">T</span> <span class="id" type="var">HT</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">head</span> <span class="id" type="var">HT</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">T</span> ⇒ <span class="id" type="tactic">idtac</span><br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_head_matcher</span> <span class="id" type="var">T</span>).<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head'</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches'</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_head_matcher</span> <span class="id" type="var">T</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head_hnf_matcher</span> <span class="id" type="var">T</span> <span class="id" type="var">HT</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="var">head_hnf</span> <span class="id" type="var">HT</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">T</span> ⇒ <span class="id" type="tactic">idtac</span><br/>
+&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head_hnf</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_head_hnf_matcher</span> <span class="id" type="var">T</span>).<br/>
+<span class="id" type="keyword">Ltac</span> <span class="id" type="var">destruct_head_hnf'</span> <span class="id" type="var">T</span> := <span class="id" type="var">destruct_all_matches'</span> <span class="id" type="keyword">ltac</span>:(<span class="id" type="var">destruct_head_hnf_matcher</span> <span class="id" type="var">T</span>).<br/>
 </div>
 </div>
 
