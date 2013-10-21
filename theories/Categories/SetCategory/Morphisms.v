@@ -87,6 +87,11 @@ Proof.
   do_equiv_iso_equiv.
 Defined.
 
+Lemma equiv_iso_equiv_PropCat_fun_refl `{Funext} x
+: equiv_iso_equiv_SetCat x x (reflexivity x) = reflexivity _.
+Proof.
+  expand.
+
 Eval cbv beta iota zeta delta [equiv_iso_equiv_SetCat transitivity transitive_equiv equiv_compose equiv_fun issig_equiv equiv_functor_sigma_id equiv_functor_sigma functor_sigma compose equiv_idmap]
   in equiv_iso_equiv_SetCat _ _.
 
