@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab59"></a><h1 class="section">Theorems about cartesian products</h1>
+<a name="lab39"></a><h1 class="section">Theorems about cartesian products</h1>
 
 </div>
 <div class="code">
@@ -37,11 +37,11 @@
 </div>
 
 <div class="doc">
-<a name="lab60"></a><h3 class="section">Unpacking</h3>
+<a name="lab40"></a><h3 class="section">Unpacking</h3>
 
 <div class="paragraph"> </div>
 
- Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.types.Forall.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">×</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> by writing <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Datatypes.html#fst"><span class="id" type="definition">fst</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Datatypes.html#snd"><span class="id" type="definition">snd</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.ObjectClassifier.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><a class="idref" href="HoTT.types.Prod.html#unpack_prod"><span class="id" type="definition">unpack_prod</span></a></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
+ Sometimes we would like to prove <span class="inlinecode"><a class="idref" href="HoTT.types.Prod.html#Q"><span class="id" type="variable">Q</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#u"><span class="id" type="variable">u</span></a></span> where <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">×</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.B"><span class="id" type="variable">B</span></a></span> by writing <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#u"><span class="id" type="variable">u</span></a></span> as a pair <span class="inlinecode">(<a class="idref" href="Coq.Init.Datatypes.html#fst"><span class="id" type="definition">fst</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">;</span> <span class="inlinecode"><a class="idref" href="Coq.Init.Datatypes.html#snd"><span class="id" type="definition">snd</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Morphisms.html#u"><span class="id" type="variable">u</span></a>)</span>. This is accomplished by <span class="inlinecode"><a class="idref" href="HoTT.types.Prod.html#unpack_prod"><span class="id" type="definition">unpack_prod</span></a></span>. We want tight control over the proof, so we just write it down even though is looks a bit scary. 
 </div>
 <div class="code">
 
@@ -67,7 +67,7 @@ Now we write down the reverse.
 </div>
 
 <div class="doc">
-<a name="lab61"></a><h3 class="section">Eta conversion</h3>
+<a name="lab41"></a><h3 class="section">Eta conversion</h3>
 
 </div>
 <div class="code">
@@ -80,11 +80,11 @@ Now we write down the reverse.
 </div>
 
 <div class="doc">
-<a name="lab62"></a><h3 class="section">Paths</h3>
+<a name="lab42"></a><h3 class="section">Paths</h3>
 
 <div class="paragraph"> </div>
 
- With this version of the function, we often have to give <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.types.Sum.html#z'"><span class="id" type="variable">z'</span></a></span> explicitly, so we make them explicit arguments. 
+ With this version of the function, we often have to give <span class="inlinecode"><a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.z"><span class="id" type="variable">z</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.types.Prod.html#z'"><span class="id" type="variable">z'</span></a></span> explicitly, so we make them explicit arguments. 
 </div>
 <div class="code">
 <span class="id" type="keyword">Definition</span> <a name="path_prod_uncurried"><span class="id" type="definition">path_prod_uncurried</span></a> {<span class="id" type="var">A</span> <span class="id" type="var">B</span> : <span class="id" type="keyword">Type</span>} (<span class="id" type="var">z</span> <span class="id" type="var">z'</span> : <a class="idref" href="HoTT.types.Prod.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.types.Prod.html#B"><span class="id" type="variable">B</span></a>)<br/>
@@ -242,7 +242,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab63"></a><h3 class="section">Transport</h3>
+<a name="lab43"></a><h3 class="section">Transport</h3>
 
 </div>
 <div class="code">
@@ -257,7 +257,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab64"></a><h3 class="section">Functorial action</h3>
+<a name="lab44"></a><h3 class="section">Functorial action</h3>
 
 </div>
 <div class="code">
@@ -281,7 +281,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab65"></a><h3 class="section">Equivalences</h3>
+<a name="lab45"></a><h3 class="section">Equivalences</h3>
 
 </div>
 <div class="code">
@@ -333,7 +333,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab66"></a><h3 class="section">Symmetry</h3>
+<a name="lab46"></a><h3 class="section">Symmetry</h3>
 
 </div>
 <div class="code">
@@ -361,7 +361,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab67"></a><h3 class="section">Universal mapping properties</h3>
+<a name="lab47"></a><h3 class="section">Universal mapping properties</h3>
 
 <div class="paragraph"> </div>
 
@@ -424,7 +424,7 @@ This lets us identify the path space of a product type, up to equivalence.
 </div>
 
 <div class="doc">
-<a name="lab68"></a><h3 class="section">Products preserve truncation</h3>
+<a name="lab48"></a><h3 class="section">Products preserve truncation</h3>
 
 </div>
 <div class="code">

@@ -19,20 +19,46 @@
 <h1 class="libtitle">Library HoTT.categories.Functor.Functor</h1>
 
 <div class="code">
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#"><span class="id" type="library">Functor.CompositionLaws</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#"><span class="id" type="library">Functor.Composition</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Duals.html#"><span class="id" type="library">Functor.Duals</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Identity.html#"><span class="id" type="library">Functor.Identity</span></a>.<br/>
+</div>
+
+<div class="doc">
+Since there are only notations in <span class="inlinecode"><span class="id" type="library">Functor.Notations</span></span>, we can just export those. 
+</div>
+<div class="code">
 <span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Notations.html#"><span class="id" type="library">Functor.Notations</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Paths.html#"><span class="id" type="library">Functor.Paths</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.categories.Functor.Sum.html#"><span class="id" type="library">Functor.Sum</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#"><span class="id" type="library">Functor.CompositionLaws</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#"><span class="id" type="library">Functor.Composition</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Duals.html#"><span class="id" type="library">Functor.Duals</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Identity.html#"><span class="id" type="library">Functor.Identity</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Paths.html#"><span class="id" type="library">Functor.Paths</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Prod.html#"><span class="id" type="library">Functor.Prod</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Sum.html#"><span class="id" type="library">Functor.Sum</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.CompositionLaws.html#"><span class="id" type="module">Functor.CompositionLaws</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Composition.html#"><span class="id" type="module">Functor.Composition</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="module">Functor.Core</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Duals.html#"><span class="id" type="module">Functor.Duals</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Identity.html#"><span class="id" type="module">Functor.Identity</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Paths.html#"><span class="id" type="module">Functor.Paths</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Prod.html#"><span class="id" type="module">Functor.Prod</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Sum.html#"><span class="id" type="module">Functor.Sum</span></a>.<br/>
 </div>
 
 <div class="doc">
 We don't want to make utf-8 notations the default, so we don't export them. 
+<div class="paragraph"> </div>
+
+ Since <span class="inlinecode"><a class="idref" href="HoTT.categories.Functor.Functor.html#Prod"><span class="id" type="module">Prod</span></a></span> is a separate sub-directory, we need to re-create the module structure 
 </div>
 <div class="code">
+<span class="id" type="keyword">Module</span> <a name="Prod"><span class="id" type="module">Prod</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Functor.Prod.Prod.html#"><span class="id" type="library">Functor.Prod.Prod</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Functor.Prod.Prod.html#"><span class="id" type="module">Functor.Prod.Prod</span></a>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Functor.Functor.html#"><span class="id" type="module">Prod</span></a>.<br/>
 </div>
 </div>
 
