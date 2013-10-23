@@ -22,7 +22,7 @@
 </div>
 
 <div class="doc">
-<a name="lab58"></a><h1 class="section">Theorems about Non-dependent function types</h1>
+<a name="lab69"></a><h1 class="section">Theorems about Non-dependent function types</h1>
 
 </div>
 <div class="code">
@@ -44,7 +44,7 @@
 </div>
 
 <div class="doc">
-<a name="lab59"></a><h3 class="section">Paths</h3>
+<a name="lab70"></a><h3 class="section">Paths</h3>
 
 <div class="paragraph"> </div>
 
@@ -86,7 +86,7 @@
 </div>
 
 <div class="doc">
-<a name="lab60"></a><h3 class="section">Transport</h3>
+<a name="lab71"></a><h3 class="section">Transport</h3>
 
 <div class="paragraph"> </div>
 
@@ -106,11 +106,11 @@
 </div>
 
 <div class="doc">
-<a name="lab61"></a><h3 class="section">Dependent paths</h3>
+<a name="lab72"></a><h3 class="section">Dependent paths</h3>
 
 <div class="paragraph"> </div>
 
- Usually, a dependent path over <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a>:<a class="idref" href="HoTT.Tactics.html#x1"><span class="id" type="variable">x1</span></a>=<a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span> in <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>→<span class="id" type="keyword">Type</span></span> between <span class="inlinecode"><a class="idref" href="HoTT.types.Paths.html#y1"><span class="id" type="variable">y1</span></a>:<a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Tactics.html#x1"><span class="id" type="variable">x1</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.types.Paths.html#y2"><span class="id" type="variable">y2</span></a>:<a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span> is a path <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#transport"><span class="id" type="definition">transport</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Paths.html#y1"><span class="id" type="variable">y1</span></a></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="HoTT.types.Paths.html#y2"><span class="id" type="variable">y2</span></a></span> in <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span>.  However, when <span class="inlinecode"><a class="idref" href="HoTT.hit.Flattening.html#AssumeAxioms.P"><span class="id" type="variable">P</span></a></span> is a function space, these dependent paths have a more convenient description: rather than transporting the argument of <span class="inlinecode"><a class="idref" href="HoTT.types.Paths.html#y1"><span class="id" type="variable">y1</span></a></span> forwards and backwards, we transport only forwards but on both sides of the equation, yielding a "naturality square". 
+ Usually, a dependent path over <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a>:<a class="idref" href="HoTT.categories.Category.Core.html#x1"><span class="id" type="variable">x1</span></a>=<a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span> in <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a>:<a class="idref" href="Coq.Init.Logic_Type.html#identity_is_a_congruence.A"><span class="id" type="variable">A</span></a>→<span class="id" type="keyword">Type</span></span> between <span class="inlinecode"><a class="idref" href="HoTT.types.Sigma.html#y1"><span class="id" type="variable">y1</span></a>:<a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Core.html#x1"><span class="id" type="variable">x1</span></a></span> and <span class="inlinecode"><a class="idref" href="HoTT.types.Sigma.html#y2"><span class="id" type="variable">y2</span></a>:<a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span> is a path <span class="inlinecode"><a class="idref" href="HoTT.Overture.html#transport"><span class="id" type="definition">transport</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Equivalences.html#p"><span class="id" type="variable">p</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Sigma.html#y1"><span class="id" type="variable">y1</span></a></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="HoTT.types.Sigma.html#y2"><span class="id" type="variable">y2</span></a></span> in <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.categories.Category.Core.html#x2"><span class="id" type="variable">x2</span></a></span>.  However, when <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.P"><span class="id" type="variable">P</span></a></span> is a function space, these dependent paths have a more convenient description: rather than transporting the argument of <span class="inlinecode"><a class="idref" href="HoTT.types.Sigma.html#y1"><span class="id" type="variable">y1</span></a></span> forwards and backwards, we transport only forwards but on both sides of the equation, yielding a "naturality square". 
 </div>
 <div class="code">
 
@@ -145,7 +145,7 @@
 </div>
 
 <div class="doc">
-<a name="lab62"></a><h3 class="section">Maps on paths</h3>
+<a name="lab73"></a><h3 class="section">Maps on paths</h3>
 
 <div class="paragraph"> </div>
 
@@ -191,7 +191,7 @@ The action of maps given by lambda.
 </div>
 
 <div class="doc">
-<a name="lab63"></a><h3 class="section">Functorial action</h3>
+<a name="lab74"></a><h3 class="section">Functorial action</h3>
 
 </div>
 <div class="code">
@@ -213,7 +213,7 @@ The action of maps given by lambda.
 </div>
 
 <div class="doc">
-<a name="lab64"></a><h3 class="section">Truncatedness: functions into an n-type is an n-type</h3>
+<a name="lab75"></a><h3 class="section">Truncatedness: functions into an n-type is an n-type</h3>
 
 </div>
 <div class="code">
@@ -232,7 +232,7 @@ The action of maps given by lambda.
 </div>
 
 <div class="doc">
-<a name="lab65"></a><h3 class="section">Equivalences</h3>
+<a name="lab76"></a><h3 class="section">Equivalences</h3>
 
 </div>
 <div class="code">
