@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.SetCategory.Core</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.SetCategory.Core</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.categories.Category.Strict.html#"><span class="id" type="library">Category.Strict</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.HProp.html#"><span class="id" type="library">HProp</span></a> <a class="idref" href="HoTT.HSet.html#"><span class="id" type="library">HSet</span></a> <a class="idref" href="HoTT.types.Universe.html#"><span class="id" type="library">types.Universe</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="cat_of"><span class="id" type="abbreviation">cat_of</span></a> <span class="id" type="var">obj</span> :=<br/>
+&nbsp;&nbsp;(@<a class="idref" href="HoTT.categories.Category.Core.html#Build_PreCategory"><span class="id" type="definition">Build_PreCategory</span></a> <span class="id" type="var">obj</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> <span class="id" type="var">y</span> ⇒ <a class="idref" href="HoTT.categories.SetCategory.Core.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.SetCategory.Core.html#y"><span class="id" type="variable">y</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">x</span> ⇒ <a class="idref" href="HoTT.categories.SetCategory.Core.html#x"><span class="id" type="variable">x</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">f</span> <span class="id" type="var">g</span> ⇒ <a class="idref" href="HoTT.categories.SetCategory.Core.html#f"><span class="id" type="variable">f</span></a> <a class="idref" href="HoTT.Overture.html#:function_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.SetCategory.Core.html#g"><span class="id" type="variable">g</span></a>)%<span class="id" type="var">core</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>).<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+There is a category <span class="inlinecode"><span class="id" type="keyword">Set</span></span>, where the objects are sets and the
+    morphisms are set morphisms 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="prop_cat"><span class="id" type="definition">prop_cat</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a> := <a class="idref" href="HoTT.categories.SetCategory.Core.html#cat_of"><span class="id" type="abbreviation">cat_of</span></a> <a class="idref" href="HoTT.HProp.html#hProp"><span class="id" type="record">hProp</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="set_cat"><span class="id" type="definition">set_cat</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a> := <a class="idref" href="HoTT.categories.SetCategory.Core.html#cat_of"><span class="id" type="abbreviation">cat_of</span></a> <a class="idref" href="HoTT.HSet.html#hSet"><span class="id" type="record">hSet</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="isstrict_prop_cat"><span class="id" type="instance">isstrict_prop_cat</span></a> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>, <a class="idref" href="HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>}<br/>
+: <a class="idref" href="HoTT.categories.Category.Strict.html#IsStrictCategory"><span class="id" type="abbreviation">IsStrictCategory</span></a> <a class="idref" href="HoTT.categories.SetCategory.Core.html#prop_cat"><span class="id" type="definition">prop_cat</span></a><br/>
+&nbsp;&nbsp;:= <a class="idref" href="HoTT.types.Universe.html#trunc_hProp"><span class="id" type="instance">trunc_hProp</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
