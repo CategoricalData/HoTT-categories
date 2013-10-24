@@ -29,20 +29,28 @@ Since there are only notations in <span class="inlinecode"><span class="id" type
 
 <br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a>.<br/>
-<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Duals.html#"><span class="id" type="library">Category.Duals</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Dual.html#"><span class="id" type="library">Category.Dual</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Morphisms.html#"><span class="id" type="library">Category.Morphisms</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Objects.html#"><span class="id" type="library">Category.Objects</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Prod.html#"><span class="id" type="library">Category.Prod</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Sigma.Sigma.html#"><span class="id" type="library">Category.Sigma.Sigma</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Strict.html#"><span class="id" type="library">Category.Strict</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Sum.html#"><span class="id" type="library">Category.Sum</span></a>.<br/>
 <span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Univalent.html#"><span class="id" type="library">Category.Univalent</span></a>.<br/>
 
 <br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="module">Category.Core</span></a>.<br/>
-<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Duals.html#"><span class="id" type="module">Category.Duals</span></a>.<br/>
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Dual.html#"><span class="id" type="module">Category.Dual</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Morphisms.html#"><span class="id" type="module">Category.Morphisms</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Objects.html#"><span class="id" type="module">Category.Objects</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Prod.html#"><span class="id" type="module">Category.Prod</span></a>.<br/>
+</div>
+
+<div class="doc">
+We use the <span class="inlinecode"><span class="id" type="library">Sigma</span></span> folder only to allow us to split up the various files and group conceptually similar lemmas, but not for namespacing.  So we include the main file in it. 
+</div>
+<div class="code">
+<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Sigma.Sigma.html#"><span class="id" type="module">Category.Sigma.Sigma</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Strict.html#"><span class="id" type="module">Category.Strict</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Sum.html#"><span class="id" type="module">Category.Sum</span></a>.<br/>
 <span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Univalent.html#"><span class="id" type="module">Category.Univalent</span></a>.<br/>
@@ -50,8 +58,15 @@ Since there are only notations in <span class="inlinecode"><span class="id" type
 
 <div class="doc">
 We don't want to make utf-8 notations the default, so we don't export them. 
+<div class="paragraph"> </div>
+
+ For the subfolders, we need to re-create the module structure 
 </div>
 <div class="code">
+<span class="id" type="keyword">Module</span> <a name="Subcategory"><span class="id" type="module">Subcategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Require</span> <a class="idref" href="HoTT.categories.Category.Subcategory.Subcategory.html#"><span class="id" type="library">Category.Subcategory.Subcategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Include</span> <a class="idref" href="HoTT.categories.Category.Subcategory.Subcategory.html#"><span class="id" type="module">Category.Subcategory.Subcategory</span></a>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.Category.Category.html#"><span class="id" type="module">Subcategory</span></a>.<br/>
 </div>
 </div>
 
