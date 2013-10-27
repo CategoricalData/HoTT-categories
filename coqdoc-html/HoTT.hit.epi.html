@@ -118,7 +118,7 @@ We need an extra instance of <span class="inlinecode"><a class="idref" href="HoT
 
 <div class="doc">
 It is absolutely essential that we <span class="inlinecode"><span class="id" type="tactic">clear</span></span> <span class="inlinecode"><span class="id" type="var">fs'</span></span>, so that we
-        don't use it in <span class="inlinecode"><span class="id" type="var">epif</span></span> <span class="inlinecode"><span class="id" type="var">_</span></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.g"><span class="id" type="variable">g</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Prod.html#h"><span class="id" type="variable">h</span></a></span> and pick up a universe
+        don't use it in <span class="inlinecode"><span class="id" type="var">epif</span></span> <span class="inlinecode"><span class="id" type="var">_</span></span> <span class="inlinecode"><a class="idref" href="HoTT.types.Bool.html#BoolForall.g"><span class="id" type="variable">g</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.EquivalenceVarieties.html#h"><span class="id" type="variable">h</span></a></span> and pick up a universe
         inconsistency 
 </div>
 <div class="code">
@@ -131,6 +131,21 @@ It is absolutely essential that we <span class="inlinecode"><span class="id" typ
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">by</span> <span class="id" type="tactic">symmetry</span>.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;+ <span class="id" type="tactic">apply</span> (<a class="idref" href="HoTT.Overture.html#transport"><span class="id" type="definition">transport</span></a> <a class="idref" href="HoTT.HProp.html#hproptype"><span class="id" type="projection">hproptype</span></a> <span class="id" type="var">p</span> <a class="idref" href="HoTT.types.Unit.html#tt"><span class="id" type="constructor">tt</span></a>).<br/>
 <span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="epi_isequiv"><span class="id" type="lemma">epi_isequiv</span></a> <span class="id" type="var">X</span> <span class="id" type="var">Y</span> (<span class="id" type="var">f</span> : <a class="idref" href="HoTT.hit.epi.html#X"><span class="id" type="variable">X</span></a> <a class="idref" href="Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.hit.epi.html#Y"><span class="id" type="variable">Y</span></a>) `{<a class="idref" href="HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <a class="idref" href="HoTT.hit.epi.html#f"><span class="id" type="variable">f</span></a>}<br/>
+: <a class="idref" href="HoTT.hit.epi.html#epi"><span class="id" type="definition">epi</span></a> <a class="idref" href="HoTT.hit.epi.html#f"><span class="id" type="variable">f</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> ? <span class="id" type="var">g</span> <span class="id" type="var">h</span> <span class="id" type="var">H'</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#ap10"><span class="id" type="definition">ap10</span></a> <span class="id" type="keyword">in</span> <span class="id" type="var">H'</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intro</span> <span class="id" type="var">x</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">transitivity</span> (<span class="id" type="var">g</span> (<span class="id" type="var">f</span> (<span class="id" type="var">f</span><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> <span class="id" type="var">x</span>))).<br/>
+&nbsp;&nbsp;- <span class="id" type="tactic">by</span> <span class="id" type="tactic">rewrite</span> <a class="idref" href="HoTT.Overture.html#eisretr"><span class="id" type="method">eisretr</span></a>.<br/>
+&nbsp;&nbsp;- <span class="id" type="tactic">transitivity</span> (<span class="id" type="var">h</span> (<span class="id" type="var">f</span> (<span class="id" type="var">f</span><a class="idref" href="HoTT.Overture.html#:equiv_scope:x_'^-1'"><span class="id" type="notation">^-1</span></a> <span class="id" type="var">x</span>))).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;× <span class="id" type="tactic">apply</span> <span class="id" type="var">H'</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;× <span class="id" type="tactic">by</span> <span class="id" type="tactic">rewrite</span> <a class="idref" href="HoTT.Overture.html#eisretr"><span class="id" type="method">eisretr</span></a>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
 <span class="id" type="keyword">End</span> <a class="idref" href="HoTT.hit.epi.html#AssumingUA"><span class="id" type="section">AssumingUA</span></a>.<br/>
 </div>
 </div>
