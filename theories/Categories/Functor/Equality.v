@@ -123,7 +123,7 @@ Section Functors_Equal.
   Defined.
 End Functors_Equal.
 
-Opaque Functor_eq'_sig.
+Global Opaque Functor_eq'_sig.
 
 Ltac functor_eq :=
   repeat match goal with
