@@ -78,7 +78,7 @@ Hint Rewrite @LeftIdentity @RightIdentity : morphism.
 Section IdentityUnique.
   Variable C : PreCategory.
 
-  (** The Identity morphism is uniuqe. *)
+  (** The Identity morphism is unique. *)
   Lemma IdentityUnique (id0 id1 : forall x, Morphism C x x)
         (id1_left : forall s d (m : Morphism C s d), id1 _ ∘ m = m)
         (id0_right : forall s d (m : Morphism C s d), m ∘ id0 _ = m)

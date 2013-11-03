@@ -102,7 +102,7 @@ Section FunctorProductUniversal.
       Hypothesis H1 : fst_Functor ∘ F = a.
       Hypothesis H2 : snd_Functor ∘ F = b.
 
-      Lemma FunctorProduct_uniuqe_helper
+      Lemma FunctorProduct_unique_helper
             c
       : (a * b) c = F c.
       Proof.
@@ -113,11 +113,17 @@ Section FunctorProductUniversal.
         apply eta_prod.
       Defined.
 
-      Lemma FunctorProduct_uniuqe
-      : a * b = F.
+      Lemma FunctorProduct_unique_helper2
+      :  transport
+           (fun GO : C -> A * B =>
+              forall s d : C,
+                Morphism C s d ->
+                Morphism A (fst (GO s)) (fst (GO d)) *
+                Morphism B (snd (GO s)) (snd (GO d)))
+           (path_forall (a * b) F FunctorProduct_unique_helper)
+           (fun (s d : C) (m : Morphism C s d) =>
+              ((a ₁ m)%morphism, (b ₁ m)%morphism)) = MorphismOf F.
       Proof.
-        functor_eq.
-        exists (path_forall _ _ FunctorProduct_uniuqe_helper).
         repeat (apply path_forall; intro).
         repeat match goal with
                  | _ => reflexivity
@@ -140,7 +146,7 @@ Section FunctorProductUniversal.
                                           f g)
         end.
         rewrite transport_path_prod'.
-        unfold FunctorProduct_uniuqe_helper.
+        unfold FunctorProduct_unique_helper.
         case H1; simpl; clear H1.
         case H2; simpl; clear H2.
         repeat match goal with
@@ -151,6 +157,14 @@ Section FunctorProductUniversal.
                end.
         reflexivity.
       Qed.
+
+      Lemma FunctorProduct_unique
+      : a * b = F.
+      Proof.
+        functor_eq.
+        exists (path_forall _ _ FunctorProduct_unique_helper).
+        apply FunctorProduct_unique_helper2.
+      Defined.
     End unique.
 
     Global Instance FunctorProduct_contr
@@ -166,7 +180,7 @@ Section FunctorProductUniversal.
       intro y.
       apply path_sigma_uncurried.
       simpl.
-      exists (FunctorProduct_uniuqe (fst y.2) (snd y.2)).
+      exists (FunctorProduct_unique (fst y.2) (snd y.2)).
       exact (center _).
     Qed.
   End universal.
@@ -177,7 +191,7 @@ Section FunctorProductUniversal.
   : F = G.
   Proof.
     etransitivity; [ apply symmetry | ];
-    apply FunctorProduct_uniuqe; try eassumption; reflexivity.
+    apply FunctorProduct_unique; try eassumption; reflexivity.
   Defined.
 End FunctorProductUniversal.
 
