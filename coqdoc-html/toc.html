@@ -17,158 +17,183 @@
 <div id="main">
 
 <div id="toc">
+<a href="HoTT.Fibrations.html"><h2>Library HoTT.Fibrations</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.Fibrations.html#lab1">Basic facts about fibrations</a>
+
+</li>
+</ul>
+<a href="HoTT.Trunc.html"><h2>Library HoTT.Trunc</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.Trunc.html#lab2">Truncatedness</a>
+<ul class="doclist">
+<li><a href="HoTT.Trunc.html#lab3">Arithmetic on truncation-levels.</a>
+
+</li>
+<li><a href="HoTT.Trunc.html#lab4">Truncatedness proper.</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
 <a href="HoTT.Equivalences.html"><h2>Library HoTT.Equivalences</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.Equivalences.html#lab1">Equivalences -*- mode: coq; mode: visual-line -*-</a>
+<li><a href="HoTT.Equivalences.html#lab5">Equivalences -*- mode: coq; mode: visual-line -*-</a>
+
+</li>
+</ul>
+<a href="HoTT.Contractible.html"><h2>Library HoTT.Contractible</h2></a>
+<a href="HoTT.EquivalenceVarieties.html"><h2>Library HoTT.EquivalenceVarieties</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.EquivalenceVarieties.html#lab6">Comparing definitions of equivalence</a>
+<ul class="doclist">
+<li><a href="HoTT.EquivalenceVarieties.html#lab7">Contractible maps</a>
+
+</li>
+<li><a href="HoTT.EquivalenceVarieties.html#lab8">Bi-invertible maps</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.Functorish.html"><h2>Library HoTT.Functorish</h2></a>
+<a href="HoTT.Tactics.html"><h2>Library HoTT.Tactics</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.Tactics.html#lab9">Extra tactics for homotopy type theory.</a>
+<ul class="doclist">
+<li><a href="HoTT.Tactics.html#lab10">Tactics for dealing with <span class="inlinecode"><span class="id" type="var">Funext</span></span></a>
+<ul class="doclist">
+<li><a href="HoTT.Tactics.html#lab11">Tactics about <span class="inlinecode"><span class="id" type="var">transport</span></span>ing with <span class="inlinecode"><span class="id" type="var">path_forall</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.Tactics.html#lab12">A more powerful variant of <span class="inlinecode"><span class="id" type="var">path_induction</span></span></a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.Tactics.html#lab13">Miscellaneous tactics</a>
+
+</li>
+</ul>
+<a href="HoTT.Overture.html"><h2>Library HoTT.Overture</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.Overture.html#lab14">Basic definitions of homotopy type theory, particularly the groupoid structure of identity types.</a>
+<ul class="doclist">
+<li><a href="HoTT.Overture.html#lab15">Type classes</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab16">Basic definitions</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab17">The groupoid structure of identity types.</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab18">Equivalences</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab19">Contractibility and truncation levels</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.Overture.html#lab20">We prefer to reason about <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="var">A</span></span> rather than <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(@<span class="id" type="var">paths</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>.  Whenever we see a statement (or goal) about truncation of paths, we try to turn it into a statement (or goal) about truncation of a (non-<span class="inlinecode"><span class="id" type="var">paths</span></span>) type.  We do not allow typeclass resolution to go in the reverse direction from <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="var">A</span></span> to <span class="inlinecode"><span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>.</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab21">We prefer to reason about syntactically smaller types.  That is, typeclass instances should turn goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">a</span>)</span> into goals of type <span class="inlinecode"><span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">a</span>)</span>; and goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> into the pair of goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>; rather than the other way around.  Ideally, we would add similar rules to transform hypotheses in the cases where we can do so.  This rule is not always the one we want, but it seems to heuristically capture the shape of most cases that we want the typeclass machinery to automatically infer.  That is, we often want to infer <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> from <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>, but we (probably) don't often need to do other simple things with <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> which are broken by that reduction.</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.Overture.html#lab22">Contractibility</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab23">Truncation levels</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab24">Function extensionality</a>
+
+</li>
+<li><a href="HoTT.Overture.html#lab25">Tactics</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.PathGroupoids.html"><h2>Library HoTT.PathGroupoids</h2></a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.PathGroupoids.html#lab26">Naming conventions</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab27">The 1-dimensional groupoid structure.</a>
+<ul class="doclist">
+<li><a href="HoTT.PathGroupoids.html#lab28">Functoriality of functions</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab29">Action of <span class="inlinecode"><span class="id" type="var">apD10</span></span> and <span class="inlinecode"><span class="id" type="var">ap10</span></span> on paths.</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab30">Transport and the groupoid structure of paths</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab31">Transporting in particular fibrations.</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab32">The behavior of <span class="inlinecode"><span class="id" type="var">ap</span></span> and <span class="inlinecode"><span class="id" type="var">apD</span></span>.</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab33">The 2-dimensional groupoid structure</a>
+<ul class="doclist">
+<li><a href="HoTT.PathGroupoids.html#lab34">Whiskering</a>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab35">Unwhiskering, a.k.a. cancelling.</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.PathGroupoids.html#lab36">Tactics, hints, and aliases</a>
+
+</li>
+</ul>
 
 </li>
 </ul>
 <a href="HoTT.HSet.html"><h2>Library HoTT.HSet</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.HSet.html#lab2">H-Sets</a>
+<li><a href="HoTT.HSet.html#lab37">H-Sets</a>
 
 </li>
 </ul>
-<a href="HoTT.categories.NaturalTransformation.Utf8.html"><h2>Library HoTT.categories.NaturalTransformation.Utf8</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Sum.html"><h2>Library HoTT.categories.NaturalTransformation.Sum</h2></a>
-<a href="HoTT.categories.NaturalTransformation.CompositionLaws.html"><h2>Library HoTT.categories.NaturalTransformation.CompositionLaws</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Identity.html"><h2>Library HoTT.categories.NaturalTransformation.Identity</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Dual.html"><h2>Library HoTT.categories.NaturalTransformation.Dual</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Notations.html"><h2>Library HoTT.categories.NaturalTransformation.Notations</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Core.html"><h2>Library HoTT.categories.NaturalTransformation.Core</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Prod.html"><h2>Library HoTT.categories.NaturalTransformation.Prod</h2></a>
-<a href="HoTT.categories.NaturalTransformation.NaturalTransformation.html"><h2>Library HoTT.categories.NaturalTransformation.NaturalTransformation</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Paths.html"><h2>Library HoTT.categories.NaturalTransformation.Paths</h2></a>
-<a href="HoTT.categories.NaturalTransformation.Composition.html"><h2>Library HoTT.categories.NaturalTransformation.Composition</h2></a>
-<a href="HoTT.categories.categories.html"><h2>Library HoTT.categories.categories</h2></a>
-<a href="HoTT.categories.Profunctor.Utf8.html"><h2>Library HoTT.categories.Profunctor.Utf8</h2></a>
-<a href="HoTT.categories.Profunctor.Identity.html"><h2>Library HoTT.categories.Profunctor.Identity</h2></a>
-<a href="HoTT.categories.Profunctor.Representable.html"><h2>Library HoTT.categories.Profunctor.Representable</h2></a>
-<a href="HoTT.categories.Profunctor.Notations.html"><h2>Library HoTT.categories.Profunctor.Notations</h2></a>
-<a href="HoTT.categories.Profunctor.Core.html"><h2>Library HoTT.categories.Profunctor.Core</h2></a>
-<a href="HoTT.categories.Profunctor.Profunctor.html"><h2>Library HoTT.categories.Profunctor.Profunctor</h2></a>
-<a href="HoTT.categories.NatCategory.html"><h2>Library HoTT.categories.NatCategory</h2></a>
-<a href="HoTT.categories.Utf8.html"><h2>Library HoTT.categories.Utf8</h2></a>
-<a href="HoTT.categories.Functor.Prod.Universal.html"><h2>Library HoTT.categories.Functor.Prod.Universal</h2></a>
-<a href="HoTT.categories.Functor.Prod.Prod.html"><h2>Library HoTT.categories.Functor.Prod.Prod</h2></a>
-<a href="HoTT.categories.Functor.Utf8.html"><h2>Library HoTT.categories.Functor.Utf8</h2></a>
-<a href="HoTT.categories.Functor.Functor.html"><h2>Library HoTT.categories.Functor.Functor</h2></a>
-<a href="HoTT.categories.Functor.Sum.html"><h2>Library HoTT.categories.Functor.Sum</h2></a>
-<a href="HoTT.categories.Functor.CompositionLaws.html"><h2>Library HoTT.categories.Functor.CompositionLaws</h2></a>
-<a href="HoTT.categories.Functor.Identity.html"><h2>Library HoTT.categories.Functor.Identity</h2></a>
-<a href="HoTT.categories.Functor.Dual.html"><h2>Library HoTT.categories.Functor.Dual</h2></a>
-<a href="HoTT.categories.Functor.Notations.html"><h2>Library HoTT.categories.Functor.Notations</h2></a>
-<a href="HoTT.categories.Functor.Core.html"><h2>Library HoTT.categories.Functor.Core</h2></a>
-<a href="HoTT.categories.Functor.Prod.html"><h2>Library HoTT.categories.Functor.Prod</h2></a>
-<a href="HoTT.categories.Functor.Attributes.html"><h2>Library HoTT.categories.Functor.Attributes</h2></a>
-<a href="HoTT.categories.Functor.Paths.html"><h2>Library HoTT.categories.Functor.Paths</h2></a>
-<a href="HoTT.categories.Functor.Composition.html"><h2>Library HoTT.categories.Functor.Composition</h2></a>
-<a href="HoTT.categories.GroupoidCategory.GroupoidCategory.html"><h2>Library HoTT.categories.GroupoidCategory.GroupoidCategory</h2></a>
-<a href="HoTT.categories.GroupoidCategory.Core.html"><h2>Library HoTT.categories.GroupoidCategory.Core</h2></a>
-<a href="HoTT.categories.GroupoidCategory.Morphisms.html"><h2>Library HoTT.categories.GroupoidCategory.Morphisms</h2></a>
-<a href="HoTT.categories.FunctorCategory.Utf8.html"><h2>Library HoTT.categories.FunctorCategory.Utf8</h2></a>
-<a href="HoTT.categories.FunctorCategory.Notations.html"><h2>Library HoTT.categories.FunctorCategory.Notations</h2></a>
-<a href="HoTT.categories.FunctorCategory.Core.html"><h2>Library HoTT.categories.FunctorCategory.Core</h2></a>
-<a href="HoTT.categories.FunctorCategory.FunctorCategory.html"><h2>Library HoTT.categories.FunctorCategory.FunctorCategory</h2></a>
-<a href="HoTT.categories.FunctorCategory.Morphisms.html"><h2>Library HoTT.categories.FunctorCategory.Morphisms</h2></a>
-<a href="HoTT.categories.Notations.html"><h2>Library HoTT.categories.Notations</h2></a>
-<a href="HoTT.categories.SetCategory.Functors.Functors.html"><h2>Library HoTT.categories.SetCategory.Functors.Functors</h2></a>
-<a href="HoTT.categories.SetCategory.Core.html"><h2>Library HoTT.categories.SetCategory.Core</h2></a>
-<a href="HoTT.categories.SetCategory.SetCategory.html"><h2>Library HoTT.categories.SetCategory.SetCategory</h2></a>
-<a href="HoTT.categories.Category.Utf8.html"><h2>Library HoTT.categories.Category.Utf8</h2></a>
-<a href="HoTT.categories.Category.Sigma.OnObjects.html"><h2>Library HoTT.categories.Category.Sigma.OnObjects</h2></a>
-<a href="HoTT.categories.Category.Sigma.Sigma.html"><h2>Library HoTT.categories.Category.Sigma.Sigma</h2></a>
-<a href="HoTT.categories.Category.Sigma.Core.html"><h2>Library HoTT.categories.Category.Sigma.Core</h2></a>
-<a href="HoTT.categories.Category.Sigma.OnMorphisms.html"><h2>Library HoTT.categories.Category.Sigma.OnMorphisms</h2></a>
-<a href="HoTT.categories.Category.Sum.html"><h2>Library HoTT.categories.Category.Sum</h2></a>
-<a href="HoTT.categories.Category.Objects.html"><h2>Library HoTT.categories.Category.Objects</h2></a>
-<a href="HoTT.categories.Category.Dual.html"><h2>Library HoTT.categories.Category.Dual</h2></a>
-<a href="HoTT.categories.Category.Notations.html"><h2>Library HoTT.categories.Category.Notations</h2></a>
-<a href="HoTT.categories.Category.Core.html"><h2>Library HoTT.categories.Category.Core</h2></a>
-<a href="HoTT.categories.Category.Univalent.html"><h2>Library HoTT.categories.Category.Univalent</h2></a>
-<a href="HoTT.categories.Category.Subcategory.Subcategory.html"><h2>Library HoTT.categories.Category.Subcategory.Subcategory</h2></a>
-<a href="HoTT.categories.Category.Subcategory.Full.html"><h2>Library HoTT.categories.Category.Subcategory.Full</h2></a>
-<a href="HoTT.categories.Category.Subcategory.Wide.html"><h2>Library HoTT.categories.Category.Subcategory.Wide</h2></a>
-<a href="HoTT.categories.Category.Prod.html"><h2>Library HoTT.categories.Category.Prod</h2></a>
-<a href="HoTT.categories.Category.Category.html"><h2>Library HoTT.categories.Category.Category</h2></a>
-<a href="HoTT.categories.Category.Strict.html"><h2>Library HoTT.categories.Category.Strict</h2></a>
-<a href="HoTT.categories.Category.Morphisms.html"><h2>Library HoTT.categories.Category.Morphisms</h2></a>
-<a href="HoTT.categories.IndiscreteCategory.html"><h2>Library HoTT.categories.IndiscreteCategory</h2></a>
-<a href="HoTT.categories.InitialTerminalCategory.html"><h2>Library HoTT.categories.InitialTerminalCategory</h2></a>
-<a href="HoTT.categories.DiscreteCategory.html"><h2>Library HoTT.categories.DiscreteCategory</h2></a>
-<a href="HoTT.categories.HomFunctor.html"><h2>Library HoTT.categories.HomFunctor</h2></a>
-<a href="HoTT.Functorish.html"><h2>Library HoTT.Functorish</h2></a>
-<a href="HoTT.Fibrations.html"><h2>Library HoTT.Fibrations</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.Fibrations.html#lab3">Basic facts about fibrations</a>
-
-</li>
-</ul>
-<a href="HoTT.Contractible.html"><h2>Library HoTT.Contractible</h2></a>
 <a href="HoTT.UnivalenceAxiom.html"><h2>Library HoTT.UnivalenceAxiom</h2></a>
 <a href="HoTT.Misc.html"><h2>Library HoTT.Misc</h2></a>
 <ul class="doclist">
 <li><ul class="doclist">
-<li><a href="HoTT.Misc.html#lab4">Null homotopies of maps</a>
+<li><a href="HoTT.Misc.html#lab38">Null homotopies of maps</a>
 
 </li>
-<li><a href="HoTT.Misc.html#lab5">Sigmas of hprops.</a>
+<li><a href="HoTT.Misc.html#lab39">Sigmas of hprops.</a>
 <ul class="doclist">
-<li><a href="HoTT.Misc.html#lab6">Paths between equivalences</a>
+<li><a href="HoTT.Misc.html#lab40">Paths between equivalences</a>
 
 </li>
 </ul>
 
 </li>
-<li><a href="HoTT.Misc.html#lab7">Equivalences between contractible types</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.Conjugation.html"><h2>Library HoTT.Conjugation</h2></a>
-<a href="HoTT.Overture.html"><h2>Library HoTT.Overture</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.Overture.html#lab8">Basic definitions of homotopy type theory, particularly the groupoid structure of identity types.</a>
-<ul class="doclist">
-<li><a href="HoTT.Overture.html#lab9">Type classes</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab10">Basic definitions</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab11">The groupoid structure of identity types.</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab12">Equivalences</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab13">Contractibility and truncation levels</a>
-
-</li>
-</ul>
-
-</li>
-<li><a href="HoTT.Overture.html#lab14">We prefer to reason about <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="var">A</span></span> rather than <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(@<span class="id" type="var">paths</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>.  Whenever we see a statement (or goal) about truncation of paths, we try to turn it into a statement (or goal) about truncation of a (non-<span class="inlinecode"><span class="id" type="var">paths</span></span>) type.  We do not allow typeclass resolution to go in the reverse direction from <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode">(<span class="id" type="var">S</span></span> <span class="inlinecode"><span class="id" type="var">n</span>)</span> <span class="inlinecode"><span class="id" type="var">A</span></span> to <span class="inlinecode"><span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode"><span class="id" type="var">b</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">a</span></span> <span class="inlinecode">=</span> <span class="inlinecode"><span class="id" type="var">b</span>)</span>.</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab15">We prefer to reason about syntactically smaller types.  That is, typeclass instances should turn goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">a</span>)</span> into goals of type <span class="inlinecode"><span class="id" type="keyword">∀</span></span> <span class="inlinecode"><span class="id" type="var">a</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">A</span>,</span> <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">P</span></span> <span class="inlinecode"><span class="id" type="var">a</span>)</span>; and goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> into the pair of goals of type <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>; rather than the other way around.  Ideally, we would add similar rules to transform hypotheses in the cases where we can do so.  This rule is not always the one we want, but it seems to heuristically capture the shape of most cases that we want the typeclass machinery to automatically infer.  That is, we often want to infer <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> from <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">A</span></span> and <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode"><span class="id" type="var">B</span></span>, but we (probably) don't often need to do other simple things with <span class="inlinecode"><span class="id" type="var">IsTrunc</span></span> <span class="inlinecode"><span class="id" type="var">n</span></span> <span class="inlinecode">(<span class="id" type="var">A</span></span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="var">B</span>)</span> which are broken by that reduction.</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.Overture.html#lab16">Contractibility</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab17">Truncation levels</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab18">Function extensionality</a>
-
-</li>
-<li><a href="HoTT.Overture.html#lab19">Tactics</a>
-
-</li>
-</ul>
+<li><a href="HoTT.Misc.html#lab41">Equivalences between contractible types</a>
 
 </li>
 </ul>
@@ -176,373 +201,75 @@
 </li>
 </ul>
 <a href="HoTT.FunextVarieties.html"><h2>Library HoTT.FunextVarieties</h2></a>
-<a href="HoTT.PathGroupoids.html"><h2>Library HoTT.PathGroupoids</h2></a>
+<a href="HoTT.TruncType.html"><h2>Library HoTT.TruncType</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.TruncType.html#lab42">Universes of truncated types.</a>
+<ul class="doclist">
+<li><a href="HoTT.TruncType.html#lab43"><span class="inlinecode"><span class="id" type="var">TruncType</span></span>: Universes of truncated types</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.Paths.html"><h2>Library HoTT.types.Paths</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Paths.html#lab44">Theorems about path spaces</a>
+<ul class="doclist">
+<li><a href="HoTT.types.Paths.html#lab45">Path spaces</a>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab46">Transporting in path spaces.</a>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab47">Functorial action</a>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab48">Equivalences between path spaces</a>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab49">Path operations are equivalences</a>
+<ul class="doclist">
+<li><a href="HoTT.types.Paths.html#lab50">Dependent paths</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab51">Universal mapping property</a>
+
+</li>
+<li><a href="HoTT.types.Paths.html#lab52">Truncation</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.Arrow.html"><h2>Library HoTT.types.Arrow</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Arrow.html#lab53">Theorems about Non-dependent function types</a>
 <ul class="doclist">
 <li><ul class="doclist">
-<li><a href="HoTT.PathGroupoids.html#lab20">Naming conventions</a>
+<li><a href="HoTT.types.Arrow.html#lab54">Paths</a>
 
 </li>
-<li><a href="HoTT.PathGroupoids.html#lab21">The 1-dimensional groupoid structure.</a>
-<ul class="doclist">
-<li><a href="HoTT.PathGroupoids.html#lab22">Functoriality of functions</a>
+<li><a href="HoTT.types.Arrow.html#lab55">Transport</a>
 
 </li>
-<li><a href="HoTT.PathGroupoids.html#lab23">Action of <span class="inlinecode"><span class="id" type="var">apD10</span></span> and <span class="inlinecode"><span class="id" type="var">ap10</span></span> on paths.</a>
+<li><a href="HoTT.types.Arrow.html#lab56">Dependent paths</a>
 
 </li>
-<li><a href="HoTT.PathGroupoids.html#lab24">Transport and the groupoid structure of paths</a>
+<li><a href="HoTT.types.Arrow.html#lab57">Maps on paths</a>
 
 </li>
-<li><a href="HoTT.PathGroupoids.html#lab25">Transporting in particular fibrations.</a>
+<li><a href="HoTT.types.Arrow.html#lab58">Functorial action</a>
 
 </li>
-<li><a href="HoTT.PathGroupoids.html#lab26">The behavior of <span class="inlinecode"><span class="id" type="var">ap</span></span> and <span class="inlinecode"><span class="id" type="var">apD</span></span>.</a>
+<li><a href="HoTT.types.Arrow.html#lab59">Truncatedness: functions into an n-type is an n-type</a>
 
 </li>
-</ul>
-
-</li>
-<li><a href="HoTT.PathGroupoids.html#lab27">The 2-dimensional groupoid structure</a>
-<ul class="doclist">
-<li><a href="HoTT.PathGroupoids.html#lab28">Whiskering</a>
-
-</li>
-<li><a href="HoTT.PathGroupoids.html#lab29">Unwhiskering, a.k.a. cancelling.</a>
-
-</li>
-</ul>
-
-</li>
-<li><a href="HoTT.PathGroupoids.html#lab30">Tactics, hints, and aliases</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.Truncations.html"><h2>Library HoTT.hit.Truncations</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Truncations.html#lab31">Truncations of types, in all dimensions.</a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Truncations.html#lab32">Definition.</a>
-
-</li>
-<li><a href="HoTT.hit.Truncations.html#lab33">Functoriality</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.Spheres.html"><h2>Library HoTT.hit.Spheres</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Spheres.html#lab34">The spheres, in all dimensions.</a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Spheres.html#lab35">Definition, by iterated suspension.</a>
-
-</li>
-<li><a href="HoTT.hit.Spheres.html#lab36">Explicit equivalences in low dimensions</a>
-
-</li>
-<li><a href="HoTT.hit.Spheres.html#lab37">Truncatedness via spheres</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.Interval.html"><h2>Library HoTT.hit.Interval</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Interval.html#lab38">Theorems about the homotopical interval.</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.hit.Interval.html#lab39">From an interval type, we can prove function extensionality.</a>
-
-</li>
-<li><a href="HoTT.hit.Interval.html#lab40">The interval is contractible.</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.quotient.html"><h2>Library HoTT.hit.quotient</h2></a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.hit.quotient.html#lab41">Quotient of a Type by a set-valued relation</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.Connectedness.html"><h2>Library HoTT.hit.Connectedness</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Connectedness.html#lab42">Connectedness</a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Connectedness.html#lab43">Connectedness</a>
-
-</li>
-<li><a href="HoTT.hit.Connectedness.html#lab44">Extensions</a>
-
-</li>
-<li><a href="HoTT.hit.Connectedness.html#lab45">Connectivity of pointed types</a>
-
-</li>
-<li><a href="HoTT.hit.Connectedness.html#lab46">Connectivity of the wedge into the product.</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.epi.html"><h2>Library HoTT.hit.epi</h2></a>
-<a href="HoTT.hit.Circle.html"><h2>Library HoTT.hit.Circle</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Circle.html#lab47">Theorems about the circle S^1.</a>
-
-</li>
-</ul>
-<a href="HoTT.hit.iso.html"><h2>Library HoTT.hit.iso</h2></a>
-<a href="HoTT.hit.Flattening.html"><h2>Library HoTT.hit.Flattening</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Flattening.html#lab48">The flattening lemma.</a>
-
-</li>
-</ul>
-<a href="HoTT.hit.unique_choice.html"><h2>Library HoTT.hit.unique_choice</h2></a>
-<a href="HoTT.hit.Suspension.html"><h2>Library HoTT.hit.Suspension</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Suspension.html#lab49">The suspension of a type</a>
-<ul class="doclist">
-<li><a href="HoTT.hit.Suspension.html#lab50">Eta-rule.</a>
-
-</li>
-<li><a href="HoTT.hit.Suspension.html#lab51">Nullhomotopies of maps out of suspensions</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.hit.minus1Trunc.html"><h2>Library HoTT.hit.minus1Trunc</h2></a>
-<a href="HoTT.HoTT.html"><h2>Library HoTT.HoTT</h2></a>
-<a href="HoTT.HProp.html"><h2>Library HoTT.HProp</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.HProp.html#lab52">HPropositions</a>
-<ul class="doclist">
-<li><a href="HoTT.HProp.html#lab53">Facts about <span class="inlinecode"><span class="id" type="var">IsHProp</span></span></a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.EquivalenceVarieties.html"><h2>Library HoTT.EquivalenceVarieties</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.EquivalenceVarieties.html#lab54">Comparing definitions of equivalence</a>
-<ul class="doclist">
-<li><a href="HoTT.EquivalenceVarieties.html#lab55">Contractible maps</a>
-
-</li>
-<li><a href="HoTT.EquivalenceVarieties.html#lab56">Bi-invertible maps</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.types.Record.html"><h2>Library HoTT.types.Record</h2></a>
-<a href="HoTT.types.ObjectClassifier.html"><h2>Library HoTT.types.ObjectClassifier</h2></a>
-<a href="HoTT.types.Forall.html"><h2>Library HoTT.types.Forall</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Forall.html#lab57">Theorems about dependent products</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.types.Forall.html#lab58">Paths</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab59">Transport</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab60">Maps on paths</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab61">Dependent paths</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab62">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab63">Equivalences</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab64">Truncatedness: any dependent product of n-types is an n-type</a>
-
-</li>
-<li><a href="HoTT.types.Forall.html#lab65">Symmetry of curried arguments</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.types.Empty.html"><h2>Library HoTT.types.Empty</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Empty.html#lab66">Theorems about the empty type</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.types.Empty.html#lab67">Unpacking</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab68">Eta conversion</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab69">Paths</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab70">Transport</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab71">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab72">Equivalences</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab73">Universal mapping properties</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab74">Behavior with respect to truncation</a>
-
-</li>
-<li><a href="HoTT.types.Empty.html#lab75">Paths</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.types.Sigma.html"><h2>Library HoTT.types.Sigma</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Sigma.html#lab76">Theorems about Sigma-types (dependent sums)</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.types.Sigma.html#lab77">Unpacking</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab78">Eta conversion</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab79">Paths</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab80">Transport</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab81">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab82">Equivalences</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab83">Associativity</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab84">Universal mapping properties</a>
-
-</li>
-<li><a href="HoTT.types.Sigma.html#lab85">Sigmas preserve truncation</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.types.Sum.html"><h2>Library HoTT.types.Sum</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Sum.html#lab86">Theorems about disjoint unions</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.types.Sum.html#lab87">CoUnpacking</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab88">Eta conversion</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab89">Paths</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab90">Transport</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab91">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab92">Equivalences</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab93">Symmetry</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab94">Universal mapping properties</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab95">Sums preserve most truncation</a>
-
-</li>
-<li><a href="HoTT.types.Sum.html#lab96">Binary coproducts are equivalent to dependent sigmas where the first component is a bool.</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.types.Prod.html"><h2>Library HoTT.types.Prod</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Prod.html#lab97">Theorems about cartesian products</a>
-<ul class="doclist">
-<li><ul class="doclist">
-<li><a href="HoTT.types.Prod.html#lab98">Unpacking</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab99">Eta conversion</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab100">Paths</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab101">Transport</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab102">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab103">Equivalences</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab104">Symmetry</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab105">Universal mapping properties</a>
-
-</li>
-<li><a href="HoTT.types.Prod.html#lab106">Products preserve truncation</a>
+<li><a href="HoTT.types.Arrow.html#lab60">Equivalences</a>
 
 </li>
 </ul>
@@ -554,10 +281,10 @@
 </ul>
 <a href="HoTT.types.Universe.html"><h2>Library HoTT.types.Universe</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.types.Universe.html#lab107">Theorems about the universe, including the Univalence Axiom.</a>
+<li><a href="HoTT.types.Universe.html#lab61">Theorems about the universe, including the Univalence Axiom.</a>
 <ul class="doclist">
 <li><ul class="doclist">
-<li><a href="HoTT.types.Universe.html#lab108">Paths</a>
+<li><a href="HoTT.types.Universe.html#lab62">Paths</a>
 
 </li>
 </ul>
@@ -569,34 +296,198 @@
 </ul>
 <a href="HoTT.types.Bool.html"><h2>Library HoTT.types.Bool</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.types.Bool.html#lab109">Theorems about the booleans</a>
+<li><a href="HoTT.types.Bool.html#lab63">Theorems about the booleans</a>
 
 </li>
 </ul>
-<a href="HoTT.types.Arrow.html"><h2>Library HoTT.types.Arrow</h2></a>
+<a href="HoTT.types.Sum.html"><h2>Library HoTT.types.Sum</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.types.Arrow.html#lab110">Theorems about Non-dependent function types</a>
+<li><a href="HoTT.types.Sum.html#lab64">Theorems about disjoint unions</a>
 <ul class="doclist">
 <li><ul class="doclist">
-<li><a href="HoTT.types.Arrow.html#lab111">Paths</a>
+<li><a href="HoTT.types.Sum.html#lab65">CoUnpacking</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab112">Transport</a>
+<li><a href="HoTT.types.Sum.html#lab66">Eta conversion</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab113">Dependent paths</a>
+<li><a href="HoTT.types.Sum.html#lab67">Paths</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab114">Maps on paths</a>
+<li><a href="HoTT.types.Sum.html#lab68">Transport</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab115">Functorial action</a>
+<li><a href="HoTT.types.Sum.html#lab69">Functorial action</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab116">Truncatedness: functions into an n-type is an n-type</a>
+<li><a href="HoTT.types.Sum.html#lab70">Equivalences</a>
 
 </li>
-<li><a href="HoTT.types.Arrow.html#lab117">Equivalences</a>
+<li><a href="HoTT.types.Sum.html#lab71">Symmetry</a>
+
+</li>
+<li><a href="HoTT.types.Sum.html#lab72">Universal mapping properties</a>
+
+</li>
+<li><a href="HoTT.types.Sum.html#lab73">Sums preserve most truncation</a>
+
+</li>
+<li><a href="HoTT.types.Sum.html#lab74">Binary coproducts are equivalent to dependent sigmas where the first component is a bool.</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.ObjectClassifier.html"><h2>Library HoTT.types.ObjectClassifier</h2></a>
+<a href="HoTT.types.Sigma.html"><h2>Library HoTT.types.Sigma</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Sigma.html#lab75">Theorems about Sigma-types (dependent sums)</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.types.Sigma.html#lab76">Unpacking</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab77">Eta conversion</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab78">Paths</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab79">Transport</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab80">Functorial action</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab81">Equivalences</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab82">Associativity</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab83">Universal mapping properties</a>
+
+</li>
+<li><a href="HoTT.types.Sigma.html#lab84">Sigmas preserve truncation</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.Record.html"><h2>Library HoTT.types.Record</h2></a>
+<a href="HoTT.types.Prod.html"><h2>Library HoTT.types.Prod</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Prod.html#lab85">Theorems about cartesian products</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.types.Prod.html#lab86">Unpacking</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab87">Eta conversion</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab88">Paths</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab89">Transport</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab90">Functorial action</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab91">Equivalences</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab92">Symmetry</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab93">Universal mapping properties</a>
+
+</li>
+<li><a href="HoTT.types.Prod.html#lab94">Products preserve truncation</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.Forall.html"><h2>Library HoTT.types.Forall</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Forall.html#lab95">Theorems about dependent products</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.types.Forall.html#lab96">Paths</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab97">Transport</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab98">Maps on paths</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab99">Dependent paths</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab100">Functorial action</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab101">Equivalences</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab102">Truncatedness: any dependent product of n-types is an n-type</a>
+
+</li>
+<li><a href="HoTT.types.Forall.html#lab103">Symmetry of curried arguments</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.types.Empty.html"><h2>Library HoTT.types.Empty</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.types.Empty.html#lab104">Theorems about the empty type</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.types.Empty.html#lab105">Unpacking</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab106">Eta conversion</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab107">Paths</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab108">Transport</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab109">Functorial action</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab110">Equivalences</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab111">Universal mapping properties</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab112">Behavior with respect to truncation</a>
+
+</li>
+<li><a href="HoTT.types.Empty.html#lab113">Paths</a>
 
 </li>
 </ul>
@@ -608,129 +499,254 @@
 </ul>
 <a href="HoTT.types.Unit.html"><h2>Library HoTT.types.Unit</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.types.Unit.html#lab118">Theorems about the unit type</a>
+<li><a href="HoTT.types.Unit.html#lab114">Theorems about the unit type</a>
 <ul class="doclist">
 <li><ul class="doclist">
-<li><a href="HoTT.types.Unit.html#lab119">Eta conversion</a>
+<li><a href="HoTT.types.Unit.html#lab115">Eta conversion</a>
 
 </li>
-<li><a href="HoTT.types.Unit.html#lab120">Paths</a>
+<li><a href="HoTT.types.Unit.html#lab116">Paths</a>
 
 </li>
-<li><a href="HoTT.types.Unit.html#lab121">Transport</a>
+<li><a href="HoTT.types.Unit.html#lab117">Transport</a>
 
 </li>
-<li><a href="HoTT.types.Unit.html#lab122">Universal mapping properties</a>
+<li><a href="HoTT.types.Unit.html#lab118">Universal mapping properties</a>
 
 </li>
-<li><a href="HoTT.types.Unit.html#lab123">Truncation</a>
+<li><a href="HoTT.types.Unit.html#lab119">Truncation</a>
 
 </li>
-<li><a href="HoTT.types.Unit.html#lab124">Equivalences</a>
-
-</li>
-</ul>
+<li><a href="HoTT.types.Unit.html#lab120">Equivalences</a>
 
 </li>
 </ul>
 
 </li>
 </ul>
-<a href="HoTT.types.Paths.html"><h2>Library HoTT.types.Paths</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.types.Paths.html#lab125">Theorems about path spaces</a>
-<ul class="doclist">
-<li><a href="HoTT.types.Paths.html#lab126">Path spaces</a>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab127">Transporting in path spaces.</a>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab128">Functorial action</a>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab129">Equivalences between path spaces</a>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab130">Path operations are equivalences</a>
-<ul class="doclist">
-<li><a href="HoTT.types.Paths.html#lab131">Dependent paths</a>
 
 </li>
 </ul>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab132">Universal mapping property</a>
-
-</li>
-<li><a href="HoTT.types.Paths.html#lab133">Truncation</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
-<a href="HoTT.TruncType.html"><h2>Library HoTT.TruncType</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.TruncType.html#lab134">Universes of truncated types.</a>
-<ul class="doclist">
-<li><a href="HoTT.TruncType.html#lab135"><span class="inlinecode"><span class="id" type="var">TruncType</span></span>: Universes of truncated types</a>
-
-</li>
-</ul>
-
-</li>
-</ul>
+<a href="HoTT.categories.Utf8.html"><h2>Library HoTT.categories.Utf8</h2></a>
+<a href="HoTT.categories.Profunctor.Utf8.html"><h2>Library HoTT.categories.Profunctor.Utf8</h2></a>
+<a href="HoTT.categories.Profunctor.Profunctor.html"><h2>Library HoTT.categories.Profunctor.Profunctor</h2></a>
+<a href="HoTT.categories.Profunctor.Core.html"><h2>Library HoTT.categories.Profunctor.Core</h2></a>
+<a href="HoTT.categories.Profunctor.Representable.html"><h2>Library HoTT.categories.Profunctor.Representable</h2></a>
+<a href="HoTT.categories.Profunctor.Identity.html"><h2>Library HoTT.categories.Profunctor.Identity</h2></a>
+<a href="HoTT.categories.Profunctor.Notations.html"><h2>Library HoTT.categories.Profunctor.Notations</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Paths.html"><h2>Library HoTT.categories.NaturalTransformation.Paths</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Utf8.html"><h2>Library HoTT.categories.NaturalTransformation.Utf8</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Core.html"><h2>Library HoTT.categories.NaturalTransformation.Core</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Dual.html"><h2>Library HoTT.categories.NaturalTransformation.Dual</h2></a>
+<a href="HoTT.categories.NaturalTransformation.CompositionLaws.html"><h2>Library HoTT.categories.NaturalTransformation.CompositionLaws</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Sum.html"><h2>Library HoTT.categories.NaturalTransformation.Sum</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Identity.html"><h2>Library HoTT.categories.NaturalTransformation.Identity</h2></a>
+<a href="HoTT.categories.NaturalTransformation.NaturalTransformation.html"><h2>Library HoTT.categories.NaturalTransformation.NaturalTransformation</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Notations.html"><h2>Library HoTT.categories.NaturalTransformation.Notations</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Prod.html"><h2>Library HoTT.categories.NaturalTransformation.Prod</h2></a>
+<a href="HoTT.categories.NaturalTransformation.Composition.html"><h2>Library HoTT.categories.NaturalTransformation.Composition</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law1.html"><h2>Library HoTT.categories.ExponentialLaws.Law1</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law4.Law4.html"><h2>Library HoTT.categories.ExponentialLaws.Law4.Law4</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law4.Functors.html"><h2>Library HoTT.categories.ExponentialLaws.Law4.Functors</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law3.Functors.html"><h2>Library HoTT.categories.ExponentialLaws.Law3.Functors</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law3.Law3.html"><h2>Library HoTT.categories.ExponentialLaws.Law3.Law3</h2></a>
+<a href="HoTT.categories.ExponentialLaws.ExponentialLaws.html"><h2>Library HoTT.categories.ExponentialLaws.ExponentialLaws</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law1.Law1.html"><h2>Library HoTT.categories.ExponentialLaws.Law1.Law1</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law1.Law.html"><h2>Library HoTT.categories.ExponentialLaws.Law1.Law</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law1.Functors.html"><h2>Library HoTT.categories.ExponentialLaws.Law1.Functors</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law0.html"><h2>Library HoTT.categories.ExponentialLaws.Law0</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law2.Law2.html"><h2>Library HoTT.categories.ExponentialLaws.Law2.Law2</h2></a>
+<a href="HoTT.categories.ExponentialLaws.Law2.Functors.html"><h2>Library HoTT.categories.ExponentialLaws.Law2.Functors</h2></a>
+<a href="HoTT.categories.IndiscreteCategory.html"><h2>Library HoTT.categories.IndiscreteCategory</h2></a>
+<a href="HoTT.categories.SetCategory.Core.html"><h2>Library HoTT.categories.SetCategory.Core</h2></a>
+<a href="HoTT.categories.SetCategory.SetCategory.html"><h2>Library HoTT.categories.SetCategory.SetCategory</h2></a>
+<a href="HoTT.categories.SetCategory.Functors.Functors.html"><h2>Library HoTT.categories.SetCategory.Functors.Functors</h2></a>
+<a href="HoTT.categories.ProductLaws.html"><h2>Library HoTT.categories.ProductLaws</h2></a>
+<a href="HoTT.categories.HomFunctor.html"><h2>Library HoTT.categories.HomFunctor</h2></a>
+<a href="HoTT.categories.Cat.Core.html"><h2>Library HoTT.categories.Cat.Core</h2></a>
+<a href="HoTT.categories.Cat.Morphisms.html"><h2>Library HoTT.categories.Cat.Morphisms</h2></a>
+<a href="HoTT.categories.Cat.Cat.html"><h2>Library HoTT.categories.Cat.Cat</h2></a>
+<a href="HoTT.categories.GroupoidCategory.Core.html"><h2>Library HoTT.categories.GroupoidCategory.Core</h2></a>
+<a href="HoTT.categories.GroupoidCategory.GroupoidCategory.html"><h2>Library HoTT.categories.GroupoidCategory.GroupoidCategory</h2></a>
+<a href="HoTT.categories.GroupoidCategory.Morphisms.html"><h2>Library HoTT.categories.GroupoidCategory.Morphisms</h2></a>
+<a href="HoTT.categories.Notations.html"><h2>Library HoTT.categories.Notations</h2></a>
+<a href="HoTT.categories.DiscreteCategory.html"><h2>Library HoTT.categories.DiscreteCategory</h2></a>
+<a href="HoTT.categories.categories.html"><h2>Library HoTT.categories.categories</h2></a>
+<a href="HoTT.categories.Category.Subcategory.Subcategory.html"><h2>Library HoTT.categories.Category.Subcategory.Subcategory</h2></a>
+<a href="HoTT.categories.Category.Subcategory.Full.html"><h2>Library HoTT.categories.Category.Subcategory.Full</h2></a>
+<a href="HoTT.categories.Category.Subcategory.Wide.html"><h2>Library HoTT.categories.Category.Subcategory.Wide</h2></a>
+<a href="HoTT.categories.Category.Utf8.html"><h2>Library HoTT.categories.Category.Utf8</h2></a>
+<a href="HoTT.categories.Category.Core.html"><h2>Library HoTT.categories.Category.Core</h2></a>
+<a href="HoTT.categories.Category.Dual.html"><h2>Library HoTT.categories.Category.Dual</h2></a>
+<a href="HoTT.categories.Category.Category.html"><h2>Library HoTT.categories.Category.Category</h2></a>
+<a href="HoTT.categories.Category.Objects.html"><h2>Library HoTT.categories.Category.Objects</h2></a>
+<a href="HoTT.categories.Category.Sigma.OnObjects.html"><h2>Library HoTT.categories.Category.Sigma.OnObjects</h2></a>
+<a href="HoTT.categories.Category.Sigma.Core.html"><h2>Library HoTT.categories.Category.Sigma.Core</h2></a>
+<a href="HoTT.categories.Category.Sigma.OnMorphisms.html"><h2>Library HoTT.categories.Category.Sigma.OnMorphisms</h2></a>
+<a href="HoTT.categories.Category.Sigma.Sigma.html"><h2>Library HoTT.categories.Category.Sigma.Sigma</h2></a>
+<a href="HoTT.categories.Category.Sum.html"><h2>Library HoTT.categories.Category.Sum</h2></a>
+<a href="HoTT.categories.Category.Morphisms.html"><h2>Library HoTT.categories.Category.Morphisms</h2></a>
+<a href="HoTT.categories.Category.Strict.html"><h2>Library HoTT.categories.Category.Strict</h2></a>
+<a href="HoTT.categories.Category.Notations.html"><h2>Library HoTT.categories.Category.Notations</h2></a>
+<a href="HoTT.categories.Category.Univalent.html"><h2>Library HoTT.categories.Category.Univalent</h2></a>
+<a href="HoTT.categories.Category.Prod.html"><h2>Library HoTT.categories.Category.Prod</h2></a>
+<a href="HoTT.categories.InitialTerminalCategory.html"><h2>Library HoTT.categories.InitialTerminalCategory</h2></a>
+<a href="HoTT.categories.NatCategory.html"><h2>Library HoTT.categories.NatCategory</h2></a>
+<a href="HoTT.categories.Functor.Paths.html"><h2>Library HoTT.categories.Functor.Paths</h2></a>
+<a href="HoTT.categories.Functor.Utf8.html"><h2>Library HoTT.categories.Functor.Utf8</h2></a>
+<a href="HoTT.categories.Functor.Core.html"><h2>Library HoTT.categories.Functor.Core</h2></a>
+<a href="HoTT.categories.Functor.Dual.html"><h2>Library HoTT.categories.Functor.Dual</h2></a>
+<a href="HoTT.categories.Functor.Pointwise.html"><h2>Library HoTT.categories.Functor.Pointwise</h2></a>
+<a href="HoTT.categories.Functor.CompositionLaws.html"><h2>Library HoTT.categories.Functor.CompositionLaws</h2></a>
+<a href="HoTT.categories.Functor.Sum.html"><h2>Library HoTT.categories.Functor.Sum</h2></a>
+<a href="HoTT.categories.Functor.Identity.html"><h2>Library HoTT.categories.Functor.Identity</h2></a>
+<a href="HoTT.categories.Functor.Functor.html"><h2>Library HoTT.categories.Functor.Functor</h2></a>
+<a href="HoTT.categories.Functor.Notations.html"><h2>Library HoTT.categories.Functor.Notations</h2></a>
+<a href="HoTT.categories.Functor.Pointwise.Properties.html"><h2>Library HoTT.categories.Functor.Pointwise.Properties</h2></a>
+<a href="HoTT.categories.Functor.Pointwise.Pointwise.html"><h2>Library HoTT.categories.Functor.Pointwise.Pointwise</h2></a>
+<a href="HoTT.categories.Functor.Attributes.html"><h2>Library HoTT.categories.Functor.Attributes</h2></a>
+<a href="HoTT.categories.Functor.Prod.html"><h2>Library HoTT.categories.Functor.Prod</h2></a>
+<a href="HoTT.categories.Functor.Composition.html"><h2>Library HoTT.categories.Functor.Composition</h2></a>
+<a href="HoTT.categories.Functor.Prod.Functorial.html"><h2>Library HoTT.categories.Functor.Prod.Functorial</h2></a>
+<a href="HoTT.categories.Functor.Prod.Universal.html"><h2>Library HoTT.categories.Functor.Prod.Universal</h2></a>
+<a href="HoTT.categories.Functor.Prod.Prod.html"><h2>Library HoTT.categories.Functor.Prod.Prod</h2></a>
+<a href="HoTT.categories.FunctorCategory.Utf8.html"><h2>Library HoTT.categories.FunctorCategory.Utf8</h2></a>
+<a href="HoTT.categories.FunctorCategory.Core.html"><h2>Library HoTT.categories.FunctorCategory.Core</h2></a>
+<a href="HoTT.categories.FunctorCategory.Functorial.html"><h2>Library HoTT.categories.FunctorCategory.Functorial</h2></a>
+<a href="HoTT.categories.FunctorCategory.FunctorCategory.html"><h2>Library HoTT.categories.FunctorCategory.FunctorCategory</h2></a>
+<a href="HoTT.categories.FunctorCategory.Morphisms.html"><h2>Library HoTT.categories.FunctorCategory.Morphisms</h2></a>
+<a href="HoTT.categories.FunctorCategory.Notations.html"><h2>Library HoTT.categories.FunctorCategory.Notations</h2></a>
+<a href="HoTT.Conjugation.html"><h2>Library HoTT.Conjugation</h2></a>
 <a href="HoTT.FunextAxiom.html"><h2>Library HoTT.FunextAxiom</h2></a>
-<a href="HoTT.Tactics.html"><h2>Library HoTT.Tactics</h2></a>
+<a href="HoTT.HProp.html"><h2>Library HoTT.HProp</h2></a>
 <ul class="doclist">
-<li><a href="HoTT.Tactics.html#lab136">Extra tactics for homotopy type theory.</a>
+<li><a href="HoTT.HProp.html#lab121">HPropositions</a>
 <ul class="doclist">
-<li><a href="HoTT.Tactics.html#lab137">Tactics for dealing with <span class="inlinecode"><span class="id" type="var">Funext</span></span></a>
-<ul class="doclist">
-<li><a href="HoTT.Tactics.html#lab138">Tactics about <span class="inlinecode"><span class="id" type="var">transport</span></span>ing with <span class="inlinecode"><span class="id" type="var">path_forall</span></span></a>
-
-</li>
-</ul>
-
-</li>
-<li><a href="HoTT.Tactics.html#lab139">A more powerful variant of <span class="inlinecode"><span class="id" type="var">path_induction</span></span></a>
-
-</li>
-</ul>
-
-</li>
-<li><a href="HoTT.Tactics.html#lab140">Miscellaneous tactics</a>
-
-</li>
-</ul>
-<a href="HoTT.Trunc.html"><h2>Library HoTT.Trunc</h2></a>
-<ul class="doclist">
-<li><a href="HoTT.Trunc.html#lab141">Truncatedness</a>
-<ul class="doclist">
-<li><a href="HoTT.Trunc.html#lab142">Arithmetic on truncation-levels.</a>
-
-</li>
-<li><a href="HoTT.Trunc.html#lab143">Truncatedness proper.</a>
+<li><a href="HoTT.HProp.html#lab122">Facts about <span class="inlinecode"><span class="id" type="var">IsHProp</span></span></a>
 
 </li>
 </ul>
 
 </li>
 </ul>
-<a href="Coq.Program.Tactics.html"><h2>Library Coq.Program.Tactics</h2></a>
-<a href="Coq.Bool.Bool.html"><h2>Library Coq.Bool.Bool</h2></a>
-<a href="Coq.Init.Peano.html"><h2>Library Coq.Init.Peano</h2></a>
-<a href="Coq.Init.Logic_Type.html"><h2>Library Coq.Init.Logic_Type</h2></a>
-<a href="Coq.Init.Notations.html"><h2>Library Coq.Init.Notations</h2></a>
-<a href="Coq.Init.Prelude.html"><h2>Library Coq.Init.Prelude</h2></a>
+<a href="HoTT.hit.minus1Trunc.html"><h2>Library HoTT.hit.minus1Trunc</h2></a>
+<a href="HoTT.hit.Suspension.html"><h2>Library HoTT.hit.Suspension</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Suspension.html#lab123">The suspension of a type</a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Suspension.html#lab124">Eta-rule.</a>
+
+</li>
+<li><a href="HoTT.hit.Suspension.html#lab125">Nullhomotopies of maps out of suspensions</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.hit.quotient.html"><h2>Library HoTT.hit.quotient</h2></a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.hit.quotient.html#lab126">Quotient of a Type by a set-valued relation</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.hit.Flattening.html"><h2>Library HoTT.hit.Flattening</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Flattening.html#lab127">The flattening lemma.</a>
+
+</li>
+</ul>
+<a href="HoTT.hit.iso.html"><h2>Library HoTT.hit.iso</h2></a>
+<a href="HoTT.hit.Connectedness.html"><h2>Library HoTT.hit.Connectedness</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Connectedness.html#lab128">Connectedness</a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Connectedness.html#lab129">Connectedness</a>
+
+</li>
+<li><a href="HoTT.hit.Connectedness.html#lab130">Extensions</a>
+
+</li>
+<li><a href="HoTT.hit.Connectedness.html#lab131">Connectivity of pointed types</a>
+
+</li>
+<li><a href="HoTT.hit.Connectedness.html#lab132">Connectivity of the wedge into the product.</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.hit.Circle.html"><h2>Library HoTT.hit.Circle</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Circle.html#lab133">Theorems about the circle S^1.</a>
+
+</li>
+</ul>
+<a href="HoTT.hit.epi.html"><h2>Library HoTT.hit.epi</h2></a>
+<a href="HoTT.hit.unique_choice.html"><h2>Library HoTT.hit.unique_choice</h2></a>
+<a href="HoTT.hit.Truncations.html"><h2>Library HoTT.hit.Truncations</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Truncations.html#lab134">Truncations of types, in all dimensions.</a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Truncations.html#lab135">Definition.</a>
+
+</li>
+<li><a href="HoTT.hit.Truncations.html#lab136">Functoriality</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.hit.Interval.html"><h2>Library HoTT.hit.Interval</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Interval.html#lab137">Theorems about the homotopical interval.</a>
+<ul class="doclist">
+<li><ul class="doclist">
+<li><a href="HoTT.hit.Interval.html#lab138">From an interval type, we can prove function extensionality.</a>
+
+</li>
+<li><a href="HoTT.hit.Interval.html#lab139">The interval is contractible.</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.hit.Spheres.html"><h2>Library HoTT.hit.Spheres</h2></a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Spheres.html#lab140">The spheres, in all dimensions.</a>
+<ul class="doclist">
+<li><a href="HoTT.hit.Spheres.html#lab141">Definition, by iterated suspension.</a>
+
+</li>
+<li><a href="HoTT.hit.Spheres.html#lab142">Explicit equivalences in low dimensions</a>
+
+</li>
+<li><a href="HoTT.hit.Spheres.html#lab143">Truncatedness via spheres</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+<a href="HoTT.HoTT.html"><h2>Library HoTT.HoTT</h2></a>
+<a href="Coq.Init.Tactics.html"><h2>Library Coq.Init.Tactics</h2></a>
 <a href="Coq.Init.Logic.html"><h2>Library Coq.Init.Logic</h2></a>
 <ul class="doclist">
 <li><a href="Coq.Init.Logic.html#lab144">Propositional connectives</a>
 
 </li>
 </ul>
-<a href="Coq.Init.Datatypes.html"><h2>Library Coq.Init.Datatypes</h2></a>
+<a href="Coq.Init.Peano.html"><h2>Library Coq.Init.Peano</h2></a>
 <a href="Coq.Init.Specif.html"><h2>Library Coq.Init.Specif</h2></a>
 <ul class="doclist">
 <li><ul class="doclist">
@@ -745,7 +761,12 @@
 
 </li>
 </ul>
-<a href="Coq.Init.Tactics.html"><h2>Library Coq.Init.Tactics</h2></a>
+<a href="Coq.Init.Notations.html"><h2>Library Coq.Init.Notations</h2></a>
+<a href="Coq.Init.Logic_Type.html"><h2>Library Coq.Init.Logic_Type</h2></a>
+<a href="Coq.Init.Datatypes.html"><h2>Library Coq.Init.Datatypes</h2></a>
+<a href="Coq.Init.Prelude.html"><h2>Library Coq.Init.Prelude</h2></a>
+<a href="Coq.Program.Tactics.html"><h2>Library Coq.Program.Tactics</h2></a>
+<a href="Coq.Bool.Bool.html"><h2>Library Coq.Bool.Bool</h2></a>
 </div>
 <hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
 </div>

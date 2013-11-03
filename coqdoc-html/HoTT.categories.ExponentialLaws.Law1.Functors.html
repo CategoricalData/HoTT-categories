@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.categories.ExponentialLaws.Law1.Functors</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.categories.ExponentialLaws.Law1.Functors</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Core.html#"><span class="id" type="library">Functor.Core</span></a> <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#"><span class="id" type="library">FunctorCategory.Core</span></a> <a class="idref" href="HoTT.categories.Functor.Identity.html#"><span class="id" type="library">Functor.Identity</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#"><span class="id" type="library">NaturalTransformation.Core</span></a> <a class="idref" href="HoTT.categories.NaturalTransformation.Paths.html#"><span class="id" type="library">NaturalTransformation.Paths</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#"><span class="id" type="library">Functor.Composition</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.categories.InitialTerminalCategory.html#"><span class="id" type="library">InitialTerminalCategory</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">functor_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="law1"><span class="id" type="section">law1</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Core.IsInitialCategory"><span class="id" type="class">IsInitialCategory</span></a> <span class="id" type="var">zero</span>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Core.IsTerminalCategory"><span class="id" type="class">IsTerminalCategory</span></a> <span class="id" type="var">one</span>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="law1.:category_scope:'0'"><span class="id" type="notation">"</span></a>0" := <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.zero"><span class="id" type="variable">zero</span></a> : <span class="id" type="var">category_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="law1.:category_scope:'1'"><span class="id" type="notation">"</span></a>1" := <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.one"><span class="id" type="variable">one</span></a> : <span class="id" type="var">category_scope</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="law1.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="functor"><span class="id" type="definition">functor</span></a> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> (1 <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.categories.Functor.Core.html#Build_Functor"><span class="id" type="constructor">Build_Functor</span></a> (1 <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">F</span> ⇒ <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#F"><span class="id" type="variable">F</span></a> (<a class="idref" href="HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">_</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> <span class="id" type="var">m</span> ⇒ <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#m"><span class="id" type="variable">m</span></a> (<a class="idref" href="HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">_</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="inverse_morphism_of"><span class="id" type="definition">inverse_morphism_of</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">s</span> <span class="id" type="var">d</span> (<span class="id" type="var">m</span> : <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#d"><span class="id" type="variable">d</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.categories.Category.Core.html#morphism"><span class="id" type="projection">morphism</span></a> (1 <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.from_terminal"><span class="id" type="definition">Functors.from_terminal</span></a> <span class="id" type="var">_</span> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#s"><span class="id" type="variable">s</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.from_terminal"><span class="id" type="definition">Functors.from_terminal</span></a> <span class="id" type="var">_</span> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#d"><span class="id" type="variable">d</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.categories.NaturalTransformation.Core.html#Build_NaturalTransformation"><span class="id" type="definition">Build_NaturalTransformation</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.from_terminal"><span class="id" type="definition">Functors.from_terminal</span></a> <span class="id" type="var">_</span> <span class="id" type="var">s</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.from_terminal"><span class="id" type="definition">Functors.from_terminal</span></a> <span class="id" type="var">_</span> <span class="id" type="var">d</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <span class="id" type="var">m</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span>; <span class="id" type="tactic">intros</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">etransitivity</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.categories.Category.Core.html#right_identity"><span class="id" type="projection">right_identity</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.categories.Category.Core.html#left_identity"><span class="id" type="projection">left_identity</span></a> ].<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#inverse_morphism_of"><span class="id" type="definition">inverse_morphism_of</span></a> / <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="inverse"><span class="id" type="definition">inverse</span></a> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a> (1 <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.categories.Functor.Core.html#Build_Functor"><span class="id" type="constructor">Build_Functor</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a> (1 <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1.C"><span class="id" type="variable">C</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(@<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.from_terminal"><span class="id" type="definition">Functors.from_terminal</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#inverse_morphism_of"><span class="id" type="definition">inverse_morphism_of</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">abstract</span> (<span class="id" type="var">path_natural_transformation</span>; <span class="id" type="tactic">trivial</span>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1"><span class="id" type="section">law1</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="law1'"><span class="id" type="section">law1'</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Core.IsInitialCategory"><span class="id" type="class">IsInitialCategory</span></a> <span class="id" type="var">zero</span>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Core.IsTerminalCategory"><span class="id" type="class">IsTerminalCategory</span></a> <span class="id" type="var">one</span>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="law1'.:category_scope:'0'"><span class="id" type="notation">"</span></a>0" := <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'.zero"><span class="id" type="variable">zero</span></a> : <span class="id" type="var">category_scope</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="law1'.:category_scope:'1'"><span class="id" type="notation">"</span></a>1" := <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'.one"><span class="id" type="variable">one</span></a> : <span class="id" type="var">category_scope</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="law1'.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global Instance</span>: <a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Core.IsTerminalCategory"><span class="id" type="class">IsTerminalCategory</span></a> (<a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> 1).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="functor'"><span class="id" type="definition">functor'</span></a> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> (<a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> 1) 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.to_terminal"><span class="id" type="definition">Functors.to_terminal</span></a> <span class="id" type="var">_</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="inverse'"><span class="id" type="definition">inverse'</span></a> : <a class="idref" href="HoTT.categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> 1 (<a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.categories.FunctorCategory.Core.html#FunctorCategoryCoreNotations.:category_scope:x_'->'_x"><span class="id" type="notation">→</span></a> 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.categories.InitialTerminalCategory.html#Functors.to_terminal"><span class="id" type="definition">Functors.to_terminal</span></a> <span class="id" type="var">_</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="law'"><span class="id" type="definition">law'</span></a><br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#functor'"><span class="id" type="definition">functor'</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#inverse'"><span class="id" type="definition">inverse'</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="Coq.Init.Datatypes.html#:type_scope:x_'/\'_x"><span class="id" type="notation">∧</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#inverse'"><span class="id" type="definition">inverse'</span></a> <a class="idref" href="HoTT.categories.Functor.Composition.html#FunctorCompositionNotations.:functor_scope:x_'o'_x"><span class="id" type="notation">o</span></a> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#functor'"><span class="id" type="definition">functor'</span></a> <a class="idref" href="HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">_</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.categories.ExponentialLaws.Law1.Functors.html#law1'"><span class="id" type="section">law1'</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
