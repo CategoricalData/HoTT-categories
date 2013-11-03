@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.NaturalNumbersObject</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.NaturalNumbersObject</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.html#"><span class="id" type="library">Category</span></a> <a class="idref" href="HoTT.Categories.Category.Objects.html#"><span class="id" type="library">Category.Objects</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="preobject"><span class="id" type="section">preobject</span></a>.<br/>
+</div>
+
+<div class="doc">
+Quoting nCatLab (http://ncatlab.org/nlab/show/natural+numbers+object):
+
+<div class="paragraph"> </div>
+
+    Idea
+
+<div class="paragraph"> </div>
+
+    Recall that a topos is a category that behaves likes the category
+    Set of sets.
+
+<div class="paragraph"> </div>
+
+    A natural numbers object (NNO) in a topos is an object that
+    behaves in that topos like the set ℕ of natural numbers does in
+    Set; thus it provides a formulation of the “axiom of infinity” in
+    structural set theory (such as ETCS). The definition is due to
+    William Lawvere.
+
+<div class="paragraph"> </div>
+
+    Definition
+
+<div class="paragraph"> </div>
+
+      In a topos or cartesian closed category:
+
+<div class="paragraph"> </div>
+
+        A natural numbers object in a topos (or any cartesian closed
+        category) E with terminal object 1 is
+<a name="lab33"></a><h1 class="section">an object ℕ in E</h1>
+
+<a name="lab34"></a><h1 class="section">equipped with</h1>
+
+          + a morphism <span class="inlinecode"><a class="idref" href="HoTT.Categories.Common.html#z"><span class="id" type="variable">z</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode">1</span> <span class="inlinecode">→</span> <span class="inlinecode"><span class="id" type="var">ℕ</span></span> from the terminal object 1;
+          + a morphism <span class="inlinecode"><a class="idref" href="HoTT.Categories.Cat.Morphisms.html#iso_lemmas.s"><span class="id" type="variable">s</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">ℕ</span></span> <span class="inlinecode">→</span> <span class="inlinecode"><span class="id" type="var">ℕ</span></span> (successor);
+<a name="lab35"></a><h1 class="section">such that</h1>
+
+          + for every other diagram <span class="inlinecode">1</span> <span class="inlinecode">--</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Coq.Arith.Le.html#q"><span class="id" type="variable">q</span></a></span> <span class="inlinecode">--&gt;</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.A"><span class="id" type="variable">A</span></a></span> <span class="inlinecode">--</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">--&gt;</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.A"><span class="id" type="variable">A</span></a></span>
+          + there is a unique morphism <span class="inlinecode"><a class="idref" href="HoTT.Categories.Common.html#u"><span class="id" type="variable">u</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">ℕ</span></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.A"><span class="id" type="variable">A</span></a></span> such that
+          <br/>
+<span class="inlinecode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Common.html#z"><span class="id" type="variable">z</span></a>        <a class="idref" href="HoTT.Categories.Cat.Morphisms.html#iso_lemmas.s"><span class="id" type="variable">s</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 -----&gt; <span class="id" type="var">ℕ</span> -----&gt; <span class="id" type="var">ℕ</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\       |        |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Coq.Arith.Le.html#q"><span class="id" type="variable">q</span></a> \     | <a class="idref" href="HoTT.Categories.Common.html#u"><span class="id" type="variable">u</span></a>      | <a class="idref" href="HoTT.Categories.Common.html#u"><span class="id" type="variable">u</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\   |        |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↘ ↓   <a class="idref" href="HoTT.Categories.Peano.html#f"><span class="id" type="variable">f</span></a>    ↓<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.A"><span class="id" type="variable">A</span></a> -----&gt; <a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.A"><span class="id" type="variable">A</span></a>
+<div class="paragraph"> </div>
+
+</span>
+<div class="paragraph"> </div>
+
+      All this may be summed up by saying that a natural numbers
+      object is an initial algebra for the endofunctor
+      <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.X"><span class="id" type="variable">X</span></a></span> <span class="inlinecode">↦</span> <span class="inlinecode">1</span> <span class="inlinecode">+</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionUniversal.terminal.X"><span class="id" type="variable">X</span></a></span>. Equivalently, it is an initial algebra for the
+      endo-profunctor <span class="inlinecode"><span class="id" type="library">Hom</span></span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.Composition.html#compose.E"><span class="id" type="variable">E</span></a></span> <span class="inlinecode">(1</span> <span class="inlinecode">,</span> <span class="inlinecode">=)</span> <span class="inlinecode">×</span> <span class="inlinecode"><span class="id" type="library">Hom</span></span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.Composition.html#compose.E"><span class="id" type="variable">E</span></a></span> <span class="inlinecode">(−</span> <span class="inlinecode">,</span> <span class="inlinecode">=)</span>.
+
+<div class="paragraph"> </div>
+
+      By the universal property, the natural numbers object is unique
+      up to isomorphism.
+
+<div class="paragraph"> </div>
+
+    In a general category with finite products
+
+<div class="paragraph"> </div>
+
+      Note that this definition actually makes sense in any category E
+      having finite products. However, if E is not cartesian closed,
+      then it is better to explicitly assume a stronger version of
+      this definition “with parameters” (which follows automatically
+      when E is cartesian closed, such as when E is a topos). What
+      this amounts to is demanding that (ℕ,z,s) not only be a natural
+      numbers object (in the above, unparametrized sense) in E, but
+      that also, for each object A, this is preserved by the free
+      coalgebra functor into the Kleisli category of the comonad X↦A×X
+      (which may be thought of as the category of maps parametrized by
+      A). (Put another way, the finite product structure of E gives
+      rise to a canonical self-indexing, and we are demanding the
+      existence of an (unparametrized) NNO within this indexed
+      category, rather than just within the base E).
+
+<div class="paragraph"> </div>
+
+      The functions which are constructable out of the structure of a
+      category with finite products and such a “parametrized NNO” are
+      precisely the primitive recursive? ones. Specifically, the
+      unique structure-preserving functor from the free such category
+      F into Set yields a bijection between Hom F(1,ℕ) and the actual
+      natural numbers, as well as surjections from Hom F(ℕ m,ℕ) onto
+      the primitive recursive functions of arity m for each finite
+      m. With cartesian closure, however, this identification no
+      longer holds, since non-primitive recursive functions (such as
+      the Ackermann function?) become definable as well.
+   
+<div class="paragraph"> </div>
+
+ XXX nCatLab says that we're not in a topos, we need a stronger
+          notion of natural numbers object.  But I want the natural
+          numbers object to prove that <span class="inlinecode"><span class="id" type="keyword">Set</span></span> is cartesian, and I don't
+          have the other notions yet.  So I'll call this a
+          <span class="inlinecode"><a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#NaturalNumbersPreObject"><span class="id" type="record">NaturalNumbersPreObject</span></a></span>, to make the distinction slightly
+          more obvious. 
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="preobject.E"><span class="id" type="variable">E</span></a> : <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#Category"><span class="id" type="record">Category</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Reserved Notation</span> "'ℕ'".<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Reserved Notation</span> "'S'".<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Record</span> <a name="NaturalNumbersPreObject"><span class="id" type="record">NaturalNumbersPreObject</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="NaturalNumbersPreObject_Object"><span class="id" type="projection">NaturalNumbersPreObject_Object</span></a> :&gt; <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> <span class="id" type="keyword">where</span> "'ℕ'" := <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#NaturalNumbersPreObject_Object"><span class="id" type="method">NaturalNumbersPreObject_Object</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="NaturalNumbersPreObject_TerminalObject"><span class="id" type="projection">NaturalNumbersPreObject_TerminalObject</span></a> : <a class="idref" href="HoTT.Categories.Category.Objects.html#TerminalObject"><span class="id" type="record">TerminalObject</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> <span class="id" type="keyword">where</span> "1" := (<a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#NaturalNumbersPreObject_TerminalObject"><span class="id" type="method">NaturalNumbersPreObject_TerminalObject</span></a> : <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="NaturalNumbersPreObject_Zero"><span class="id" type="projection">NaturalNumbersPreObject_Zero</span></a> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> 1 <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.::'ℕ'"><span class="id" type="notation">ℕ</span></a> <span class="id" type="keyword">where</span> "0" := <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#NaturalNumbersPreObject_Zero"><span class="id" type="method">NaturalNumbersPreObject_Zero</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="NaturalNumbersPreObject_Successor"><span class="id" type="projection">NaturalNumbersPreObject_Successor</span></a> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.::'ℕ'"><span class="id" type="notation">ℕ</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.::'ℕ'"><span class="id" type="notation">ℕ</span></a> <span class="id" type="keyword">where</span> "'S'" := <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#NaturalNumbersPreObject_Successor"><span class="id" type="method">NaturalNumbersPreObject_Successor</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="NaturalNumbersPreObject_Property"><span class="id" type="projection">NaturalNumbersPreObject_Property</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">A</span> (<span class="id" type="var">q</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> 1 <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#A"><span class="id" type="variable">A</span></a>) (<span class="id" type="var">f</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#A"><span class="id" type="variable">A</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">{</span></a> <span class="id" type="var">u</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">:</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.E"><span class="id" type="variable">E</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.::'ℕ'"><span class="id" type="notation">ℕ</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#A"><span class="id" type="variable">A</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">|</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Common.html#unique"><span class="id" type="definition">unique</span></a> (<span class="id" type="keyword">fun</span> <span class="id" type="var">u</span> ⇒ <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> 0 <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#q"><span class="id" type="variable">q</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#:type_scope:x_'/\'_x"><span class="id" type="notation">∧</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#f"><span class="id" type="variable">f</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#u"><span class="id" type="variable">u</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject.::'S'"><span class="id" type="notation">S</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">u</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">}</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.Categories.NaturalNumbersObject.html#preobject"><span class="id" type="section">preobject</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Category.UnivalentCategory</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Category.UnivalentCategory</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.Core.html#"><span class="id" type="library">Category.Core</span></a> <a class="idref" href="HoTT.Categories.Category.Morphisms.html#"><span class="id" type="library">Category.Morphisms</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="IsCategory"><span class="id" type="abbreviation">IsCategory</span></a> <span class="id" type="var">C</span> := (<span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Object"><span class="id" type="projection">Object</span></a> <span class="id" type="var">C</span>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#IsEquiv"><span class="id" type="class">IsEquiv</span></a> (@<a class="idref" href="HoTT.Categories.Category.Morphisms.html#idtoiso"><span class="id" type="definition">idtoiso</span></a> <span class="id" type="var">C</span> <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#d"><span class="id" type="variable">d</span></a>)).<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="isotoid"><span class="id" type="abbreviation">isotoid</span></a> <span class="id" type="var">C</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> := (@<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#equiv_inv"><span class="id" type="method">equiv_inv</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> (@<a class="idref" href="HoTT.Categories.Category.Morphisms.html#idtoiso"><span class="id" type="definition">idtoiso</span></a> <span class="id" type="var">C</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span>) <span class="id" type="var">_</span>).<br/>
+
+<br/>
+<span class="id" type="keyword">Instance</span> <a name="trunc_category"><span class="id" type="instance">trunc_category</span></a> `{<a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#IsCategory"><span class="id" type="abbreviation">IsCategory</span></a> <span class="id" type="var">C</span>} : <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> 1 <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#C"><span class="id" type="variable">C</span></a> | 10000.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> ? ?.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">eapply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Trunc.html#trunc_equiv'"><span class="id" type="definition">trunc_equiv'</span></a>;<br/>
+&nbsp;&nbsp;[ <span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">esplit</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">apply_hyp</span><br/>
+&nbsp;&nbsp;| ].<br/>
+&nbsp;&nbsp;<span class="id" type="var">typeclasses</span> <span class="id" type="tactic">eauto</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Record</span> <a name="Category"><span class="id" type="record">Category</span></a> :=<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="CategoryPreCategory"><span class="id" type="projection">CategoryPreCategory</span></a> :&gt; <a class="idref" href="HoTT.Categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a name="CategoryPreCategory_IsCategory"><span class="id" type="projection">CategoryPreCategory_IsCategory</span></a> :&gt; <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#IsCategory"><span class="id" type="abbreviation">IsCategory</span></a> <a class="idref" href="HoTT.Categories.Category.UnivalentCategory.html#CategoryPreCategory"><span class="id" type="method">CategoryPreCategory</span></a><br/>
+&nbsp;&nbsp;}.<br/>
+
+<br/>
+<span class="id" type="var">Existing</span> <span class="id" type="keyword">Instance</span> <span class="id" type="var">CategoryPreCategory_IsCategory</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

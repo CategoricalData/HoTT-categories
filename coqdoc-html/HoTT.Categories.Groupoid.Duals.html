@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Groupoid.Duals</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Groupoid.Duals</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.Duals.html#"><span class="id" type="library">Category.Duals</span></a> <a class="idref" href="HoTT.Categories.Groupoid.html#"><span class="id" type="library">Groupoid</span></a> <a class="idref" href="HoTT.Categories.Category.Equality.html#"><span class="id" type="library">Category.Equality</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">category_scope</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The groupoid categories are propositionally self-dual. 
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Ltac</span> <span class="id" type="var">dual_t</span> :=<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> <span class="id" type="keyword">match</span> <span class="id" type="keyword">goal</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">reflexivity</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">progress</span> (<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a>; <span class="id" type="tactic">intro</span>); <span class="id" type="tactic">simpl</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">apply</span> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#path_universe"><span class="id" type="definition">path_universe</span></a> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">exact</span> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| <span class="id" type="var">_</span> ⇒ <span class="id" type="tactic">progress</span> <span class="id" type="var">category_eq</span>; <span class="id" type="tactic">simpl</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="paths_sym"><span class="id" type="lemma">paths_sym</span></a> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> 1 <span class="id" type="var">X</span>}<br/>
+: <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">fun</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> : <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#X"><span class="id" type="variable">X</span></a> ⇒ <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#s"><span class="id" type="variable">s</span></a><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#paths"><span class="id" type="inductive">paths</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Arrow.html#path_arrow"><span class="id" type="definition">path_arrow</span></a>; <span class="id" type="tactic">intro</span>).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">exact</span> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#path_universe"><span class="id" type="definition">path_universe</span></a> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="paths_refl_sym"><span class="id" type="lemma">paths_refl_sym</span></a> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> 1 <span class="id" type="var">X</span>}<br/>
+: <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> : <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#X"><span class="id" type="variable">X</span></a> ⇒ <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#x"><span class="id" type="variable">x</span></a><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">)</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#x"><span class="id" type="variable">x</span></a><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">)</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Arrow.html#path_arrow"><span class="id" type="definition">path_arrow</span></a>; <span class="id" type="tactic">intro</span>).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">exact</span> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#path_universe"><span class="id" type="definition">path_universe</span></a> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#symmetry"><span class="id" type="definition">symmetry</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="SelfDual_Groupoid"><span class="id" type="lemma">SelfDual_Groupoid</span></a> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#IsTrunc"><span class="id" type="class">IsTrunc</span></a> 1 <span class="id" type="var">X</span>} : <a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Categories.Groupoid.html#Duals.Groupoid"><span class="id" type="definition">Groupoid</span></a> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#X"><span class="id" type="variable">X</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">)^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Groupoid.html#Duals.Groupoid"><span class="id" type="definition">Groupoid</span></a> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#X"><span class="id" type="variable">X</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="var">dual_t</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">∃</span> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#paths_sym"><span class="id" type="lemma">paths_sym</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <a class="idref" href="HoTT.Categories.Groupoid.html#Duals.Groupoid_Compose"><span class="id" type="definition">Groupoid_Compose</span></a>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#transitivity"><span class="id" type="definition">transitivity</span></a>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#transitive_paths"><span class="id" type="instance">transitive_paths</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a>; <span class="id" type="tactic">intro</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> <span class="id" type="tactic">rewrite</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Forall.html#transport_forall_constant"><span class="id" type="definition">transport_forall_constant</span></a>; <span class="id" type="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">path_induction</span>; <span class="id" type="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <a class="idref" href="HoTT.Categories.Groupoid.Duals.html#paths_sym"><span class="id" type="lemma">paths_sym</span></a>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Arrow.html#path_arrow"><span class="id" type="definition">path_arrow</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">transport_path_forall_hammer</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> !<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Arrow.html#transport_arrow"><span class="id" type="definition">transport_arrow</span></a>, !<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#transport_path_universe"><span class="id" type="definition">transport_path_universe</span></a>, !<a class="idref" href="HoTT.Categories.Common.html#transport_inverse"><span class="id" type="lemma">transport_inverse</span></a>, !<a class="idref" href="HoTT.Categories.Common.html#transport_path_universe_fun_inv"><span class="id" type="definition">transport_path_universe_fun_inv</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

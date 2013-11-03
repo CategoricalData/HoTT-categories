@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.NatCategory.Duals</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.NatCategory.Duals</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.Duals.html#"><span class="id" type="library">Category.Duals</span></a> <a class="idref" href="HoTT.Categories.NatCategory.html#"><span class="id" type="library">NatCategory</span></a> <a class="idref" href="HoTT.Categories.Discrete.Duals.html#"><span class="id" type="library">Discrete.Duals</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">category_scope</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The categories <span class="inlinecode">0</span> and <span class="inlinecode">1</span> are judgementally self-dual. 
+</div>
+<div class="code">
+<span class="id" type="keyword">Definition</span> <a name="SelfDual_Initial"><span class="id" type="definition">SelfDual_Initial</span></a> : 0<a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> 0 := <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>.<br/>
+<span class="id" type="keyword">Definition</span> <a name="SelfDual_Terminal"><span class="id" type="definition">SelfDual_Terminal</span></a> : 1<a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> 1 := <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+The nat categories are propositionally self-dual. 
+</div>
+<div class="code">
+<span class="id" type="keyword">Lemma</span> <a name="SelfDual_NatCategory"><span class="id" type="lemma">SelfDual_NatCategory</span></a> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Universe.html#Univalence"><span class="id" type="class">Univalence</span></a>} (<span class="id" type="var">n</span> : <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>) : <a class="idref" href="HoTT.Categories.NatCategory.Duals.html#n"><span class="id" type="variable">n</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.NatCategory.Duals.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">destruct</span> <span class="id" type="var">n</span> <span class="id" type="keyword">as</span> [|[|]]; <span class="id" type="tactic">try</span> <span class="id" type="tactic">reflexivity</span>;<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Discrete.Duals.html#SelfDual_Discrete"><span class="id" type="lemma">SelfDual_Discrete</span></a>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

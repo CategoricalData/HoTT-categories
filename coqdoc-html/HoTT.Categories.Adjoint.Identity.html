@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Adjoint.Identity</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Adjoint.Identity</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Adjoint.UnitCounit.html#"><span class="id" type="library">Adjoint.UnitCounit</span></a> <a class="idref" href="HoTT.Categories.Functor.Identity.html#"><span class="id" type="library">Functor.Identity</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="IdentityAdjunction"><span class="id" type="section">IdentityAdjunction</span></a>.<br/>
+</div>
+
+<div class="doc">
+There is an identity adjunction.  It does the obvious thing. 
+</div>
+<div class="code">
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="IdentityAdjunction"><span class="id" type="definition">IdentityAdjunction</span></a> <span class="id" type="var">C</span> : <a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <a class="idref" href="HoTT.Categories.Adjoint.Identity.html#C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.Categories.Adjoint.UnitCounit.html#:type_scope:x_'⊣'_x"><span class="id" type="notation">⊣</span></a> <a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <a class="idref" href="HoTT.Categories.Adjoint.Identity.html#C"><span class="id" type="variable">C</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= @<a class="idref" href="HoTT.Categories.Adjoint.UnitCounit.html#Build_AdjunctionUnitCounit"><span class="id" type="constructor">Build_AdjunctionUnitCounit</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Adjoint.Identity.html#C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.Categories.Adjoint.Identity.html#C"><span class="id" type="variable">C</span></a> 1 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.NaturalTransformation.Identity.html#IdentityNaturalTransformation"><span class="id" type="definition">IdentityNaturalTransformation</span></a> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.NaturalTransformation.Identity.html#IdentityNaturalTransformation"><span class="id" type="definition">IdentityNaturalTransformation</span></a> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Categories.Category.Core.html#IdentityIdentity"><span class="id" type="projection">IdentityIdentity</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="HoTT.Categories.Category.Core.html#IdentityIdentity"><span class="id" type="projection">IdentityIdentity</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>).<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.Categories.Adjoint.Identity.html#IdentityAdjunction"><span class="id" type="section">IdentityAdjunction</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name=":adjunction_scope:'1'"><span class="id" type="notation">"</span></a>1" := (<a class="idref" href="HoTT.Categories.Adjoint.Identity.html#IdentityAdjunction"><span class="id" type="definition">IdentityAdjunction</span></a> <span class="id" type="var">_</span>) : <span class="id" type="var">adjunction_scope</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

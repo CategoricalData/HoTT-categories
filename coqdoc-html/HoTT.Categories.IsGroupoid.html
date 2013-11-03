@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.IsGroupoid</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.IsGroupoid</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.html#"><span class="id" type="library">Category</span></a> <a class="idref" href="HoTT.Categories.Category.Morphisms.html#"><span class="id" type="library">Category.Morphisms</span></a> <a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#"><span class="id" type="library">CommaCategory</span></a> <a class="idref" href="HoTT.Categories.SetCategory.html#"><span class="id" type="library">SetCategory</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">category_scope</span>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Notation</span> <a name="IsGroupoid"><span class="id" type="abbreviation">IsGroupoid</span></a> <span class="id" type="var">C</span> := (<span class="id" type="keyword">∀</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> (<span class="id" type="var">m</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <span class="id" type="var">C</span> <a class="idref" href="HoTT.Categories.IsGroupoid.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#d"><span class="id" type="variable">d</span></a>), <a class="idref" href="HoTT.Categories.Category.Morphisms.html#IsIsomorphism"><span class="id" type="class">IsIsomorphism</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#m"><span class="id" type="variable">m</span></a>).<br/>
+
+<br/>
+<span class="id" type="keyword">Definition</span> <a name="GroupoidJ"><span class="id" type="definition">GroupoidJ</span></a> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>} (<span class="id" type="var">C</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">Arr_id</span> := <span class="id" type="keyword">fun</span> <span class="id" type="var">x</span> ⇒ (<a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#Build_CommaCategory_Object"><span class="id" type="constructor">Build_CommaCategory_Object</span></a> (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#C"><span class="id" type="variable">C</span></a>) (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#C"><span class="id" type="variable">C</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.IsGroupoid.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#x"><span class="id" type="variable">x</span></a> (<a class="idref" href="HoTT.Categories.Category.Core.html#Identity"><span class="id" type="projection">Identity</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#x"><span class="id" type="variable">x</span></a>)))<br/>
+: <span class="id" type="keyword">∀</span> (<span class="id" type="var">C0</span> : <a class="idref" href="HoTT.Categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> (<a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#ArrowCategory"><span class="id" type="definition">ArrowCategory</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.Categories.SetCategory.html#SetCat"><span class="id" type="definition">SetCat</span></a>),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">(</span></a><span class="id" type="keyword">∀</span> <span class="id" type="var">x</span> : <a class="idref" href="HoTT.Categories.IsGroupoid.html#C"><span class="id" type="variable">C</span></a>, <a class="idref" href="HoTT.Categories.IsGroupoid.html#C0"><span class="id" type="variable">C0</span></a> (<a class="idref" href="HoTT.Categories.IsGroupoid.html#Arr_id"><span class="id" type="variable">Arr_id</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#x"><span class="id" type="variable">x</span></a>)  : <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.HSet.html#hSet"><span class="id" type="record">hSet</span></a><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">)</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <span class="id" type="keyword">∀</span> <span class="id" type="var">y</span> : <a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#ArrowCategory"><span class="id" type="definition">ArrowCategory</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#C"><span class="id" type="variable">C</span></a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.IsGroupoid.html#C0"><span class="id" type="variable">C0</span></a> <a class="idref" href="HoTT.Categories.IsGroupoid.html#y"><span class="id" type="variable">y</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.HSet.html#hSet"><span class="id" type="record">hSet</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">F</span> <span class="id" type="var">H'</span> [<span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">P</span>].<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">specialize</span> (<span class="id" type="var">H'</span> <span class="id" type="var">M</span>).<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">pose</span> (<a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#Build_CommaCategory_Morphism"><span class="id" type="constructor">Build_CommaCategory_Morphism</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#Build_CommaCategory_Object"><span class="id" type="constructor">Build_CommaCategory_Object</span></a> (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <span class="id" type="var">C</span>) (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <span class="id" type="var">C</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">M</span> <span class="id" type="var">M</span> (<a class="idref" href="HoTT.Categories.Category.Core.html#Identity"><span class="id" type="projection">Identity</span></a> <span class="id" type="var">M</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.Comma.CommaCategory.html#Build_CommaCategory_Object"><span class="id" type="constructor">Build_CommaCategory_Object</span></a> (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <span class="id" type="var">C</span>) (<a class="idref" href="HoTT.Categories.Functor.Identity.html#IdentityFunctor"><span class="id" type="definition">IdentityFunctor</span></a> <span class="id" type="var">C</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">M</span> <span class="id" type="var">N</span> <span class="id" type="var">P</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.Category.Core.html#Identity"><span class="id" type="projection">Identity</span></a> <span class="id" type="var">M</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">P</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">as</span> <span class="id" type="var">m</span>; <span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> ×.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">pose</span> (<a class="idref" href="HoTT.Categories.Functor.Core.html#MorphismOf"><span class="id" type="projection">MorphismOf</span></a> <span class="id" type="var">F</span> <span class="id" type="var">m</span>) <span class="id" type="keyword">as</span> <span class="id" type="var">m'</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">exact</span> (<span class="id" type="var">m'</span> <span class="id" type="var">H'</span>).<br/>
+<span class="id" type="keyword">Defined</span>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

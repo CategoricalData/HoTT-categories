@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Hom</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Hom</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.html#"><span class="id" type="library">Category</span></a> <a class="idref" href="HoTT.Categories.Functor.html#"><span class="id" type="library">Functor</span></a> <a class="idref" href="HoTT.Categories.Category.Duals.html#"><span class="id" type="library">Category.Duals</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#"><span class="id" type="library">Category.Product</span></a> <a class="idref" href="HoTT.Categories.Functor.Product.html#"><span class="id" type="library">Functor.Product</span></a> <a class="idref" href="HoTT.Categories.SetCategory.html#"><span class="id" type="library">SetCategory</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">category_scope</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="HomFunctor"><span class="id" type="section">HomFunctor</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="HomFunctor.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.Categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="objOf"><span class="id" type="abbreviation">objOf</span></a> <span class="id" type="var">c'c</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.HSet.html#BuildhSet"><span class="id" type="constructor">BuildhSet</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#fst"><span class="id" type="definition">fst</span></a> (<span class="id" type="var">c'c</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Object"><span class="id" type="projection">Object</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#:category_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a>))) (<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" type="definition">snd</span></a> (<span class="id" type="var">c'c</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Object"><span class="id" type="projection">Object</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#:category_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a>))))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="HomFunctor_MorphismOf"><span class="id" type="definition">HomFunctor_MorphismOf</span></a> <span class="id" type="var">s's</span> <span class="id" type="var">d'd</span> (<span class="id" type="var">hf</span> : <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#:category_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.Categories.Hom.html#s's"><span class="id" type="variable">s's</span></a> <a class="idref" href="HoTT.Categories.Hom.html#d'd"><span class="id" type="variable">d'd</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.SetCategory.html#SetCat"><span class="id" type="definition">SetCat</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#objOf"><span class="id" type="abbreviation">objOf</span></a> <a class="idref" href="HoTT.Categories.Hom.html#s's"><span class="id" type="variable">s's</span></a>) (<a class="idref" href="HoTT.Categories.Hom.html#objOf"><span class="id" type="abbreviation">objOf</span></a> <a class="idref" href="HoTT.Categories.Hom.html#d'd"><span class="id" type="variable">d'd</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <span class="id" type="keyword">fun</span> <span class="id" type="var">g</span> ⇒ <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#snd"><span class="id" type="definition">snd</span></a> <a class="idref" href="HoTT.Categories.Hom.html#hf"><span class="id" type="variable">hf</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <a class="idref" href="HoTT.Categories.Hom.html#g"><span class="id" type="variable">g</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#fst"><span class="id" type="definition">fst</span></a> <a class="idref" href="HoTT.Categories.Hom.html#hf"><span class="id" type="variable">hf</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="HomFunctor"><span class="id" type="definition">HomFunctor</span></a> : <a class="idref" href="HoTT.Categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#:category_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.Categories.SetCategory.html#SetCat"><span class="id" type="definition">SetCat</span></a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (<a class="idref" href="HoTT.Categories.Functor.Core.html#Build_Functor"><span class="id" type="constructor">Build_Functor</span></a> (<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">^</span></a><a class="idref" href="HoTT.Categories.Category.Duals.html#:category_scope:x_'^op'"><span class="id" type="notation">op</span></a> <a class="idref" href="HoTT.Categories.Category.Product.html#:category_scope:x_'*'_x"><span class="id" type="notation">×</span></a> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor.C"><span class="id" type="variable">C</span></a>) <a class="idref" href="HoTT.Categories.SetCategory.html#SetCat"><span class="id" type="definition">SetCat</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">c'c</span> ⇒ <a class="idref" href="HoTT.Categories.Hom.html#objOf"><span class="id" type="abbreviation">objOf</span></a> <a class="idref" href="HoTT.Categories.Hom.html#c'c"><span class="id" type="variable">c'c</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Hom.html#HomFunctor_MorphismOf"><span class="id" type="definition">HomFunctor_MorphismOf</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">abstract</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> (<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#path_forall"><span class="id" type="definition">path_forall</span></a> || <span class="id" type="tactic">intros</span> [] || <span class="id" type="tactic">intro</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">simpl</span> <span class="id" type="keyword">in</span> *;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">unfold</span> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor_MorphismOf"><span class="id" type="definition">HomFunctor_MorphismOf</span></a>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#compose"><span class="id" type="definition">compose</span></a>; <span class="id" type="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">rewrite</span> &lt;- ?<a class="idref" href="HoTT.Categories.Category.Core.html#Associativity"><span class="id" type="projection">Associativity</span></a>, ?<a class="idref" href="HoTT.Categories.Category.Core.html#LeftIdentity"><span class="id" type="projection">LeftIdentity</span></a>, ?<a class="idref" href="HoTT.Categories.Category.Core.html#RightIdentity"><span class="id" type="projection">RightIdentity</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">reflexivity</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.Categories.Hom.html#HomFunctor"><span class="id" type="section">HomFunctor</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

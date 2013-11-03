@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Grothendieck.ToSet</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Grothendieck.ToSet</h1>
+
+<div class="code">
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="HoTT.Categories.Category.html#"><span class="id" type="library">Category</span></a> <a class="idref" href="HoTT.Categories.Functor.html#"><span class="id" type="library">Functor</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Common.html#"><span class="id" type="library">Common</span></a> <a class="idref" href="HoTT.Categories.SetCategory.html#"><span class="id" type="library">SetCategory</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Set Implicit Arguments</span>.<br/>
+<span class="id" type="keyword">Generalizable</span> <span class="id" type="keyword">All</span> <span class="id" type="keyword">Variables</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Asymmetric</span> <span class="id" type="var">Patterns</span>.<br/>
+<span class="id" type="keyword">Set</span> <span class="id" type="var">Universe</span> <span class="id" type="var">Polymorphism</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">morphism_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Section</span> <a name="Grothendieck"><span class="id" type="section">Grothendieck</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Context</span> `{<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#Funext"><span class="id" type="class">Funext</span></a>}.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+     Quoting Wikipedia:
+
+<div class="paragraph"> </div>
+
+     The Grothendieck construction is an auxiliary construction used
+     in the mathematical field of category theory.
+
+<div class="paragraph"> </div>
+
+     Let
+
+<div class="paragraph"> </div>
+
+     <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.C"><span class="id" type="variable">C</span></a></span> <span class="inlinecode">→</span> <span class="inlinecode"><span class="id" type="keyword">Set</span></span>
+
+<div class="paragraph"> </div>
+
+     be a functor from any small category to the category of sets.
+     The Grothendieck construct for <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a></span> is the category <span class="inlinecode"><span class="id" type="var">Γ</span></span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a></span> whose
+     objects are pairs <span class="inlinecode">(<a class="idref" href="HoTT.Categories.ExponentialLaws.Law0.html#Law0'.c"><span class="id" type="variable">c</span></a>,</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#x"><span class="id" type="variable">x</span></a>)</span>, where <span class="inlinecode"><a class="idref" href="HoTT.Categories.ExponentialLaws.Law0.html#Law0'.c"><span class="id" type="variable">c</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.C"><span class="id" type="variable">C</span></a></span> is an object and <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#x"><span class="id" type="variable">x</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a></span>
+     <span class="inlinecode"><a class="idref" href="HoTT.Categories.ExponentialLaws.Law0.html#Law0'.c"><span class="id" type="variable">c</span></a></span> is an element, and for which the set <span class="inlinecode"><span class="id" type="library">Hom</span></span> <span class="inlinecode">(<span class="id" type="var">Γ</span></span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a>)</span> <span class="inlinecode">(<span class="id" type="var">c1</span>,</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Category.Morphisms.html#AssociativityComposition.x1"><span class="id" type="variable">x1</span></a>)</span> <span class="inlinecode">(<a class="idref" href="HoTT.Categories.ExponentialLaws.Law4.Functors.html#c2"><span class="id" type="variable">c2</span></a>,</span>
+     <span class="inlinecode"><a class="idref" href="HoTT.Categories.Category.Morphisms.html#AssociativityComposition.x2"><span class="id" type="variable">x2</span></a>)</span> is the set of morphisms <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" type="var">c1</span></span> <span class="inlinecode">→</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.ExponentialLaws.Law4.Functors.html#c2"><span class="id" type="variable">c2</span></a></span> in <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.C"><span class="id" type="variable">C</span></a></span> such that
+     <span class="inlinecode"><a class="idref" href="HoTT.Categories.Adjoint.UniversalMorphisms.html#AdjunctionFromUniversal.terminal.F"><span class="id" type="variable">F</span></a>.(<a class="idref" href="HoTT.Categories.ExponentialLaws.Law4.Functors.html#Law4.inverse.MorphismOf"><span class="id" type="section">MorphismOf</span></a>)</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#f"><span class="id" type="variable">f</span></a></span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Category.Morphisms.html#AssociativityComposition.x1"><span class="id" type="variable">x1</span></a></span> <span class="inlinecode">=</span> <span class="inlinecode"><a class="idref" href="HoTT.Categories.Category.Morphisms.html#AssociativityComposition.x2"><span class="id" type="variable">x2</span></a></span>.  
+</div>
+<div class="code">
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Grothendieck.C"><span class="id" type="variable">C</span></a> : <a class="idref" href="HoTT.Categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Variable</span> <a name="Grothendieck.F"><span class="id" type="variable">F</span></a> : <a class="idref" href="HoTT.Categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.C"><span class="id" type="variable">C</span></a> <a class="idref" href="HoTT.Categories.SetCategory.html#SetCat"><span class="id" type="definition">SetCat</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Record</span> <a name="GrothendieckPair"><span class="id" type="record">GrothendieckPair</span></a> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.C"><span class="id" type="variable">C</span></a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a name="GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> : (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="method">GrothendieckC</span></a> : <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.HSet.html#hSet"><span class="id" type="record">hSet</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Notation</span> <a name="GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <span class="id" type="var">s</span> <span class="id" type="var">d</span> :=<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">{</span></a> <span class="id" type="var">f</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">:</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#Morphism"><span class="id" type="projection">Morphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.C"><span class="id" type="variable">C</span></a> (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a> <span class="id" type="var">s</span>) (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a> <span class="id" type="var">d</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">|</span></a> <a class="idref" href="HoTT.Categories.Functor.Core.html#MorphismOf"><span class="id" type="projection">MorphismOf</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.F"><span class="id" type="variable">F</span></a> <span class="id" type="var">f</span> (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> <span class="id" type="var">s</span>) <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> <span class="id" type="var">d</span> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#:type_scope:'{'_x_':'_x_'|'_x_'}'"><span class="id" type="notation">}</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="GrothendieckCompose_H"><span class="id" type="definition">GrothendieckCompose_H</span></a> <span class="id" type="var">s</span> <span class="id" type="var">d</span> <span class="id" type="var">d'</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">m1</span> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d'"><span class="id" type="variable">d'</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">m2</span> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d"><span class="id" type="variable">d</span></a>)<br/>
+&nbsp;&nbsp;: (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.F"><span class="id" type="variable">F</span></a> <a class="idref" href="HoTT.Categories.Functor.Core.html#:morphism_scope:x_'₁'_x"><span class="id" type="notation">₁</span></a> <a class="idref" href="HoTT.Categories.Functor.Core.html#:morphism_scope:x_'₁'_x"><span class="id" type="notation">(</span></a><a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#m1"><span class="id" type="variable">m1</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#m2"><span class="id" type="variable">m2</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a><a class="idref" href="HoTT.Categories.Functor.Core.html#:morphism_scope:x_'₁'_x"><span class="id" type="notation">)</span></a>) (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#s"><span class="id" type="variable">s</span></a>) <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d'"><span class="id" type="variable">d'</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">etransitivity</span>; [ | <span class="id" type="tactic">exact</span> (<span class="id" type="var">m1</span><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.2'"><span class="id" type="notation">.2</span></a>) ].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">etransitivity</span>; [ | <span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#ap"><span class="id" type="definition">ap</span></a>; <span class="id" type="tactic">exact</span> (<span class="id" type="var">m2</span><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.2'"><span class="id" type="notation">.2</span></a>) ].<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="keyword">goal</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [ |- ?<span class="id" type="var">f</span> ?<span class="id" type="var">x</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">?</span></a><span class="id" type="var">g</span> (?<span class="id" type="var">h</span> ?<span class="id" type="var">x</span>) ] ⇒ <span class="id" type="tactic">change</span> (<span class="id" type="var">f</span> <span class="id" type="var">x</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> (<span class="id" type="var">g</span> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <span class="id" type="var">h</span>) <span class="id" type="var">x</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">match</span> <span class="id" type="keyword">goal</span> <span class="id" type="keyword">with</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| [ |- ?<span class="id" type="var">f</span> ?<span class="id" type="var">x</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">=</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:x_'='_x"><span class="id" type="notation">?</span></a><span class="id" type="var">g</span> ?<span class="id" type="var">x</span> ] ⇒ <span class="id" type="tactic">apply</span> (@<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#apD10"><span class="id" type="definition">apD10</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">f</span> <span class="id" type="var">g</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="keyword">end</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> (<a class="idref" href="HoTT.Categories.Functor.Core.html#FCompositionOf"><span class="id" type="projection">FCompositionOf</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.F"><span class="id" type="variable">F</span></a>).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="GrothendieckCompose"><span class="id" type="definition">GrothendieckCompose</span></a> <span class="id" type="var">s</span> <span class="id" type="var">d</span> <span class="id" type="var">d'</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">m1</span> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d"><span class="id" type="variable">d</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d'"><span class="id" type="variable">d'</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="var">m2</span> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d"><span class="id" type="variable">d</span></a>)<br/>
+&nbsp;&nbsp;: <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d'"><span class="id" type="variable">d'</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">∃</span> (<span class="id" type="var">m1</span><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a> <a class="idref" href="HoTT.Categories.Category.Core.html#:morphism_scope:x_'∘'_x"><span class="id" type="notation">∘</span></a> <span class="id" type="var">m2</span><a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:fibration_scope:x_'.1'"><span class="id" type="notation">.1</span></a>).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckCompose_H"><span class="id" type="definition">GrothendieckCompose_H</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="GrothendieckIdentity_H"><span class="id" type="definition">GrothendieckIdentity_H</span></a> <span class="id" type="var">x</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#apD10"><span class="id" type="definition">apD10</span></a> (<a class="idref" href="HoTT.Categories.Functor.Core.html#FIdentityOf"><span class="id" type="projection">FIdentityOf</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.F"><span class="id" type="variable">F</span></a> (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#x"><span class="id" type="variable">x</span></a>)) (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckX"><span class="id" type="projection">GrothendieckX</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#x"><span class="id" type="variable">x</span></a>).<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="GrothendieckIdentity"><span class="id" type="definition">GrothendieckIdentity</span></a> <span class="id" type="var">x</span> : <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#x"><span class="id" type="variable">x</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#x"><span class="id" type="variable">x</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">∃</span> (<a class="idref" href="HoTT.Categories.Category.Core.html#Identity"><span class="id" type="projection">Identity</span></a> (<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a> <span class="id" type="var">x</span>)).<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckIdentity_H"><span class="id" type="definition">GrothendieckIdentity_H</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckCompose_H"><span class="id" type="definition">GrothendieckCompose_H</span></a> / .<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="keyword">Opaque</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckCompose_H"><span class="id" type="definition">GrothendieckCompose_H</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckIdentity_H"><span class="id" type="definition">GrothendieckIdentity_H</span></a> / .<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="keyword">Opaque</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckIdentity_H"><span class="id" type="definition">GrothendieckIdentity_H</span></a>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckIdentity"><span class="id" type="definition">GrothendieckIdentity</span></a> <span class="id" type="var">_</span> / .<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Global</span>&nbsp;<span class="id" type="var">Arguments</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckCompose"><span class="id" type="definition">GrothendieckCompose</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> / .<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="CategoryOfElements"><span class="id" type="definition">CategoryOfElements</span></a> : <a class="idref" href="HoTT.Categories.Category.Core.html#PreCategory"><span class="id" type="record">PreCategory</span></a>.<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">refine</span> (@<a class="idref" href="HoTT.Categories.Category.Core.html#Build_PreCategory"><span class="id" type="definition">Build_PreCategory</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckPair"><span class="id" type="record">GrothendieckPair</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> ⇒ <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckMorphism"><span class="id" type="abbreviation">GrothendieckMorphism</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#s"><span class="id" type="variable">s</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#d"><span class="id" type="variable">d</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckIdentity"><span class="id" type="definition">GrothendieckIdentity</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckCompose"><span class="id" type="definition">GrothendieckCompose</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="var">_</span>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">abstract</span> (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">repeat</span> <span class="id" type="tactic">intro</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Sigma.html#path_sigma_uncurried"><span class="id" type="definition">path_sigma_uncurried</span></a>; <span class="id" type="tactic">simpl</span>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;((<span class="id" type="tactic">∃</span> (<a class="idref" href="HoTT.Categories.Category.Core.html#Associativity"><span class="id" type="projection">Associativity</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| (<span class="id" type="tactic">∃</span> (<a class="idref" href="HoTT.Categories.Category.Core.html#LeftIdentity"><span class="id" type="projection">LeftIdentity</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| (<span class="id" type="tactic">∃</span> (<a class="idref" href="HoTT.Categories.Category.Core.html#RightIdentity"><span class="id" type="projection">RightIdentity</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="id" type="tactic">exact</span> (<a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#center"><span class="id" type="method">center</span></a> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;).<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Defined</span>.<br/>
+
+<br/>
+&nbsp;&nbsp;<span class="id" type="keyword">Definition</span> <a name="GrothendieckFunctor"><span class="id" type="definition">GrothendieckFunctor</span></a> : <a class="idref" href="HoTT.Categories.Functor.Core.html#Functor"><span class="id" type="record">Functor</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#CategoryOfElements"><span class="id" type="definition">CategoryOfElements</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.C"><span class="id" type="variable">C</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;:= <a class="idref" href="HoTT.Categories.Functor.Core.html#Build_Functor"><span class="id" type="constructor">Build_Functor</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#CategoryOfElements"><span class="id" type="definition">CategoryOfElements</span></a> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck.C"><span class="id" type="variable">C</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#GrothendieckC"><span class="id" type="projection">GrothendieckC</span></a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">s</span> <span class="id" type="var">d</span> ⇒ @<a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Specif.html#projT1"><span class="id" type="abbreviation">projT1</span></a> <span class="id" type="var">_</span> <span class="id" type="var">_</span>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="id" type="keyword">fun</span> <span class="id" type="var">_</span> ⇒ <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#idpath"><span class="id" type="constructor">idpath</span></a>).<br/>
+<span class="id" type="keyword">End</span> <a class="idref" href="HoTT.Categories.Grothendieck.ToSet.html#Grothendieck"><span class="id" type="section">Grothendieck</span></a>.<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>

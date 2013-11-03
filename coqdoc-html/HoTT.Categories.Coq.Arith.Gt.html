@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="coqdoc.css" rel="stylesheet" type="text/css"/>
+<title>HoTT.Categories.Coq.Arith.Gt</title>
+</head>
+
+<body>
+
+<div id="page">
+
+<div id="header">
+</div>
+
+<div id="main">
+
+<h1 class="libtitle">Library HoTT.Categories.Coq.Arith.Gt</h1>
+
+<div class="code">
+
+<br/>
+</div>
+
+<div class="doc">
+Theorems about <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#gt"><span class="id" type="definition">gt</span></a></span> in <span class="inlinecode"><a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a></span>. <span class="inlinecode"><a class="idref" href="HoTT.Categories.Peano.html#gt"><span class="id" type="definition">gt</span></a></span> is defined in <span class="inlinecode"><span class="id" type="var">Init</span>/<span class="id" type="var">Peano.v</span></span> as:
+<pre>
+Definition gt (n m:nat) := m &lt; n.
+</pre>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Export</span> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#"><span class="id" type="library">HoTT.Overture</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Le.html#"><span class="id" type="library">Le</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#"><span class="id" type="library">Lt</span></a>.<br/>
+<span class="id" type="keyword">Require</span> <span class="id" type="keyword">Import</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Plus.html#"><span class="id" type="library">Plus</span></a>.<br/>
+<span class="id" type="keyword">Local</span>&nbsp;<span class="id" type="keyword">Open</span> <span class="id" type="keyword">Scope</span> <span class="id" type="var">nat_scope</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Implicit</span> <span class="id" type="keyword">Types</span> <span class="id" type="var">m</span> <span class="id" type="var">n</span> <span class="id" type="var">p</span> : <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#nat"><span class="id" type="inductive">nat</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab20"></a><h1 class="section">Order and successor</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="gt_Sn_O"><span class="id" type="lemma">gt_Sn_O</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> 0.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_Sn_O</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="gt_Sn_n"><span class="id" type="lemma">gt_Sn_n</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_Sn_n</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="gt_n_S"><span class="id" type="lemma">gt_n_S</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_n_S</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_S_n"><span class="id" type="lemma">gt_S_n</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Immediate</span> <span class="id" type="var">gt_S_n</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_pred"><span class="id" type="lemma">gt_pred</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#pred"><span class="id" type="definition">pred</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Immediate</span> <span class="id" type="var">gt_pred</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab21"></a><h1 class="section">Irreflexivity</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_irrefl"><span class="id" type="lemma">gt_irrefl</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span>, <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_irrefl"><span class="id" type="lemma">lt_irrefl</span></a>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_irrefl</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab22"></a><h1 class="section">Asymmetry</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_asym"><span class="id" type="lemma">gt_asym</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span> <span class="id" type="keyword">fun</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> ⇒ <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_asym"><span class="id" type="lemma">lt_asym</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_asym</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab23"></a><h1 class="section">Relating strict and large orders</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="le_not_gt"><span class="id" type="lemma">le_not_gt</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#le_not_lt"><span class="id" type="lemma">le_not_lt</span></a>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">le_not_gt</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_not_le"><span class="id" type="lemma">gt_not_le</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://hott.github.io/HoTT/coqdoc-html/HoTT.Overture.html#:type_scope:'~'_x"><span class="id" type="notation">¬</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_not_le</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="le_S_gt"><span class="id" type="lemma">le_S_gt</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Immediate</span> <span class="id" type="var">le_S_gt</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_S_le"><span class="id" type="lemma">gt_S_le</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">p</span>; <span class="id" type="tactic">exact</span> (<a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_n_Sm_le"><span class="id" type="lemma">lt_n_Sm_le</span></a> <span class="id" type="var">n</span> <span class="id" type="var">p</span>).<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Immediate</span> <span class="id" type="var">gt_S_le</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_le_S"><span class="id" type="lemma">gt_le_S</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_le_S</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="le_gt_S"><span class="id" type="lemma">le_gt_S</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">le_gt_S</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab24"></a><h1 class="section">Transitivity</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="le_gt_trans"><span class="id" type="lemma">le_gt_trans</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">red</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_le_trans"><span class="id" type="lemma">lt_le_trans</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">m</span>; <span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="gt_le_trans"><span class="id" type="lemma">gt_le_trans</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'<='_x"><span class="id" type="notation">≤</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">red</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#le_lt_trans"><span class="id" type="lemma">le_lt_trans</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">m</span>; <span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="gt_trans"><span class="id" type="lemma">gt_trans</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">red</span>; <span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span> <span class="id" type="var">H1</span> <span class="id" type="var">H2</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_trans"><span class="id" type="lemma">lt_trans</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">m</span>; <span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Theorem</span> <a name="gt_trans_S"><span class="id" type="lemma">gt_trans_S</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Datatypes.html#S"><span class="id" type="constructor">S</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">red</span>; <span class="id" type="tactic">intros</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Lt.html#lt_le_trans"><span class="id" type="lemma">lt_le_trans</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">m</span>; <span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">gt_trans_S</span> <span class="id" type="var">le_gt_trans</span> <span class="id" type="var">gt_le_trans</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab25"></a><h1 class="section">Comparison to 0</h1>
+
+</div>
+<div class="code">
+
+<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab26"></a><h1 class="section">Simplification and compatibility</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="plus_gt_reg_l"><span class="id" type="lemma">plus_gt_reg_l</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">red</span>; <span class="id" type="tactic">intros</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span> <span class="id" type="var">H</span>; <span class="id" type="tactic">apply</span> <a class="idref" href="HoTT.Categories.Coq.Arith.Plus.html#plus_lt_reg_l"><span class="id" type="lemma">plus_lt_reg_l</span></a> <span class="id" type="keyword">with</span> <span class="id" type="var">p</span>; <span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" type="keyword">Lemma</span> <a name="plus_gt_compat_l"><span class="id" type="lemma">plus_gt_compat_l</span></a> : <span class="id" type="keyword">∀</span> <span class="id" type="var">n</span> <span class="id" type="var">m</span> <span class="id" type="var">p</span>, <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Logic.html#:type_scope:x_'->'_x"><span class="id" type="notation">→</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#n"><span class="id" type="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'>'_x"><span class="id" type="notation">&gt;</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#p"><span class="id" type="variable">p</span></a> <a class="idref" href="http://coq.inria.fr/distrib/trunk/stdlib/Coq.Init.Peano.html#:nat_scope:x_'+'_x"><span class="id" type="notation">+</span></a> <a class="idref" href="HoTT.Categories.Coq.Arith.Gt.html#m"><span class="id" type="variable">m</span></a>.<br/>
+<span class="id" type="keyword">Proof</span>.<br/>
+&nbsp;&nbsp;<span class="id" type="tactic">auto</span> <span class="id" type="keyword">with</span> <span class="id" type="var">arith</span>.<br/>
+<span class="id" type="keyword">Qed</span>.<br/>
+<span class="id" type="keyword">Hint Resolve</span> <span class="id" type="var">plus_gt_compat_l</span>: <span class="id" type="var">arith</span> <span class="id" type="var">v62</span>.<br/>
+
+<br/>
+</div>
+</div>
+
+<div id="footer">
+<hr/><a href="index.html">Index</a><hr/>This page has been generated by <a href="http://coq.inria.fr/">coqdoc</a>
+</div>
+
+</div>
+
+</body>
+</html>
