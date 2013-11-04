@@ -1,5 +1,5 @@
 Require Export ExponentialLaws.Law2.Functors.
-Require Import Common Functor.Pointwise Functor.Product Functor.Sum NaturalTransformation.Sum.
+Require Import Common Functor.Pointwise Functor.Product Functor.Sum NaturalTransformation.Sum Functor.Equality.
 
 Set Implicit Arguments.
 Generalizable All Variables.
@@ -32,30 +32,18 @@ Section Law2.
   : 1 ∘ c ∘ inl_Functor C1 C2 + 1 ∘ c ∘ inr_Functor C1 C2 = c.
   Proof.
     functor_eq.
-    exists (path_forall _ _ (@ExponentialLaw2_helper2_helper c)).
-    repeat (apply (@path_forall _); intro).
-    (*Set Printing Implicit.
-    Set Printing Coercions.
-    Unset Printing Notations.
-    repeat match goal with
-             | _ => reflexivity
-             | _ => progress simpl
-             | [ H : Object 1 |- _ ] => destruct (contr H)
-             | [ H : Morphism 1 _ _ |- _ ] => destruct (contr H)
-             | _ => rewrite !transport_forall_constant
-             | [ |- appcontext[@MorphismOf ?C ?D (transport ?P ?p ?z)] ]
-               => rewrite (@ap_transport _ P _ _ _ p (fun _ => @MorphismOf C D) z)
-           end.
-    Set Printing Implicit.
-    rewrite !transport_forall_constant.
-lazymatch goal with
-    | [ |- appcontext[@MorphismOf ?C ?D (transport ?P ?p ?z)] ]
-      => pose (@ap_transport _ P _ _ _ p (fun _ => @MorphismOf C D) z)
-    end.
-    apply path_forall.
-
-    rewrite !transport_forall_constant.*)
-    admit.
+    (exists (path_forall _ _ (@ExponentialLaw2_helper2_helper c))).
+    abstract (
+        repeat (apply (@path_forall _); intro);
+        repeat match goal with
+                 | [ H : Empty |- _ ] => by destruct H
+                 | _ => reflexivity
+                 | [ H : (_ + _)%type |- _ ] => destruct H
+                 | [ |- appcontext[transport (fun x : ?A => forall y : ?B, @?C x y) ?p ?f ?k] ]
+                   => simpl_do_clear do_rewrite (@transport_forall_constant A B C _ _ p f k)
+                 | _ => progress transport_path_forall_hammer
+               end
+      ).
   Defined.
 
   Lemma ExponentialLaw2
@@ -65,77 +53,34 @@ lazymatch goal with
     split;
     functor_eq;
     [ (exists (path_forall _ _ ExponentialLaw2_helper1))
-    | (exists (path_forall _ _ ExponentialLaw2_helper2)) ]. (*
+    | (exists (path_forall _ _ ExponentialLaw2_helper2)) ];
     repeat (apply (@path_forall _) || apply path_prod || intro || functor_eq || nt_eq);
-    repeat match goal with
-             | _ => reflexivity
-             | _ => progress simpl
-             | [ H : Object 1 |- _ ] => destruct (contr H)
-             | [ H : Morphism 1 _ _ |- _ ] => destruct (contr H)
-             | _ => rewrite !transport_forall_constant
-             | [ |- appcontext[ComponentsOf (transport ?P ?p ?z)] ]
-               => rewrite (@ap_transport _ P _ _ _ p (fun _ => ComponentsOf) z)
-           end;
-    transport_path_forall_hammer.
-    destruct_head_hnf @prod;
+    destruct_head prod;
+    rewrite !transport_forall_constant;
+    [ transport_path_forall_hammer
+    | transport_path_forall_hammer
+    | rewrite path_forall_2_beta, transport_path_prod' ];
     unfold ExponentialLaw2_helper1, ExponentialLaw2_helper2;
-    rewrite !transport_path_prod;
-    rewrite !transport_prod.
-    Opaque Functor_eq'_sig.
     repeat match goal with
+             | _ => progress simpl in *
              | _ => reflexivity
-             | _ => progress simpl
-             | [ H : Object 1 |- _ ] => destruct (contr H)
-             | [ H : Morphism 1 _ _ |- _ ] => destruct (contr H)
-             | _ => rewrite !transport_forall_constant
+             | [ H : (_ + _)%type |- _ ] => destruct H
+             | [ |- appcontext[fst (transport ?P ?p ?z)] ]
+               => simpl_do_clear do_rewrite (@ap_transport _ P _ _ _ p (fun _ => @fst _ _) z)
+             | [ |- appcontext[snd (transport ?P ?p ?z)] ]
+               => simpl_do_clear do_rewrite (@ap_transport _ P _ _ _ p (fun _ => @snd _ _) z)
              | [ |- appcontext[ComponentsOf (transport ?P ?p ?z)] ]
-               => rewrite (@ap_transport _ P _ _ _ p (fun _ => ComponentsOf) z)
-           end.
-    Set Printing Coercions.
-    repeat match goal with
+               => simpl_do_clear do_rewrite (@ap_transport _ P _ _ _ p (fun _ => ComponentsOf) z)
+             | _ => rewrite !transport_path_prod
+             | _ => rewrite !transport_const
+             | _ => rewrite !transport_forall_constant
              | [ |- appcontext[transport (fun y => ?f (@ObjectOf ?C ?D y ?x))] ]
                => rewrite (fun a b => @transport_compose _ _ a b (fun y => f (y x)) (@ObjectOf C D))
              | [ |- appcontext[transport (fun y => ?f (@ObjectOf ?C ?D y ?x) ?z)] ]
                => rewrite (fun a b => @transport_compose _ _ a b (fun y => f (y x) z) (@ObjectOf C D))
+             | [ |- appcontext[ap (@ObjectOf ?C ?D) (@Functor_eq'_sig ?H ?C ?D ?F ?G (?HO; ?HM))] ]
+               => simpl_do_clear do_rewrite (@Functor_eq'_sig_fst H C D F G HO HM)
+             | _ => transport_path_forall_hammer
            end.
-    Set Printing Implicit.
-    simpl.
-    Check @Functor_eq'_sig_fst.
-    match goal with
-      | [ |- appcontext[ap (@ObjectOf ?C ?D) (@Functor_eq'_sig ?H ?C ?D ?F ?G (?HO; ?HM))] ]
-        => pose (@Functor_eq'_sig_fst H C D F G HO HM)
-    end.
-    rewrite p.
-    rewrite !Functor_eq'_sig_fst.
-    transport_path_forall_hammer.
-    assert (idpath = contr (center 1%category)) by exact (center _).
-    path_induction.
-    reflexivity.
-
-
-
-
- (* Lemma ExponentialLaw2
-  : ExponentialLaw2Functor ∘ ExponentialLaw2Functor_Inverse = 1
-    /\ ExponentialLaw2Functor_Inverse ∘ ExponentialLaw2Functor = 1.
-  Proof.
-    split.
-    functor_eq.
-    simpl.
-    abstract (repeat
-                match goal with
-                  | _ => reflexivity
-                  | _ => split
-                  | _ => progress (simpl in *; intros; trivial)
-                  | _ => progress repeat subst
-                  | _ => progress destruct_head_hnf @Empty_set
-                  | _ => progress simpl_eq
-                  | _ => progress apply Functor_eq
-                  | _ => progress nt_eq
-                  | _ => progress rsimplify_morphisms
-                  | _ => progress destruct_head_hnf @sum
-                  | _ => progress rewrite FIdentityOf
-                end).
-  Qed.*)*)
-  Admitted.
+  Qed.
 End Law2.
